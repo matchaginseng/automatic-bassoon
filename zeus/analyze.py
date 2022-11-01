@@ -119,3 +119,9 @@ def _get_seconds(df: pd.DataFrame) -> pd.Series:
 
 def _get_watts(df: pd.DataFrame) -> pd.Series:
     return df["Power"].div(1000.0)
+
+
+def get_train_time(logfile: Path | str) -> float:
+    
+    df = cast(pd.DataFrame, pd.read_csv(logfile, engine="python", skipfooter=1))
+    return df["time"].sum()
