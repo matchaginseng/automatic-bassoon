@@ -107,7 +107,7 @@ def main(args: argparse.Namespace) -> None:
             "python",
             "train.py",
             "--zeus",
-            "--arch", "shufflenet",
+            "--arch", "shufflenetv2",
             "--batch_size", "{batch_size}",
             "--epochs", "{epochs}",
             "--seed", "{seed}",
