@@ -103,6 +103,8 @@ class Job:
                 command.append(str(rec_i))
             elif piece == "{target_metric}":
                 command.append(str(self.target_metric))
+            elif piece in ["{pl}", "{power_limit}"]:
+                command.append(str(learning_rate))
             else:
                 command.append(piece)
         return command
