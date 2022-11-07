@@ -127,6 +127,7 @@ def main(args: argparse.Namespace) -> None:
             num_workers=args.num_workers,
         )
     elif args.profile:
+        print(f"power limit arg: {args.power_limit}")
         train_loader = ProfileDataLoader(
             train_dataset,
             split="train",

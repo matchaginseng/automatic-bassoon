@@ -240,7 +240,7 @@ class ProfileDataLoader(DataLoader):
             pynvml.nvmlDeviceSetPowerManagementLimit(
                 self.gpu_handles[index], power_limit
             )
-            self._log(f"[GPU_{index}] Set GPU power limit to {power_limit//1000}W.")
+            print(f"[GPU_{index}] Set GPU power limit to {power_limit//1000}W.")
 
             handle = pynvml.nvmlDeviceGetHandleByIndex(index)
             # Set persistent mode.
