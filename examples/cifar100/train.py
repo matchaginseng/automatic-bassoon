@@ -49,6 +49,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--seed", type=int, default=None, help="Random seed to use for training."
     )
+    parser.add_argument(
+        "--power_limit", type=int, default=0, help="Desired power limit, in mW."
+    )
 
     # ZEUS
     runtime_mode = parser.add_mutually_exclusive_group()
@@ -128,6 +131,7 @@ def main(args: argparse.Namespace) -> None:
             train_dataset,
             split="train",
             batch_size=args.batch_size,
+            power_limit=args.power_limit,
             shuffle=True,
             num_workers=args.num_workers,
         )
@@ -135,6 +139,7 @@ def main(args: argparse.Namespace) -> None:
             val_dataset,
             split="eval",
             batch_size=args.batch_size,
+            power_limit=args.power_limit,
             shuffle=False,
             num_workers=args.num_workers,
         )

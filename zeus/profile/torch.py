@@ -17,6 +17,7 @@
 from __future__ import annotations
 
 import atexit
+import pynvml
 import os
 import subprocess
 import time
@@ -64,6 +65,7 @@ class ProfileDataLoader(DataLoader):
         self,
         *args,
         batch_size: int,
+        power_limit: int = 0,
         split: Literal["train", "eval"],
         subset_proportion: float = 1.0,
         eat_batch_size: bool = False,
@@ -110,6 +112,27 @@ class ProfileDataLoader(DataLoader):
             ProfileDataLoader.time_file = open(self.log_prefix + ".time.csv", "w")
             self.time_file.write("epoch,split,time\n")
             self.time_file.flush()
+
+        # Initialize NVML and get GPU handle or each GPU at the master process.
+        self.gpu_handles = []
+        self.world_size = 1
+        pynvml.nvmlInit()
+        for index in range(self.world_size):
+            handle = pynvml.nvmlDeviceGetHandleByIndex(index)
+            # Set persistent mode.
+            pynvml.nvmlDeviceSetPersistenceMode(handle, pynvml.NVML_FEATURE_ENABLED)
+            self.gpu_handles.append(handle)
+
+        # Query NVML for the possible power limit range. Unit is mW.
+        # Default power limit is the max.
+        min_pl, self.pl = pynvml.nvmlDeviceGetPowerManagementLimitConstraints(
+            self.gpu_handles[0]
+        )
+
+        # Set power limit, if one is specified
+        if power_limit > 0 and (power_limit >= min_pl) and (power_limit <= self.pl):
+            self._set_gpu_power_limit(power_limit)
+            self.pl = power_limit
 
         # Slice out subset of dataset if subset_proportion is given.
         dataset = kwargs["dataset"] if "dataset" in kwargs else args[0]
@@ -196,6 +219,34 @@ class ProfileDataLoader(DataLoader):
                         f"epoch {self.epoch} {self.split} time consumed: {scaled_time:.2f}s"
                     )
             raise
+
+    def _set_gpu_power_limit(self, power_limit: int) -> None:
+        """Set the GPU's power limit using NVML.
+
+        `power_limits` must be in mW.
+
+        Only works for single-GPU case right now.
+
+        Args:
+            power_limit: Power limit to set.
+        """
+        # Sanity check.
+        # Only set power limit at master process.
+        # assert self.rank == 0
+        assert len(self.gpu_handles) == self.world_size
+
+        # Set power limit for GPU
+        for index in range(self.world_size):
+            pynvml.nvmlDeviceSetPowerManagementLimit(
+                self.gpu_handles[index], power_limit
+            )
+            self._log(f"[GPU_{index}] Set GPU power limit to {power_limit//1000}W.")
+
+            handle = pynvml.nvmlDeviceGetHandleByIndex(index)
+            # Set persistent mode.
+            pynvml.nvmlDeviceSetPersistenceMode(handle, pynvml.NVML_FEATURE_ENABLED)
+            self.gpu_handles.append(handle)
+
 
 
 def kill_monitor():
