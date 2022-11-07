@@ -170,6 +170,7 @@ def main(args: argparse.Namespace) -> None:
         job=job,
         num_recurrence=args.num_recurrence,
         batch_sizes=[batch_size],
+        power_limit=power_limit,
         beta_knob=args.beta_knob,
         eta_knob=args.eta_knob,
     )

@@ -380,6 +380,9 @@ class ZeusMaster:
 
         return history
 
+    def _get_max_pl(self):
+        return self.max_pl
+
 class ProfilePLMaster(ZeusMaster):
     current_gpu_pl : int = 0
 
@@ -405,7 +408,7 @@ class ProfilePLMaster(ZeusMaster):
             profile_measure_iters=profile_measure_iters
         )
 
-        self.current_gpu_pl = power_limit if (power_limit > 0 and power_limit <= super().max_pl) else super().max_pl
+        self.current_gpu_pl = power_limit if (power_limit > 0 and power_limit <= super()._get_max_pl()) else super()._get_max_pl()
 
     def run_job(
         self,

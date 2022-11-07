@@ -21,4 +21,6 @@ drives batch size optimization (with Multi-Armed Bandit) and spawns training job
 """
 
 from zeus.run.master import ZeusMaster
+from zeus.run.master import ProfilePLMaster
 from zeus.run.dataloader import ZeusDataLoader
+from zeus.run.dataloader import ProfileDataLoaderPowerLimit

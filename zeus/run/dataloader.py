@@ -1586,6 +1586,9 @@ class ProfileDataLoaderPowerLimit(DataLoader):
                 self._log(f"[GPU_{index}] Set GPU power limit to {power_limit//1000}W.")
             ProfileDataLoaderPowerLimit.current_gpu_pl = power_limit
 
+        # Add this just so things don't break
+        self.optimal_pl = self.current_gpu_pl
+
     # def _set_gpu_steady_power_limit(self) -> None:
     #     """Set the steady power limit based on self.use_optimal_pl."""
     #     # Sanity check.
