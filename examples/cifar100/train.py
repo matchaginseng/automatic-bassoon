@@ -23,7 +23,7 @@ from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 
 # ZEUS
-from zeus.run import ZeusDataLoader
+from zeus.run import ZeusDataLoader, ProfileDataLoaderPowerLimit
 from zeus.profile.torch import ProfileDataLoader
 
 from models import all_models, get_model
@@ -50,7 +50,7 @@ def parse_args() -> argparse.Namespace:
         "--seed", type=int, default=None, help="Random seed to use for training."
     )
     parser.add_argument(
-        "--power_limit", type=int, default=0, help="Desired power limit, in mW."
+        "--power_limit", type=int, default=-1, help="Desired power limit, in mW."
     )
 
     # ZEUS
@@ -60,6 +60,9 @@ def parse_args() -> argparse.Namespace:
     )
     runtime_mode.add_argument(
         "--profile", action="store_true", help="Whether to just profile power."
+    )
+    runtime_mode.add_argument(
+        "--profile_pl", action="store_true", help="Whether to profile power and set power limits."
     )
 
     return parser.parse_args()
@@ -127,18 +130,33 @@ def main(args: argparse.Namespace) -> None:
             num_workers=args.num_workers,
         )
     elif args.profile:
-        print(f"power limit arg: {args.power_limit}")
         train_loader = ProfileDataLoader(
             train_dataset,
             split="train",
             batch_size=args.batch_size,
-            power_limit=args.power_limit,
+            # power_limit=args.power_limit,
             shuffle=True,
             num_workers=args.num_workers,
         )
         val_loader = ProfileDataLoader(
             val_dataset,
             split="eval",
+            batch_size=args.batch_size,
+            # power_limit=args.power_limit,
+            shuffle=False,
+            num_workers=args.num_workers,
+        )
+    elif args.profile_pl:
+        train_loader = ProfileDataLoaderPowerLimit(
+            train_dataset,
+            max_epochs=args.epochs,
+            batch_size=args.batch_size,
+            power_limit=args.power_limit,
+            shuffle=True,
+            num_workers=args.num_workers,
+        )
+        val_loader = ProfileDataLoaderPowerLimit(
+            val_dataset,
             batch_size=args.batch_size,
             power_limit=args.power_limit,
             shuffle=False,
@@ -171,6 +189,9 @@ def main(args: argparse.Namespace) -> None:
     if args.zeus:
         assert isinstance(train_loader, ZeusDataLoader)
         epoch_iter = train_loader.epochs()
+    elif args.profile_pl:
+        assert isinstance(train_loader, ProfileDataLoaderPowerLimit)
+        epoch_iter = train_loader.epochs()
     else:
         epoch_iter = range(args.epochs)
 
@@ -183,9 +204,9 @@ def main(args: argparse.Namespace) -> None:
         if args.zeus:
             assert isinstance(train_loader, ZeusDataLoader)
             train_loader.report_metric(acc, higher_is_better=True)
-        elif args.profile:
-            if train_loader.reached_target_metric(acc):
-                break
+        elif args.profile_pl:
+            assert isinstance(train_loader, ProfileDataLoaderPowerLimit)
+            train_loader.report_metric(acc, higher_is_better=True)
 
 def train(train_loader, model, criterion, optimizer, epoch, args):
     """Train the model for one epoch."""

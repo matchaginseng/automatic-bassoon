@@ -17,17 +17,19 @@
 from __future__ import annotations
 
 import atexit
+import numpy as np
 import pynvml
 import os
 import subprocess
 import time
-from typing import Literal
+from typing import Generator, Literal
 
 import torch
 import torch.distributed as dist
 from torch.utils.data import DataLoader, Subset
 
 from zeus.util import get_env
+from zeus.util.metric import ZeusCostThresholdExceededException, zeus_cost
 
 
 class ProfileDataLoader(DataLoader):
@@ -251,11 +253,3 @@ class ProfileDataLoader(DataLoader):
     def reached_target_metric(self, acc: float) -> bool:
         return (acc >= self.target_metric)
 
-
-def kill_monitor():
-    """Kill all Zeus power monitors."""
-    monitor = ProfileDataLoader.monitor
-    if monitor is not None:
-        for i, proc in enumerate(monitor):
-            proc.kill()
-            print(f"Stopped Zeus monitor {i}.")
