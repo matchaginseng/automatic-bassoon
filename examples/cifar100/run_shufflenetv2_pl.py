@@ -82,6 +82,8 @@ def main(args: argparse.Namespace) -> None:
     # Definition of the CIFAR100 job.
     # The `Job` class encloses all information needed to run training. The `command` parameter is
     # a command template. Curly-braced parameters are recognized by Zeus and automatically filled.
+    batch_size = args.b_0
+    power_limit = args.pl_0
 
     job = Job(
         dataset="cifar100",
@@ -98,10 +100,10 @@ def main(args: argparse.Namespace) -> None:
             "train.py",
             "--profile",
             "--arch", "shufflenetv2",
-            "--batch_size", "{args.b_0}",
+            "--batch_size", "{batch_size}",
             "--epochs", "{epochs}",
             "--seed", "{seed}",
-            "--power_limit", "{args.pl_0}"
+            "--power_limit", "{power_limit}"
         ],
         # fmt: on
     )
@@ -109,10 +111,10 @@ def main(args: argparse.Namespace) -> None:
     # Run the job! Code hacked together from master.py, run_job()
 
     # Generate job command
-    command = job.gen_command(args.b_0, args.lr_0, args.seed, 0)
+    command = job.gen_command(batch_size, args.lr_0, args.seed, 0)
 
     # Set environment variables
-    job_id = f"cifar100+shufflenetv2+bs{args.b_0}+pl{args.pl_0}"
+    job_id = f"cifar100+shufflenetv2+bs{batch_size}+pl{power_limit}"
     logdir = "/workspace/examples/cifar100"
     zeus_env = dict(
         ZEUS_LOG_PREFIX=str(job_id),
@@ -137,7 +139,7 @@ def main(args: argparse.Namespace) -> None:
     history_file = f"{logdir}/history+{job_id}.py"
 
     # Reporting
-    print(f"[run job] Launching job with BS {args.b_0}:")
+    print(f"[run job] Launching job with BS {batch_size}:")
     print(f"[run job] {zeus_env=}")
     if job.workdir is not None:
         print(f"[run job] cwd={job.workdir}")
