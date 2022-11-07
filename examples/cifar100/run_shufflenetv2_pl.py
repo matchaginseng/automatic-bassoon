@@ -111,7 +111,7 @@ def main(args: argparse.Namespace) -> None:
     # Run the job! Code hacked together from master.py, run_job()
 
     # Generate job command
-    command = job.gen_command(batch_size, args.lr_0, args.seed, 0)
+    command = job.gen_command(batch_size, args.lr_0, power_limit, args.seed, 0)
 
     # Set environment variables
     job_id = f"cifar100+shufflenetv2+bs{batch_size}+pl{power_limit}"
@@ -180,7 +180,7 @@ def main(args: argparse.Namespace) -> None:
     with open(train_json, "r") as f:
         stats = json.load(f)
         print(f"[run job] {stats=}")
-    train_json.close()
+    # train_json.close()
 
     # Casting
     if not isinstance(stats["reached"], bool):
@@ -196,7 +196,10 @@ def main(args: argparse.Namespace) -> None:
         # history = eval(open(history_file).read())
         # ```
         f.write(pprint.pformat(history) + "\n")
-    history_file.close()
+
+    if stats["reached"] == True:
+        print("Reached target metric")
+    # history_file.close()
 
     # return float(stats["energy"]), float(stats["time"]), stats["reached"]
 

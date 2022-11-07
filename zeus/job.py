@@ -77,6 +77,7 @@ class Job:
         self,
         batch_size: int,
         learning_rate: float,
+        power_limit: int,
         seed: int,
         rec_i: int,
     ) -> list[str]:
@@ -104,7 +105,7 @@ class Job:
             elif piece == "{target_metric}":
                 command.append(str(self.target_metric))
             elif piece in ["{pl}", "{power_limit}"]:
-                command.append(str(learning_rate))
+                command.append(str(power_limit))
             else:
                 command.append(piece)
         return command

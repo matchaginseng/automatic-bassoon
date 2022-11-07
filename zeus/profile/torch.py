@@ -102,6 +102,7 @@ class ProfileDataLoader(DataLoader):
         self.monitor_path = get_env("ZEUS_MONITOR_PATH", str)
         self.monitor_sleep_ms = get_env("ZEUS_MONITOR_SLEEP_MS", int, default=100)
         self.log_prefix = get_env("ZEUS_LOG_PREFIX", str)
+        self.target_metric = get_env("ZEUS_TARGET_METRIC", float)
 
         # Check if the Zeus power monitor is executable.
         if not os.access(self.monitor_path, os.X_OK):
@@ -246,7 +247,9 @@ class ProfileDataLoader(DataLoader):
             # Set persistent mode.
             pynvml.nvmlDeviceSetPersistenceMode(handle, pynvml.NVML_FEATURE_ENABLED)
             self.gpu_handles.append(handle)
-
+    
+    def reached_target_metric(self, acc: float) -> bool:
+        return (acc >= self.target_metric)
 
 
 def kill_monitor():

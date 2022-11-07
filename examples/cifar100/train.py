@@ -183,7 +183,9 @@ def main(args: argparse.Namespace) -> None:
         if args.zeus:
             assert isinstance(train_loader, ZeusDataLoader)
             train_loader.report_metric(acc, higher_is_better=True)
-
+        elif args.profile:
+            if train_loader.reached_target_metric(acc):
+                break
 
 def train(train_loader, model, criterion, optimizer, epoch, args):
     """Train the model for one epoch."""
