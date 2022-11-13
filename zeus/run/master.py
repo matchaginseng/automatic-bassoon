@@ -145,6 +145,7 @@ class ZeusMaster:
         job: Job,
         batch_size: int,
         learning_rate: float,
+        dropout_rate: float,
         seed: int,
         logdir: str,
         rec_i: int,
@@ -158,6 +159,7 @@ class ZeusMaster:
             job: The job to run.
             batch_size: The batch size to use.
             learning_rate: The learning rate to use, scaled based on `batch_size`.
+            dropout_rate: The dropout rate to use
             seed: The random seed to use for training.
             logdir: Directory to store log files in.
             rec_i: Recurrence number of this run of the job.
@@ -171,7 +173,7 @@ class ZeusMaster:
             A tuple of energy consumption, time consumption, and whether the job reached the target metric.
         """
         # Generate job command
-        command = job.gen_command(batch_size, learning_rate, seed, rec_i)
+        command = job.gen_command(batch_size, learning_rate, dropout_rate, seed, rec_i)
 
         # Set environment variables
         job_id = f"rec{rec_i:02d}+try{tries:02d}"
@@ -310,6 +312,9 @@ class ZeusMaster:
                 # Scale the learning rate.
                 lr = job.scale_lr(bs)
 
+                # Grab the dropout rate.
+                dr = job.fetch_dr()
+
                 # Launch the job.
                 # Power profiling and optimization is done entirely by the ZeusDataLoader.
                 # Early stops based on cost_ub.
@@ -317,6 +322,7 @@ class ZeusMaster:
                     job=job,
                     batch_size=bs,
                     learning_rate=lr,
+                    dropout_rate=dr,
                     seed=seed,
                     logdir=logdir,
                     rec_i=rec_i,

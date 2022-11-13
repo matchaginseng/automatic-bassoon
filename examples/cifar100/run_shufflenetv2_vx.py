@@ -21,10 +21,11 @@ def parse_args() -> argparse.Namespace:
     # Especially for 2, the random seed given to the nth recurrence job is args.seed + n.
     parser.add_argument("--seed", type=int, default=1, help="Random seed")
 
-    # Default batch size and learning rate.
+    # Default ML parameters.
     # The first recurrence uses these parameters, and it must reach the target metric.
     parser.add_argument("--b_0", type=int, default=1024, help="Default batch size")
     parser.add_argument("--lr_0", type=float, default=0.001, help="Default learning rate")
+    parser.add_argument("--dropout_0", type=float, default=1.0, help="Default dropout rate")
 
     # The range of batch sizes to consider. The example script generates a list of power-of-two
     # batch sizes, but batch sizes need not be power-of-two for Zeus.
@@ -101,6 +102,7 @@ def main(args: argparse.Namespace) -> None:
         max_epochs=args.max_epochs,
         default_bs=args.b_0,
         default_lr=args.lr_0,  # where does this end up getting used? in the lr scaler?
+        default_dropout=args.dropout_0,
         workdir="/workspace/zeus/examples/cifar100",
         # fmt: off
         command=[
@@ -111,6 +113,8 @@ def main(args: argparse.Namespace) -> None:
             "--batch_size", "{batch_size}",
             "--epochs", "{epochs}",
             "--seed", "{seed}"
+            "--learning_rate", "{learning_rate}",
+            "--dropout_rate", "{dropout_rate}"
         ],
         # fmt: on
     )

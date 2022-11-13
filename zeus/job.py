@@ -35,6 +35,7 @@ class Job:
         max_epochs: Maximum number of epochs to train before terminating.
         default_bs: Initial batch size (b0) provided by the user.
         default_lr: Learning rate corresponding to the default batch size.
+        default_dropout: Dropout rate provided by user.
         workdir: Working directory in which to launch the job command.
         command: Job command template. See [`gen_command`][zeus.job.Job.gen_command].
     """
@@ -46,6 +47,7 @@ class Job:
     max_epochs: int
     default_bs: int | None = None
     default_lr: float | None = None
+    default_dropout: float | None = None
     workdir: str | None = None
     command: list[str] | None = field(default=None, hash=False, compare=False)
 
@@ -77,6 +79,7 @@ class Job:
         self,
         batch_size: int,
         learning_rate: float,
+        dropout_rate: float,
         power_limit: int,
         seed: int,
         rec_i: int,
@@ -86,6 +89,7 @@ class Job:
         Args:
             batch_size: Batch size to use for this job launch.
             learning_rate: Learning rate to use for this job launch.
+            dropout_rate: Dropout rate to use for this job launch. 
             seed: Random seed to use for this job launch.
             rec_i: Recurrence number of this job launch.
         """
@@ -96,6 +100,8 @@ class Job:
                 command.append(str(batch_size))
             elif piece in ["{lr}", "{learning_rate}"]:
                 command.append(str(learning_rate))
+            elif piece in ["{dropout}", "{dropout_rate}"]:  
+                command.append(str(dropout_rate))
             elif piece == "{seed}":
                 command.append(str(seed))
             elif piece in ["{epoch}", "{epochs}"]:
@@ -110,7 +116,7 @@ class Job:
                 command.append(piece)
         return command
 
-    def scale_lr(self, batch_size: int) -> float:
+    def scale_lr(self, batch_size: int) -> float: # to change for lr
         """Scale the learning rate for the given batch size.
 
         Assumes that `self.default_bs` and `self.default_lr` were given.
@@ -129,3 +135,9 @@ class Job:
             scaler = LinearScaler(bs=self.default_bs, lr=self.default_lr)
             return scaler.compute_lr(batch_size)
         raise NotImplementedError(f"LR scaling for {self.optimizer} is not supported.")
+
+    def fetch_dr(self) -> float:
+        """
+        Fetch the dropout rate. (May do something fancier later)
+        """
+        return self.default_dropout
