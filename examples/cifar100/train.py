@@ -53,6 +53,9 @@ def parse_args() -> argparse.Namespace:
         "--power_limit", type=int, default=0, help="Desired power limit, in mW."
     )
 
+    parser.add_argument("--learning_rate", type=float, default=0.001, help="Default learning rate")
+    parser.add_argument("--dropout_rate", type=float, default=1.0, help="Default dropout rate")
+
     # ZEUS
     runtime_mode = parser.add_mutually_exclusive_group()
     runtime_mode.add_argument(
@@ -163,7 +166,8 @@ def main(args: argparse.Namespace) -> None:
 
     # Prepare loss function and optimizer.
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adadelta(model.parameters())
+    optimizer = optim.Adam(params=model.parameters(), lr=args.learning_rate)
+    # optimizer = optim.Adadelta(model.parameters())
 
     # ZEUS
     # ZeusDataLoader may early stop training when the cost is expected
