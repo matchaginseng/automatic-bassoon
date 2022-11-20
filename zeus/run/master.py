@@ -331,7 +331,7 @@ class ZeusMaster:
                 energy, time, reached = self.run_job(
                     job=job,
                     batch_size=bs,
-                    learning_rate=bs,
+                    learning_rate=lr,
                     # dropout_rate=dr,
                     seed=seed,
                     logdir=logdir,
