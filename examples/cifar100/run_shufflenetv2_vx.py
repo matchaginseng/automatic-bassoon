@@ -114,7 +114,7 @@ def main(args: argparse.Namespace) -> None:
             "--epochs", "{epochs}",
             "--seed", "{seed}",
             "--learning_rate", "{learning_rate}",
-            "--dropout_rate", "{dropout_rate}"
+            # "--dropout_rate", "{dropout_rate}"
         ],
         # fmt: on
     )
