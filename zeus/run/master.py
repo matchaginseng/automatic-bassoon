@@ -145,7 +145,7 @@ class ZeusMaster:
         job: Job,
         batch_size: int,
         learning_rate: float,
-        dropout_rate: float,
+        # dropout_rate: float,
         seed: int,
         logdir: str,
         rec_i: int,
@@ -173,7 +173,7 @@ class ZeusMaster:
             A tuple of energy consumption, time consumption, and whether the job reached the target metric.
         """
         # Generate job command
-        command = job.gen_command(batch_size, learning_rate, dropout_rate, seed, rec_i)
+        command = job.gen_command(batch_size, learning_rate, seed, rec_i)
 
         # Set environment variables
         job_id = f"rec{rec_i:02d}+try{tries:02d}"
@@ -198,7 +198,7 @@ class ZeusMaster:
         train_json = Path(f"{logdir}/{job_id}+bs{batch_size}.train.json")
 
         # Reporting
-        print(f"[run job] Launching job with BS {batch_size}:")
+        print(f"[run job] Launching job with BS {batch_size}: and LR: {learning_rate}")
         print(f"[run job] {zeus_env=}")
         if job.workdir is not None:
             print(f"[run job] cwd={job.workdir}")
