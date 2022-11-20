@@ -54,7 +54,7 @@ def parse_args() -> argparse.Namespace:
     )
 
     parser.add_argument("--learning_rate", type=float, default=0.001, help="Default learning rate")
-    parser.add_argument("--dropout_rate", type=float, default=1.0, help="Default dropout rate")
+    # parser.add_argument("--dropout_rate", type=float, default=1.0, help="Default dropout rate")
 
     # ZEUS
     runtime_mode = parser.add_mutually_exclusive_group()
