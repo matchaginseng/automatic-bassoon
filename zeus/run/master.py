@@ -297,26 +297,23 @@ class ZeusMaster:
         min_cost = np.inf
 
         # Register the job in the BSO.
-        bso.register_job(job, batch_sizes)
+        # bso.register_job(job, batch_sizes)
+
+        # list of (bs, lr) batch size tuples to try
+        bs_lr = []
+        # batch_sizes is a list of all batch sizes the user wants us to try
+        for bs in batch_sizes:
+            for lr in [job.scale_lr(bs * factor) for factor in [0.8, 0.9, 1, 1.1, 1.2]] :
+                bs_lr.append((bs, lr))
 
         # Job recurs.
-        for rec_i in range(1, num_recurrence + 1):
+        for rec_i in range(1, len(bs_lr) + 1):
             print(f"\n[Zeus Master] Recurrence: {rec_i}")
 
             # The retrying loop. Retry until convergence.
             cost_acc = 0.0
             
-            tries = 1
-            # batch_sizes is a list of all batch sizes the user wants us to try
-            for bs in batch_sizes:
-                # we want to test learning rates in the range of reasonable learning rates for the given 
-                # batch size
-                lrs = [job.scale_lr(bs * factor) for factor in [0.8, 0.9, 1, 1.1, 1.2]] 
-                
-                for lr in lrs:
-                    # launch the job
-            
-            # for tries in range(1, 21):
+            for tries in range(1, 21):
                 # Fetch the knobs to use.
                 # bs = bso.predict(job)
 
@@ -329,71 +326,72 @@ class ZeusMaster:
                 # Launch the job.
                 # Power profiling and optimization is done entirely by the ZeusDataLoader.
                 # Early stops based on cost_ub.
-                    energy, time, reached = self.run_job(
-                        job=job,
-                        batch_size=bs,
-                        learning_rate=lr,
-                        # dropout_rate=dr,
-                        seed=seed,
-                        logdir=logdir,
-                        rec_i=rec_i,
-                        tries=tries,
-                        eta_knob=eta_knob,
-                        cost_ub=beta_knob * min_cost,
-                    )
+                bs, lr = bs_lr[rec_i - 1]
+                
+                energy, time, reached = self.run_job(
+                    job=job,
+                    batch_size=bs,
+                    learning_rate=bs,
+                    # dropout_rate=dr,
+                    seed=seed,
+                    logdir=logdir,
+                    rec_i=rec_i,
+                    tries=tries,
+                    eta_knob=eta_knob,
+                    cost_ub=beta_knob * min_cost,
+                )
 
-                    # The random seed will be unique for each run, but still jobs will be
-                    # deterministic w.r.t. each call to `run`.
-                    seed += 1
+                # The random seed will be unique for each run, but still jobs will be
+                # deterministic w.r.t. each call to `run`.
+                seed += 1
 
-                    # Compute the cost of this try.
-                    num_gpus = torch.cuda.device_count()
-                    cost = zeus_cost(energy, time, eta_knob, self.max_pl * num_gpus)
-                    print(f"[Zeus Master] {cost=}")
+                # Compute the cost of this try.
+                num_gpus = torch.cuda.device_count()
+                cost = zeus_cost(energy, time, eta_knob, self.max_pl * num_gpus)
+                print(f"[Zeus Master] {cost=}")
 
-                    # Accumulate the cost to track the total cost of this recurrence.
-                    cost_acc += cost
+                # Accumulate the cost to track the total cost of this recurrence.
+                cost_acc += cost
 
-                    # Provide feedback to the BSO.
-                    # bso.observe(job, bs, cost, reached)
+                # Provide feedback to the BSO.
+                # bso.observe(job, bs, cost, reached)
 
-                    # Record history for visualization.
-                    history.append(HistoryEntry(bs, None, energy, reached, time))
-                    with open(history_file, "w") as f:
-                        # Intended use:
-                        #
-                        # ```python
-                        # from zeus.analyze import HistoryEntry
-                        # history = eval(open(history_file).read())
-                        # ```
-                        f.write(pprint.pformat(history) + "\n")
+                # Record history for visualization.
+                history.append(HistoryEntry(bs, None, energy, reached, time))
+                with open(history_file, "w") as f:
+                    # Intended use:
+                    #
+                    # ```python
+                    # from zeus.analyze import HistoryEntry
+                    # history = eval(open(history_file).read())
+                    # ```
+                    f.write(pprint.pformat(history) + "\n")
 
-                    # Reached the target metric. Go to next recurrence.
-                    if reached:
-                        print(
-                            "\n[Zeus Master] Reached target metric in "
-                            f"{tries} {'try' if tries == 1 else 'tries'}."
-                        )
-                        # Track the minimum cost.
-                        if min_cost > cost_acc:
-                            print(
-                                f"\n[Zeus Master] Minimum cost updated from {min_cost} to {cost_acc}."
-                            )
-                            min_cost = cost_acc
-                        break
-                    # Didn't reach the target metric.
-                    # We assume that the default BS (set by the user) will converge.
-                    if rec_i == 1:
-                        raise RuntimeError(
-                            f"The default batch size {job.default_bs} did not converge."
-                        )
-
-                    tries += 1
-                else:
+                # Reached the target metric. Go to next recurrence.
+                if reached:
                     print(
-                        "\n[Zeus Master] Job did not reach the target metric in 20 trials!"
+                        "\n[Zeus Master] Reached target metric in "
+                        f"{tries} {'try' if tries == 1 else 'tries'}."
                     )
-                    raise RuntimeError("Unreachable target metric.")
+                    # Track the minimum cost.
+                    if min_cost > cost_acc:
+                        print(
+                            f"\n[Zeus Master] Minimum cost updated from {min_cost} to {cost_acc}."
+                        )
+                        min_cost = cost_acc
+                    break
+                # Didn't reach the target metric.
+                # We assume that the default BS (set by the user) will converge.
+                if rec_i == 1:
+                    raise RuntimeError(
+                        f"The default batch size {job.default_bs} did not converge."
+                    )
+
+            else:
+                print(
+                    "\n[Zeus Master] Job did not reach the target metric in 20 trials!"
+                )
+                raise RuntimeError("Unreachable target metric.")
 
         print(f"[Zeus Master]\n{history}")
 
