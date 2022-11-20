@@ -112,7 +112,7 @@ def main(args: argparse.Namespace) -> None:
             "--arch", "shufflenetv2",
             "--batch_size", "{batch_size}",
             "--epochs", "{epochs}",
-            "--seed", "{seed}"
+            "--seed", "{seed}",
             "--learning_rate", "{learning_rate}",
             "--dropout_rate", "{dropout_rate}"
         ],
