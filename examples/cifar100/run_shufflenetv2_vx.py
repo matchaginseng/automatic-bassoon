@@ -106,7 +106,7 @@ def main(args: argparse.Namespace) -> None:
         # fmt: off
         command=[
             "python",
-            "train.py",
+            "train_lr.py",
             "--zeus",
             "--arch", "shufflenetv2",
             "--batch_size", "{batch_size}",
