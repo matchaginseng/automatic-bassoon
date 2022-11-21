@@ -142,7 +142,7 @@ class PowerOptimizerDataLoader(DataLoader):
         *args,
         batch_size: int,
         learning_rate: float,
-        dropout_rate: float,
+        # dropout_rate: float,
         max_epochs: int = -1,
         **kwargs,
     ) -> None:
@@ -166,7 +166,7 @@ class PowerOptimizerDataLoader(DataLoader):
         # Save attributes.
         self.batch_size = batch_size
         self.learning_rate = learning_rate
-        self.dropout_rate = dropout_rate
+        # self.dropout_rate = dropout_rate
         self.split = "train" if max_epochs != -1 else "eval"
         self.max_epochs = max_epochs
         self.log_prefix = f"[Zeus2DataLoader({self.split})]"
@@ -368,6 +368,7 @@ class PowerOptimizerDataLoader(DataLoader):
                 epoch exceeds the cost threshold. When doing data parallel training,
                 this exception is used for ternimating all the processes.
         """
+        print("hello from epochs()!")
         # Sanity check.
         if not self._is_train:
             raise RuntimeError("Use epochs() on the train dataloader.")
@@ -379,6 +380,7 @@ class PowerOptimizerDataLoader(DataLoader):
             if self.rank == 0:
                 # Sanity checks.
                 enum = self.epoch_num
+                print(len(self.train_epoch_time))
                 assert (
                     len(self.train_epoch_time) == enum
                 ), f"{len(self.train_epoch_time)=}"
@@ -432,8 +434,16 @@ class PowerOptimizerDataLoader(DataLoader):
             
             # If we have finished profiling, this is also a hard stop.
             # TODO: Do we need to add this here???
-            # if self.prof_done:
-                
+            if self.prof_done:
+                if self.rank == 0:
+                    # Sanity check that time/energy consumption & cost are valid in master process.
+                    assert time_consumed >= 0 and energy_consumed >= 0 and cost >= 0
+                    self._log(
+                        f"Profiling done. Stopping."
+                    )
+                    self._save_train_results(energy_consumed, time_consumed, cost, True)
+                return
+                    
 
             # No need to do anything in the first epoch.
             if self.epoch_num == 0:
@@ -446,7 +456,7 @@ class PowerOptimizerDataLoader(DataLoader):
             # happen frequently. It's more like a wrong cost threshold.
             if self._should_profile:
                 # If there are no more power limits to profile, stop training
-                if not self._power_limits_left:
+                if not self._power_limits_left and self.prof_done:
                     # Sanity check that time/energy consumption & cost are valid in master process.
                     assert time_consumed >= 0 and energy_consumed >= 0 and cost >= 0
                     self._log(
@@ -800,7 +810,7 @@ class PowerOptimizerDataLoader(DataLoader):
                 self._log("This was the last power limit to explore.")
                 PowerOptimizerDataLoader.optimal_pl = self._compute_optimal_pl()
                 self.prof_done = True
-                raise StopIteration
+                # raise StopIteration
                 self._set_gpu_power_limit(PowerOptimizerDataLoader.optimal_pl)
 
     def _save_power_results(self) -> None:
@@ -877,13 +887,16 @@ class PowerOptimizerDataLoader(DataLoader):
         # the training epoch.
         assert self.prof_state == NOT_PROFILING, f"__iter__: {self.prof_state=}"
 
-        # If profiling is done, we don't want to train anymore
-        if self.prof_done:
-            raise StopIteration
 
         # Update counters.
         self.epoch_num += 1
         self.sample_num = 0
+
+        # If profiling is done, we don't want to train anymore, but we need self.epoch_num to
+        # get incremented so we don't fail assertions in epochs().
+        # if self.prof_done:
+        #     raise StopIteration
+        
         self._log(f"Epoch {self.epoch_num} begin.")
 
         # Start epoch timer.
@@ -911,8 +924,8 @@ class PowerOptimizerDataLoader(DataLoader):
         self.sample_num += 1
 
         # If profiling is done, we don't want to train anymore
-        if self.prof_done:
-            raise StopIteration
+        # if self.prof_done:
+        #     raise StopIteration
 
         # Try to fetch next batch.
         try:
@@ -1020,11 +1033,11 @@ class PowerOptimizerDataLoader(DataLoader):
                 and self.sample_num - self.prof_start_sample == self.profile_iter
             ):
                 # If profiling is done, we want to stop training. 
-                try:
-                    self._end_prof()
-                except StopIteration:
-                    raise
-
+#                try:
+#                    self._end_prof()
+#                except StopIteration:
+#                    raise
+                self._end_prof()
         return data
 
     def get_optimal_pl(self):
