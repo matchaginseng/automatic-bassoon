@@ -7,7 +7,7 @@ from pathlib import Path
 
 from zeus.job import Job
 from zeus.policy import PruningGTSBatchSizeOptimizer
-from zeus.run import ZeusMaster
+from zeus.run import Zeus2Master
 from zeus.util import FileAndConsole
 
 
@@ -68,7 +68,7 @@ def main(args: argparse.Namespace) -> None:
     """Run Zeus on CIFAR100."""
     # Zeus's batch size optimizer.
     # First prunes unpromising batch sizes, and then runs Gaussian Thompson Sampling MAB.
-    bso = PruningGTSBatchSizeOptimizer(seed=args.seed, verbose=True)
+    # bso = PruningGTSBatchSizeOptimizer(seed=args.seed, verbose=True)
 
     # The top-level class for running Zeus.
     # - The batch size optimizer is desinged as a pluggable policy.
@@ -81,8 +81,7 @@ def main(args: argparse.Namespace) -> None:
     #   ZeusDataLoader raises a RuntimeError, and the profiling window should be narrowed
     #   by giving smaller values to profile_warmup_iters and profile_measure_iters in the
     #   constructor of ZeusMaster.
-    master = ZeusMaster(
-        batch_size_optimizer=bso,
+    master = Zeus2Master(
         log_base="/workspace/zeus_logs",
         seed=args.seed,
         monitor_path="/workspace/zeus/zeus_monitor/zeus_monitor",
@@ -101,7 +100,7 @@ def main(args: argparse.Namespace) -> None:
         target_metric=args.target_metric,
         max_epochs=args.max_epochs,
         default_bs=args.b_0,
-        default_lr=args.lr_0,  # where does this end up getting used? in the lr scaler?
+        default_lr=args.lr_0,  
         default_dropout=args.dropout_0,
         workdir="/workspace/zeus/examples/cifar100",
         # fmt: off

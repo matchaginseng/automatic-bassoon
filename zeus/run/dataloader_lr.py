@@ -429,6 +429,11 @@ class PowerOptimizerDataLoader(DataLoader):
                         energy_consumed, time_consumed, cost, False
                     )
                 return
+            
+            # If we have finished profiling, this is also a hard stop.
+            # TODO: Do we need to add this here???
+            # if self.prof_done:
+                
 
             # No need to do anything in the first epoch.
             if self.epoch_num == 0:
