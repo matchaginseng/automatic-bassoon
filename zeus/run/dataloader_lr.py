@@ -924,8 +924,8 @@ class PowerOptimizerDataLoader(DataLoader):
         self.sample_num += 1
 
         # If profiling is done, we don't want to train anymore
-        # if self.prof_done:
-        #     raise StopIteration
+        if self.prof_done:
+            raise StopIteration
 
         # Try to fetch next batch.
         try:
