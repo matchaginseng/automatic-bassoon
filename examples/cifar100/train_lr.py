@@ -181,11 +181,16 @@ def main(args: argparse.Namespace) -> None:
     else:
         epoch_iter = range(args.epochs)
 
-    # TODO: probably need to alter main training loop here
+    # TODO: probably need to alter main training loop here <-- tru
 
     # Main training loop.
     for epoch in epoch_iter:
-        train(train_loader, model, criterion, optimizer, epoch, args)
+        try:
+            train(train_loader, model, criterion, optimizer, epoch, args)
+        except StopIteration:
+            acc = validate(val_loader, model, criterion, epoch, args)
+            train_loader.report_metric(acc, higher_is_better=True)
+
         acc = validate(val_loader, model, criterion, epoch, args)
 
         # ZEUS
