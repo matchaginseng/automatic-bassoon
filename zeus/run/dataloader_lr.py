@@ -382,10 +382,10 @@ class PowerOptimizerDataLoader(DataLoader):
                 enum = self.epoch_num
                 print(len(self.train_epoch_time))
                 assert (
-                    len(self.train_epoch_time) == enum
+                    len(self.train_epoch_time) == enum or len(self.train_epoch_time) == enum - 1
                 ), f"{len(self.train_epoch_time)=}"
                 assert (
-                    len(self.eval_epoch_time) == enum
+                    len(self.eval_epoch_time) == enum or len(self.eval_epoch_time) == enum - 1
                 ), f"{len(self.eval_epoch_time)=}"
 
                 # Compute time and energy consumption up to now.
