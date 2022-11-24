@@ -1,0 +1,19 @@
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "/workspace/zeus/examples/cifar100/train_lr.py", line 263, in <module>
+    main(parse_args())
+  File "/workspace/zeus/examples/cifar100/train_lr.py", line 101, in main
+    val_dataset = datasets.CIFAR100(
+  File "/root/.local/miniconda3/lib/python3.9/site-packages/torchvision/datasets/cifar.py", line 66, in __init__
+    self.download()
+  File "/root/.local/miniconda3/lib/python3.9/site-packages/torchvision/datasets/cifar.py", line 141, in download
+    if self._check_integrity():
+  File "/root/.local/miniconda3/lib/python3.9/site-packages/torchvision/datasets/cifar.py", line 136, in _check_integrity
+    if not check_integrity(fpath, md5):
+  File "/root/.local/miniconda3/lib/python3.9/site-packages/torchvision/datasets/utils.py", line 70, in check_integrity
+    return check_md5(fpath, md5)
+  File "/root/.local/miniconda3/lib/python3.9/site-packages/torchvision/datasets/utils.py", line 62, in check_md5
+    return md5 == calculate_md5(fpath, **kwargs)
+  File "/root/.local/miniconda3/lib/python3.9/site-packages/torchvision/datasets/utils.py", line 57, in calculate_md5
+    md5.update(chunk)
+KeyboardInterrupt

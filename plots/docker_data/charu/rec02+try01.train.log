@@ -1,0 +1,245 @@
+2022-11-23 19:47:55,664 [Zeus2DataLoader(train)] Power limit range: [175000, 150000, 125000, 100000]
+2022-11-23 19:47:55,665 [Zeus2DataLoader(train)] Power profiling: ON
+2022-11-23 19:47:57,696 [Zeus2DataLoader(train)] Up to epoch 0: time=0.00, energy=0.00, cost=0.00
+2022-11-23 19:47:57,697 [Zeus2DataLoader(train)] Epoch 1 begin.
+Files already downloaded and verified
+Files already downloaded and verified
+hello from epochs()!
+0
+2022-11-23 19:47:57,822 [Zeus2DataLoader(train)] [GPU_0] Zeus monitor started.
+2022-11-24 00:47:57.825 [ZeusMonitor] Monitor started.
+2022-11-24 00:47:57.825 [ZeusMonitor] Running indefinitely. 2022-11-24 00:47:57.825 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-11-24 00:47:57.825 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.5+me100+x1+eta0.5+beta2.0+2022112319471669250835/bs8+e1+gpu0.power.log
+2022-11-23 19:47:57,832 [Zeus2DataLoader(train)] [GPU_0] Set GPU power limit to 175W.
+2022-11-23 19:47:57,832 [Zeus2DataLoader(train)] Warm-up started with power limit 175W
+2022-11-23 19:47:58,753 [Zeus2DataLoader(train)] Profile started with power limit 175W
+2022-11-23 19:48:00,882 [Zeus2DataLoader(train)] Profile done with power limit 175W
+2022-11-23 19:48:00,938 [Zeus2DataLoader(train)] [GPU_0] Set GPU power limit to 150W.
+2022-11-23 19:48:00,938 [Zeus2DataLoader(train)] Warm-up started with power limit 150W
+2022-11-23 19:48:01,507 [Zeus2DataLoader(train)] Profile started with power limit 150W
+2022-11-23 19:48:03,606 [Zeus2DataLoader(train)] Profile done with power limit 150W
+2022-11-23 19:48:03,659 [Zeus2DataLoader(train)] [GPU_0] Set GPU power limit to 125W.
+2022-11-23 19:48:03,659 [Zeus2DataLoader(train)] Warm-up started with power limit 125W
+2022-11-23 19:48:04,215 [Zeus2DataLoader(train)] Profile started with power limit 125W
+2022-11-23 19:48:06,295 [Zeus2DataLoader(train)] Profile done with power limit 125W
+2022-11-23 19:48:06,348 [Zeus2DataLoader(train)] [GPU_0] Set GPU power limit to 100W.
+2022-11-23 19:48:06,348 [Zeus2DataLoader(train)] Warm-up started with power limit 100W
+2022-11-23 19:48:06,894 [Zeus2DataLoader(train)] Profile started with power limit 100W
+Training Epoch: 0 [8/50000]	Loss: 4.7026
+Training Epoch: 0 [16/50000]	Loss: 4.6170
+Training Epoch: 0 [24/50000]	Loss: 4.5657
+Training Epoch: 0 [32/50000]	Loss: 4.5412
+Training Epoch: 0 [40/50000]	Loss: 4.6512
+Training Epoch: 0 [48/50000]	Loss: 4.6411
+Training Epoch: 0 [56/50000]	Loss: 4.6123
+Training Epoch: 0 [64/50000]	Loss: 4.6435
+Training Epoch: 0 [72/50000]	Loss: 4.7346
+Training Epoch: 0 [80/50000]	Loss: 4.6881
+Training Epoch: 0 [88/50000]	Loss: 4.6298
+Training Epoch: 0 [96/50000]	Loss: 4.5835
+Training Epoch: 0 [104/50000]	Loss: 4.6027
+Training Epoch: 0 [112/50000]	Loss: 4.5733
+Training Epoch: 0 [120/50000]	Loss: 4.7205
+Training Epoch: 0 [128/50000]	Loss: 4.7602
+Training Epoch: 0 [136/50000]	Loss: 4.5175
+Training Epoch: 0 [144/50000]	Loss: 4.5070
+Training Epoch: 0 [152/50000]	Loss: 4.6053
+Training Epoch: 0 [160/50000]	Loss: 4.6769
+Training Epoch: 0 [168/50000]	Loss: 4.7550
+Training Epoch: 0 [176/50000]	Loss: 4.5294
+Training Epoch: 0 [184/50000]	Loss: 4.5562
+Training Epoch: 0 [192/50000]	Loss: 4.7234
+Training Epoch: 0 [200/50000]	Loss: 4.7689
+Training Epoch: 0 [208/50000]	Loss: 4.8489
+Training Epoch: 0 [216/50000]	Loss: 4.6189
+Training Epoch: 0 [224/50000]	Loss: 4.8724
+Training Epoch: 0 [232/50000]	Loss: 4.9126
+Training Epoch: 0 [240/50000]	Loss: 4.5889
+Training Epoch: 0 [248/50000]	Loss: 4.5228
+Training Epoch: 0 [256/50000]	Loss: 4.5604
+Training Epoch: 0 [264/50000]	Loss: 4.4960
+Training Epoch: 0 [272/50000]	Loss: 4.6796
+Training Epoch: 0 [280/50000]	Loss: 4.7502
+Training Epoch: 0 [288/50000]	Loss: 4.3699
+Training Epoch: 0 [296/50000]	Loss: 4.6718
+Training Epoch: 0 [304/50000]	Loss: 4.4476
+Training Epoch: 0 [312/50000]	Loss: 4.8324
+Training Epoch: 0 [320/50000]	Loss: 4.5717
+Training Epoch: 0 [328/50000]	Loss: 4.8913
+Training Epoch: 0 [336/50000]	Loss: 4.5139
+Training Epoch: 0 [344/50000]	Loss: 4.7737
+Training Epoch: 0 [352/50000]	Loss: 4.5691
+Training Epoch: 0 [360/50000]	Loss: 4.5442
+Training Epoch: 0 [368/50000]	Loss: 4.9444
+Training Epoch: 0 [376/50000]	Loss: 4.6852
+Training Epoch: 0 [384/50000]	Loss: 4.5100
+Training Epoch: 0 [392/50000]	Loss: 4.6350
+Training Epoch: 0 [400/50000]	Loss: 4.8933
+Training Epoch: 0 [408/50000]	Loss: 4.5281
+Training Epoch: 0 [416/50000]	Loss: 4.4491
+Training Epoch: 0 [424/50000]	Loss: 4.3827
+Training Epoch: 0 [432/50000]	Loss: 4.6767
+Training Epoch: 0 [440/50000]	Loss: 4.8243
+Training Epoch: 0 [448/50000]	Loss: 4.4485
+Training Epoch: 0 [456/50000]	Loss: 4.8752
+Training Epoch: 0 [464/50000]	Loss: 4.8553
+Training Epoch: 0 [472/50000]	Loss: 4.6013
+Training Epoch: 0 [480/50000]	Loss: 4.5850
+Training Epoch: 0 [488/50000]	Loss: 4.5922
+Training Epoch: 0 [496/50000]	Loss: 4.5919
+Training Epoch: 0 [504/50000]	Loss: 4.9790
+Training Epoch: 0 [512/50000]	Loss: 4.7236
+Training Epoch: 0 [520/50000]	Loss: 4.5103
+Training Epoch: 0 [528/50000]	Loss: 4.8263
+Training Epoch: 0 [536/50000]	Loss: 4.2969
+Training Epoch: 0 [544/50000]	Loss: 4.5125
+Training Epoch: 0 [552/50000]	Loss: 4.8750
+Training Epoch: 0 [560/50000]	Loss: 4.5660
+Training Epoch: 0 [568/50000]	Loss: 4.5737
+Training Epoch: 0 [576/50000]	Loss: 4.5540
+Training Epoch: 0 [584/50000]	Loss: 4.5017
+Training Epoch: 0 [592/50000]	Loss: 4.5996
+Training Epoch: 0 [600/50000]	Loss: 4.7080
+Training Epoch: 0 [608/50000]	Loss: 4.8473
+Training Epoch: 0 [616/50000]	Loss: 4.6963
+Training Epoch: 0 [624/50000]	Loss: 4.7018
+Training Epoch: 0 [632/50000]	Loss: 4.6864
+Training Epoch: 0 [640/50000]	Loss: 4.6368
+Training Epoch: 0 [648/50000]	Loss: 4.8241
+Training Epoch: 0 [656/50000]	Loss: 4.7920
+Training Epoch: 0 [664/50000]	Loss: 4.5193
+Training Epoch: 0 [672/50000]	Loss: 4.4307
+Training Epoch: 0 [680/50000]	Loss: 4.7324
+Training Epoch: 0 [688/50000]	Loss: 4.7917
+Training Epoch: 0 [696/50000]	Loss: 4.5489
+Training Epoch: 0 [704/50000]	Loss: 4.4753
+Training Epoch: 0 [712/50000]	Loss: 4.6567
+Training Epoch: 0 [720/50000]	Loss: 4.5480
+Training Epoch: 0 [728/50000]	Loss: 4.7387
+Training Epoch: 0 [736/50000]	Loss: 4.6046
+Training Epoch: 0 [744/50000]	Loss: 4.7015
+Training Epoch: 0 [752/50000]	Loss: 4.6447
+Training Epoch: 0 [760/50000]	Loss: 4.8608
+Training Epoch: 0 [768/50000]	Loss: 4.4353
+Training Epoch: 0 [776/50000]	Loss: 4.6445
+Training Epoch: 0 [784/50000]	Loss: 4.5110
+Training Epoch: 0 [792/50000]	Loss: 4.5781
+Training Epoch: 0 [800/50000]	Loss: 4.5289
+Training Epoch: 0 [808/50000]	Loss: 4.6084
+Training Epoch: 0 [816/50000]	Loss: 4.6632
+Training Epoch: 0 [824/50000]	Loss: 4.4521
+Training Epoch: 0 [832/50000]	Loss: 4.5487
+Training Epoch: 0 [840/50000]	Loss: 4.6969
+Training Epoch: 0 [848/50000]	Loss: 4.5130
+Training Epoch: 0 [856/50000]	Loss: 4.7463
+Training Epoch: 0 [864/50000]	Loss: 4.7853
+Training Epoch: 0 [872/50000]	Loss: 4.7247
+Training Epoch: 0 [880/50000]	Loss: 4.6752
+Training Epoch: 0 [888/50000]	Loss: 4.7616
+Training Epoch: 0 [896/50000]	Loss: 4.6384
+Training Epoch: 0 [904/50000]	Loss: 4.6575
+Training Epoch: 0 [912/50000]	Loss: 4.5631
+Training Epoch: 0 [920/50000]	Loss: 4.5869
+Training Epoch: 0 [928/50000]	Loss: 4.9812
+Training Epoch: 0 [936/50000]	Loss: 4.7180
+Training Epoch: 0 [944/50000]	Loss: 4.5766
+Training Epoch: 0 [952/50000]	Loss: 4.8328
+Training Epoch: 0 [960/50000]	Loss: 4.6531
+Training Epoch: 0 [968/50000]	Loss: 4.5839
+Training Epoch: 0 [976/50000]	Loss: 4.5518
+Training Epoch: 0 [984/50000]	Loss: 4.3871
+Training Epoch: 0 [992/50000]	Loss: 4.8144
+Training Epoch: 0 [1000/50000]	Loss: 4.5081
+Training Epoch: 0 [1008/50000]	Loss: 4.5574
+Training Epoch: 0 [1016/50000]	Loss: 4.7513
+Training Epoch: 0 [1024/50000]	Loss: 4.7363
+Training Epoch: 0 [1032/50000]	Loss: 4.5445
+Training Epoch: 0 [1040/50000]	Loss: 4.5412
+Training Epoch: 0 [1048/50000]	Loss: 4.6880
+Training Epoch: 0 [1056/50000]	Loss: 4.5285
+Training Epoch: 0 [1064/50000]	Loss: 4.7320
+Training Epoch: 0 [1072/50000]	Loss: 4.7117
+Training Epoch: 0 [1080/50000]	Loss: 4.7097
+Training Epoch: 0 [1088/50000]	Loss: 4.7598
+Training Epoch: 0 [1096/50000]	Loss: 4.6057
+Training Epoch: 0 [1104/50000]	Loss: 4.5159
+Training Epoch: 0 [1112/50000]	Loss: 4.6087
+Training Epoch: 0 [1120/50000]	Loss: 4.7023
+Training Epoch: 0 [1128/50000]	Loss: 4.6577
+Training Epoch: 0 [1136/50000]	Loss: 4.6951
+Training Epoch: 0 [1144/50000]	Loss: 4.4322
+Training Epoch: 0 [1152/50000]	Loss: 4.8019
+Training Epoch: 0 [1160/50000]	Loss: 4.5025
+Training Epoch: 0 [1168/50000]	Loss: 4.6562
+Training Epoch: 0 [1176/50000]	Loss: 4.6132
+Training Epoch: 0 [1184/50000]	Loss: 4.6812
+Training Epoch: 0 [1192/50000]	Loss: 4.5926
+Training Epoch: 0 [1200/50000]	Loss: 4.6982
+Training Epoch: 0 [1208/50000]	Loss: 4.6451
+Training Epoch: 0 [1216/50000]	Loss: 4.7439
+Training Epoch: 0 [1224/50000]	Loss: 4.7591
+Training Epoch: 0 [1232/50000]	Loss: 4.6899
+Training Epoch: 0 [1240/50000]	Loss: 4.5634
+Training Epoch: 0 [1248/50000]	Loss: 4.6614
+Training Epoch: 0 [1256/50000]	Loss: 4.5191
+Training Epoch: 0 [1264/50000]	Loss: 4.7349
+Training Epoch: 0 [1272/50000]	Loss: 4.6546
+Training Epoch: 0 [1280/50000]	Loss: 4.5889
+Training Epoch: 0 [1288/50000]	Loss: 4.7997
+Training Epoch: 0 [1296/50000]	Loss: 4.6823
+Training Epoch: 0 [1304/50000]	Loss: 4.5350
+Training Epoch: 0 [1312/50000]	Loss: 4.5258
+Training Epoch: 0 [1320/50000]	Loss: 4.7125
+Training Epoch: 0 [1328/50000]	Loss: 4.5253
+Training Epoch: 0 [1336/50000]	Loss: 4.6175
+Training Epoch: 0 [1344/50000]	Loss: 4.5572
+Training Epoch: 0 [1352/50000]	Loss: 4.6196
+Training Epoch: 0 [1360/50000]	Loss: 4.6469
+Training Epoch: 0 [1368/50000]	Loss: 4.6601
+Training Epoch: 0 [1376/50000]	Loss: 4.5043
+Training Epoch: 0 [1384/50000]	Loss: 4.5548
+Training Epoch: 0 [1392/50000]	Loss: 4.6332
+Training Epoch: 0 [1400/50000]	Loss: 4.5479
+Training Epoch: 0 [1408/50000]	Loss: 4.6666
+Training Epoch: 0 [1416/50000]	Loss: 4.7072
+Training Epoch: 0 [1424/50000]	Loss: 4.4307
+Training Epoch: 0 [1432/50000]	Loss: 4.5354
+Training Epoch: 0 [1440/50000]	Loss: 4.5974
+Training Epoch: 0 [1448/50000]	Loss: 4.5177
+Training Epoch: 0 [1456/50000]	Loss: 4.8285
+Training Epoch: 0 [1464/50000]	Loss: 4.6495
+Training Epoch: 0 [1472/50000]	Loss: 4.6075
+Training Epoch: 0 [1480/50000]	Loss: 4.7941
+Training Epoch: 0 [1488/50000]	Loss: 4.3858
+Training Epoch: 0 [1496/50000]	Loss: 4.7305
+Training Epoch: 0 [1504/50000]	Loss: 4.7116
+Training Epoch: 0 [1512/50000]	Loss: 4.6279
+2022-11-23 19:48:08,963 [Zeus2DataLoader(train)] Profile done with power limit 100W
+2022-11-23 19:48:08,963 [Zeus2DataLoader(train)] This was the last power limit to explore.
+2022-11-23 19:48:08,963 [Zeus2DataLoader(train)] Cost-optimal power limit is 100W
+2022-11-23 19:48:09,013 [Zeus2DataLoader(eval)] Epoch 1 begin.
+Training Epoch: 0 [1520/50000]	Loss: 4.6203
+Training Epoch: 0 [1528/50000]	Loss: 4.5893
+Training Epoch: 0 [1536/50000]	Loss: 4.6788
+Training Epoch: 0 [1544/50000]	Loss: 4.6410
+Training Epoch: 0 [1552/50000]	Loss: 4.5357
+Training Epoch: 0 [1560/50000]	Loss: 4.5235
+Training Epoch: 0 [1568/50000]	Loss: 4.5892
+Training Epoch: 0 [1576/50000]	Loss: 4.5181
+Training Epoch: 0 [1584/50000]	Loss: 4.3914
+Training Epoch: 0 [1592/50000]	Loss: 4.5686
+Training Epoch: 0 [1600/50000]	Loss: 4.5438
+Training Epoch: 0 [1608/50000]	Loss: 4.6041
+Training Epoch: 0 [1616/50000]	Loss: 4.5338
+Training Epoch: 0 [1624/50000]	Loss: 4.5176
+Training Epoch: 0 [1632/50000]	Loss: 4.5566
+2022-11-24 00:48:26.396 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-11-23 19:48:26,411 [Zeus2DataLoader(eval)] Power profiling done.
+2022-11-23 19:48:26,411 [Zeus2DataLoader(eval)] Saved /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.5+me100+x1+eta0.5+beta2.0+2022112319471669250835/bs8.power.json: {"job_id": "rec02+try01", "train_power": {"175000": 99.49297430600876, "150000": 101.2417820697097, "125000": 101.35600147158097, "100000": 98.61815876289296}, "train_throughput": {"175000": 18.924455966671772, "150000": 19.11769440112221, "125000": 19.29903870803077, "100000": 19.380950943094412}, "eval_power": {"100000": 97.37387888874832}, "eval_throughput": {"100000": 71.87898475150486}, "optimal_pl": 100000}
+2022-11-23 19:48:26,411 [Zeus2DataLoader(eval)] eval epoch 1 done: time=17.39 energy=1693.36
+2022-11-23 19:48:26,411 [Zeus2DataLoader(train)] Up to epoch 1: time=17.39, energy=1693.36, cost=2368.34
+2022-11-23 19:48:26,412 [Zeus2DataLoader(train)] Profiling done. Stopping.
+2022-11-23 19:48:26,412 [Zeus2DataLoader(train)] Training done.
+2022-11-23 19:48:26,412 [Zeus2DataLoader(train)] Saved /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.5+me100+x1+eta0.5+beta2.0+2022112319471669250835/rec02+try01+bs8.train.json: {"energy": 1693.3648830980062, "time": 17.390340226999797, "cost": 2368.3372114114854, "num_epochs": 1, "reached": true}
+Validation Epoch: 0, Average loss: 0.5760, Accuracy: 0.0137
+0
