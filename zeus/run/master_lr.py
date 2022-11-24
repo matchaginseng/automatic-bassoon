@@ -192,7 +192,7 @@ class Zeus2Master:
 
         # Training stats (energy, time, reached, end_epoch) written by ZeusDataLoader.
         # This file being found means that the training job is done.
-        train_json = Path(f"{logdir}/{job_id}+bs{batch_size}.train.json")
+        train_json = Path(f"{logdir}/{job_id}+bs{batch_size}+lr{learning_rate:.5f}.train.json")
 
         # Reporting
         print(f"[run job] Launching job with BS {batch_size}: and LR: {learning_rate}")

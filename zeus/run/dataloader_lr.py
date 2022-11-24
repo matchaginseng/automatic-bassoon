@@ -375,7 +375,7 @@ class PowerOptimizerDataLoader(DataLoader):
 
         while True:
             # Variables for storing time/energy consumption & cost
-            self.time_consumed, energy_consumed = -1, -1
+            time_consumed, energy_consumed = -1, -1
             cost = -1
             if self.rank == 0:
                 # Sanity checks.
@@ -390,20 +390,20 @@ class PowerOptimizerDataLoader(DataLoader):
 
                 # Compute time and energy consumption up to now.
                 # Compute time consumption at GPU_0
-                self.time_consumed = sum(self.train_epoch_time + self.eval_epoch_time)
+                time_consumed = sum(self.train_epoch_time + self.eval_epoch_time)
                 # Compute energy consumption over all the GPUs
                 energy_consumed = (
                     self.train_epoch_energy.sum() + self.eval_epoch_energy.sum()
                 )
                 cost = zeus_cost(
                     energy_consumed,
-                    self.time_consumed,
+                    time_consumed,
                     self.eta_knob,
                     self.max_pl // 1000 * self.world_size,
                 )
                 self._log(
                     f"Up to epoch {self.epoch_num}: "
-                    f"time={self.time_consumed:.2f}, energy={energy_consumed:.2f}, cost={cost:.2f}"
+                    f"time={time_consumed:.2f}, energy={energy_consumed:.2f}, cost={cost:.2f}"
                 )
 
             # target_metric_reached is set when the current validation metric is reported to
@@ -412,23 +412,23 @@ class PowerOptimizerDataLoader(DataLoader):
             if self.target_metric_reached:
                 if self.rank == 0:
                     # Sanity check that time/energy consumption & cost are valid in master process.
-                    assert self.time_consumed >= 0 and energy_consumed >= 0 and cost >= 0
+                    assert time_consumed >= 0 and energy_consumed >= 0 and cost >= 0
                     self._log(
                         f"Target metric {self.target_metric} was reached! Stopping."
                     )
-                    self._save_train_results(energy_consumed, self.time_consumed, cost, True)
+                    self._save_train_results(energy_consumed, time_consumed, cost, True)
                 return
 
             # Max epoch is a hard stop.
             if self.epoch_num >= self.max_epochs:
                 if self.rank == 0:
                     # Sanity check that time/energy consumption & cost are valid in master process.
-                    assert self.time_consumed >= 0 and energy_consumed >= 0 and cost >= 0
+                    assert time_consumed >= 0 and energy_consumed >= 0 and cost >= 0
                     self._log(
                         f"Maximum number of epochs {self.max_epochs} reached. Stopping."
                     )
                     self._save_train_results(
-                        energy_consumed, self.time_consumed, cost, False
+                        energy_consumed, time_consumed, cost, False
                     )
                 return
             
@@ -436,11 +436,11 @@ class PowerOptimizerDataLoader(DataLoader):
             if self.prof_done:
                 if self.rank == 0:
                     # Sanity check that time/energy consumption & cost are valid in master process.
-                    assert self.time_consumed >= 0 and energy_consumed >= 0 and cost >= 0
+                    assert time_consumed >= 0 and energy_consumed >= 0 and cost >= 0
                     self._log(
                         f"Profiling done. Stopping."
                     )
-                    self._save_train_results(energy_consumed, self.time_consumed, cost, True)
+                    self._save_train_results(energy_consumed, time_consumed, cost, True)
                 return
                     
 
@@ -455,14 +455,15 @@ class PowerOptimizerDataLoader(DataLoader):
             # happen frequently. It's more like a wrong cost threshold.
             if self._should_profile:
                 # If there are no more power limits to profile, stop training
-                if not self._power_limits_left and self.prof_done:
+                # if not self._power_limits_left and self.prof_done:
+                if self.prof_done:
                     # Sanity check that time/energy consumption & cost are valid in master process.
-                    assert self.time_consumed >= 0 and energy_consumed >= 0 and cost >= 0
+                    assert time_consumed >= 0 and energy_consumed >= 0 and cost >= 0
                     self._log(
                         "No more power limits left to profile. Stopping."
                     )
                     self._save_train_results(
-                        energy_consumed, self.time_consumed, cost, False
+                        energy_consumed, time_consumed, cost, False
                     )
                     return
                 if cost >= self.cost_thresh:
@@ -495,7 +496,7 @@ class PowerOptimizerDataLoader(DataLoader):
                 self._log(
                     f"Optimal PL train & eval expected time={next_time:.2f} energy={next_energy:.2f}"
                 )
-                next_time_consumed = self.time_consumed + next_time
+                next_time_consumed = time_consumed + next_time
                 next_energy_consumed = energy_consumed + next_energy
                 next_cost = zeus_cost(
                     next_energy_consumed,
@@ -513,7 +514,7 @@ class PowerOptimizerDataLoader(DataLoader):
                 if next_cost >= self.cost_thresh:
                     # Save training results
                     self._save_train_results(
-                        energy_consumed, self.time_consumed, cost, False
+                        energy_consumed, time_consumed, cost, False
                     )
                     # NOTE: We use a customized exception to terminate ALL the processes for
                     # the purpose of multiprocessing management.
@@ -524,7 +525,7 @@ class PowerOptimizerDataLoader(DataLoader):
                     # master process. The lauching script will terminate all the processes that
                     # are still alive.
                     raise ZeusCostThresholdExceededException(
-                        self.time_consumed,
+                        time_consumed,
                         energy_consumed,
                         cost,
                         next_cost,
