@@ -190,7 +190,7 @@ def main(args: argparse.Namespace) -> None:
         except StopIteration:
             acc = validate(val_loader, model, criterion, epoch, args)
             # train_loader.report_metric(acc, higher_is_better=True)
-            print("ACCURACY OF " + str(acc) + " WAS REACHED")
+            print("^^^^^ ACCURACY ^^^^^")
             break
 
         acc = validate(val_loader, model, criterion, epoch, args)
