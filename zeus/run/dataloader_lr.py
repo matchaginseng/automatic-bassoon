@@ -34,7 +34,7 @@ import torch
 from torch.utils.data import DataLoader
 
 from zeus import analyze
-from zeus.analyze import HistoryEntry2
+# from zeus.analyze import HistoryEntry2
 from zeus.util.check import get_env
 from zeus.util.metric import ZeusCostThresholdExceededException, zeus_cost
 
