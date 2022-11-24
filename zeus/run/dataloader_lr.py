@@ -137,6 +137,8 @@ class PowerOptimizerDataLoader(DataLoader):
     # GPU_i's energy records is `eval_epoch_energy[i]`.
     eval_epoch_energy: np.ndarray = np.empty(0)
 
+    _should_profile = True
+
     def __init__(
         self,
         *args,
@@ -554,10 +556,10 @@ class PowerOptimizerDataLoader(DataLoader):
             if metric <= self.target_metric:
                 self.target_metric_reached = True
 
-    @property
-    def _should_profile(self) -> bool:
-        """Whether profiling is not done."""
-        return not Path(self.power_json).exists()
+    # @property
+    # def _should_profile(self) -> bool:
+    #     """Whether profiling is not done."""
+    #     return not Path(self.power_json).exists()
 
     @property
     def _power_limits_left(self) -> bool:
@@ -1009,6 +1011,7 @@ class PowerOptimizerDataLoader(DataLoader):
                 )
 
             # Re-raise StopIteration.
+            self._should_profile = True
             raise
 
         # We're in the middle of an epoch. The train loader has power limits left to profile.
