@@ -197,7 +197,7 @@ class Profiler:
         history_json = Path(f"{logdir}/{job_id}.history_all.py")
 
         # Reporting
-        print(f"[run job] Launching job with BS {batch_size}: and LR: {learning_rate}")
+        print(f"[run job] Launching job with BS {batch_size}: and LR: {learning_rate} and PL: {power_limit}")
         print(f"[run job] {zeus_env=}")
         if job.workdir is not None:
             print(f"[run job] cwd={job.workdir}")

@@ -106,8 +106,6 @@ class Job:
                 command.append(str(seed))
             elif piece in ["{epoch}", "{epochs}"]:
                 command.append(str(self.max_epochs))
-            # elif piece == "{slice_number}":
-            #     command.append(str(rec_i))
             elif piece == "{target_metric}":
                 command.append(str(self.target_metric))
             elif piece in ["{pl}", "{power_limit}"]:
