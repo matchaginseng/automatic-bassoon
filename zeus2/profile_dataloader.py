@@ -277,11 +277,9 @@ class ProfileDataLoader(DataLoader):
                         f"epoch {self.epoch} {self.split} time consumed: {scaled_time:.2f}s"
                     )
  
-            # The eval dataloader kills the monitor.
-            if not self._is_train and self.rank == 0:
-                kill_monitor()
+            kill_monitor()
             
-            raise
+            raise StopIteration
 
         if self._is_train:
             # We need to start warming up

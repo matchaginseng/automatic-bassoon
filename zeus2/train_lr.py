@@ -199,11 +199,11 @@ def main(args: argparse.Namespace) -> None:
             print("^^^^^ ACCURACY ^^^^^")
             acc = validate(val_loader, model, criterion, epoch, args)
             train_loader.calculate_cost(acc)
-            # train_loader.report_metric(acc, higher_is_better=True)
             break
+            # train_loader.report_metric(acc, higher_is_better=True)
         
-        acc = validate(val_loader, model, criterion, epoch, args)
-        train_loader.calculate_cost(acc)
+        # acc = validate(val_loader, model, criterion, epoch, args)
+        # train_loader.calculate_cost(acc)
 
         # ZEUS
         # if args.zeus:
