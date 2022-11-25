@@ -194,7 +194,9 @@ def main(args: argparse.Namespace) -> None:
             train_loader.calculate_cost(acc)
             # train_loader.report_metric(acc, higher_is_better=True)
             break
+        
         acc = validate(val_loader, model, criterion, epoch, args)
+        train_loader.calculate_cost(acc)
 
         # ZEUS
         if args.zeus:
