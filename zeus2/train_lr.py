@@ -1,4 +1,3 @@
-
 # Copyright (C) 2022 Jae-Won Chung <jwnchung@umich.edu>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,14 +19,12 @@ import argparse
 
 import torch
 from torch import nn, optim
-from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 
 # ZEUS
-from zeus.run import PowerOptimizerDataLoader 
-from zeus2.profile_dataloader import ProfileDataLoader
+from profile_dataloader import ProfileDataLoader
 
-from models import all_models, get_model
+from examples.cifar100.models import all_models, get_model
 
 
 def parse_args() -> argparse.Namespace:
@@ -58,13 +55,13 @@ def parse_args() -> argparse.Namespace:
     # parser.add_argument("--dropout_rate", type=float, default=1.0, help="Default dropout rate")
 
     # ZEUS
-    runtime_mode = parser.add_mutually_exclusive_group()
-    runtime_mode.add_argument(
-        "--zeus", action="store_true", help="Whether to run Zeus."
-    )
-    runtime_mode.add_argument(
-        "--profile", action="store_true", help="Whether to just profile power."
-    )
+    # runtime_mode = parser.add_mutually_exclusive_group()
+    # runtime_mode.add_argument(
+    #     "--zeus", action="store_true", help="Whether to run Zeus."
+    # )
+    # runtime_mode.add_argument(
+    #     "--profile", action="store_true", help="Whether to just profile power."
+    # )
 
     return parser.parse_args()
 
@@ -113,25 +110,23 @@ def main(args: argparse.Namespace) -> None:
         ),
     )
 
-    # ZEUS
-    # Prepare dataloaders.
-    print(f"power limit arg: {args.power_limit}")
     train_loader = ProfileDataLoader(
         train_dataset,
-            split="train",
-            batch_size=args.batch_size,
-            power_limit=args.power_limit,
-            shuffle=True,
-            num_workers=args.num_workers,
-        )
+        split="train",
+        batch_size=args.batch_size,
+        power_limit=args.power_limit,
+        shuffle=True,
+        num_workers=args.num_workers,
+    )
+    
     val_loader = ProfileDataLoader(
-            val_dataset,
-            split="eval",
-            batch_size=args.batch_size,
-            power_limit=args.power_limit,
-            shuffle=False,
-            num_workers=args.num_workers,
-        )
+        val_dataset,
+        split="eval",
+        batch_size=args.batch_size,
+        power_limit=args.power_limit,
+        shuffle=False,
+        num_workers=args.num_workers,
+    )
 
     # Send model to CUDA.
     model = model.cuda()
@@ -144,14 +139,12 @@ def main(args: argparse.Namespace) -> None:
     # ZEUS
     # ZeusDataLoader may early stop training when the cost is expected
     # to exceed the cost upper limit or the target metric was reached.
-    if args.zeus:
-        assert isinstance(train_loader, PowerOptimizerDataLoader)
-        epoch_iter = train_loader.epochs()
-    else:
-        epoch_iter = range(args.epochs)
+    # if args.zeus:
+    #     assert isinstance(train_loader, PowerOptimizerDataLoader)
+    #     epoch_iter = train_loader.epochs()
+    # else:
+    epoch_iter = range(args.epochs)
 
-
-    print(epoch_iter)
     # Main training loop.
     for epoch in epoch_iter:
         try:
@@ -162,15 +155,16 @@ def main(args: argparse.Namespace) -> None:
             train_loader.calculate_cost(acc)
             # train_loader.report_metric(acc, higher_is_better=True)
             break
-        acc = validate(val_loader, model, criterion, epoch, args)
 
-        # ZEUS
-        if args.zeus:
-            assert isinstance(train_loader, PowerOptimizerDataLoader)
-            train_loader.report_metric(acc, higher_is_better=True)
-        elif args.profile:
-            if train_loader.reached_target_metric(acc):
-                break
+        # acc = validate(val_loader, model, criterion, epoch, args)
+
+        # # ZEUS
+        # if args.zeus:
+        #     assert isinstance(train_loader, PowerOptimizerDataLoader)
+        #     train_loader.report_metric(acc, higher_is_better=True)
+        # elif args.profile:
+        #     if train_loader.reached_target_metric(acc):
+        #         break
 
 def train(train_loader, model, criterion, optimizer, epoch, args):
     """Train the model for one epoch."""
@@ -228,5 +222,6 @@ def set_seed(seed: int) -> None:
     torch.cuda.manual_seed_all(seed)
 
 
-if __name__ == "__main__":
+if __name__ == "_main_":
+    print("HELLO")
     main(parse_args())
