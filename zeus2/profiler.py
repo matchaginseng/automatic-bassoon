@@ -163,7 +163,7 @@ class Profiler:
             A tuple of energy consumption, time consumption, and whether the job reached the target metric.
         """
         # Generate job command
-        command = job.gen_command(batch_size, learning_rate, seed)
+        command = job.gen_command(batch_size, learning_rate, power_limit, seed)
 
         # Set environment variables
         job_id = f"bs{batch_size}+lr{learning_rate:.5f}+pl{power_limit}"
@@ -178,6 +178,7 @@ class Profiler:
             # ZEUS_TARGET_METRIC=str(job.target_metric),
             ZEUS_MONITOR_PATH=self.monitor_path,
             ZEUS_PROFILE_PARAMS=f"{self.profile_warmup_iters},{self.profile_measure_iters}",
+            ZEUS_LOG_PREFIX="/workspace/zeus_logs",
             # ZEUS_USE_OPTIMAL_PL=str(not self.observer_mode),
         )
         env = deepcopy(os.environ)
