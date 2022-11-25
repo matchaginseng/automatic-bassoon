@@ -27,7 +27,9 @@ from torchvision import datasets, transforms
 from zeus.run import PowerOptimizerDataLoader 
 from zeus2.profile_dataloader import ProfileDataLoader
 
-from examples.cifar100.models import all_models, get_model
+# from examples.cifar100.models import all_models, get_model
+from examples.cifar100.models.shufflenetv2 import shufflenetv2
+
 
 
 def parse_args() -> argparse.Namespace:
@@ -37,8 +39,8 @@ def parse_args() -> argparse.Namespace:
         "--arch",
         metavar="ARCH",
         default="shufflenetv2",
-        choices=all_models,
-        help="Model architecture: " + " | ".join(all_models),
+        # choices=all_models,
+        # help="Model architecture: " + " | ".join(all_models),
     )
     parser.add_argument(
         "--epochs", type=int, default=100, help="Maximum number of epochs to train."
@@ -78,7 +80,7 @@ def main(args: argparse.Namespace) -> None:
     # Prepare model.
     # NOTE: Using torchvision.models would be also straightforward. For example:
     #       model = vars(torchvision.models)[args.arch](num_classes=100)
-    model = get_model(args.arch)
+    model = shufflenetv2()
 
     # Prepare datasets.
     train_dataset = datasets.CIFAR100(
@@ -259,4 +261,5 @@ def set_seed(seed: int) -> None:
 
 
 if __name__ == "__main__":
+    print("HELLO")
     main(parse_args())
