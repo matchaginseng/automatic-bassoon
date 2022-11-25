@@ -385,8 +385,8 @@ class ProfileDataLoader(DataLoader):
 
         # Change power limit.
         if self.rank == 0:
-            power_limit = self.power_limits[self.prof_pl_index]
-            self._set_gpu_power_limit(power_limit)
+            # power_limit = self.power_limits[self.prof_pl_index]
+            self._set_gpu_power_limit(self.power_limit)
 
             self._log(f"Warm-up started with power limit {self.current_gpu_pl//1000}W")
 
