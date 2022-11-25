@@ -164,7 +164,7 @@ def main(args: argparse.Namespace) -> None:
     # Run Zeus!
     bs, lr, pl = master.profile(
         job=job,
-        num_recurrence=args.num_recurrence,
+        learning_rates=[0.9, 0.9, 1.0, 1.1, 1.2],
         batch_sizes=batch_sizes,
         beta_knob=args.beta_knob,
         eta_knob=args.eta_knob,
