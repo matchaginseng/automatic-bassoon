@@ -135,7 +135,6 @@ class ProfileDataLoader(DataLoader):
         self.eval_tput_result: float = 0.
 
         # single GPU setting
-        self.world_size = 1
         self.rank = 0
 
         # Check if the Zeus power monitor is executable.
@@ -323,7 +322,8 @@ class ProfileDataLoader(DataLoader):
         # Sanity check.
         # Only set power limit at master process.
         # assert self.rank == 0
-        assert len(self.gpu_handles) == self.world_size
+        print(len(self.gpu_handles))
+        # assert len(self.gpu_handles) == self.world_size
 
         # Set power limit for GPU
         for index in range(self.world_size):
