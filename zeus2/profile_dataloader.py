@@ -388,7 +388,7 @@ class ProfileDataLoader(DataLoader):
             # power_limit = self.power_limits[self.prof_pl_index]
             self._set_gpu_power_limit(self.power_limit)
 
-            print(f"Warm-up started with power limit {self.current_gpu_pl//1000}W")
+            print(f"Warm-up started with power limit {self.power_limit//1000}W")
 
         self.warmup_start_sample = self.sample_num
 
@@ -477,7 +477,7 @@ class ProfileDataLoader(DataLoader):
         throughput = samples_processed / self.time_consumed
         self.train_tput_result = throughput
 
-        print(f"Profile done with power limit {self.current_gpu_pl//1000}W")
+        print(f"Profile done with power limit {self.power_limit//1000}W")
 
 
 def kill_monitor():
