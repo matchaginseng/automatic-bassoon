@@ -127,6 +127,8 @@ class ProfileDataLoader(DataLoader):
         # Train-time power profiling result. Maps power limit to avg_power & throughput.
         self.train_power_result: float = 0.
         self.train_tput_result: float = 0.
+        self.num_samples = len(self)
+
 
         # Eval-time power profiling result. Maps power limit to avg_power & throughput.
         self.eval_power_result: float = 0.
