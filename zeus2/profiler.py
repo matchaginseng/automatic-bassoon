@@ -356,7 +356,6 @@ class Profiler:
                     power_limit=pl,
                     seed=seed,
                     logdir=logdir,
-                    rec_i=i,
                     eta_knob=eta_knob,
                     cost_ub=beta_knob * min_cost,
                 )
