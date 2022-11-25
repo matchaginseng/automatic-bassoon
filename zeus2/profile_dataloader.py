@@ -73,7 +73,7 @@ class ProfileDataLoader(DataLoader):
         *args,
         batch_size: int,
         learning_rate: float,
-        # power_limit: int = 0,
+        power_limit: int = 0,
         warmup_iters: int = 10,
         measure_iters: int = 40,
         split: Literal["train", "eval"],
@@ -122,7 +122,7 @@ class ProfileDataLoader(DataLoader):
         self.eta_knob = get_env("ZEUS_ETA_KNOB", float, default=0.5)
         # self.target_metric = get_env("ZEUS_TARGET_METRIC", float)
         
-        self.power_limit = get_env("ZEUS_POWER_LIMIT", int)
+        self.power_limit = power_limit
 
         # Train-time power profiling result. Maps power limit to avg_power & throughput.
         self.train_power_result: float = 0.
