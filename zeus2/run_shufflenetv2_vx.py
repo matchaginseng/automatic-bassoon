@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 
 from zeus2.job import Job 
-from zeus2 import Zeus2Master
+from zeus2.profiler import Profiler
 from zeus.util import FileAndConsole
 
 
@@ -88,7 +88,7 @@ def main(args: argparse.Namespace) -> None:
     #   ZeusDataLoader raises a RuntimeError, and the profiling window should be narrowed
     #   by giving smaller values to profile_warmup_iters and profile_measure_iters in the
     #   constructor of ZeusMaster.
-    master = Zeus2Master(
+    master = Profiler(
         log_base="/workspace/zeus_logs",
         seed=args.seed,
         monitor_path="/workspace/zeus/zeus_monitor/zeus_monitor",
@@ -162,13 +162,15 @@ def main(args: argparse.Namespace) -> None:
     sys.stdout = FileAndConsole(Path(master_logdir) / "master.log")
 
     # Run Zeus!
-    master.run(
+    bs, lr, pl = master.profile(
         job=job,
         num_recurrence=args.num_recurrence,
         batch_sizes=batch_sizes,
         beta_knob=args.beta_knob,
         eta_knob=args.eta_knob,
     )
+
+    print(f"optimized batch size: {bs}, learning rate: {lr}, power limit: {pl}")
 
 
 if __name__ == "__main__":

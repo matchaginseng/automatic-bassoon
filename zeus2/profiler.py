@@ -17,6 +17,7 @@
 from __future__ import annotations
 
 import json
+import logging
 import os
 import pprint
 import subprocess
@@ -28,7 +29,7 @@ import numpy as np
 import pynvml
 import torch
 
-from zeus.analyze import HistoryEntry
+from zeus2.analyze import HistoryEntry
 from zeus2.job import Job
 from zeus2.metric import epoch_cost
 
@@ -171,6 +172,8 @@ class Profiler:
             ZEUS_LOG_DIR=logdir,
             ZEUS_JOB_ID=job_id,
             ZEUS_COST_THRESH="inf" if cost_ub == np.inf else str(cost_ub),
+            ZEUS_BATCH_SIZE=str(batch_size),
+            ZEUS_LEARNING_RATE=str(learning_rate),
             ZEUS_ETA_KNOB=str(eta_knob),
             ZEUS_POWER_LIMIT=str(power_limit),
             # ZEUS_TARGET_METRIC=str(job.target_metric),
@@ -186,7 +189,10 @@ class Profiler:
 
         # Training stats (energy, time, reached, end_epoch) written by ZeusDataLoader.
         # This file being found means that the training job is done.
-        train_json = Path(f"{logdir}/{job_id}.train.json")
+        # train_json = Path(f"{logdir}/{job_id}.train.json")
+
+        # File that got written to in the profiling dataloader.
+        history_json = Path(f"{logdir}/{job_id}.history_all.py")
 
         # Reporting
         print(f"[run job] Launching job with BS {batch_size}: and LR: {learning_rate}")
@@ -223,22 +229,52 @@ class Profiler:
                 print(f"[run job] Job terminated with exit code {exitcode}.")
 
             # `train_json` must exist at this point.
-            if not train_json.exists():
-                raise RuntimeError(f"{train_json} does not exist.")
+            # if not train_json.exists():
+            #     raise RuntimeError(f"{train_json} does not exist.")
 
-        # TODO: extract the cost from the file that got written out in the dataloader
+            # `history_json` must exist at this point.
+            if not history_json.exists():
+                raise RuntimeError(f"{history_json} does not exist.")
 
-        # Read `train_json` for the training stats.
-        with open(train_json, "r") as f:
-            stats = json.load(f)
+        # TODO: extract the cost from the file that got written out in the dataloader <- did i do it right?
+        with open(history_json, "r") as histf:
+            stats = json.load(histf)
             print(f"[run job] {stats=}")
 
+        # Read `train_json` for the training stats.
+        # with open(train_json, "r") as f:
+        #     stats = json.load(f)
+        #     print(f"[run job] {stats=}")
+
         # Casting
-        if not isinstance(stats["reached"], bool):
-            stats["reached"] = stats["reached"].lower() == "true"
+        # if not isinstance(stats["reached"], bool):
+        #     stats["reached"] = stats["reached"].lower() == "true"
 
-        return float(stats["energy"]), float(stats["time"]), stats["reached"]
+        return float(stats["energy"]), float(stats["time"]), float(stats["accuracy"]), float(stats["total_cost"])
 
+        # return float(stats["energy"]), float(stats["time"]), float(cost["cost"]), stats["reached"]
+        # not sure about how exactly to index into cost
+
+    def _save_train_results(
+        self, energy: float, time_: float, cost: float, reached: bool
+    ) -> None:
+        """Write the job training results to `train_json`."""
+        # Sanity check.
+        # Only load power results at master process.
+        assert self.rank == 0
+
+        train_result = dict(
+            energy=energy,
+            time=time_,
+            cost=cost,  # Not used. Just for reference.
+            num_epochs=self.epoch_num,  # Not used. Just for reference.
+            reached=reached,
+        )
+        with open(self.train_json, "w") as f:
+            json.dump(train_result, f)
+        with open(self.train_json, "r") as f:
+            self._log("Training done.")
+            self._log(f"Saved {self.train_json}: {f.read()}")
 
     def profile(
         self, 
@@ -287,14 +323,15 @@ class Profiler:
         # list of (bs, lr) batch size tuples to try
         bs_lr = []
 
-        # initialize best pl
-        best_pl = -1
+        # dict of (bs, lr) opt power limits
+        opt_pl = {}
 
         # batch_sizes is a list of all batch sizes the user wants us to try
         for bs in batch_sizes:
             # for lr in [job.scale_lr(bs * factor) for factor in [0.8, 0.9, 1, 1.1, 1.2]] :
             for lr in [job.scale_lr(bs * factor) for factor in learning_rates]:
                 bs_lr.append((bs, lr))
+                opt_pl[(bs, lr)] = 0 # initialize
 
         # 2-lvl optimization
         for i in range(1, len(bs_lr) + 1):
@@ -304,13 +341,16 @@ class Profiler:
             # TODO: keep track of lowest-cost power limits per thing
             min_cost = float("inf")
 
+            # initialize best pl for this combo
+            best_pl = -1
+
             for pl in self.power_limits:
-                cost_acc = 0.0
+                # cost_acc = 0.0
             
                 # Launch the job.
                 # Early stops based on cost_ub.
                 
-                energy, time, reached = self.run_job(
+                energy, time, accuracy, total_cost = self.run_job(
                     job=job,
                     batch_size=bs,
                     learning_rate=lr,
@@ -327,16 +367,18 @@ class Profiler:
                 # seed += 1
 
                 # Compute the cost of this try.
-                num_gpus = torch.cuda.device_count()
+                # num_gpus = torch.cuda.device_count()
 
-                cost = epoch_cost(energy, time, eta_knob, self.max_pl * num_gpus)
-                print(f"[Zeus Master] {cost=}")
+                # cost = epoch_cost(energy, time, eta_knob, self.max_pl * num_gpus)
+                # print(f"[Zeus Master] {cost=}")
 
-                # Accumulate the cost to track the total cost.
-                cost_acc += cost
+                if total_cost < min_cost:
+                    min_cost = total_cost
+                    best_pl = pl 
+                    opt_pl[(bs, lr)] = best_pl
 
-                # Record history for visualization. TODO: change variables
-                history.append(HistoryEntry(bs, None, energy, reached, time))
+                # Record history for visualization. TODO: change variables. the functions processing this may be total nonsense RN
+                history.append(HistoryEntry(bs, pl, energy, time, accuracy, total_cost))
                 with open(history_file, "w") as f:
                     # Intended use:
                     #
@@ -349,5 +391,8 @@ class Profiler:
 
         print(f"[Power Profiler]\n{history}")
 
-        # return the optimal settings
-        return (bs, lr, best_pl)
+        # find optimal setting to return: get argmin
+        opt_bs, opt_lr = min(opt_pl, key=opt_pl.get)
+
+        # return the optimal setting
+        return (opt_bs, opt_lr, opt_pl[(opt_bs, opt_lr)])
