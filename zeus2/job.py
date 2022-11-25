@@ -82,7 +82,7 @@ class Job:
         # dropout_rate: float,
         # power_limit: int,
         seed: int,
-        rec_i: int,
+        # rec_i: int,
     ) -> list[str]:
         """Format the job command with given arguments.
 
