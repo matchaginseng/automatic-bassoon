@@ -42,14 +42,6 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--lr_max", type=int, default=0.1, help="Largest learning rate to consider"
     )
-    
-    # # The range of power limits to consider. 
-    # parser.add_argument(
-    #     "--pl_min", type=int, default=100000, help="Smallest power limit to consider (in mW)"
-    # )
-    # parser.add_argument(
-    #     "--pl_max", type=int, default=200000, help="Largest power limit to consider (in mW)"
-    # )
 
     # The \\eta knob trades off time and energy consumption. See Equation 2 in the paper.
     # The \\beta knob defines the early stopping threshold. See Section 4.4 in the paper.
