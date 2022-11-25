@@ -122,7 +122,7 @@ class ProfileDataLoader(DataLoader):
         self.eta_knob = get_env("ZEUS_ETA_KNOB", float, default=0.5)
         # self.target_metric = get_env("ZEUS_TARGET_METRIC", float)
         
-        self.power_limit = get_env("ZEUS_POWER_LIMIT", float)
+        self.power_limit = get_env("ZEUS_POWER_LIMIT", int)
 
         # Train-time power profiling result. Maps power limit to avg_power & throughput.
         self.train_power_result: float = 0.
