@@ -345,8 +345,7 @@ class ProfileDataLoader(DataLoader):
         total_cost = (frac_epochs / acc) * ((self.eta_knob * self.train_power_result + (1 - self.eta_knob) * self.max_pl / self.train_tput_result))
 
         with open(self.history_file_all, "w") as f:
-            f.write(
-                '''
+            content = '''
                 {
                     bs: {bs},
                     pl: {pl},
@@ -356,14 +355,15 @@ class ProfileDataLoader(DataLoader):
                     accuracy: {accuracy},
                     total_cost: {total_cost}
                 }
-                '''
-                .format(bs=self.batch_size, 
+                '''.format(bs=self.batch_size, 
                         pl=self.power_limit, 
                         lr=self.learning_rate, 
                         energy=self.train_power_result, 
                         time=self.time_consumed, 
                         accuracy=acc,
-                        total_cost = total_cost))
+                        total_cost = total_cost)
+                        
+            f.write(content)
 
     
     def _start_warmup(self) -> None:
