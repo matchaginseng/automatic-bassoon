@@ -141,6 +141,7 @@ def main(args: argparse.Namespace) -> None:
     print(f"batch size arg: {args.batch_size}")
 
     train_loader = ProfileDataLoader(
+        train_dataset,
         split="train",
         batch_size=args.batch_size,
         learning_rate=args.learning_rate,
