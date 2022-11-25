@@ -117,26 +117,26 @@ def main(args: argparse.Namespace) -> None:
 
     # ZEUS
     # Prepare dataloaders.
-    if args.zeus:
-        # Zeus
-        train_loader = PowerOptimizerDataLoader(
-            train_dataset,
-            max_epochs=args.epochs,
-            batch_size=args.batch_size,
-            learning_rate=args.learning_rate,
-            shuffle=True,
-            num_workers=args.num_workers,
-        )
-        val_loader = PowerOptimizerDataLoader(
-            val_dataset,
-            batch_size=args.batch_size,
-            learning_rate=args.learning_rate,
-            shuffle=False,
-            num_workers=args.num_workers,
-        )
-    elif args.profile:
-        print(f"power limit arg: {args.power_limit}")
-        train_loader = ProfileDataLoader(
+    # if args.zeus:
+    #     # Zeus
+    #     train_loader = PowerOptimizerDataLoader(
+    #         train_dataset,
+    #         max_epochs=args.epochs,
+    #         batch_size=args.batch_size,
+    #         learning_rate=args.learning_rate,
+    #         shuffle=True,
+    #         num_workers=args.num_workers,
+    #     )
+    #     val_loader = PowerOptimizerDataLoader(
+    #         val_dataset,
+    #         batch_size=args.batch_size,
+    #         learning_rate=args.learning_rate,
+    #         shuffle=False,
+    #         num_workers=args.num_workers,
+    #     )
+    # elif args.profile:
+    print(f"power limit arg: {args.power_limit}")
+    train_loader = ProfileDataLoader(
             train_dataset,
             split="train",
             batch_size=args.batch_size,
@@ -144,7 +144,7 @@ def main(args: argparse.Namespace) -> None:
             shuffle=True,
             num_workers=args.num_workers,
         )
-        val_loader = ProfileDataLoader(
+    val_loader = ProfileDataLoader(
             val_dataset,
             split="eval",
             batch_size=args.batch_size,
@@ -152,19 +152,19 @@ def main(args: argparse.Namespace) -> None:
             shuffle=False,
             num_workers=args.num_workers,
         )
-    else:
-        train_loader = DataLoader(
-            train_dataset,
-            batch_size=args.batch_size,
-            shuffle=True,
-            num_workers=args.num_workers,
-        )
-        val_loader = DataLoader(
-            val_dataset,
-            batch_size=args.batch_size,
-            shuffle=False,
-            num_workers=args.num_workers,
-        )
+    # else:
+    #     train_loader = DataLoader(
+    #         train_dataset,
+    #         batch_size=args.batch_size,
+    #         shuffle=True,
+    #         num_workers=args.num_workers,
+    #     )
+    #     val_loader = DataLoader(
+    #         val_dataset,
+    #         batch_size=args.batch_size,
+    #         shuffle=False,
+    #         num_workers=args.num_workers,
+    #     )
 
     # Send model to CUDA.
     model = model.cuda()
@@ -177,11 +177,12 @@ def main(args: argparse.Namespace) -> None:
     # ZEUS
     # ZeusDataLoader may early stop training when the cost is expected
     # to exceed the cost upper limit or the target metric was reached.
-    if args.zeus:
-        assert isinstance(train_loader, PowerOptimizerDataLoader)
-        epoch_iter = train_loader.epochs()
-    else:
-        epoch_iter = range(args.epochs)
+    # if args.zeus:
+    #     assert isinstance(train_loader, PowerOptimizerDataLoader)
+    #     epoch_iter = train_loader.epochs()
+    # else:
+        
+    epoch_iter = range(args.epochs)
 
 
     # Main training loop.
@@ -199,12 +200,12 @@ def main(args: argparse.Namespace) -> None:
         train_loader.calculate_cost(acc)
 
         # ZEUS
-        if args.zeus:
-            assert isinstance(train_loader, PowerOptimizerDataLoader)
-            train_loader.report_metric(acc, higher_is_better=True)
-        elif args.profile:
-            if train_loader.reached_target_metric(acc):
-                break
+        # if args.zeus:
+        #     assert isinstance(train_loader, PowerOptimizerDataLoader)
+        #     train_loader.report_metric(acc, higher_is_better=True)
+        # elif args.profile:
+        #     if train_loader.reached_target_metric(acc):
+        #         break
 
 def train(train_loader, model, criterion, optimizer, epoch, args):
     """Train the model for one epoch."""
