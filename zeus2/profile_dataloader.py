@@ -339,6 +339,7 @@ class ProfileDataLoader(DataLoader):
     
 
     def calculate_cost(self, acc: float) -> None:
+        print(len(self))
         frac_epochs = (self.warmup_iter + self.profile_iter) / len(self)
 
         total_cost = (frac_epochs / acc) * ((self.eta_knob * self.train_power_result + (1 - self.eta_knob) * self.max_pl / self.train_tput_result))
@@ -351,8 +352,8 @@ class ProfileDataLoader(DataLoader):
                     pl: {pl},
                     lr: {lr},
                     energy: {energy},
-                    time: {time}, \n,
-                    accuracy: {accuracy}, \n,
+                    time: {time},
+                    accuracy: {accuracy},
                     total_cost: {total_cost}
                 }
                 '''
