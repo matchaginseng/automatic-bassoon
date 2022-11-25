@@ -27,7 +27,6 @@ from time import localtime, sleep, strftime
 
 import numpy as np
 import pynvml
-import torch
 
 from zeus2.analyze import HistoryEntry
 from zeus2.job import Job
