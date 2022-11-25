@@ -227,10 +227,6 @@ class Profiler:
                 exitcode = proc.poll()
                 print(f"[run job] Job terminated with exit code {exitcode}.")
 
-            # `train_json` must exist at this point.
-            # if not train_json.exists():
-            #     raise RuntimeError(f"{train_json} does not exist.")
-
             # `history_json` must exist at this point.
             if not history_json.exists():
                 raise RuntimeError(f"{history_json} does not exist.")

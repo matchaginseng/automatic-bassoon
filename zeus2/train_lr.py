@@ -110,25 +110,6 @@ def main(args: argparse.Namespace) -> None:
         ),
     )
 
-    # Prepare dataloaders.
-    # if args.zeus:
-    #     # Zeus
-    #     train_loader = PowerOptimizerDataLoader(
-    #         train_dataset,
-    #         max_epochs=args.epochs,
-    #         batch_size=args.batch_size,
-    #         learning_rate=args.learning_rate,
-    #         shuffle=True,
-    #         num_workers=args.num_workers,
-    #     )
-    #     val_loader = PowerOptimizerDataLoader(
-    #         val_dataset,
-    #         batch_size=args.batch_size,
-    #         learning_rate=args.learning_rate,
-    #         shuffle=False,
-    #         num_workers=args.num_workers,
-    #     )
-    # elif args.profile:
     train_loader = ProfileDataLoader(
         train_dataset,
         split="train",
@@ -137,6 +118,7 @@ def main(args: argparse.Namespace) -> None:
         shuffle=True,
         num_workers=args.num_workers,
     )
+
     val_loader = ProfileDataLoader(
         val_dataset,
         split="eval",
@@ -145,19 +127,6 @@ def main(args: argparse.Namespace) -> None:
         shuffle=False,
         num_workers=args.num_workers,
     )
-    # else:
-    #     train_loader = DataLoader(
-    #         train_dataset,
-    #         batch_size=args.batch_size,
-    #         shuffle=True,
-    #         num_workers=args.num_workers,
-    #     )
-    #     val_loader = DataLoader(
-    #         val_dataset,
-    #         batch_size=args.batch_size,
-    #         shuffle=False,
-    #         num_workers=args.num_workers,
-    #     )
 
     # Send model to CUDA.
     model = model.cuda()
@@ -176,6 +145,7 @@ def main(args: argparse.Namespace) -> None:
     # else:
     epoch_iter = range(args.epochs)
 
+    print(epoch_iter)
     # Main training loop.
     for epoch in epoch_iter:
         try:
