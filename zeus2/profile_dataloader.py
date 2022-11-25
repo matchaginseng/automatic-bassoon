@@ -127,7 +127,7 @@ class ProfileDataLoader(DataLoader):
         # Train-time power profiling result. Maps power limit to avg_power & throughput.
         self.train_power_result: float = 0.
         self.train_tput_result: float = 0.
-        self.num_samples = 50000//self.batch_size #TODO: change this to not be hardcoded
+        self.num_samples = 50000//self.batch_size #TODO: change this to not be hardcoded but i got issues doing len(self)??
 
 
         # Eval-time power profiling result. Maps power limit to avg_power & throughput.
@@ -346,7 +346,7 @@ class ProfileDataLoader(DataLoader):
 
         with open(self.history_file_all, "w") as f:
             content = '''
-                {
+                {{
                     bs: {bs},
                     pl: {pl},
                     lr: {lr},
@@ -354,7 +354,7 @@ class ProfileDataLoader(DataLoader):
                     time: {time},
                     accuracy: {accuracy},
                     total_cost: {total_cost}
-                }
+                }}
                 '''.format(bs=self.batch_size, 
                         pl=self.power_limit, 
                         lr=self.learning_rate, 
@@ -362,7 +362,7 @@ class ProfileDataLoader(DataLoader):
                         time=self.time_consumed, 
                         accuracy=acc,
                         total_cost = total_cost)
-                        
+
             f.write(content)
 
     
