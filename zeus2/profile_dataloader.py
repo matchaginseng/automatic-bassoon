@@ -302,6 +302,21 @@ class ProfileDataLoader(DataLoader):
                 and self.sample_num - self.warmup_start_sample == (self.profile_iter)
             ):
                 self._end_prof()
+                end = time.time()
+                if self.start1 and self.start2:
+                    scaled_time = (
+                        self.scaling_factor * (end - self.start2)
+                        + self.start2
+                        - self.start1
+                    )
+                    if torch.cuda.device_count() == 1 or dist.get_rank() == 0:
+                        self.time_file.write(f"{self.epoch},{self.split},{scaled_time}\n")
+                        self.time_file.flush()
+                        print(
+                            f"epoch {self.epoch} {self.split} time consumed: {scaled_time:.2f}s"
+                        )
+    
+                kill_monitor()
                 raise StopIteration
         
 
