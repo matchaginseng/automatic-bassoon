@@ -279,7 +279,7 @@ class ProfileDataLoader(DataLoader):
  
             # The eval dataloader kills the monitor.
             if not self._is_train and self.rank == 0:
-                self._kill_monitor()
+                kill_monitor()
             
             raise
 
