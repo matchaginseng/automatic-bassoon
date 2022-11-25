@@ -28,7 +28,7 @@ from zeus.run import PowerOptimizerDataLoader
 from zeus2.profile_dataloader import ProfileDataLoader
 
 # from examples.cifar100.models import all_models, get_model
-from examples.cifar100.models.shufflenetv2 import shufflenetv2
+from shufflenetv2 import shufflenetv2
 
 
 
