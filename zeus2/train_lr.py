@@ -135,11 +135,15 @@ def main(args: argparse.Namespace) -> None:
     #         num_workers=args.num_workers,
     #     )
     # elif args.profile:
+
     print(f"power limit arg: {args.power_limit}")
+    print(f"learning rate arg: {args.learning_rate}")
+    print(f"batch size arg: {args.batch_size}")
+
     train_loader = ProfileDataLoader(
-        train_dataset,
         split="train",
         batch_size=args.batch_size,
+        learning_rate=args.learning_rate,
         power_limit=args.power_limit,
         shuffle=True,
         num_workers=args.num_workers,
@@ -148,6 +152,7 @@ def main(args: argparse.Namespace) -> None:
         val_dataset,
         split="eval",
         batch_size=args.batch_size,
+        learning_rate=args.learning_rate,
         power_limit=args.power_limit,
         shuffle=False,
         num_workers=args.num_workers,
