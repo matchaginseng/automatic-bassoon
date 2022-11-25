@@ -109,7 +109,7 @@ def main(args: argparse.Namespace) -> None:
         default_bs=args.b_0,
         default_lr=args.lr_0,  
         default_dropout=args.dropout_0,
-        workdir="/workspace/zeus/examples/cifar100",
+        workdir="/workspace/zeus/zeus2",
         # fmt: off
         command=[
             "python",
@@ -163,7 +163,7 @@ def main(args: argparse.Namespace) -> None:
     # Run Zeus!
     bs, lr, pl = master.profile(
         job=job,
-        learning_rates=[0.9, 0.9, 1.0, 1.1, 1.2],
+        learning_rates=[0.8, 0.9, 1.0, 1.1, 1.2],
         batch_sizes=batch_sizes,
         beta_knob=args.beta_knob,
         eta_knob=args.eta_knob,
