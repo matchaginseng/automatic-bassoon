@@ -27,7 +27,7 @@ from torchvision import datasets, transforms
 from zeus.run import PowerOptimizerDataLoader 
 from zeus2.profile_dataloader import ProfileDataLoader
 
-from models import all_models, get_model
+from examples.cifar100.models import all_models, get_model
 
 
 def parse_args() -> argparse.Namespace:
