@@ -151,7 +151,6 @@ def main(args: argparse.Namespace) -> None:
     #      `history = eval(open("history.py").read())` after importing `HistoryEntry`.
     master_logdir = master.build_logdir(
         job=job,
-        num_recurrence=args.num_recurrence,
         eta_knob=args.eta_knob,
         beta_knob=args.beta_knob,
         exist_ok=False,  # Should err if this directory exists.
