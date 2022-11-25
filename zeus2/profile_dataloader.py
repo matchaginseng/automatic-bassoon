@@ -134,6 +134,10 @@ class ProfileDataLoader(DataLoader):
         self.eval_power_result: float = 0.
         self.eval_tput_result: float = 0.
 
+        # single GPU setting
+        self.world_size = 1
+        self.rank = 0
+
         # Check if the Zeus power monitor is executable.
         if not os.access(self.monitor_path, os.X_OK):
             raise RuntimeError(f"'{self.monitor_path}' is not executable")
