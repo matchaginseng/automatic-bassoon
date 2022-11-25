@@ -335,7 +335,7 @@ class ProfileDataLoader(DataLoader):
             handle = pynvml.nvmlDeviceGetHandleByIndex(index)
             # Set persistent mode.
             pynvml.nvmlDeviceSetPersistenceMode(handle, pynvml.NVML_FEATURE_ENABLED)
-            self.gpu_handles.append(handle)
+            self.gpu_handles.append(handle) #TODO: we're appending to this thing twice, thats sus
     
 
     def calculate_cost(self, acc: float) -> None:
@@ -388,7 +388,7 @@ class ProfileDataLoader(DataLoader):
             # power_limit = self.power_limits[self.prof_pl_index]
             self._set_gpu_power_limit(self.power_limit)
 
-            self._log(f"Warm-up started with power limit {self.current_gpu_pl//1000}W")
+            print(f"Warm-up started with power limit {self.current_gpu_pl//1000}W")
 
         self.warmup_start_sample = self.sample_num
 
@@ -477,7 +477,7 @@ class ProfileDataLoader(DataLoader):
         throughput = samples_processed / self.time_consumed
         self.train_tput_result = throughput
 
-        self._log(f"Profile done with power limit {self.current_gpu_pl//1000}W")
+        print(f"Profile done with power limit {self.current_gpu_pl//1000}W")
 
 
 def kill_monitor():
