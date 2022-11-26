@@ -280,7 +280,7 @@ class Profiler:
         eta_knob: float,
         beta_knob: float,
         batch_sizes: list,
-        learning_rates: list) -> tuple[int, float, int]:
+        learning_rate_factors: list) -> tuple[int, float, int]:
         """Runs a job. Returns a tuple (bs, lr, pl) that minimizes our epoch cost
 
         Args:
@@ -300,7 +300,7 @@ class Profiler:
             raise ValueError("eta_knob must be in [0.0, 1.0].")
 
         print(f"[Power Profiler] Batch sizes: {batch_sizes}")
-        print(f"[Power Profiler] Learning rates: {learning_rates}")
+        print(f"[Power Profiler] Learning rates factors: {learning_rate_factors}")
 
         # Copy all internal state so that simulation does not modify any
         # internal state and is deterministic w.r.t. the random seed.
@@ -326,8 +326,7 @@ class Profiler:
 
         # batch_sizes is a list of all batch sizes the user wants us to try
         for bs in batch_sizes:
-            # for lr in [job.scale_lr(bs * factor) for factor in [0.8, 0.9, 1, 1.1, 1.2]] :
-            for lr in [job.scale_lr(bs * factor) for factor in learning_rates]:
+            for lr in [job.scale_lr(bs) * factor for factor in learning_rate_factors]:
                 bs_lr.append((bs, lr))
                 opt_pl[(bs, lr)] = 0 # initialize
 
