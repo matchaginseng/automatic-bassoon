@@ -246,7 +246,7 @@ class ProfileDataLoader(DataLoader):
 
         self.sample_num += 1
 
-        try:
+        # try:
             # Special treatment for the first batch.
             # Data loading takes significantly more time for the first batch. Thus, if we
             # simply measure the first ~ last batch latency of the subset of the dataset
@@ -256,30 +256,30 @@ class ProfileDataLoader(DataLoader):
             # later add the processing time of the first batch.
             #
             # Strange if nest to make the common case number of if statement executions 1.
-            if self.start2 is None:
-                if self.start1 is None:
-                    self.start1 = time.time()
-                else:
-                    self.start2 = time.time()
-            data = self.iter.__next__()
-        except StopIteration:
-            end = time.time()
-            if self.start1 and self.start2:
-                scaled_time = (
-                    self.scaling_factor * (end - self.start2)
-                    + self.start2
-                    - self.start1
-                )
-                if torch.cuda.device_count() == 1 or dist.get_rank() == 0:
-                    self.time_file.write(f"{self.epoch},{self.split},{scaled_time}\n")
-                    self.time_file.flush()
-                    print(
-                        f"epoch {self.epoch} {self.split} time consumed: {scaled_time:.2f}s"
-                    )
+        if self.start2 is None:
+            if self.start1 is None:
+                self.start1 = time.time()
+            else:
+                self.start2 = time.time()
+        data = self.iter.__next__()
+        # except StopIteration:
+        #     end = time.time()
+        #     if self.start1 and self.start2:
+        #         scaled_time = (
+        #             self.scaling_factor * (end - self.start2)
+        #             + self.start2
+        #             - self.start1
+        #         )
+        #         if torch.cuda.device_count() == 1 or dist.get_rank() == 0:
+        #             self.time_file.write(f"{self.epoch},{self.split},{scaled_time}\n")
+        #             self.time_file.flush()
+        #             print(
+        #                 f"epoch {self.epoch} {self.split} time consumed: {scaled_time:.2f}s"
+        #             )
  
-            kill_monitor()
+        #     kill_monitor()
             
-            raise StopIteration
+        #     raise StopIteration
 
         if self._is_train:
             # We need to start warming up
