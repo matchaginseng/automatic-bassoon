@@ -264,6 +264,7 @@ class ProfileDataLoader(DataLoader):
                 self.start2 = time.time()
         data = self.iter.__next__()
 
+        print(self.prof_state)
         if self._is_train:
             # We need to start warming up
             # We weren't doing anything. Start warming up if the iterations left in
