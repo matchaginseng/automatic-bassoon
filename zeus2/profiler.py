@@ -21,10 +21,9 @@ import logging
 import os
 import pprint
 import subprocess
-import time
 from copy import deepcopy
 from pathlib import Path
-from time import localtime, sleep, strftime
+from time import localtime, sleep, strftime, monotonic
 
 import numpy as np
 import pynvml
@@ -349,7 +348,7 @@ class Profiler:
             
                 # Launch the job.
                 # Early stops based on cost_ub.
-                job_start_time = time.monotic()
+                job_start_time = time.monotonic()
                 energy, time, accuracy, total_cost = self.run_job(
                     job=job,
                     batch_size=bs,
