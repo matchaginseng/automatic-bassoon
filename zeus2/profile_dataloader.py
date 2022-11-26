@@ -297,7 +297,6 @@ class ProfileDataLoader(DataLoader):
                         )
     
                 raise StopIteration
-                #raise StopIteration
         
         self.sample_num += 1
         return data

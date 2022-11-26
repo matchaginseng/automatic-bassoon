@@ -37,10 +37,10 @@ def parse_args() -> argparse.Namespace:
 
     # The range of learning rates to consider. 
     parser.add_argument(
-        "--lr_min", type=int, default=0.001, help="Smallest learning rate to consider"
+        "--lr_min", type=int, default=0.8, help="Smallest learning rate multiplier to consider"
     )
     parser.add_argument(
-        "--lr_max", type=int, default=0.1, help="Largest learning rate to consider"
+        "--lr_max", type=int, default=1.2, help="Largest learning rate multiplier to consider"
     )
 
     # The \\eta knob trades off time and energy consumption. See Equation 2 in the paper.
@@ -120,6 +120,8 @@ def main(args: argparse.Namespace) -> None:
 
     # Generate a list of batch sizes with only power-of-two values.
     batch_sizes = [args.b_min]
+    # TODO: maybe pass in the 5 as another command line arg?
+    learning_rates = [args.lr_min + x*(args.lr_max-args.lr_min)/5 for x in range(5)]
     while (bs := batch_sizes[-1] * 2) <= args.b_max:
         batch_sizes.append(bs)
 
@@ -156,7 +158,7 @@ def main(args: argparse.Namespace) -> None:
     # Run Zeus!
     bs, lr, pl = master.profile(
         job=job,
-        learning_rates=[0.8, 0.9, 1.0, 1.1, 1.2],
+        learning_rates=learning_rates,
         batch_sizes=batch_sizes,
         beta_knob=args.beta_knob,
         eta_knob=args.eta_knob,

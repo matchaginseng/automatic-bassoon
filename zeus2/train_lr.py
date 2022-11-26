@@ -180,22 +180,11 @@ def main(args: argparse.Namespace) -> None:
 
     # Main training loop.
     for epoch in epoch_iter:
+        # the StopIteration exception will automatically stop the train loop, it doesn't need to be explicitly caught
         train(train_loader, model, criterion, optimizer, epoch, args)
         acc = validate(val_loader, model, criterion, epoch, args)
         train_loader.calculate_cost(acc)
         break
-        train_loader.report_metric(acc, higher_is_better=True)
-        
-        # acc = validate(val_loader, model, criterion, epoch, args)
-        # train_loader.calculate_cost(acc)
-
-        # ZEUS
-        # if args.zeus:
-        #     assert isinstance(train_loader, PowerOptimizerDataLoader)
-        #     train_loader.report_metric(acc, higher_is_better=True)
-        # elif args.profile:
-        #     if train_loader.reached_target_metric(acc):
-        #         break
 
 def train(train_loader, model, criterion, optimizer, epoch, args):
     """Train the model for one epoch."""
@@ -254,5 +243,4 @@ def set_seed(seed: int) -> None:
 
 
 if __name__ == "__main__":
-    print("HELLO")
     main(parse_args())
