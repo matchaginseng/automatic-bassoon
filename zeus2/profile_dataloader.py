@@ -501,3 +501,5 @@ def kill_monitor():
         for i, proc in enumerate(monitor):
             proc.kill()
             print(f"Stopped Zeus monitor {i}.")
+    print("HELLO")
+    raise
