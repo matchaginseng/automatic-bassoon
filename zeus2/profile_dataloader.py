@@ -192,10 +192,7 @@ class ProfileDataLoader(DataLoader):
                     args = (subset, *args[1:])
 
         # Call the constructor of DataLoader.
-        if eat_batch_size:
-            super().__init__(*args, **kwargs)  # type: ignore
-        else:
-            super().__init__(*args, batch_size=batch_size, **kwargs)  # type: ignore
+        super().__init__(*args, batch_size=batch_size, **kwargs)  # type: ignore
 
     def _power_log_path(self, rank: int) -> str:
         """Build the path for the power monitor log file at the GPU with rank."""
