@@ -23,7 +23,7 @@ import pprint
 import subprocess
 from copy import deepcopy
 from pathlib import Path
-from time import localtime, sleep, strftime
+from time import localtime, sleep, strftime, monotonic
 
 import numpy as np
 import pynvml
@@ -332,12 +332,13 @@ class Profiler:
                     bs_lr_dr.append((bs, lr, dr))
                     opt_pl[(bs, lr, dr)] = 0 # initialize
 
+        profile_time = 0.
+
         # 2-lvl optimization
         for i in range(1, len(bs_lr_dr) + 1):
             bs, lr, dr = bs_lr_dr[i - 1]
             print(f"\n[Power Profiler] with batch size {bs} and learning rate {lr} and dropout rate {dr}")
 
-            # TODO: keep track of lowest-cost power limits per thing
             min_cost = float("inf")
 
             # initialize best pl for this combo
@@ -348,7 +349,7 @@ class Profiler:
             
                 # Launch the job.
                 # Early stops based on cost_ub.
-                
+                job_start_time = monotonic()
                 energy, time, accuracy, total_cost = self.run_job(
                     job=job,
                     batch_size=bs,
@@ -360,7 +361,9 @@ class Profiler:
                     eta_knob=eta_knob,
                     cost_ub=beta_knob * min_cost,
                 )
+                job_end_time = monotonic()
 
+                profile_time += job_end_time - job_start_time
                 # The random seed will be unique for each run, but still jobs will be
                 # deterministic w.r.t. each call to `run`.
                 # seed += 1
@@ -389,6 +392,16 @@ class Profiler:
 
 
         print(f"[Power Profiler]\n{history}")
+
+        profiler_info = dict(
+            total_time=profile_time,
+            opt_bs=opt_bs,
+            opt_lr=opt_lr,
+            opt_pl=opt_pl[((opt_bs, opt_lr))]
+        )
+
+        with open(f"{logdir}/profiler_info.json", "w") as f:
+            json.dump(profiler_info, f)
 
         # find optimal setting to return: get argmin
         opt_bs, opt_lr, opt_dr = min(opt_pl, key=opt_pl.get)
