@@ -118,6 +118,7 @@ def main(args: argparse.Namespace) -> None:
     print(f"power limit arg: {args.power_limit}")
     print(f"learning rate arg: {args.learning_rate}")
     print(f"batch size arg: {args.batch_size}")
+    print(f"dropout rate arg: {args.dropout_rate}")
 
     train_loader = ProfileDataLoader(
         train_dataset,

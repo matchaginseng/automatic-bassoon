@@ -43,7 +43,18 @@ def parse_args() -> argparse.Namespace:
         "--lr_max", type=float, default=1.2, help="Largest learning rate multiplier to consider"
     )
     parser.add_argument(
-        "--num_lr", type=int, default=5, help="Number of learning rates values to consider"
+        "--num_lr", type=int, default=5, help="Number of learning rate values to consider"
+    )
+
+    # The range of dropout rates to consider
+    parser.add_argument(
+        "--dr_min", type=float, default=0.1, help="Smallest dropout rate (prob of keeping) to consider"
+    )
+    parser.add_argument(
+        "--dr_max", type=float, default=0.9, help="Largest dropout rate (prob of keeping) to consider"
+    )
+    parser.add_argument(
+        "--num_dr", type=float, default=2, help="Number of dropout rate values to consider"
     )
 
     # The \\eta knob trades off time and energy consumption. See Equation 2 in the paper.
@@ -124,9 +135,7 @@ def main(args: argparse.Namespace) -> None:
 
     # Generate a list of batch sizes with only power-of-two values.
     batch_sizes = [args.b_min]
-    # TODO: don't hardcode the dropout_rates
-    dropout_rates = [0.1, 0.9]
-    # TODO: maybe pass in the 5 as another command line arg?
+    dropout_rates = [args.dr_min + x*(args.dr_max-args.dr_min)/args.num_dr for x in range(args.num_dr)]
     learning_rates = [args.lr_min + x*(args.lr_max-args.lr_min)/args.num_lr for x in range(args.num_lr)]
     while (bs := batch_sizes[-1] * 2) <= args.b_max:
         batch_sizes.append(bs)
