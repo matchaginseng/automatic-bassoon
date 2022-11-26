@@ -37,10 +37,13 @@ def parse_args() -> argparse.Namespace:
 
     # The range of learning rates to consider. 
     parser.add_argument(
-        "--lr_min", type=int, default=0.8, help="Smallest learning rate multiplier to consider"
+        "--lr_min", type=float, default=0.8, help="Smallest learning rate multiplier to consider"
     )
     parser.add_argument(
-        "--lr_max", type=int, default=1.2, help="Largest learning rate multiplier to consider"
+        "--lr_max", type=float, default=1.2, help="Largest learning rate multiplier to consider"
+    )
+    parser.add_argument(
+        "--num_lr", type=int, default=5, help="Number of learning rates values to consider"
     )
 
     # The \\eta knob trades off time and energy consumption. See Equation 2 in the paper.
@@ -121,10 +124,11 @@ def main(args: argparse.Namespace) -> None:
     # Generate a list of batch sizes with only power-of-two values.
     batch_sizes = [args.b_min]
     # TODO: maybe pass in the 5 as another command line arg?
-    learning_rates = [args.lr_min + x*(args.lr_max-args.lr_min)/5 for x in range(5)]
+    learning_rates = [args.lr_min + x*(args.lr_max-args.lr_min)/args.num_lr for x in range(args.num_lr)]
     while (bs := batch_sizes[-1] * 2) <= args.b_max:
         batch_sizes.append(bs)
 
+    # TODO: Edit this comment
     # Create a designated log directory inside `args.log_base` just for this run of Zeus.
     # Six types of outputs are generated.
     # 1. Power monitor ouptut (`bs{batch_size}+e{epoch_num}.power.log`):
