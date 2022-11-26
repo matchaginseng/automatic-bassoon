@@ -361,13 +361,13 @@ class ProfileDataLoader(DataLoader):
         with open(self.history_file_all, "w") as f:
             content = '''
                 {{
-                    bs: {bs},
-                    pl: {pl},
-                    lr: {lr},
-                    energy: {energy},
-                    time: {time},
-                    accuracy: {accuracy},
-                    total_cost: {total_cost}
+                    "bs": {bs},
+                    "pl": {pl},
+                    "lr": {lr},
+                    "energy": {energy},
+                    "time": {time},
+                    "accuracy": {accuracy},
+                    "total_cost": {total_cost}
                 }}
                 '''.format(bs=self.batch_size, 
                         pl=self.power_limit, 
