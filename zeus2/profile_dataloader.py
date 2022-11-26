@@ -78,7 +78,7 @@ class ProfileDataLoader(DataLoader):
         measure_iters: int = 40,
         split: Literal["train", "eval"],
         subset_proportion: float = 1.0,
-        eat_batch_size: bool = False,
+        # eat_batch_size: bool = False,
         only_scale_time: bool = False,
         **kwargs,
     ) -> None:
@@ -173,6 +173,36 @@ class ProfileDataLoader(DataLoader):
         _, self.max_pl = pynvml.nvmlDeviceGetPowerManagementLimitConstraints(
             self.gpu_handles[0]
         )
+        
+        # If the number of iterations in one epoch (`num_samples`) is smaller than or equal
+        # to one profile window (`warmup_iters + profile_iters`), we will not be able to
+        # profile for any power limit. So, we scale the profile window to fit in one epoch.
+        # We also avoid using the last batch of one epoch, because when `drop_last == True`,
+        # the last batch will be smaller. This usually happens with large batch size on
+        # small datasets, eg. CIFAR100.
+        if self._is_train and self.warmup_iter + self.profile_iter >= self.num_samples:
+            print(
+                f"[Profile DataLoader] The profile window takes {self.warmup_iter + self.profile_iter}"
+                f" iterations ({self.warmup_iter} for warmup + {self.profile_iter}"
+                f" for profile) and exceeds the number of iterations ({self.num_samples})"
+                f" in one epoch. Scaling the profile window to fit in one epoch..."
+            )
+            scaling_factor = (self.num_samples - 1) / (
+                self.warmup_iter + self.profile_iter
+            )
+            self.warmup_iter = int(self.warmup_iter * scaling_factor)
+            self.profile_iter = int(self.profile_iter * scaling_factor)
+            if self.warmup_iter == 0 or self.profile_iter == 0:
+                raise RuntimeError(
+                    f"Number of iterations in one epoch is {self.num_samples} and"
+                    " is too small for applying the scaling. Please consider using"
+                    " a smaller batch size. If you are running `run_zeus.py`, please"
+                    " pass a smaller value to `--b_max`."
+                )
+            print(
+                f"[Profile DataLoader] Scaling done! New profile window takes {self.warmup_iter + self.profile_iter}"
+                f" iterations ({self.warmup_iter} for warmup + {self.profile_iter} for profile)."
+            )
 
         # Slice out subset of dataset if subset_proportion is given.
         dataset = kwargs["dataset"] if "dataset" in kwargs else args[0]
