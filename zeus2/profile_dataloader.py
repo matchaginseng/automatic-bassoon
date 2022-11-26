@@ -314,8 +314,7 @@ class ProfileDataLoader(DataLoader):
         # Sanity check.
         # Only set power limit at master process.
         # assert self.rank == 0
-        print(len(self.gpu_handles))
-        # assert len(self.gpu_handles) == self.world_size
+        assert len(self.gpu_handles) == self.world_size
 
         # Set power limit for GPU
         for index in range(self.world_size):
@@ -330,7 +329,7 @@ class ProfileDataLoader(DataLoader):
     
 
     def calculate_cost(self, acc: float) -> None:
-        print(len(self))
+        # print(len(self))
         frac_epochs = (self.warmup_iter + self.profile_iter) / len(self)
 
         total_cost = (frac_epochs / acc) * ((self.eta_knob * self.train_power_result + (1 - self.eta_knob) * self.max_pl / self.train_tput_result))
@@ -479,4 +478,3 @@ def kill_monitor():
         for i, proc in enumerate(monitor):
             proc.kill()
             print(f"Stopped Zeus monitor {i}.")
-    print("HELLO")
