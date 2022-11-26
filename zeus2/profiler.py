@@ -348,7 +348,7 @@ class Profiler:
             
                 # Launch the job.
                 # Early stops based on cost_ub.
-                job_start_time = time.monotonic()
+                job_start_time = monotonic()
                 energy, time, accuracy, total_cost = self.run_job(
                     job=job,
                     batch_size=bs,
@@ -359,7 +359,7 @@ class Profiler:
                     eta_knob=eta_knob,
                     cost_ub=beta_knob * min_cost,
                 )
-                job_end_time = time.monotonic()
+                job_end_time = monotonic()
 
                 profile_time += job_end_time - job_start_time
                 # The random seed will be unique for each run, but still jobs will be
