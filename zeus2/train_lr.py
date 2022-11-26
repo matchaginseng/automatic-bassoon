@@ -115,27 +115,6 @@ def main(args: argparse.Namespace) -> None:
         ),
     )
 
-    # ZEUS
-    # Prepare dataloaders.
-    # if args.zeus:
-    #     # Zeus
-    #     train_loader = PowerOptimizerDataLoader(
-    #         train_dataset,
-    #         max_epochs=args.epochs,
-    #         batch_size=args.batch_size,
-    #         learning_rate=args.learning_rate,
-    #         shuffle=True,
-    #         num_workers=args.num_workers,
-    #     )
-    #     val_loader = PowerOptimizerDataLoader(
-    #         val_dataset,
-    #         batch_size=args.batch_size,
-    #         learning_rate=args.learning_rate,
-    #         shuffle=False,
-    #         num_workers=args.num_workers,
-    #     )
-    # elif args.profile:
-
     print(f"power limit arg: {args.power_limit}")
     print(f"learning rate arg: {args.learning_rate}")
     print(f"batch size arg: {args.batch_size}")
