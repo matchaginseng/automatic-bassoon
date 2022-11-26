@@ -153,7 +153,7 @@ class ProfileDataLoader(DataLoader):
             self.time_file.flush()
         
         # self.power_limit is in mW...
-        job_id = f"bs{batch_size}+lr{learning_rate:.5f}+pl{self.power_limit / 1000}"
+        job_id = f"bs{batch_size}+lr{learning_rate:.5f}+pl{self.power_limit // 1000}"
  
         self.history_file_all = f"{self.logdir}/{job_id}.history_all.py"
 
