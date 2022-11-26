@@ -281,7 +281,7 @@ class ProfileDataLoader(DataLoader):
                 self._start_prof()
             elif (
                 self.prof_state == PROFILING
-                and self.sample_num - self.warmup_start_sample == (self.profile_iter)
+                and self.sample_num - self.warmup_iter == (self.profile_iter)
             ):
                 self._end_prof()
                 end = time.time()
