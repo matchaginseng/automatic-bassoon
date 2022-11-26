@@ -113,6 +113,7 @@ class ProfileDataLoader(DataLoader):
         self.prof_state = NOT_PROFILING
         self.batch_size = batch_size
         self.learning_rate = learning_rate
+        self._is_train = self.split == "train"
 
         # Retrieve environment variables needed.
         self.logdir = get_env("ZEUS_LOG_DIR", str, default="zeus_log")
@@ -317,7 +318,7 @@ class ProfileDataLoader(DataLoader):
                         )
     
                 kill_monitor()
-                raise StopIteration
+                #raise StopIteration
         
 
         return data
