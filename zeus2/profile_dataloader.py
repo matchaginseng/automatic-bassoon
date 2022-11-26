@@ -128,7 +128,7 @@ class ProfileDataLoader(DataLoader):
         # Train-time power profiling result. Maps power limit to avg_power & throughput.
         self.train_power_result: float = 0.
         self.train_tput_result: float = 0.
-        self.num_samples = len(self)//self.batch_size #TODO: change this to not be hardcoded but i got issues doing len(self)??
+        # self.num_samples = len(self)//self.batch_size #TODO: change this to not be hardcoded but i got issues doing len(self)??
 
 
         # Eval-time power profiling result. Maps power limit to avg_power & throughput.
@@ -263,24 +263,6 @@ class ProfileDataLoader(DataLoader):
             else:
                 self.start2 = time.time()
         data = self.iter.__next__()
-        # except StopIteration:
-        #     end = time.time()
-        #     if self.start1 and self.start2:
-        #         scaled_time = (
-        #             self.scaling_factor * (end - self.start2)
-        #             + self.start2
-        #             - self.start1
-        #         )
-        #         if torch.cuda.device_count() == 1 or dist.get_rank() == 0:
-        #             self.time_file.write(f"{self.epoch},{self.split},{scaled_time}\n")
-        #             self.time_file.flush()
-        #             print(
-        #                 f"epoch {self.epoch} {self.split} time consumed: {scaled_time:.2f}s"
-        #             )
- 
-        #     kill_monitor()
-            
-        #     raise StopIteration
 
         if self._is_train:
             # We need to start warming up
@@ -288,8 +270,6 @@ class ProfileDataLoader(DataLoader):
             # the current epoch can accommodate at least one profile window.
             if (
                 self.prof_state == NOT_PROFILING
-                and self.sample_num + self.warmup_iter + self.profile_iter
-                < self.num_samples
             ):
                 self._start_warmup()
             # We're done warming up. Start the actual profiling window.
