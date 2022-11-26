@@ -114,6 +114,10 @@ class ProfileDataLoader(DataLoader):
         self.batch_size = batch_size
         self.learning_rate = learning_rate
 
+        # Call the constructor of DataLoader.
+        super().__init__(*args, batch_size=batch_size, **kwargs)
+        print("[ProfileDataLoader constructor: called constructor of DataLoader!")
+
         # Retrieve environment variables needed.
         self.logdir = get_env("ZEUS_LOG_DIR", str, default="zeus_log")
         self.monitor_path = get_env("ZEUS_MONITOR_PATH", str)
@@ -190,9 +194,6 @@ class ProfileDataLoader(DataLoader):
                     kwargs["dataset"] = subset
                 else:
                     args = (subset, *args[1:])
-
-        # Call the constructor of DataLoader.
-        super().__init__(*args, batch_size=batch_size, **kwargs)  # type: ignore
 
     def _power_log_path(self, rank: int) -> str:
         """Build the path for the power monitor log file at the GPU with rank."""
