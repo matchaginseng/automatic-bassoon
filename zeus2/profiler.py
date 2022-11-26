@@ -234,7 +234,7 @@ class Profiler:
             if not history_json.exists():
                 raise RuntimeError(f"{history_json} does not exist.")
 
-        # TODO: extract the cost from the file that got written out in the dataloader <- did i do it right?
+        # TODO: extract the cost from the file that got written out in the dataloader <- did i do it right? <- yas
         with open(history_json, "r") as histf:
             stats = json.load(histf)
             print(f"[run job] {stats=}")
