@@ -166,7 +166,7 @@ class Profiler:
             A tuple of energy consumption, time consumption, and whether the job reached the target metric.
         """
         # Generate job command
-        command = job.gen_command(batch_size, learning_rate, power_limit, dropout_rate, seed)
+        command = job.gen_command(batch_size, learning_rate, dropout_rate, power_limit, seed)
 
         # Set environment variables
         # TODO: incorporate dropout rate
