@@ -116,7 +116,7 @@ class ProfileDataLoader(DataLoader):
 
         # Call the constructor of DataLoader.
         super().__init__(*args, batch_size=batch_size, **kwargs)
-        print("[ProfileDataLoader constructor: called constructor of DataLoader!")
+        print("ProfileDataLoader constructor: called constructor of DataLoader!")
 
         # Retrieve environment variables needed.
         self.logdir = get_env("ZEUS_LOG_DIR", str, default="zeus_log")
@@ -126,7 +126,7 @@ class ProfileDataLoader(DataLoader):
         self.eta_knob = get_env("ZEUS_ETA_KNOB", float, default=0.5)
         # self.target_metric = get_env("ZEUS_TARGET_METRIC", float)
         
-        self.power_limit = power_limit
+        self.power_limit = power_limit # in W
 
         # Train-time power profiling result. Maps power limit to avg_power & throughput.
         self.train_power_result: float = 0.
@@ -174,7 +174,7 @@ class ProfileDataLoader(DataLoader):
         )
 
         # Set power limit
-        self._set_gpu_power_limit(self.power_limit)
+        self._set_gpu_power_limit(self.power_limit * 1000) # Need to convert to mW
 
         # if power_limit > 0 and (power_limit >= min_pl) and (power_limit <= self.pl):
         #     self._set_gpu_power_limit(power_limit)
