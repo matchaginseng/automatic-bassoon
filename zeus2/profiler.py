@@ -391,6 +391,9 @@ class Profiler:
 
         print(f"[Power Profiler]\n{history}")
 
+        # find optimal setting to return: get argmin
+        opt_bs, opt_lr = min(opt_pl, key=opt_pl.get)
+
         profiler_info = dict(
             total_time=profile_time,
             opt_bs=opt_bs,
@@ -400,9 +403,8 @@ class Profiler:
 
         with open(f"{logdir}/profiler_info.json", "w") as f:
             json.dump(profiler_info, f)
-
-        # find optimal setting to return: get argmin
-        opt_bs, opt_lr = min(opt_pl, key=opt_pl.get)
+        
+        f.close()
 
         # return the optimal setting
         return (opt_bs, opt_lr, opt_pl[(opt_bs, opt_lr)])
