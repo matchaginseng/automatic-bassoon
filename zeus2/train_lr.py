@@ -24,11 +24,11 @@ from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 
 # ZEUS
-from zeus.run import PowerOptimizerDataLoader 
 from zeus2.profile_dataloader import ProfileDataLoader
 
 # from examples.cifar100.models import all_models, get_model
 from shufflenetv2 import shufflenetv2
+StopIteration
 
 
 
@@ -158,19 +158,6 @@ def main(args: argparse.Namespace) -> None:
         shuffle=False,
         num_workers=args.num_workers,
     )
-    # else:
-    #     train_loader = DataLoader(
-    #         train_dataset,
-    #         batch_size=args.batch_size,
-    #         shuffle=True,
-    #         num_workers=args.num_workers,
-    #     )
-    #     val_loader = DataLoader(
-    #         val_dataset,
-    #         batch_size=args.batch_size,
-    #         shuffle=False,
-    #         num_workers=args.num_workers,
-    #     )
 
     # Send model to CUDA.
     model = model.cuda()
@@ -193,14 +180,11 @@ def main(args: argparse.Namespace) -> None:
 
     # Main training loop.
     for epoch in epoch_iter:
-        try:
-            train(train_loader, model, criterion, optimizer, epoch, args)
-        except:
-            print("^^^^^ ACCURACY ^^^^^")
-            acc = validate(val_loader, model, criterion, epoch, args)
-            train_loader.calculate_cost(acc)
-            break
-            train_loader.report_metric(acc, higher_is_better=True)
+        train(train_loader, model, criterion, optimizer, epoch, args)
+        acc = validate(val_loader, model, criterion, epoch, args)
+        train_loader.calculate_cost(acc)
+        break
+        train_loader.report_metric(acc, higher_is_better=True)
         
         # acc = validate(val_loader, model, criterion, epoch, args)
         # train_loader.calculate_cost(acc)

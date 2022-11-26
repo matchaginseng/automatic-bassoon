@@ -245,7 +245,6 @@ class ProfileDataLoader(DataLoader):
     def __next__(self):
         """Wrap the original `__next__`, but with power profiling."""
 
-        self.sample_num += 1
 
         # try:
             # Special treatment for the first batch.
@@ -264,7 +263,6 @@ class ProfileDataLoader(DataLoader):
                 self.start2 = time.time()
         data = self.iter.__next__()
 
-        print(self.prof_state)
         if self._is_train:
             # We need to start warming up
             # We weren't doing anything. Start warming up if the iterations left in
@@ -298,10 +296,10 @@ class ProfileDataLoader(DataLoader):
                             f"epoch {self.epoch} {self.split} time consumed: {scaled_time:.2f}s"
                         )
     
-                raise
+                raise StopIteration
                 #raise StopIteration
         
-
+        self.sample_num += 1
         return data
 
     def _set_gpu_power_limit(self, power_limit: int) -> None:
@@ -330,7 +328,6 @@ class ProfileDataLoader(DataLoader):
             handle = pynvml.nvmlDeviceGetHandleByIndex(index)
             # Set persistent mode.
             pynvml.nvmlDeviceSetPersistenceMode(handle, pynvml.NVML_FEATURE_ENABLED)
-            # self.gpu_handles.append(handle) #TODO: we're appending to this thing twice, thats sus
     
 
     def calculate_cost(self, acc: float) -> None:
