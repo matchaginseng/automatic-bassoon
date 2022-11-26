@@ -113,7 +113,7 @@ class ProfileDataLoader(DataLoader):
         self.prof_state = NOT_PROFILING
         self.batch_size = batch_size
         self.learning_rate = learning_rate
-        self._is_train = self.split == "train"
+        # self._is_train = self.split == "train"
 
         # Retrieve environment variables needed.
         self.logdir = get_env("ZEUS_LOG_DIR", str, default="zeus_log")
@@ -317,7 +317,7 @@ class ProfileDataLoader(DataLoader):
                             f"epoch {self.epoch} {self.split} time consumed: {scaled_time:.2f}s"
                         )
     
-                kill_monitor()
+                raise
                 #raise StopIteration
         
 
@@ -503,4 +503,3 @@ def kill_monitor():
             proc.kill()
             print(f"Stopped Zeus monitor {i}.")
     print("HELLO")
-    raise
