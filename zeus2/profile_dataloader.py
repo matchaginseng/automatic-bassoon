@@ -502,4 +502,4 @@ def kill_monitor():
             proc.kill()
             print(f"Stopped Zeus monitor {i}.")
     print("HELLO")
-    raise
+    raise StopIteration
