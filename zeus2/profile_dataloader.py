@@ -348,7 +348,7 @@ class ProfileDataLoader(DataLoader):
             handle = pynvml.nvmlDeviceGetHandleByIndex(index)
             # Set persistent mode.
             pynvml.nvmlDeviceSetPersistenceMode(handle, pynvml.NVML_FEATURE_ENABLED)
-            self.gpu_handles.append(handle) #TODO: we're appending to this thing twice, thats sus
+            # self.gpu_handles.append(handle) #TODO: we're appending to this thing twice, thats sus
     
 
     def calculate_cost(self, acc: float) -> None:
