@@ -33,8 +33,10 @@ class HistoryEntry:
         bs: Batch size
         pl: Power limit
         energy: Energy consumption in Joules
-        reached: Whether the target metric was reached at the end
         time: Time consumption in seconds
+        accuracy: Accuracy of the job
+        total_cost: Total cost of the job (the eta, beta equation)
+        stop_early: Whether this job stopped early
     """
 
     bs: int
@@ -43,6 +45,7 @@ class HistoryEntry:
     time: float
     accuracy: float
     total_cost: float
+    stop_early: bool
 
 
 def energy(

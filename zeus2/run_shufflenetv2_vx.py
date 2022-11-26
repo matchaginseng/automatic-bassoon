@@ -66,6 +66,11 @@ def parse_args() -> argparse.Namespace:
         "--max_epochs", type=int, default=100, help="Max number of epochs to train"
     )
 
+    # Early stopping threshold. 
+    parser.add_argument(
+        "--early_stop", type=float, help="Minimum cost threshold for early stopping."
+    )
+
     return parser.parse_args()
 
 
@@ -166,6 +171,7 @@ def main(args: argparse.Namespace) -> None:
         batch_sizes=batch_sizes,
         beta_knob=args.beta_knob,
         eta_knob=args.eta_knob,
+        early_stop=args.early_stop
     )
 
     print(f"optimized batch size: {bs}, learning rate: {lr}, power limit: {pl}")

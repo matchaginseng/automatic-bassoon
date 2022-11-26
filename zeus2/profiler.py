@@ -24,6 +24,7 @@ import subprocess
 from copy import deepcopy
 from pathlib import Path
 from time import localtime, sleep, strftime, monotonic
+from typing import Optional
 
 import numpy as np
 import pynvml
@@ -280,7 +281,8 @@ class Profiler:
         eta_knob: float,
         beta_knob: float,
         batch_sizes: list,
-        learning_rates: list) -> tuple[int, float, int]:
+        learning_rates: list,
+        early_stop: Optional[float]) -> tuple[int, float, int]:
         """Runs a job. Returns a tuple (bs, lr, pl) that minimizes our epoch cost
 
         Args:
@@ -290,6 +292,9 @@ class Profiler:
                 Set to `np.inf` to disable early stopping.
             eta_knob: $\eta$ used in the cost metric.
                 $\textrm{cost} = \eta \cdot \textrm{ETA} + (1 - \eta) \cdot \textrm{MaxPower} \cdot \textrm{TTA}$
+            batch_sizes: list of batch sizes to gridsearch over
+            learning_rates: list of learning rate scalers to test
+            early_stop: loss threshold for gridsearch
         """
         # Sanity checks
         # if job.default_bs is None:
@@ -298,6 +303,9 @@ class Profiler:
         #     raise ValueError("You must provide a command format string for the job.")
         if eta_knob < 0.0 or eta_knob > 1.0:
             raise ValueError("eta_knob must be in [0.0, 1.0].")
+
+        if early_stop < 0.0:
+            raise ValueError("Loss threshold for early stopping should be nonnegative.")
 
         print(f"[Power Profiler] Batch sizes: {batch_sizes}")
         print(f"[Power Profiler] Learning rates: {learning_rates}")
@@ -333,6 +341,8 @@ class Profiler:
 
         profile_time = 0.
 
+        stop_early = False
+
         # 2-lvl optimization
         for i in range(1, len(bs_lr) + 1):
             bs, lr = bs_lr[i - 1]
@@ -343,50 +353,60 @@ class Profiler:
             # initialize best pl for this combo
             best_pl = -1
 
-            for pl in self.power_limits:
-                # cost_acc = 0.0
-            
-                # Launch the job.
-                # Early stops based on cost_ub.
-                job_start_time = monotonic()
-                energy, time, accuracy, total_cost = self.run_job(
-                    job=job,
-                    batch_size=bs,
-                    learning_rate=lr,
-                    power_limit=pl,
-                    seed=seed,
-                    logdir=logdir,
-                    eta_knob=eta_knob,
-                    cost_ub=beta_knob * min_cost,
-                )
-                job_end_time = monotonic()
+            if not stop_early:
+                for pl in self.power_limits:
+                    # cost_acc = 0.0
+                
+                    # Launch the job.
+                    # Early stops based on cost_ub.
+                    job_start_time = monotonic()
+                    energy, time, accuracy, total_cost = self.run_job(
+                        job=job,
+                        batch_size=bs,
+                        learning_rate=lr,
+                        power_limit=pl,
+                        seed=seed,
+                        logdir=logdir,
+                        eta_knob=eta_knob,
+                        cost_ub=beta_knob * min_cost,
+                    )
+                    job_end_time = monotonic()
 
-                profile_time += job_end_time - job_start_time
-                # The random seed will be unique for each run, but still jobs will be
-                # deterministic w.r.t. each call to `run`.
-                # seed += 1
+                    profile_time += job_end_time - job_start_time
+                    # The random seed will be unique for each run, but still jobs will be
+                    # deterministic w.r.t. each call to `run`.
+                    # seed += 1
 
-                # Compute the cost of this try.
-                # num_gpus = torch.cuda.device_count()
+                    # Compute the cost of this try.
+                    # num_gpus = torch.cuda.device_count()
 
-                # cost = epoch_cost(energy, time, eta_knob, self.max_pl * num_gpus)
-                # print(f"[Zeus Master] {cost=}")
+                    # cost = epoch_cost(energy, time, eta_knob, self.max_pl * num_gpus)
+                    # print(f"[Zeus Master] {cost=}")
 
-                if total_cost < min_cost:
-                    min_cost = total_cost
-                    best_pl = pl 
-                    opt_pl[(bs, lr)] = best_pl
+                    if total_cost < min_cost:
+                        min_cost = total_cost
+                        best_pl = pl 
+                        opt_pl[(bs, lr)] = best_pl
 
-                # Record history for visualization. TODO: change variables. the functions processing this may be total nonsense RN
-                history.append(HistoryEntry(bs, pl, energy, time, accuracy, total_cost))
-                with open(history_file, "w") as f:
-                    # Intended use:
-                    #
-                    # ```python
-                    # from zeus.analyze import HistoryEntry
-                    # history = eval(open(history_file).read())
-                    # ```
-                    f.write(pprint.pformat(history) + "\n")
+                    # Record history for visualization. TODO: change variables. the functions processing this may be total nonsense RN
+                    history.append(HistoryEntry(bs, pl, energy, time, accuracy, total_cost, (total_cost < early_stop)))
+                    with open(history_file, "w") as f:
+                        # Intended use:
+                        #
+                        # ```python
+                        # from zeus.analyze import HistoryEntry
+                        # history = eval(open(history_file).read())
+                        # ```
+                        f.write(pprint.pformat(history) + "\n")
+
+                    # naive early stopping
+                    if total_cost < early_stop:
+                        # We don't need to reset best_pl because naively the first thing we stop on will also be
+                        # the minimum at that point.
+                        stop_early = True
+                        break
+                else: # stopped early
+                    break
 
 
         print(f"[Power Profiler]\n{history}")
