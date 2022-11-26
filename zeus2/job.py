@@ -79,7 +79,7 @@ class Job:
         self,
         batch_size: int,
         learning_rate: float,
-        # dropout_rate: float,
+        dropout_rate: float,
         power_limit: int,
         seed: int,
         # rec_i: int,
@@ -100,8 +100,8 @@ class Job:
                 command.append(str(batch_size))
             elif piece in ["{lr}", "{learning_rate}"]:
                 command.append(str(learning_rate))
-            # elif piece in ["{dropout}", "{dropout_rate}"]:  
-            #     command.append(str(dropout_rate))
+            elif piece in ["{dropout}", "{dropout_rate}"]:  
+                command.append(str(dropout_rate))
             elif piece == "{seed}":
                 command.append(str(seed))
             elif piece in ["{epoch}", "{epochs}"]:

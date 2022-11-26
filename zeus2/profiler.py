@@ -141,6 +141,7 @@ class Profiler:
         job: Job,
         batch_size: int,
         learning_rate: float,
+        dropout_rate: float,
         power_limit: int,
         seed: int,
         logdir: str,
@@ -165,9 +166,10 @@ class Profiler:
             A tuple of energy consumption, time consumption, and whether the job reached the target metric.
         """
         # Generate job command
-        command = job.gen_command(batch_size, learning_rate, power_limit, seed)
+        command = job.gen_command(batch_size, learning_rate, power_limit, dropout_rate, seed)
 
         # Set environment variables
+        # TODO: incorporate dropout rate
         job_id = f"bs{batch_size}+lr{learning_rate:.5f}+pl{power_limit}"
         zeus_env = dict(
             ZEUS_LOG_DIR=logdir,
@@ -197,7 +199,7 @@ class Profiler:
         history_json = Path(f"{logdir}/{job_id}.history_all.py")
 
         # Reporting
-        print(f"[run job] Launching job with BS {batch_size}: and LR: {learning_rate} and PL: {power_limit}")
+        print(f"[run job] Launching job with BS {batch_size}: and LR: {learning_rate} and PL: {power_limit} and DR: {dropout_rate}")
         print(f"[run job] {zeus_env=}")
         if job.workdir is not None:
             print(f"[run job] cwd={job.workdir}")
@@ -280,6 +282,7 @@ class Profiler:
         eta_knob: float,
         beta_knob: float,
         batch_sizes: list,
+        dropout_rates: list,
         learning_rates: list) -> tuple[int, float, int]:
         """Runs a job. Returns a tuple (bs, lr, pl) that minimizes our epoch cost
 
@@ -291,16 +294,13 @@ class Profiler:
             eta_knob: $\eta$ used in the cost metric.
                 $\textrm{cost} = \eta \cdot \textrm{ETA} + (1 - \eta) \cdot \textrm{MaxPower} \cdot \textrm{TTA}$
         """
-        # Sanity checks
-        # if job.default_bs is None:
-        #     raise ValueError("You must provide a default batch size for the job.")
-        # if job.command is None:
-        #     raise ValueError("You must provide a command format string for the job.")
+        
         if eta_knob < 0.0 or eta_knob > 1.0:
             raise ValueError("eta_knob must be in [0.0, 1.0].")
 
         print(f"[Power Profiler] Batch sizes: {batch_sizes}")
         print(f"[Power Profiler] Learning rates: {learning_rates}")
+        print(f"[Power Profiler] Dropout rates: {dropout_rates}")
 
         # Copy all internal state so that simulation does not modify any
         # internal state and is deterministic w.r.t. the random seed.
@@ -319,7 +319,7 @@ class Profiler:
         min_cost = np.inf
 
         # list of (bs, lr) batch size tuples to try
-        bs_lr = []
+        bs_lr_dr = []
 
         # dict of (bs, lr) opt power limits
         opt_pl = {}
@@ -328,13 +328,14 @@ class Profiler:
         for bs in batch_sizes:
             # for lr in [job.scale_lr(bs * factor) for factor in [0.8, 0.9, 1, 1.1, 1.2]] :
             for lr in [job.scale_lr(bs * factor) for factor in learning_rates]:
-                bs_lr.append((bs, lr))
-                opt_pl[(bs, lr)] = 0 # initialize
+                for dr in dropout_rates:
+                    bs_lr_dr.append((bs, lr, dr))
+                    opt_pl[(bs, lr, dr)] = 0 # initialize
 
         # 2-lvl optimization
-        for i in range(1, len(bs_lr) + 1):
-            bs, lr = bs_lr[i - 1]
-            print(f"\n[Power Profiler] with batch size {bs} and learning rate {lr}")
+        for i in range(1, len(bs_lr_dr) + 1):
+            bs, lr, dr = bs_lr_dr[i - 1]
+            print(f"\n[Power Profiler] with batch size {bs} and learning rate {lr} and dropout rate {dr}")
 
             # TODO: keep track of lowest-cost power limits per thing
             min_cost = float("inf")
@@ -352,6 +353,7 @@ class Profiler:
                     job=job,
                     batch_size=bs,
                     learning_rate=lr,
+                    dropout_rate=dr,
                     power_limit=pl,
                     seed=seed,
                     logdir=logdir,
@@ -372,7 +374,7 @@ class Profiler:
                 if total_cost < min_cost:
                     min_cost = total_cost
                     best_pl = pl 
-                    opt_pl[(bs, lr)] = best_pl
+                    opt_pl[(bs, lr, dr)] = best_pl
 
                 # Record history for visualization. TODO: change variables. the functions processing this may be total nonsense RN
                 history.append(HistoryEntry(bs, pl, energy, time, accuracy, total_cost))
@@ -389,7 +391,7 @@ class Profiler:
         print(f"[Power Profiler]\n{history}")
 
         # find optimal setting to return: get argmin
-        opt_bs, opt_lr = min(opt_pl, key=opt_pl.get)
+        opt_bs, opt_lr, opt_dr = min(opt_pl, key=opt_pl.get)
 
         # return the optimal setting
-        return (opt_bs, opt_lr, opt_pl[(opt_bs, opt_lr)])
+        return (opt_bs, opt_lr, opt_dr, opt_pl[(opt_bs, opt_lr, opt_dr)])

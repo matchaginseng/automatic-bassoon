@@ -115,6 +115,7 @@ def main(args: argparse.Namespace) -> None:
             "--epochs", "{epochs}",
             "--seed", "{seed}",
             "--learning_rate", "{learning_rate}",
+            "--dropout_rate", "{dropout_rate}",
             "--power_limit", "{power_limit}",
             # "--dropout_rate", "{dropout_rate}"
         ],
@@ -123,6 +124,8 @@ def main(args: argparse.Namespace) -> None:
 
     # Generate a list of batch sizes with only power-of-two values.
     batch_sizes = [args.b_min]
+    # TODO: don't hardcode the dropout_rates
+    dropout_rates = [0.1, 0.9]
     # TODO: maybe pass in the 5 as another command line arg?
     learning_rates = [args.lr_min + x*(args.lr_max-args.lr_min)/args.num_lr for x in range(args.num_lr)]
     while (bs := batch_sizes[-1] * 2) <= args.b_max:
@@ -160,15 +163,16 @@ def main(args: argparse.Namespace) -> None:
     sys.stdout = FileAndConsole(Path(master_logdir) / "master.log")
 
     # Run Zeus!
-    bs, lr, pl = master.profile(
+    bs, lr, dr, pl = master.profile(
         job=job,
         learning_rates=learning_rates,
         batch_sizes=batch_sizes,
+        dropout_rates=dropout_rates,
         beta_knob=args.beta_knob,
         eta_knob=args.eta_knob,
     )
 
-    print(f"optimized batch size: {bs}, learning rate: {lr}, power limit: {pl}")
+    print(f"optimized batch size: {bs}, learning rate: {lr}, dropout_rate: {dr}, power limit: {pl}")
 
 
 if __name__ == "__main__":
