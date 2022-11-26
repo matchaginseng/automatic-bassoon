@@ -73,6 +73,7 @@ class ProfileDataLoader(DataLoader):
         *args,
         batch_size: int,
         learning_rate: float,
+        dropout_rate: float,
         power_limit: int = 0,
         warmup_iters: int = 10,
         measure_iters: int = 40,
@@ -113,6 +114,7 @@ class ProfileDataLoader(DataLoader):
         self.prof_state = NOT_PROFILING
         self.batch_size = batch_size
         self.learning_rate = learning_rate
+        self.dropout_rate = dropout_rate
 
         # Call the constructor of DataLoader.
         super().__init__(*args, batch_size=batch_size, **kwargs)
@@ -153,7 +155,7 @@ class ProfileDataLoader(DataLoader):
             self.time_file.flush()
         
         # self.power_limit is in mW...
-        job_id = f"bs{batch_size}+lr{learning_rate:.5f}+pl{self.power_limit // 1000}"
+        job_id = f"bs{batch_size}+lr{learning_rate:.5f}+dr{dropout_rate}+pl{self.power_limit // 1000}"
  
         self.history_file_all = f"{self.logdir}/{job_id}.history_all.py"
 
@@ -363,6 +365,7 @@ class ProfileDataLoader(DataLoader):
                     "bs": {bs},
                     "pl": {pl},
                     "lr": {lr},
+                    "dr": {dr},
                     "energy": {energy},
                     "time": {time},
                     "accuracy": {accuracy},
@@ -371,6 +374,7 @@ class ProfileDataLoader(DataLoader):
                 '''.format(bs=self.batch_size, 
                         pl=self.power_limit, 
                         lr=self.learning_rate, 
+                        dr=self.dropout_rate,
                         energy=self.train_power_result, 
                         time=self.time_consumed, 
                         accuracy=acc,
