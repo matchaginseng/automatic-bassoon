@@ -169,8 +169,7 @@ class Profiler:
         command = job.gen_command(batch_size, learning_rate, dropout_rate, power_limit, seed)
 
         # Set environment variables
-        # TODO: incorporate dropout rate
-        job_id = f"bs{batch_size}+lr{learning_rate:.5f}+pl{power_limit}"
+        job_id = f"bs{batch_size}+lr{learning_rate:.5f}+dr{dropout_rate}+pl{power_limit}"
         zeus_env = dict(
             ZEUS_LOG_DIR=logdir,
             ZEUS_JOB_ID=job_id,

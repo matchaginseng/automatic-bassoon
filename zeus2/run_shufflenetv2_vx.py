@@ -128,15 +128,14 @@ def main(args: argparse.Namespace) -> None:
             "--learning_rate", "{learning_rate}",
             "--dropout_rate", "{dropout_rate}",
             "--power_limit", "{power_limit}",
-            # "--dropout_rate", "{dropout_rate}"
         ],
         # fmt: on
     )
 
     # Generate a list of batch sizes with only power-of-two values.
     batch_sizes = [args.b_min]
-    dropout_rates = [args.dr_min + x*(args.dr_max-args.dr_min)/args.num_dr for x in range(args.num_dr)]
-    learning_rates = [args.lr_min + x*(args.lr_max-args.lr_min)/args.num_lr for x in range(args.num_lr)]
+    dropout_rates = [args.dr_min + x*(args.dr_max-args.dr_min)/(args.num_dr - 1) for x in range(args.num_dr)]
+    learning_rates = [args.lr_min + x*(args.lr_max-args.lr_min)/(args.num_lr - 1) for x in range(args.num_lr)]
     while (bs := batch_sizes[-1] * 2) <= args.b_max:
         batch_sizes.append(bs)
 
