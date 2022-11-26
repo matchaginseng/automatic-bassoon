@@ -193,13 +193,12 @@ def main(args: argparse.Namespace) -> None:
 
     # Main training loop.
     for epoch in epoch_iter:
-        try:
-            train(train_loader, model, criterion, optimizer, epoch, args)
-        except StopIteration:
-            print("^^^^^ ACCURACY ^^^^^")
-            acc = validate(val_loader, model, criterion, epoch, args)
-            train_loader.calculate_cost(acc)
-            break
+        train(train_loader, model, criterion, optimizer, epoch, args)
+        # except StopIteration:
+        #     print("^^^^^ ACCURACY ^^^^^")
+        #     acc = validate(val_loader, model, criterion, epoch, args)
+        #     train_loader.calculate_cost(acc)
+        #     break
             # train_loader.report_metric(acc, higher_is_better=True)
         
         # acc = validate(val_loader, model, criterion, epoch, args)
