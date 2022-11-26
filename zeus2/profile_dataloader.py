@@ -113,7 +113,6 @@ class ProfileDataLoader(DataLoader):
         self.prof_state = NOT_PROFILING
         self.batch_size = batch_size
         self.learning_rate = learning_rate
-        # self._is_train = self.split == "train"
 
         # Retrieve environment variables needed.
         self.logdir = get_env("ZEUS_LOG_DIR", str, default="zeus_log")
@@ -128,6 +127,7 @@ class ProfileDataLoader(DataLoader):
         # Train-time power profiling result. Maps power limit to avg_power & throughput.
         self.train_power_result: float = 0.
         self.train_tput_result: float = 0.
+        self.num_samples = len(self)
         # self.num_samples = len(self)//self.batch_size #TODO: change this to not be hardcoded but i got issues doing len(self)??
 
 
@@ -330,7 +330,8 @@ class ProfileDataLoader(DataLoader):
 
     def calculate_cost(self, acc: float) -> None:
         # print(len(self))
-        frac_epochs = (self.warmup_iter + self.profile_iter) / len(self)
+        # frac_epochs = (self.warmup_iter + self.profile_iter) / len(self)
+        frac_epochs = (self.warmup_iter + self.profile_iter) / self.num_samples
 
         total_cost = (frac_epochs / acc) * ((self.eta_knob * self.train_power_result + (1 - self.eta_knob) * self.max_pl / self.train_tput_result))
 
@@ -359,17 +360,15 @@ class ProfileDataLoader(DataLoader):
     def _start_warmup(self) -> None:
         """Let the GPU run for some time with the power limit to profile."""
         # TODO: Sanity checks.
-        # assert self._should_profile, f"start_warmup: {self._should_profile=}"
-        # assert self._is_train, f"start_warmup: {self._is_train=}"
-        # assert self._power_limits_left, f"start_warmup: {self._power_limits_left=}"
+        assert self._is_train, f"start_warmup: {self._is_train=}"
         # Sanity check that this profile window ends before the end of the current epoch.
-        # assert (
-        #     self.sample_num + self.warmup_iter + self.profile_iter < self.num_samples
-        # ), (
-        #     "start_warmup: "
-        #     f"end_of_this_profile_window {self.sample_num + self.warmup_iter + self.profile_iter} "
-        #     f"< end_of_this_epoch {self.num_samples}"
-        # )
+        assert (
+            self.sample_num + self.warmup_iter + self.profile_iter < self.num_samples
+        ), (
+            "start_warmup: "
+            f"end_of_this_profile_window {self.sample_num + self.warmup_iter + self.profile_iter} "
+            f"< end_of_this_epoch {self.num_samples}"
+        )
 
         # Call cudaSynchronize to make sure this is the iteration boundary.
         torch.cuda.synchronize()
@@ -389,16 +388,14 @@ class ProfileDataLoader(DataLoader):
 
     def _start_prof(self) -> None:
         """Start profiling power consumption for the current power limit."""
-        # TODO: Sanity checks.
-        # assert self._should_profile, f"start_prof: {self._should_profile=}"
-        # assert self._is_train, f"start_prof: {self._is_train=}"
-        # assert self._power_limits_left, f"start_prof: {self._power_limits_left=}"
-        # # Sanity check that this profile window ends before the end of the current epoch.
-        # assert self.sample_num + self.profile_iter < self.num_samples, (
-        #     "start_prof: "
-        #     f"end_of_this_profile_window {self.sample_num + self.profile_iter} "
-        #     f"< end_of_this_epoch {self.num_samples}"
-        # )
+        # Sanity checks.
+        assert self._is_train, f"start_prof: {self._is_train=}"
+        # Sanity check that this profile window ends before the end of the current epoch.
+        assert self.sample_num + self.profile_iter < self.num_samples, (
+            "start_prof: "
+            f"end_of_this_profile_window {self.sample_num + self.profile_iter} "
+            f"< end_of_this_epoch {self.num_samples}"
+        )
 
         # Start profile timer.
         self.prof_start_time = time.monotonic()
@@ -420,16 +417,14 @@ class ProfileDataLoader(DataLoader):
                 might due to profile window too small. In this case, user should consider
                 increasing profile window.
         """
-        # TODO: Sanity checks.
-        # assert self._should_profile, f"end_prof: {self._should_profile=}"
-        # assert self._is_train, f"end_prof: {self._is_train=}"
-        # assert self._power_limits_left, f"end_prof: {self._power_limits_left=}"
-        # # Sanity check that this profile window ends before the end of the current epoch.
-        # assert self.sample_num < self.num_samples, (
-        #     "end_prof: "
-        #     f"end_of_this_profile_window {self.sample_num} "
-        #     f"< end_of_this_epoch {self.num_samples}"
-        # )
+        # Sanity checks.
+        assert self._is_train, f"end_prof: {self._is_train=}"
+        # Sanity check that this profile window ends before the end of the current epoch.
+        assert self.sample_num < self.num_samples, (
+            "end_prof: "
+            f"end_of_this_profile_window {self.sample_num} "
+            f"< end_of_this_epoch {self.num_samples}"
+        )
 
         # Set profiling state.
         self.prof_state = NOT_PROFILING
