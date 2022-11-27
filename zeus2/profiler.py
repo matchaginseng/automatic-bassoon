@@ -400,7 +400,7 @@ class Profiler:
                         f.write(pprint.pformat(history) + "\n")
 
                     # naive early stopping
-                    if total_cost < early_stop:
+                    if early_stop and total_cost < early_stop:
                         # We don't need to reset best_pl because naively the first thing we stop on will also be
                         # the minimum at that point.
                         stop_early = True
