@@ -377,7 +377,7 @@ class Profiler:
                     opt_pl[(bs, lr)] = best_pl
 
                 # Record history for visualization. TODO: change variables. the functions processing this may be total nonsense RN
-                history.append(HistoryEntry(bs, pl, energy, time, accuracy, total_cost))
+                history.append(HistoryEntry(bs, pl, lr, energy, time, accuracy, total_cost))
                 with open(history_file, "w") as f:
                     # Intended use:
                     #
