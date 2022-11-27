@@ -1,0 +1,64 @@
+Files already downloaded and verified
+Files already downloaded and verified
+power limit arg: 150
+learning rate arg: 0.004525483399593905
+batch size arg: 256
+ProfileDataLoader constructor: called constructor of DataLoader!
+ProfileDataLoader constructor: called constructor of DataLoader!
+Launching Zeus monitor 0...
+[GPU_0] Set GPU power limit to 150W.
+Warm-up started with power limit 150W
+Training Epoch: 0 [256/50176]	Loss: 4.6571
+Training Epoch: 0 [512/50176]	Loss: 5.5787
+Training Epoch: 0 [768/50176]	Loss: 5.3860
+Training Epoch: 0 [1024/50176]	Loss: 5.1507
+Training Epoch: 0 [1280/50176]	Loss: 4.9884
+Training Epoch: 0 [1536/50176]	Loss: 4.9814
+Training Epoch: 0 [1792/50176]	Loss: 4.7458
+Training Epoch: 0 [2048/50176]	Loss: 4.6193
+Training Epoch: 0 [2304/50176]	Loss: 4.7712
+Training Epoch: 0 [2560/50176]	Loss: 4.6991
+Training Epoch: 0 [2816/50176]	Loss: 4.6424
+Training Epoch: 0 [3072/50176]	Loss: 4.6397
+Training Epoch: 0 [3328/50176]	Loss: 4.6210
+Training Epoch: 0 [3584/50176]	Loss: 4.5871
+Training Epoch: 0 [3840/50176]	Loss: 4.6813
+Training Epoch: 0 [4096/50176]	Loss: 4.6941
+Training Epoch: 0 [4352/50176]	Loss: 4.6208
+Training Epoch: 0 [4608/50176]	Loss: 4.5059
+Training Epoch: 0 [4864/50176]	Loss: 4.5741
+Training Epoch: 0 [5120/50176]	Loss: 4.5336
+Training Epoch: 0 [5376/50176]	Loss: 4.5087
+Training Epoch: 0 [5632/50176]	Loss: 4.6646
+Training Epoch: 0 [5888/50176]	Loss: 4.4463
+Training Epoch: 0 [6144/50176]	Loss: 4.4457
+Training Epoch: 0 [6400/50176]	Loss: 4.5316
+Training Epoch: 0 [6656/50176]	Loss: 4.5162
+Training Epoch: 0 [6912/50176]	Loss: 4.3984
+Training Epoch: 0 [7168/50176]	Loss: 4.4661
+Training Epoch: 0 [7424/50176]	Loss: 4.4206
+Training Epoch: 0 [7680/50176]	Loss: 4.3549
+Training Epoch: 0 [7936/50176]	Loss: 4.3619
+Training Epoch: 0 [8192/50176]	Loss: 4.3007
+Training Epoch: 0 [8448/50176]	Loss: 4.4023
+Training Epoch: 0 [8704/50176]	Loss: 4.3172
+Training Epoch: 0 [8960/50176]	Loss: 4.2976
+Training Epoch: 0 [9216/50176]	Loss: 4.3326
+Training Epoch: 0 [9472/50176]	Loss: 4.3186
+Training Epoch: 0 [9728/50176]	Loss: 4.2725
+Training Epoch: 0 [9984/50176]	Loss: 4.2742
+Training Epoch: 0 [10240/50176]	Loss: 4.3267
+Training Epoch: 0 [10496/50176]	Loss: 4.2592
+Training Epoch: 0 [10752/50176]	Loss: 4.1861
+Training Epoch: 0 [11008/50176]	Loss: 4.1740
+Training Epoch: 0 [11264/50176]	Loss: 4.2898
+Training Epoch: 0 [11520/50176]	Loss: 4.2297
+Training Epoch: 0 [11776/50176]	Loss: 4.2746
+Training Epoch: 0 [12032/50176]	Loss: 4.2414
+Training Epoch: 0 [12288/50176]	Loss: 4.1863
+Training Epoch: 0 [12544/50176]	Loss: 4.1778
+Training Epoch: 0 [12800/50176]	Loss: 4.1525
+Profile done with power limit 150W
+epoch 1 train time consumed: 12.99s
+Validation Epoch: 0, Average loss: 0.0185, Accuracy: 0.0416
+Stopped Zeus monitor 0.
