@@ -31,6 +31,7 @@ class HistoryEntry:
 
     Attributes:
         bs: Batch size
+        lr: Learning rate
         pl: Power limit
         energy: Energy consumption in Joules
         time: Time consumption in seconds
@@ -39,7 +40,9 @@ class HistoryEntry:
     """
 
     bs: int
+    lr: float
     pl: int
+    factor: float
     energy: float
     time: float
     accuracy: float

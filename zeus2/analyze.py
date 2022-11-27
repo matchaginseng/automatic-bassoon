@@ -42,6 +42,7 @@ class HistoryEntry:
     bs: int
     pl: int
     lr: float
+    factor: float
     energy: float
     time: float
     accuracy: float
