@@ -355,7 +355,10 @@ class ProfileDataLoader(DataLoader):
         # frac_epochs = (self.warmup_iter + self.profile_iter) / len(self)
         frac_epochs = (self.warmup_iter + self.profile_iter) / self.num_samples
 
-        total_cost = (frac_epochs / acc) * ((self.eta_knob * self.train_power_result + (1 - self.eta_knob) * self.max_pl / self.train_tput_result))
+        # Want max power limit in Watts, not mW
+        max_pl = self.max_pl // 1000
+
+        total_cost = (frac_epochs / acc) * ((self.eta_knob * self.train_power_result + (1 - self.eta_knob) * max_pl) / self.train_tput_result)
 
         with open(self.history_file_all, "w") as f:
             content = '''
