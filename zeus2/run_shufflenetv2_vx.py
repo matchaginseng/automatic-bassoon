@@ -123,7 +123,7 @@ def main(args: argparse.Namespace) -> None:
 
     # Generate a list of batch sizes with only power-of-two values.
     batch_sizes = [args.b_min]
-    lr_factors = [args.lr_min + x*(args.lr_max-args.lr_min)/(args.num_lr - 1) for x in range(args.num_lr)]
+    lr_factors = [args.lrf_min + x*(args.lrf_max-args.lrf_min)/(args.num_lrf - 1) for x in range(args.num_lrf)]
     while (bs := batch_sizes[-1] * 2) <= args.b_max:
         batch_sizes.append(bs)
 
