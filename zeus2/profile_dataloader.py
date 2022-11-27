@@ -124,6 +124,7 @@ class ProfileDataLoader(DataLoader):
         self.monitor_sleep_ms = get_env("ZEUS_MONITOR_SLEEP_MS", int, default=100)
         self.log_prefix = get_env("ZEUS_LOG_PREFIX", str)
         self.eta_knob = get_env("ZEUS_ETA_KNOB", float, default=0.5)
+        
         # self.target_metric = get_env("ZEUS_TARGET_METRIC", float)
         
         self.power_limit = power_limit * 1000 # in mW
@@ -351,11 +352,9 @@ class ProfileDataLoader(DataLoader):
     
 
     def calculate_cost(self, acc: float) -> None:
-        # print(len(self))
-        # frac_epochs = (self.warmup_iter + self.profile_iter) / len(self)
         frac_epochs = (self.warmup_iter + self.profile_iter) / self.num_samples
 
-        # Want max power limit in Watts, not mW
+        # We want max power limit in Watts; currently in mW
         max_pl = self.max_pl // 1000
 
         total_cost = (frac_epochs / acc) * ((self.eta_knob * self.train_power_result + (1 - self.eta_knob) * max_pl) / self.train_tput_result)
