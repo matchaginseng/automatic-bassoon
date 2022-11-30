@@ -369,12 +369,12 @@ class Zeus2Master:
                             "\n[Zeus Master] Reached target metric in "
                             f"{tries} {'try' if tries == 1 else 'tries'}."
                         )
-                        # Track the minimum cost.
-                        if min_cost > cost_acc:
-                            print(
-                                f"\n[Zeus Master] Minimum cost updated from {min_cost} to {cost_acc}."
-                            )
-                            min_cost = cost_acc
+                        # # Track the minimum cost.
+                        # if min_cost > cost_acc:
+                        #     print(
+                        #         f"\n[Zeus Master] Minimum cost updated from {min_cost} to {cost_acc}."
+                        #     )
+                        #     min_cost = cost_acc
                         break
                     # Didn't reach the target metric.
                     # We assume that the default BS (set by the user) will converge.
