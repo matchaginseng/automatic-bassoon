@@ -1023,8 +1023,8 @@ class PowerOptimizerDataLoader(DataLoader):
                 )
 
             # Re-raise StopIteration.
-            self._should_profile = True
-            raise
+            # self._should_profile = True
+            # raise
 
         # We're in the middle of an epoch. The train loader has power limits left to profile.
         if self._is_train and self._should_profile and self._power_limits_left:
