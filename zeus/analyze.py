@@ -39,6 +39,7 @@ class HistoryEntry:
 
     bs: int
     pl: int
+    lr: float
     energy: float
     reached: bool
     time: float
