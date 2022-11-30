@@ -195,7 +195,7 @@ class ZeusMaster:
 
         # Training stats (energy, time, reached, end_epoch) written by ZeusDataLoader.
         # This file being found means that the training job is done.
-        train_json = Path(f"{logdir}/{job_id}+bs{batch_size}.train.json")
+        train_json = Path(f"{logdir}/{job_id}+bs{batch_size}+lr{learning_rate}.train.json")
 
         # Reporting
         print(f"[run job] Launching job with BS {batch_size}: and LR: {learning_rate}")
@@ -327,6 +327,7 @@ class ZeusMaster:
                 # Launch the job.
                 # Power profiling and optimization is done entirely by the ZeusDataLoader.
                 # Early stops based on cost_ub.
+                print("LRRRRR: " + str(lr))
                 bs, lr = bs_lr[rec_i - 1]
                 
                 energy, time, reached = self.run_job(
@@ -358,7 +359,7 @@ class ZeusMaster:
                 # bso.observe(job, bs, cost, reached)
 
                 # Record history for visualization.
-                history.append(HistoryEntry(bs, None, energy, reached, time))
+                history.append(HistoryEntry(bs, None, lr, energy, reached, time))
                 with open(history_file, "w") as f:
                     # Intended use:
                     #

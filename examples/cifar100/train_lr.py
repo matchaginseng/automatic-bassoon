@@ -183,15 +183,7 @@ def main(args: argparse.Namespace) -> None:
 
     # Main training loop.
     for epoch in epoch_iter:
-        try:
-            train(train_loader, model, criterion, optimizer, epoch, args)
-        except StopIteration:
-            print("^^^^^ ACCURACY ^^^^^")
-            acc = validate(val_loader, model, criterion, epoch, args)
-            train_loader.save_metric(acc)
-            # train_loader.report_metric(acc, higher_is_better=True)
-            break
-
+        train(train_loader, model, criterion, optimizer, epoch, args)
         acc = validate(val_loader, model, criterion, epoch, args)
 
         # ZEUS
