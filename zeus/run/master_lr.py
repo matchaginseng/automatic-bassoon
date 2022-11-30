@@ -192,7 +192,7 @@ class Zeus2Master:
 
         # Training stats (energy, time, reached, end_epoch) written by ZeusDataLoader.
         # This file being found means that the training job is done.
-        train_json = Path(f"{logdir}/{job_id}+bs{batch_size}+lr{learning_rate:.5f}.train.json")
+        train_json = Path(f"{logdir}/{job_id}+bs{batch_size}+lr{learning_rate:.7f}.train.json")
 
         # Reporting
         print(f"[run job] Launching job with BS {batch_size}: and LR: {learning_rate}")
@@ -276,6 +276,7 @@ class Zeus2Master:
         print(f"[Zeus Master] {job} x {num_recurrence}")
         print(f"[Zeus Master] Batch sizes: {batch_sizes}")
 
+
         # Copy all internal state so that simulation does not modify any
         # internal state and is deterministic w.r.t. the random seed.
         seed = self.seed
@@ -293,7 +294,8 @@ class Zeus2Master:
         min_cost = np.inf
 
         # TODO: Change learning rates
-        lrs = [0.0001, 0.001, 0.005, 0.01, 0.05, 0.1, 0.15]
+        lrs = [1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1]
+        print(f"[Zeus Master] Learning rates: {lrs}")
 
         # Hardcode optimal batch size for shufflenetv2
         bs = 128
@@ -353,7 +355,7 @@ class Zeus2Master:
                     cost_acc += cost
 
                     # Record history for visualization.
-                    history.append(HistoryEntry(bs, None, energy, reached, time))
+                    history.append(HistoryEntry(bs, None, lr, energy, reached, time))
                     with open(history_file, "w") as f:
                         # Intended use:
                         #
