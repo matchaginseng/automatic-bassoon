@@ -276,8 +276,10 @@ class ZeusMaster:
         if eta_knob < 0.0 or eta_knob > 1.0:
             raise ValueError("eta_knob must be in [0.0, 1.0].")
 
+        learning_rates = [1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1]
         print(f"[Zeus Master] {job} x {num_recurrence}")
         print(f"[Zeus Master] Batch sizes: {batch_sizes}")
+        print(f"[Zeus Master] Learning rates: {learning_rates}")
 
         # Copy all internal state so that simulation does not modify any
         # internal state and is deterministic w.r.t. the random seed.
@@ -304,7 +306,7 @@ class ZeusMaster:
         # batch_sizes is a list of all batch sizes the user wants us to try
         for bs in batch_sizes:
             # for lr in [job.scale_lr(bs * factor) for factor in [0.8, 0.9, 1, 1.1, 1.2]] :
-            for lr in [1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1]:
+            for lr in learning_rates:
                 bs_lr.append((bs, lr))
 
         # Job recurs.
