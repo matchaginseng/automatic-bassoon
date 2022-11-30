@@ -292,17 +292,29 @@ class Zeus2Master:
         # beta_knob * min_cost is the early stopping cost threshold.
         min_cost = np.inf
 
+        # TODO: Change learning rates
+        lrs = [0.0001, 0.001, 0.005, 0.01, 0.05, 0.1, 0.15]
+
+        # Hardcode optimal batch size for shufflenetv2
+        bs = 128
+
         # list of (bs, lr) batch size tuples to try
-        bs_lr = []
-        # batch_sizes is a list of all batch sizes the user wants us to try
-        for bs in batch_sizes:
-            for lr in [job.scale_lr(bs * factor) for factor in [0.8, 0.9, 1, 1.1, 1.2]] :
-                bs_lr.append((bs, lr))
+        # bs_lr = []
+        # # batch_sizes is a list of all batch sizes the user wants us to try
+        # for bs in batch_sizes:
+        #     for lr in [job.scale_lr(bs * factor) for factor in [0.8, 0.9, 1, 1.1, 1.2]] :
+        #         bs_lr.append((bs, lr))
+
+        # Try each learning rate
+        for rec_i, lr in enumerate(lrs):
+            # Launch the job. 
+            # Power profiling and optimization is done entirely by the ZeusDataLoader.
+            # Early stops based on cost_ub.
 
         # Job recurs.
-        for rec_i in range(1, len(bs_lr) + 1):
-            for i in range (4):
-                print(f"\n[Zeus Master] Recurrence: {rec_i} and PL: {i}")
+        # for rec_i in range(1, len(lr) + 1):
+        #     for i in range (4):
+        #         print(f"\n[Zeus Master] Recurrence: {rec_i} and PL: {i}")
 
                 # The retrying loop. Retry until convergence.
                 cost_acc = 0.0
@@ -314,7 +326,6 @@ class Zeus2Master:
                     # Launch the job.
                     # Power profiling and optimization is done entirely by the ZeusDataLoader.
                     # Early stops based on cost_ub.
-                    bs, lr = bs_lr[rec_i - 1]
                     
                     energy, time, reached = self.run_job(
                         job=job,
@@ -331,7 +342,7 @@ class Zeus2Master:
 
                     # The random seed will be unique for each run, but still jobs will be
                     # deterministic w.r.t. each call to `run`.
-                    seed += 1
+                    # seed += 1
 
                     # Compute the cost of this try.
                     num_gpus = torch.cuda.device_count()
