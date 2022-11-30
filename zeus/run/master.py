@@ -303,7 +303,8 @@ class ZeusMaster:
         bs_lr = []
         # batch_sizes is a list of all batch sizes the user wants us to try
         for bs in batch_sizes:
-            for lr in [job.scale_lr(bs * factor) for factor in [0.8, 0.9, 1, 1.1, 1.2]] :
+            # for lr in [job.scale_lr(bs * factor) for factor in [0.8, 0.9, 1, 1.1, 1.2]] :
+            for lr in [1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1]:
                 bs_lr.append((bs, lr))
 
         # Job recurs.
