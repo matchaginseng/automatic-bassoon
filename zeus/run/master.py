@@ -276,7 +276,7 @@ class ZeusMaster:
         if eta_knob < 0.0 or eta_knob > 1.0:
             raise ValueError("eta_knob must be in [0.0, 1.0].")
 
-        learning_rates = [1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1]
+        learning_rates = [1e-4, 1e-3, 1e-2, 1e-1]
         print(f"[Zeus Master] {job} x {num_recurrence}")
         print(f"[Zeus Master] Batch sizes: {batch_sizes}")
         print(f"[Zeus Master] Learning rates: {learning_rates}")

@@ -294,7 +294,7 @@ class Zeus2Master:
         min_cost = np.inf
 
         # TODO: Change learning rates
-        lrs = [1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1]
+        lrs = [1e-4, 1e-3, 1e-2, 1e-1]
         print(f"[Zeus Master] Learning rates: {lrs}")
 
         # Hardcode optimal batch size for shufflenetv2
