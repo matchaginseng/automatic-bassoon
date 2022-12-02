@@ -236,12 +236,18 @@ class Zeus2Master:
         with open(train_json, "r") as f:
             stats = json.load(f)
             print(f"[run job] {stats=}")
+        
+        # Read power.json for the optimal power limit
+        power_json = Path(f"{self.logdir}/bs{self.train_batch_size}+lr{learning_rate:.7f}.power.json")
+        with open(power_json, "r") as f:
+            power_stats = json.load(f)
+            print(f"[run job; power] {stats=}")
 
         # Casting
         if not isinstance(stats["reached"], bool):
             stats["reached"] = stats["reached"].lower() == "true"
 
-        return float(stats["energy"]), float(stats["time"]), stats["reached"]
+        return float(stats["energy"]), float(stats["time"]), stats["reached"], int(power_stats["optimal_pl"] / 1000)
 
     def run(
         self,
@@ -330,7 +336,7 @@ class Zeus2Master:
                 # Power profiling and optimization is done entirely by the ZeusDataLoader.
                 # Early stops based on cost_ub.
                 
-                energy, time, reached = self.run_job(
+                energy, time, reached, optimal_pl = self.run_job(
                     job=job,
                     batch_size=bs,
                     learning_rate=lr,
@@ -356,7 +362,7 @@ class Zeus2Master:
                 cost_acc += cost
 
                 # Record history for visualization.
-                history.append(HistoryEntry(bs, None, lr, energy, reached, time))
+                history.append(HistoryEntry(bs, optimal_pl, lr, energy, reached, time))
                 with open(history_file, "w") as f:
                     # Intended use:
                     #
