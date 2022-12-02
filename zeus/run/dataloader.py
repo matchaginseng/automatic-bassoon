@@ -346,9 +346,10 @@ class ZeusDataLoader(DataLoader):
 
         # Construct relevant paths.
         self.train_json = (
-            f"{self.logdir}/{self.job_id}+bs{self.train_batch_size}.train.json"
+            f"{self.logdir}/{self.job_id}+bs{self.batch_size}+lr{self.learning_rate:.7f}.train.json"
         )
-        self.power_json = f"{self.logdir}/bs{self.train_batch_size}.power.json"
+        self.power_json = f"{self.logdir}/bs{self.train_batch_size}+lr{self.learning_rate:.7f}.power.json"
+        self.history_file_all = f"{self.logdir}/history_all.py"
 
         # Numbers related to the dataloader.
         # sample_num: the number of iterations processed in the current epoch.
