@@ -121,12 +121,14 @@ def main(args: argparse.Namespace) -> None:
             train_dataset,
             max_epochs=args.epochs,
             batch_size=args.batch_size,
+            learning_rate=args.learning_rate,
             shuffle=True,
             num_workers=args.num_workers,
         )
         val_loader = ZeusDataLoader(
             val_dataset,
             batch_size=args.batch_size,
+            learning_rate=args.learning_rate,
             shuffle=False,
             num_workers=args.num_workers,
         )
