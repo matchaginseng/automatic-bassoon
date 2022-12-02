@@ -358,7 +358,7 @@ class Zeus2Master:
                 cost_acc += cost
 
                 # Record history for visualization.
-                history.append(HistoryEntry(bs, None, lr, energy, reached, time))
+                history.append(HistoryEntry(bs, None, dr, energy, reached, time))
                 with open(history_file, "w") as f:
                     # Intended use:
                     #
