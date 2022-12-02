@@ -98,10 +98,10 @@ class Job:
         for piece in self.command:
             if piece in ["{bs}", "{batch_size}"]:
                 command.append(str(batch_size))
-            elif piece in ["{lr}", "{learning_rate}"]:
-                command.append(str(learning_rate))
-            # elif piece in ["{dropout}", "{dropout_rate}"]:  
-            #     command.append(str(dropout_rate))
+            # elif piece in ["{lr}", "{learning_rate}"]:
+            #     command.append(str(learning_rate))
+            elif piece in ["{dropout}", "{dropout_rate}"]:  
+                command.append(str(dropout_rate))
             elif piece == "{seed}":
                 command.append(str(seed))
             elif piece in ["{epoch}", "{epochs}"]:
