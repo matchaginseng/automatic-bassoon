@@ -229,8 +229,8 @@ class Zeus2Master:
                 print(f"[run job] Job terminated with exit code {exitcode}.")
 
             # `train_json` must exist at this point.
-            if not train_json.exists():
-                raise RuntimeError(f"{train_json} does not exist.")
+            # if not train_json.exists():
+            #     raise RuntimeError(f"{train_json} does not exist.")
 
         # Read `train_json` for the training stats.
         with open(train_json, "r") as f:
