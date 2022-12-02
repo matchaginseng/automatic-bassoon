@@ -348,9 +348,9 @@ class ZeusDataLoader(DataLoader):
 
         # Construct relevant paths.
         self.train_json = (
-            f"{self.logdir}/{self.job_id}+bs{self.batch_size}+dr{dropout_rate:.7f}.train.json"
+            f"{self.logdir}/{self.job_id}+bs{self.batch_size}+dr{dropout_rate}.train.json"
         )
-        self.power_json = f"{self.logdir}/bs{self.train_batch_size}+dr{dropout_rate:.7f}.power.json"
+        self.power_json = f"{self.logdir}/bs{self.train_batch_size}+dr{dropout_rate}.power.json"
         self.history_file_all = f"{self.logdir}/history_all.py"
 
         # Numbers related to the dataloader.
