@@ -169,7 +169,8 @@ def main(args: argparse.Namespace) -> None:
 
     # Prepare loss function and optimizer.
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(params=model.parameters(), lr=args.learning_rate)
+    # optimizer = optim.Adam(params=model.parameters(), lr=args.learning_rate)
+    optimizer = optim.SGD(params=model.parameters(), lr=args.learning_rate)
     # optimizer = optim.Adadelta(model.parameters())
 
     # ZEUS
