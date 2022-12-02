@@ -78,8 +78,8 @@ class Job:
     def gen_command(
         self,
         batch_size: int,
-        learning_rate: float,
-        # dropout_rate: float,
+        # learning_rate: float,
+        dropout_rate: float,
         # power_limit: int,
         seed: int,
         rec_i: int,

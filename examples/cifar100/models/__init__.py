@@ -63,7 +63,7 @@ all_models = [
 ]
 
 
-def get_model(name: str):
+def get_model(name: str, dropout_rate: float):
     """Instantiate the designated DNN model."""
     if name == "vgg16":
         from models.vgg import vgg16_bn
@@ -148,7 +148,7 @@ def get_model(name: str):
         model = shufflenet()
     elif name == "shufflenetv2":
         from models.shufflenetv2 import shufflenetv2
-        model = shufflenetv2()
+        model = shufflenetv2(dropout_rate)
     elif name == "squeezenet":
         from models.squeezenet import squeezenet
         model = squeezenet()

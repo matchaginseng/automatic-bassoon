@@ -54,8 +54,8 @@ def parse_args() -> argparse.Namespace:
         "--power_limit", type=int, default=0, help="Desired power limit, in mW."
     )
 
-    parser.add_argument("--learning_rate", type=float, default=0.001, help="Default learning rate")
-    # parser.add_argument("--dropout_rate", type=float, default=1.0, help="Default dropout rate")
+    # parser.add_argument("--learning_rate", type=float, default=0.001, help="Default learning rate")
+    parser.add_argument("--dropout_rate", type=float, default=1.0, help="Default dropout rate")
 
     # ZEUS
     runtime_mode = parser.add_mutually_exclusive_group()
@@ -78,7 +78,7 @@ def main(args: argparse.Namespace) -> None:
     # Prepare model.
     # NOTE: Using torchvision.models would be also straightforward. For example:
     #       model = vars(torchvision.models)[args.arch](num_classes=100)
-    model = get_model(args.arch)
+    model = get_model(args.arch, args.dropout_rate)
 
     # Prepare datasets.
     train_dataset = datasets.CIFAR100(
@@ -121,14 +121,16 @@ def main(args: argparse.Namespace) -> None:
             train_dataset,
             max_epochs=args.epochs,
             batch_size=args.batch_size,
-            learning_rate=args.learning_rate,
+            dropout_rate=args.dropout_rate,
+            # learning_rate=args.learning_rate,
             shuffle=True,
             num_workers=args.num_workers,
         )
         val_loader = ZeusDataLoader(
             val_dataset,
             batch_size=args.batch_size,
-            learning_rate=args.learning_rate,
+            dropout_rate=args.dropout_rate,
+            # learning_rate=args.learning_rate,
             shuffle=False,
             num_workers=args.num_workers,
         )
@@ -170,8 +172,8 @@ def main(args: argparse.Namespace) -> None:
     # Prepare loss function and optimizer.
     criterion = nn.CrossEntropyLoss()
     # optimizer = optim.Adam(params=model.parameters(), lr=args.learning_rate)
-    optimizer = optim.SGD(params=model.parameters(), lr=args.learning_rate)
-    # optimizer = optim.Adadelta(model.parameters())
+    # optimizer = optim.SGD(params=model.parameters(), lr=args.learning_rate)
+    optimizer = optim.Adadelta(model.parameters())
 
     # ZEUS
     # ZeusDataLoader may early stop training when the cost is expected

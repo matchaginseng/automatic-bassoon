@@ -214,7 +214,8 @@ class ZeusDataLoader(DataLoader):
         self,
         *args,
         batch_size: int,
-        learning_rate: float,
+        dropout_rate: float,
+        # learning_rate: float,
         max_epochs: int = -1,
         distributed: Literal["dp"] | None = None,
         **kwargs,
@@ -347,9 +348,9 @@ class ZeusDataLoader(DataLoader):
 
         # Construct relevant paths.
         self.train_json = (
-            f"{self.logdir}/{self.job_id}+bs{self.batch_size}+lr{learning_rate:.7f}.train.json"
+            f"{self.logdir}/{self.job_id}+bs{self.batch_size}+dr{dropout_rate:.7f}.train.json"
         )
-        self.power_json = f"{self.logdir}/bs{self.train_batch_size}+lr{learning_rate:.7f}.power.json"
+        self.power_json = f"{self.logdir}/bs{self.train_batch_size}+dr{dropout_rate:.7f}.power.json"
         self.history_file_all = f"{self.logdir}/history_all.py"
 
         # Numbers related to the dataloader.

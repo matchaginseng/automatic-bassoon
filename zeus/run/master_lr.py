@@ -141,8 +141,8 @@ class Zeus2Master:
         self,
         job: Job,
         batch_size: int,
-        learning_rate: float,
-        # dropout_rate: float,
+        # learning_rate: float,
+        dropout_rate: float,
         seed: int,
         logdir: str,
         rec_i: int,
@@ -170,7 +170,7 @@ class Zeus2Master:
             A tuple of energy consumption, time consumption, and whether the job reached the target metric.
         """
         # Generate job command
-        command = job.gen_command(batch_size, learning_rate, seed, rec_i)
+        command = job.gen_command(batch_size, dropout_rate, seed, rec_i)
 
         # Set environment variables
         job_id = f"rec{rec_i:02d}+try{tries:02d}"
@@ -192,10 +192,10 @@ class Zeus2Master:
 
         # Training stats (energy, time, reached, end_epoch) written by ZeusDataLoader.
         # This file being found means that the training job is done.
-        train_json = Path(f"{logdir}/{job_id}+bs128+lr{learning_rate:.7f}.train.json")
+        train_json = Path(f"{logdir}/{job_id}+bs128+dr{dropout_rate}.train.json")
 
         # Reporting
-        print(f"[run job] Launching job with BS {batch_size}: and LR: {learning_rate}")
+        print(f"[run job] Launching job with BS {batch_size}: and DR: {dropout_rate}")
         print(f"[run job] {zeus_env=}")
         if job.workdir is not None:
             print(f"[run job] cwd={job.workdir}")
@@ -294,9 +294,11 @@ class Zeus2Master:
         min_cost = np.inf
 
         # TODO: Change learning rates
-        lrs = [1e-4, 1e-3, 1e-2, 1e-1]
+        # lrs = [1e-4, 1e-3, 1e-2, 1e-1]
+        drs = [0.3, 0.5, 0.7, 0.9]
         # lrs = [1e-2, 1e-1]
-        print(f"[Zeus Master] Learning rates: {lrs}")
+        print(f"[Zeus Master] Dropout rates: {drs}")
+        # print(f"[Zeus Master] Learning rates: {lrs}")
 
         # Hardcode optimal batch size for shufflenetv2
         bs = 128
@@ -309,7 +311,7 @@ class Zeus2Master:
         #         bs_lr.append((bs, lr))
 
         # Try each learning rate
-        for rec_i, lr in enumerate(lrs):
+        for rec_i, dr in enumerate(drs):
             # Launch the job. 
             # Power profiling and optimization is done entirely by the ZeusDataLoader.
             # Early stops based on cost_ub.
@@ -333,8 +335,8 @@ class Zeus2Master:
                 energy, time, reached = self.run_job(
                     job=job,
                     batch_size=bs,
-                    learning_rate=lr,
-                    # dropout_rate=dr,
+                    # learning_rate=lr,
+                    dropout_rate=dr,
                     seed=seed,
                     logdir=logdir,
                     rec_i=rec_i,
