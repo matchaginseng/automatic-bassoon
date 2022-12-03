@@ -238,10 +238,10 @@ class Zeus2Master:
             print(f"[run job] {stats=}")
         
         # Read power.json for the optimal power limit
-        power_json = Path(f"{self.logdir}/bs{self.train_batch_size}+lr{learning_rate:.7f}.power.json")
+        power_json = Path(f"{logdir}/bs128+lr{learning_rate:.7f}.power.json")
         with open(power_json, "r") as f:
             power_stats = json.load(f)
-            print(f"[run job; power] {stats=}")
+            print(f"[run job; power] {power_stats=}")
 
         # Casting
         if not isinstance(stats["reached"], bool):
@@ -300,8 +300,8 @@ class Zeus2Master:
         min_cost = np.inf
 
         # TODO: Change learning rates
-        lrs = [1e-4, 1e-3, 1e-2, 1e-1]
-        # lrs = [1e-2, 1e-1]
+        # lrs = [1e-4, 1e-3]
+        lrs = [1e-2, 1e-1]
         print(f"[Zeus Master] Learning rates: {lrs}")
 
         # Hardcode optimal batch size for shufflenetv2
