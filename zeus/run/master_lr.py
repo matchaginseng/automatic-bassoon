@@ -236,12 +236,18 @@ class Zeus2Master:
         with open(train_json, "r") as f:
             stats = json.load(f)
             print(f"[run job] {stats=}")
+        
+        # Read power.json for the optimal power limit
+        power_json = Path(f"{logdir}/bs128+dr{dropout_rate}.power.json")
+        with open(power_json, "r") as f:
+            power_stats = json.load(f)
+            print(f"[run job; power] {power_stats=}")
 
         # Casting
         if not isinstance(stats["reached"], bool):
             stats["reached"] = stats["reached"].lower() == "true"
 
-        return float(stats["energy"]), float(stats["time"]), stats["reached"]
+        return float(stats["energy"]), float(stats["time"]), stats["reached"], int(power_stats["optimal_pl"]) / 1000
 
     def run(
         self,
@@ -295,7 +301,8 @@ class Zeus2Master:
 
         # TODO: Change learning rates
         # lrs = [1e-4, 1e-3, 1e-2, 1e-1]
-        drs = [0.3, 0.5, 0.7, 0.9]
+        # drs = [0.3, 0.5, 0.7, 0.9]
+        drs = [0.5, 0.7, 0.9]
         # lrs = [1e-2, 1e-1]
         print(f"[Zeus Master] Dropout rates: {drs}")
         # print(f"[Zeus Master] Learning rates: {lrs}")
@@ -322,9 +329,9 @@ class Zeus2Master:
         #         print(f"\n[Zeus Master] Recurrence: {rec_i} and PL: {i}")
 
             # The retrying loop. Retry until convergence.
-            cost_acc = 0.0
-            
-            for tries in range(1, 21):
+            # cost_acc = 0.0
+            tries = 1
+            # for tries in range(1, 21):
                 # Grab the dropout rate.
                 #dr = job.fetch_dr()
 
@@ -332,67 +339,67 @@ class Zeus2Master:
                 # Power profiling and optimization is done entirely by the ZeusDataLoader.
                 # Early stops based on cost_ub.
                 
-                energy, time, reached = self.run_job(
-                    job=job,
-                    batch_size=bs,
-                    # learning_rate=lr,
-                    dropout_rate=dr,
-                    seed=seed,
-                    logdir=logdir,
-                    rec_i=rec_i,
-                    tries=tries,
-                    eta_knob=eta_knob,
-                    cost_ub=beta_knob * min_cost,
+            energy, time, reached, optimal_pl = self.run_job(
+                job=job,
+                batch_size=bs,
+                # learning_rate=lr,
+                dropout_rate=dr,
+                seed=seed,
+                logdir=logdir,
+                rec_i=rec_i,
+                tries=tries,
+                eta_knob=eta_knob,
+                cost_ub=beta_knob * min_cost,
+            )
+
+            # The random seed will be unique for each run, but still jobs will be
+            # deterministic w.r.t. each call to `run`.
+            # seed += 1
+
+            # Compute the cost of this try.
+            num_gpus = torch.cuda.device_count()
+            cost = zeus_cost(energy, time, eta_knob, self.max_pl * num_gpus)
+            print(f"[Zeus Master] {cost=}")
+
+            # Accumulate the cost to track the total cost of this recurrence.
+            # cost_acc += cost
+
+            # Record history for visualization.
+            history.append(HistoryEntry(bs, optimal_pl, dr, energy, reached, time))
+            with open(history_file, "w") as f:
+                # Intended use:
+                #
+                # ```python
+                # from zeus.analyze import HistoryEntry
+                # history = eval(open(history_file).read())
+                # ```
+                f.write(pprint.pformat(history) + "\n")
+
+            # Reached the target metric. Go to next recurrence.
+            if reached:
+                print(
+                    "\n[Zeus Master] Reached target metric in "
+                    f"{tries} {'try' if tries == 1 else 'tries'}."
                 )
-
-                # The random seed will be unique for each run, but still jobs will be
-                # deterministic w.r.t. each call to `run`.
-                # seed += 1
-
-                # Compute the cost of this try.
-                num_gpus = torch.cuda.device_count()
-                cost = zeus_cost(energy, time, eta_knob, self.max_pl * num_gpus)
-                print(f"[Zeus Master] {cost=}")
-
-                # Accumulate the cost to track the total cost of this recurrence.
-                cost_acc += cost
-
-                # Record history for visualization.
-                history.append(HistoryEntry(bs, None, dr, energy, reached, time))
-                with open(history_file, "w") as f:
-                    # Intended use:
-                    #
-                    # ```python
-                    # from zeus.analyze import HistoryEntry
-                    # history = eval(open(history_file).read())
-                    # ```
-                    f.write(pprint.pformat(history) + "\n")
-
-                # Reached the target metric. Go to next recurrence.
-                if reached:
-                    print(
-                        "\n[Zeus Master] Reached target metric in "
-                        f"{tries} {'try' if tries == 1 else 'tries'}."
-                    )
-                    # # Track the minimum cost.
-                    # if min_cost > cost_acc:
-                    #     print(
-                    #         f"\n[Zeus Master] Minimum cost updated from {min_cost} to {cost_acc}."
-                    #     )
-                    #     min_cost = cost_acc
-                    break
-                # Didn't reach the target metric.
-                # We assume that the default BS (set by the user) will converge.
-                if rec_i == 1:
-                    raise RuntimeError(
-                        f"The default batch size {job.default_bs} did not converge."
-                    )
+                # # Track the minimum cost.
+                # if min_cost > cost_acc:
+                #     print(
+                #         f"\n[Zeus Master] Minimum cost updated from {min_cost} to {cost_acc}."
+                #     )
+                #     min_cost = cost_acc
+                # break
+            # Didn't reach the target metric.
+            # We assume that the default BS (set by the user) will converge.
+            # if rec_i == 1:
+            #     raise RuntimeError(
+            #         f"The default batch size {job.default_bs} did not converge."
+            #     )
 
             else:
                 print(
-                    "\n[Zeus Master] Job did not reach the target metric in 20 trials!"
+                    "\n[Zeus Master] Job did not reach the target metric."
                 )
-                raise RuntimeError("Unreachable target metric.")
+                # raise RuntimeError("Unreachable target metric.")
 
         print(f"[Zeus Master]\n{history}")
 
