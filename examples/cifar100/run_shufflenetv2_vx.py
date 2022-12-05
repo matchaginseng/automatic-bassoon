@@ -96,7 +96,7 @@ def main(args: argparse.Namespace) -> None:
     job = Job(
         dataset="cifar100",
         network="shufflenetv2",
-        optimizer="adam",
+        optimizer="adadelta",
         target_metric=args.target_metric,
         max_epochs=args.max_epochs,
         default_bs=args.b_0,
