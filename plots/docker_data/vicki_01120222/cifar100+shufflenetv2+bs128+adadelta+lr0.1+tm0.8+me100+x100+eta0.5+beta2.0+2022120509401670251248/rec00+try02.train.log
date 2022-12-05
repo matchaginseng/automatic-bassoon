@@ -1,0 +1,15 @@
+2022-12-05 12:09:13,778 [ZeusDataLoader(train)] Distributed data parallel: OFF
+Files already downloaded and verified
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "/workspace/zeus/examples/cifar100/train_lr.py", line 256, in <module>
+    main(parse_args())
+  File "/workspace/zeus/examples/cifar100/train_lr.py", line 120, in main
+    train_loader = ZeusDataLoader(
+  File "/workspace/zeus/zeus/run/dataloader.py", line 437, in __init__
+    pynvml.nvmlDeviceSetPersistenceMode(handle, pynvml.NVML_FEATURE_ENABLED)
+  File "/root/.local/miniconda3/lib/python3.9/site-packages/pynvml/nvml.py", line 2318, in nvmlDeviceSetPersistenceMode
+    _nvmlCheckReturn(ret)
+  File "/root/.local/miniconda3/lib/python3.9/site-packages/pynvml/nvml.py", line 765, in _nvmlCheckReturn
+    raise NVMLError(ret)
+pynvml.nvml.NVMLError_Unknown: Unknown Error
