@@ -326,15 +326,17 @@ class Profiler:
 
         # batch_sizes is a list of all batch sizes the user wants us to try
         for bs in batch_sizes:
-            for lr in [job.scale_lr(bs) * factor for factor in learning_rate_factors]:
-                bs_lr.append((bs, lr))
-                opt_pl[(bs, lr)] = 0 # initialize
+            for factor in learning_rate_factors:
+                lr = job.scale_lr(bs) * factor
+            # for lr in [job.scale_lr(bs) * factor for factor in learning_rate_factors]:
+                bs_lr.append((bs, lr, factor))
+                opt_pl[(bs, lr, factor)] = 0 # initialize
 
         profile_time = 0.
 
         # 2-lvl optimization
         for i in range(1, len(bs_lr) + 1):
-            bs, lr = bs_lr[i - 1]
+            bs, lr, factor = bs_lr[i - 1]
             print(f"\n[Power Profiler] with batch size {bs} and learning rate {lr}")
 
             min_cost = float("inf")
@@ -374,10 +376,10 @@ class Profiler:
                 if total_cost < min_cost:
                     min_cost = total_cost
                     best_pl = pl 
-                    opt_pl[(bs, lr)] = best_pl
+                    opt_pl[(bs, lr, factor)] = best_pl
 
                 # Record history for visualization. TODO: change variables. the functions processing this may be total nonsense RN
-                history.append(HistoryEntry(bs, pl, energy, time, accuracy, total_cost))
+                history.append(HistoryEntry(bs, pl, lr, factor, energy, time, accuracy, total_cost))
                 with open(history_file, "w") as f:
                     # Intended use:
                     #
@@ -391,13 +393,13 @@ class Profiler:
         print(f"[Power Profiler]\n{history}")
 
         # find optimal setting to return: get argmin
-        opt_bs, opt_lr = min(opt_pl, key=opt_pl.get)
+        opt_bs, opt_lr, opt_factor = min(opt_pl, key=opt_pl.get)
 
         profiler_info = dict(
             total_time=profile_time,
             opt_bs=opt_bs,
             opt_lr=opt_lr,
-            opt_pl=opt_pl[((opt_bs, opt_lr))]
+            opt_pl=opt_pl[((opt_bs, opt_lr, opt_factor))]
         )
 
         with open(f"{logdir}/profiler_info.json", "w") as f:

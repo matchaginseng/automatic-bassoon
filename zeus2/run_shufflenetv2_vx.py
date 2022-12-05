@@ -22,7 +22,7 @@ def parse_args() -> argparse.Namespace:
 
     # Default ML parameters.
     # The first recurrence uses these parameters, and it must reach the target metric.
-    parser.add_argument("--b_0", type=int, default=1024, help="Default batch size")
+    parser.add_argument("--b_0", type=int, default=8, help="Default batch size")
     parser.add_argument("--lr_0", type=float, default=0.001, help="Default learning rate")
     parser.add_argument("--dropout_0", type=float, default=1.0, help="Default dropout rate")
 

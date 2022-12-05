@@ -195,7 +195,7 @@ class ZeusMaster:
 
         # Training stats (energy, time, reached, end_epoch) written by ZeusDataLoader.
         # This file being found means that the training job is done.
-        train_json = Path(f"{logdir}/{job_id}+bs{batch_size}.train.json")
+        train_json = Path(f"{logdir}/{job_id}+bs{batch_size}+lr{learning_rate}.train.json")
 
         # Reporting
         print(f"[run job] Launching job with BS {batch_size}: and LR: {learning_rate}")
@@ -276,8 +276,11 @@ class ZeusMaster:
         if eta_knob < 0.0 or eta_knob > 1.0:
             raise ValueError("eta_knob must be in [0.0, 1.0].")
 
+        # learning_rates = [1e-4, 1e-3, 1e-2, 1e-1]
+        learning_rates = [1e-3, 1e-2, 1e-1]
         print(f"[Zeus Master] {job} x {num_recurrence}")
         print(f"[Zeus Master] Batch sizes: {batch_sizes}")
+        print(f"[Zeus Master] Learning rates: {learning_rates}")
 
         # Copy all internal state so that simulation does not modify any
         # internal state and is deterministic w.r.t. the random seed.
@@ -303,7 +306,8 @@ class ZeusMaster:
         bs_lr = []
         # batch_sizes is a list of all batch sizes the user wants us to try
         for bs in batch_sizes:
-            for lr in [job.scale_lr(bs * factor) for factor in [0.8, 0.9, 1, 1.1, 1.2]] :
+            # for lr in [job.scale_lr(bs * factor) for factor in [0.8, 0.9, 1, 1.1, 1.2]] :
+            for lr in learning_rates:
                 bs_lr.append((bs, lr))
 
         # Job recurs.
@@ -326,6 +330,7 @@ class ZeusMaster:
                 # Launch the job.
                 # Power profiling and optimization is done entirely by the ZeusDataLoader.
                 # Early stops based on cost_ub.
+                print("LRRRRR: " + str(lr))
                 bs, lr = bs_lr[rec_i - 1]
                 
                 energy, time, reached = self.run_job(
@@ -357,7 +362,7 @@ class ZeusMaster:
                 # bso.observe(job, bs, cost, reached)
 
                 # Record history for visualization.
-                history.append(HistoryEntry(bs, None, energy, reached, time))
+                history.append(HistoryEntry(bs, None, lr, energy, reached, time))
                 with open(history_file, "w") as f:
                     # Intended use:
                     #

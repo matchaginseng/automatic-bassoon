@@ -24,7 +24,7 @@ from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 
 # ZEUS
-from zeus.run import PowerOptimizerDataLoader 
+from zeus.run import ZeusDataLoader 
 from zeus.profile.torch import ProfileDataLoader
 
 from models import all_models, get_model
@@ -117,7 +117,7 @@ def main(args: argparse.Namespace) -> None:
     # Prepare dataloaders.
     if args.zeus:
         # Zeus
-        train_loader = PowerOptimizerDataLoader(
+        train_loader = ZeusDataLoader(
             train_dataset,
             max_epochs=args.epochs,
             batch_size=args.batch_size,
@@ -125,7 +125,7 @@ def main(args: argparse.Namespace) -> None:
             shuffle=True,
             num_workers=args.num_workers,
         )
-        val_loader = PowerOptimizerDataLoader(
+        val_loader = ZeusDataLoader(
             val_dataset,
             batch_size=args.batch_size,
             learning_rate=args.learning_rate,
@@ -176,7 +176,7 @@ def main(args: argparse.Namespace) -> None:
     # ZeusDataLoader may early stop training when the cost is expected
     # to exceed the cost upper limit or the target metric was reached.
     if args.zeus:
-        assert isinstance(train_loader, PowerOptimizerDataLoader)
+        assert isinstance(train_loader, ZeusDataLoader)
         epoch_iter = train_loader.epochs()
     else:
         epoch_iter = range(args.epochs)
@@ -185,20 +185,12 @@ def main(args: argparse.Namespace) -> None:
 
     # Main training loop.
     for epoch in epoch_iter:
-        try:
-            train(train_loader, model, criterion, optimizer, epoch, args)
-        except StopIteration:
-            print("^^^^^ ACCURACY ^^^^^")
-            acc = validate(val_loader, model, criterion, epoch, args)
-            train_loader.save_metric(acc)
-            # train_loader.report_metric(acc, higher_is_better=True)
-            break
-
+        train(train_loader, model, criterion, optimizer, epoch, args)
         acc = validate(val_loader, model, criterion, epoch, args)
 
         # ZEUS
         if args.zeus:
-            assert isinstance(train_loader, PowerOptimizerDataLoader)
+            assert isinstance(train_loader, ZeusDataLoader)
             train_loader.report_metric(acc, higher_is_better=True)
         elif args.profile:
             if train_loader.reached_target_metric(acc):

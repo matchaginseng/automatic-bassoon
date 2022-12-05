@@ -32,13 +32,17 @@ class HistoryEntry:
     Attributes:
         bs: Batch size
         pl: Power limit
+        lr: Learning rate
         energy: Energy consumption in Joules
-        reached: Whether the target metric was reached at the end
         time: Time consumption in seconds
+        accuracy: Accuracy on the validation set
+        total_cost: Total cost of the run.
     """
 
     bs: int
     pl: int
+    lr: float
+    factor: float
     energy: float
     time: float
     accuracy: float

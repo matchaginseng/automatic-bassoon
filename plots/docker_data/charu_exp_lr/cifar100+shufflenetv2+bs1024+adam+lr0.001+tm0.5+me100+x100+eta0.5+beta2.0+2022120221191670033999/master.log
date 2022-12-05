@@ -1,0 +1,9 @@
+[Zeus Master] Job(cifar100,shufflenetv2,adam,0.5,bs1024~100) x 100
+[Zeus Master] Batch sizes: [8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096]
+[Zeus Master] Learning rates: [0.01, 0.1]
+[run job] Launching job with BS 128: and LR: 0.01
+[run job] zeus_env={'ZEUS_LOG_DIR': '/workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.5+me100+x100+eta0.5+beta2.0+2022120221191670033999', 'ZEUS_JOB_ID': 'rec00+try01', 'ZEUS_COST_THRESH': 'inf', 'ZEUS_ETA_KNOB': '0.5', 'ZEUS_TARGET_METRIC': '0.5', 'ZEUS_MONITOR_PATH': '/workspace/zeus/zeus_monitor/zeus_monitor', 'ZEUS_PROFILE_PARAMS': '10,40', 'ZEUS_USE_OPTIMAL_PL': 'True'}
+[run job] cwd=/workspace/zeus/examples/cifar100
+[run job] command=['python', 'train_lr.py', '--zeus', '--arch', 'shufflenetv2', '--batch_size', '128', '--epochs', '100', '--seed', '1', '--learning_rate', '0.01']
+[run job] cost_ub=inf
+[run job] Job output logged to '/workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.5+me100+x100+eta0.5+beta2.0+2022120221191670033999/rec00+try01.train.log'
