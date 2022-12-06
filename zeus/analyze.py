@@ -112,7 +112,6 @@ def avg_power(
         df = df.loc[df["Time"] >= df.iloc[0]["Time"] + timedelta(seconds=start)]
     if end is not None:
         df = df.loc[df["Time"] <= df.iloc[0]["Time"] + timedelta(seconds=end)]
-    print(df)
     seconds = _get_seconds(df)
     watts = _get_watts(df)
     area = auc(seconds, watts)

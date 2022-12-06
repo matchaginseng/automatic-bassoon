@@ -228,7 +228,7 @@ def validate(val_loader, model, criterion, epoch, args, start_time):
     elapsed_time = time.time() - start_time
     print("The time elapse of epoch {:03d}".format(epoch) + " is: " + 
 			time.strftime("%H: %M: %S", time.gmtime(elapsed_time)))
-    print("Validation Epoch: {epoch}, HR: {:.3f}\tNDCG: {:.3f}".format(np.mean(HR), np.mean(NDCG)))
+    print(f"Validation Epoch: {epoch}, HR: {np.mean(HR):.3f}\tNDCG: {np.mean(NDCG):.3f}")
     print(f"\tAverage Loss:{test_loss / num_samples:.4f}")
 
     if HR > best_hr:
