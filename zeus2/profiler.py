@@ -437,7 +437,7 @@ class Profiler:
         # TODO: make this the actual logdir
         logdir = "zeus-logs/"
 
-        # TODO: don't hardcode these things
+        # TODO: these environment variables don't work correctly...fix
         zeus_env = dict(
             ZEUS_LOG_DIR=logdir,
             ZEUS_JOB_ID="hello",
@@ -455,6 +455,7 @@ class Profiler:
 
         env = deepcopy(os.environ)
         env.update(zeus_env)
+        sleep(1.0)
 
         print(f"[run job] {zeus_env=}")
         print(get_env("ZEUS_MONITOR_PATH", str))
@@ -576,7 +577,7 @@ class Profiler:
             # train_loader.calculate_cost(acc)
         
 
-    def train(train_loader, model, criterion, optimizer, epoch, batch_size):
+    def train(self, train_loader, model, criterion, optimizer, epoch, batch_size):
         """Train the model for one epoch."""
         model.train()
         num_samples = len(train_loader) * batch_size
@@ -597,7 +598,7 @@ class Profiler:
             )
 
     @torch.no_grad()
-    def validate(val_loader, model, criterion, epoch, batch_size):
+    def validate(self, val_loader, model, criterion, epoch, batch_size):
         """Evaluate the model on the validation set."""
         model.eval()
 
