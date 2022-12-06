@@ -504,7 +504,7 @@ class Profiler:
         curr_acc = 0.0
         # Main training loop.
         for epoch in epoch_iter:            
-            if curr_acc == 0.0:
+            if curr_acc == 0.0 or (curr_acc > 0.2 and curr_acc < 0.3):
                 # set the dataloader profiling to be true
                 # bs_lr_dr = []
                 bs_lr = []
@@ -567,13 +567,14 @@ class Profiler:
                 #     json.dump(profiler_info, f)
 
                 # find optimal setting to return: get argmin
-                opt_bs, opt_lr, opt_dr = min(opt_pl, key=opt_pl.get)
-                opt_pl = opt_pl[(opt_bs, opt_lr, opt_dr)]
+                opt_bs, opt_lr = min(opt_pl, key=opt_pl.get)
+                opt_pl = opt_pl[(opt_bs, opt_lr)]
 
                 # return the optimal setting
                 # return (opt_bs, opt_lr, opt_dr, opt_pl[(opt_bs, opt_lr, opt_dr)])
             
             print("DONE PROFILING")
+            print(f"The optimal parameters are lr: {opt_lr} and pl: {opt_pl}")
             train_loader.set_learning_rate(opt_lr)
             train_loader.set_power_limit(opt_pl)
 
