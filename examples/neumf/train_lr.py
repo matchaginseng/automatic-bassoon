@@ -18,6 +18,7 @@
 """Example script for running Zeus on a CIFAR100 job."""
 
 import os
+import random
 import argparse
 
 import time
@@ -87,6 +88,10 @@ train_data, test_data, user_num, item_num, train_mat = data_utils.load_all()
 
 def main(args: argparse.Namespace) -> None:
     """Run the main training routine."""
+    # Set random seed.
+    if args.seed is not None:
+        set_seed(args.seed)
+
     # Prepare model.
     # NOTE: Using torchvision.models would be also straightforward. For example:
     #       model = vars(torchvision.models)[args.arch](num_classes=100)
@@ -230,6 +235,12 @@ def validate(val_loader, model, criterion, epoch, args, start_time):
         best_hr, best_ndcg, best_epoch = HR, NDCG, epoch
 
     return best_hr, best_ndcg, best_epoch
+
+def set_seed(seed: int) -> None:
+    """Set random seed for reproducible results."""
+    random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
 
 
 if __name__ == "__main__":
