@@ -434,6 +434,21 @@ class Profiler:
 
         model = shufflenetv2(0.0)
 
+        zeus_env = dict(
+            ZEUS_LOG_DIR=logdir,
+            ZEUS_JOB_ID=job_id,
+            ZEUS_COST_THRESH="inf" if cost_ub == np.inf else str(cost_ub),
+            ZEUS_BATCH_SIZE=str(batch_size),
+            ZEUS_LEARNING_RATE=str(learning_rate),
+            ZEUS_ETA_KNOB=str(eta_knob),
+            ZEUS_POWER_LIMIT=str(power_limit),
+            # ZEUS_TARGET_METRIC=str(job.target_metric),
+            ZEUS_MONITOR_PATH=self.monitor_path,
+            ZEUS_PROFILE_PARAMS=f"{self.profile_warmup_iters},{self.profile_measure_iters}",
+            ZEUS_LOG_PREFIX="/workspace/zeus_logs",
+            # ZEUS_USE_OPTIMAL_PL=str(not self.observer_mode),
+        )
+
         train_loader = ProfileDataLoader(
                             train_dataset,
                             split="train",
