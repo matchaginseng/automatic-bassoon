@@ -433,7 +433,8 @@ class Profiler:
             self.set_seed(seed)
 
         model = shufflenetv2(0.0)
-        logdir = self.build_logdir(job, eta_knob, beta_knob)
+        # TODO: make this the actual logdir
+        logdir = "zeus-logs/"
 
         # TODO: don't hardcode these things
         zeus_env = dict(
