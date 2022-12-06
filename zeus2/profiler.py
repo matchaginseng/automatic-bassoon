@@ -22,6 +22,7 @@ import os
 import pprint
 import subprocess
 from copy import deepcopy
+from shufflenetv2 import shufflenetv2
 from pathlib import Path
 from time import localtime, sleep, strftime, monotonic
 
@@ -31,6 +32,13 @@ import pynvml
 from zeus2.analyze import HistoryEntry
 from zeus2.job import Job
 from zeus2.metric import epoch_cost
+
+import torch
+from torch import nn, optim
+from torch.utils.data import DataLoader
+from torchvision import datasets, transforms
+
+from zeus2.profile_dataloader import ProfileDataLoader
 
 # JIT profiling states
 NOT_PROFILING = "NOT_PROFILING"
@@ -298,10 +306,6 @@ class Profiler:
         if eta_knob < 0.0 or eta_knob > 1.0:
             raise ValueError("eta_knob must be in [0.0, 1.0].")
 
-        print(f"[Power Profiler] Batch sizes: {batch_sizes}")
-        print(f"[Power Profiler] Learning rates: {learning_rates}")
-        print(f"[Power Profiler] Dropout rates: {dropout_rates}")
-
         # Copy all internal state so that simulation does not modify any
         # internal state and is deterministic w.r.t. the random seed.
         seed = self.seed
@@ -334,6 +338,7 @@ class Profiler:
 
         profile_time = 0.
 
+        #
         # 2-lvl optimization
         for i in range(1, len(bs_lr_dr) + 1):
             bs, lr, dr = bs_lr_dr[i - 1]
@@ -350,6 +355,8 @@ class Profiler:
                 # Launch the job.
                 # Early stops based on cost_ub.
                 job_start_time = monotonic()
+
+                # we don't want to run job here we want to do the profiling
                 energy, time, accuracy, total_cost = self.run_job(
                     job=job,
                     batch_size=bs,
@@ -399,7 +406,7 @@ class Profiler:
             opt_lr=opt_lr,
             opt_pl=opt_pl[((opt_bs, opt_lr))]
         )
-
+        
         with open(f"{logdir}/profiler_info.json", "w") as f:
             json.dump(profiler_info, f)
 
@@ -408,3 +415,187 @@ class Profiler:
 
         # return the optimal setting
         return (opt_bs, opt_lr, opt_dr, opt_pl[(opt_bs, opt_lr, opt_dr)])
+
+    def set_seed(seed: int) -> None:
+        """Set random seed for reproducible results."""
+        random.seed(seed)
+        torch.manual_seed(seed)
+        torch.cuda.manual_seed_all(seed)
+
+    def train_with_profiling(self, 
+        job: Job,
+        eta_knob: float,
+        beta_knob: float,
+        train_dataset,
+        val_dataset,
+        seed=None) -> tuple[int, float, int]:
+        if seed is not None:
+            self.set_seed(seed)
+
+        model = shufflenetv2(0.0)
+
+        train_loader = ProfileDataLoader(
+                            train_dataset,
+                            split="train",
+                            # batch_size=bs, #TODO: unhardcode this
+                            # learning_rate=lr, 
+                            # dropout_rate=dr,
+                            # power_limit=pl, #TODO: unhardcode this
+                            shuffle=True,
+                            num_workers=4, # TODO: this is the default value but maybe pass in as an arg
+                        )
+        val_loader = ProfileDataLoader(
+                            val_dataset,
+                            split="eval",
+                            # batch_size=bs,
+                            # learning_rate=lr,
+                            # dropout_rate=dr,
+                            # power_limit=pl, 
+                            shuffle=False,
+                            num_workers=4,
+                        )
+
+        # TODO: unhardcode this
+        learning_rates = [1e-2, 1e-1]
+        batch_sizes = [128]
+        power_limits = [100, 150]
+        print(f"[Training Loop] Testing learning rates: {learning_rates}")
+        # print(f"[Training Loop] Testing dropout rates: {dropout_rates}")
+
+        # Send model to CUDA.
+        model = model.cuda()
+
+        # Prepare loss function and optimizer.
+        criterion = nn.CrossEntropyLoss()
+        optimizer = optim.Adam(params=model.parameters(), lr=0.01)
+        # optimizer = optim.Adadelta(model.parameters())
+
+        # TODO: unhardcode this
+        epoch_iter = range(100)
+
+        curr_acc = 0.0
+        # Main training loop.
+        for epoch in epoch_iter:            
+            if curr_acc == 0.0:
+                # set the dataloader profiling to be true
+                # bs_lr_dr = []
+                bs_lr = []
+                opt_pl = {}
+                for bs in batch_sizes:
+                    for lr in learning_rates:
+                        # for dr in dropout_rates:
+                        bs_lr.append((bs, lr))
+                        opt_pl[(bs, lr)] = 0
+
+                profile_time = 0.
+
+                min_cost = float("inf")
+                for i in range(1, len(bs_lr) + 1):
+                    bs, lr = bs_lr[i - 1]
+                    print(f"\n[Power Profiler] with batch size {bs} and learning rate {lr}")
+                    
+                    # initialize best pl for this combo
+                    best_pl = -1
+                    for pl in power_limits:
+                        # initialize a new train loader and val loader
+                        
+                        # profile_time += job_end_time - job_start_time
+                        train_loader.set_learning_rate(lr)
+                        train_loader.set_power_limit(pl)
+                        
+                        # changing learning rate
+                        print(f"CHANGING LEARNING RATE TO {lr}")
+                        for param_group in optimizer.param_groups:
+                            param_group['lr'] = lr
+                        
+                        self.train(train_loader, model, criterion, optimizer, epoch)
+                        
+                        logdir = self.build_logdir(job, eta_knob, beta_knob)
+                        job_id = f"bs{bs}+lr{lr:.5f}+pl{pl}"
+                        history_json = Path(f"{logdir}/{job_id}.history_all.py")
+                        
+                        with open(history_json, "r") as histf:
+                            stats = json.load(histf)
+                            print(f"[run job] {stats=}")
+                        
+                        energy, time, acc, cost = float(stats["energy"]), float(stats["time"]), float(stats["accuracy"]), float(stats["total_cost"])
+                        print(f"[Power Profiler 2] ENERGY: {energy}, TIME: {time}, ACCURACY: {acc}, COST {cost}")
+                        if cost < min_cost:
+                            min_cost = cost
+                            best_pl = pl 
+                            opt_pl[(bs, lr)] = best_pl
+
+                        # history.append(HistoryEntry(bs, pl, energy, time, accuracy, total_cost))
+                        
+                # profiler_info = dict(
+                #     total_time=profile_time,
+                #     opt_bs=opt_bs,
+                #     opt_lr=opt_lr,
+                #     opt_pl=opt_pl[((opt_bs, opt_lr))]
+                # )
+
+                # with open(f"{logdir}/profiler_info.json", "w") as f:
+                #     json.dump(profiler_info, f)
+
+                # find optimal setting to return: get argmin
+                opt_bs, opt_lr, opt_dr = min(opt_pl, key=opt_pl.get)
+                opt_pl = opt_pl[(opt_bs, opt_lr, opt_dr)]
+
+                # return the optimal setting
+                # return (opt_bs, opt_lr, opt_dr, opt_pl[(opt_bs, opt_lr, opt_dr)])
+            
+            print("DONE PROFILING")
+            train_loader.set_learning_rate(opt_lr)
+            train_loader.set_power_limit(opt_pl)
+
+            self.train(train_loader, model, criterion, optimizer, epoch, 128)
+            curr_acc = self.validate(val_loader, model, criterion, epoch, 128)
+            # train_loader.calculate_cost(acc)
+        
+
+    def train(train_loader, model, criterion, optimizer, epoch, batch_size):
+        """Train the model for one epoch."""
+        model.train()
+        num_samples = len(train_loader) * batch_size
+
+        for batch_index, (images, labels) in enumerate(train_loader):
+            labels = labels.cuda()
+            images = images.cuda()
+
+            optimizer.zero_grad()
+            outputs = model(images)
+            loss = criterion(outputs, labels)
+            loss.backward()
+            optimizer.step()
+
+            print(
+                f"Training Epoch: {epoch} [{(batch_index + 1) * batch_size}/{num_samples}]"
+                f"\tLoss: {loss.item():0.4f}"
+            )
+
+    @torch.no_grad()
+    def validate(val_loader, model, criterion, epoch, batch_size):
+        """Evaluate the model on the validation set."""
+        model.eval()
+
+        test_loss = 0.0
+        correct = 0
+        num_samples = len(val_loader) * batch_size
+
+        for images, labels in val_loader:
+            images = images.cuda()
+            labels = labels.cuda()
+
+            outputs = model(images)
+            loss = criterion(outputs, labels)
+
+            test_loss += loss.item()
+            _, preds = outputs.max(1)
+            correct += preds.eq(labels).sum().item()
+
+        print(
+            f"Validation Epoch: {epoch}, Average loss: {test_loss / num_samples:.4f}"
+            f", Accuracy: {correct / num_samples:.4f}"
+        )
+
+        return correct / num_samples

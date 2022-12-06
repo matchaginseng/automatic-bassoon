@@ -80,6 +80,8 @@ def main(args: argparse.Namespace) -> None:
     # Prepare model.
     # NOTE: Using torchvision.models would be also straightforward. For example:
     #       model = vars(torchvision.models)[args.arch](num_classes=100)
+
+    # we don't want to recreate the model each time
     model = shufflenetv2(args.dropout_rate)
 
     # Prepare datasets.
@@ -163,7 +165,8 @@ def main(args: argparse.Namespace) -> None:
         train(train_loader, model, criterion, optimizer, epoch, args)
         acc = validate(val_loader, model, criterion, epoch, args)
         train_loader.calculate_cost(acc)
-        break
+        if acc > 0.01:
+            
 
 def train(train_loader, model, criterion, optimizer, epoch, args):
     """Train the model for one epoch."""

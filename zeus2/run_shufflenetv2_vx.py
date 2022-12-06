@@ -9,6 +9,12 @@ from zeus2.job import Job
 from zeus2.profiler import Profiler
 from zeus.util import FileAndConsole
 
+import torch
+from torch import nn, optim
+from torch.utils.data import DataLoader
+from torchvision import datasets, transforms
+
+
 
 def parse_args() -> argparse.Namespace:
     """Parse commandline arguments."""
@@ -126,7 +132,6 @@ def main(args: argparse.Namespace) -> None:
     batch_sizes = [args.b_min]
     # TODO: don't hardcode the dropout_rates
     dropout_rates = [0.1, 0.9]
-    # TODO: maybe pass in the 5 as another command line arg?
     learning_rates = [args.lr_min + x*(args.lr_max-args.lr_min)/args.num_lr for x in range(args.num_lr)]
     while (bs := batch_sizes[-1] * 2) <= args.b_max:
         batch_sizes.append(bs)
@@ -163,16 +168,51 @@ def main(args: argparse.Namespace) -> None:
     sys.stdout = FileAndConsole(Path(master_logdir) / "master.log")
 
     # Run Zeus!
-    bs, lr, dr, pl = master.profile(
-        job=job,
-        learning_rates=learning_rates,
-        batch_sizes=batch_sizes,
-        dropout_rates=dropout_rates,
-        beta_knob=args.beta_knob,
-        eta_knob=args.eta_knob,
-    )
+    # bs, lr, dr, pl = master.profile(
+    #     job=job,
+    #     learning_rates=learning_rates,
+    #     batch_sizes=batch_sizes,
+    #     dropout_rates=dropout_rates,
+    #     beta_knob=args.beta_knob,
+    #     eta_knob=args.eta_knob,
+    # )
 
-    print(f"optimized batch size: {bs}, learning rate: {lr}, dropout_rate: {dr}, power limit: {pl}")
+    # Prepare datasets.
+    train_dataset = datasets.CIFAR100(
+            root="data",
+            train=True,
+            download=True,
+            transform=transforms.Compose(
+                [
+                    transforms.RandomCrop(32, padding=4),
+                    transforms.RandomHorizontalFlip(),
+                    transforms.RandomRotation(15),
+                    transforms.ToTensor(),
+                    transforms.Normalize(
+                        mean=(0.5070751592371323, 0.48654887331495095, 0.4409178433670343),
+                        std=(0.2673342858792401, 0.2564384629170883, 0.27615047132568404),
+                    ),
+                ]
+            ),
+        )
+
+    val_dataset = datasets.CIFAR100(
+            root="data",
+            train=False,
+            download=True,
+            transform=transforms.Compose(
+                [
+                    transforms.ToTensor(),
+                    transforms.Normalize(
+                        mean=(0.5070751592371323, 0.48654887331495095, 0.4409178433670343),
+                        std=(0.2673342858792401, 0.2564384629170883, 0.27615047132568404),
+                    ),
+                ]
+            ),
+        )
+    
+    master.train_with_profiling(job=Job, eta_knob=args.eta_knob, beta_knob=args.beta_knob, train_dataset=train_dataset, val_dataset=val_dataset)
+    # print(f"optimized batch size: {bs}, learning rate: {lr}, dropout_rate: {dr}, power limit: {pl}")
 
 
 if __name__ == "__main__":

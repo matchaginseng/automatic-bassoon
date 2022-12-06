@@ -71,9 +71,9 @@ class ProfileDataLoader(DataLoader):
     def __init__(
         self,
         *args,
-        batch_size: int,
-        learning_rate: float,
-        power_limit: int = 0,
+        batch_size: int = 128,
+        learning_rate: float = 0.01,
+        power_limit: int = 100,
         warmup_iters: int = 10,
         measure_iters: int = 40,
         split: Literal["train", "eval"],
@@ -486,6 +486,12 @@ class ProfileDataLoader(DataLoader):
         self.train_tput_result = throughput
 
         print(f"Profile done with power limit {self.power_limit//1000}W")
+    
+    def set_power_limit(self, new_pl):
+        self.power_limit = new_pl * 1000
+    
+    def set_learning_rate(self, new_lr):
+        self.learning_rate = new_lr
 
 
 def kill_monitor():
