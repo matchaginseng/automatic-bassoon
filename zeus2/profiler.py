@@ -465,6 +465,7 @@ class Profiler:
         train_loader = ProfileDataLoader(
                             train_dataset,
                             split="train",
+                            profile=True,
                             # batch_size=bs, #TODO: unhardcode this
                             # learning_rate=lr, 
                             # dropout_rate=dr,
@@ -474,6 +475,7 @@ class Profiler:
                         )
         val_loader = ProfileDataLoader(
                             val_dataset,
+                            profile=True,
                             split="eval",
                             # batch_size=bs,
                             # learning_rate=lr,
@@ -572,14 +574,14 @@ class Profiler:
 
                 # return the optimal setting
                 # return (opt_bs, opt_lr, opt_dr, opt_pl[(opt_bs, opt_lr, opt_dr)])
-            
-            print("DONE PROFILING")
-            print(f"The optimal parameters are lr: {opt_lr} and pl: {opt_pl}")
-            train_loader.set_learning_rate(opt_lr)
-            train_loader.set_power_limit(opt_pl)
-
-            self.train(train_loader, model, criterion, optimizer, epoch, 128)
-            curr_acc = self.validate(val_loader, model, criterion, epoch, 128)
+            else:
+                print("DONE PROFILING")
+                print(f"The optimal parameters are lr: {opt_lr} and pl: {opt_pl}")
+                train_loader.set_learning_rate(opt_lr)
+                train_loader.set_power_limit(opt_pl)
+                train_loader.profile = False
+                self.train(train_loader, model, criterion, optimizer, epoch, 128)
+                curr_acc = self.validate(val_loader, model, criterion, epoch, 128)
             # train_loader.calculate_cost(acc)
         
 

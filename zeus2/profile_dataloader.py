@@ -71,6 +71,7 @@ class ProfileDataLoader(DataLoader):
     def __init__(
         self,
         *args,
+        profile: bool = False,
         batch_size: int = 128,
         learning_rate: float = 0.01,
         power_limit: int = 100,
@@ -102,6 +103,7 @@ class ProfileDataLoader(DataLoader):
         """
         # Assumes one epoch per invocation of __iter__.
         self.epoch = 0
+        self.profile = profile
         if split not in ["train", "eval"]:
             raise ValueError("split should be either 'train' or 'eval'.")
         self.split = split
@@ -285,7 +287,7 @@ class ProfileDataLoader(DataLoader):
                 self.start2 = time.time()
         data = self.iter.__next__()
 
-        if self._is_train:
+        if self._is_train and self.profile:
             # We need to start warming up
             # We weren't doing anything. Start warming up if the iterations left in
             # the current epoch can accommodate at least one profile window.
