@@ -433,21 +433,26 @@ class Profiler:
             self.set_seed(seed)
 
         model = shufflenetv2(0.0)
+        logdir = self.build_logdir(job, eta_knob, beta_knob)
 
+        # TODO: don't hardcode these things
         zeus_env = dict(
             ZEUS_LOG_DIR=logdir,
-            ZEUS_JOB_ID=job_id,
-            ZEUS_COST_THRESH="inf" if cost_ub == np.inf else str(cost_ub),
-            ZEUS_BATCH_SIZE=str(batch_size),
-            ZEUS_LEARNING_RATE=str(learning_rate),
+            ZEUS_JOB_ID="hello",
+            ZEUS_COST_THRESH="inf" ,
+            ZEUS_BATCH_SIZE=str(128),
+            ZEUS_LEARNING_RATE=str(0.1),
             ZEUS_ETA_KNOB=str(eta_knob),
-            ZEUS_POWER_LIMIT=str(power_limit),
+            ZEUS_POWER_LIMIT=str(150),
             # ZEUS_TARGET_METRIC=str(job.target_metric),
             ZEUS_MONITOR_PATH=self.monitor_path,
             ZEUS_PROFILE_PARAMS=f"{self.profile_warmup_iters},{self.profile_measure_iters}",
             ZEUS_LOG_PREFIX="/workspace/zeus_logs",
             # ZEUS_USE_OPTIMAL_PL=str(not self.observer_mode),
         )
+
+        env = deepcopy(os.environ)
+        env.update(zeus_env)
 
         train_loader = ProfileDataLoader(
                             train_dataset,
@@ -525,7 +530,6 @@ class Profiler:
                         
                         self.train(train_loader, model, criterion, optimizer, epoch)
                         
-                        logdir = self.build_logdir(job, eta_knob, beta_knob)
                         job_id = f"bs{bs}+lr{lr:.5f}+pl{pl}"
                         history_json = Path(f"{logdir}/{job_id}.history_all.py")
                         
