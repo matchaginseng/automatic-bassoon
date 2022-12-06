@@ -71,8 +71,8 @@ def main(args: argparse.Namespace) -> None:
         seed=args.seed,
         monitor_path="/workspace/zeus/zeus_monitor/zeus_monitor",
         observer_mode=False,
-        profile_warmup_iters=10,
-        profile_measure_iters=40,
+        profile_warmup_iters=20,
+        profile_measure_iters=80,
     )
 
     # The `Job` class encloses all information needed to run training. The `command` parameter is
