@@ -1,0 +1,14 @@
+[Zeus Master] Job(cifar100,shufflenetv2,adam,0.6,bs1024~100) x 100
+[Zeus Master] Batch sizes: [8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096]
+[Zeus Master] Learning rates: [0.001, 0.005, 0.01, 0.05, 0.5]
+[run job] Launching job with BS 1024: and LR: 0.001
+[run job] zeus_env={'ZEUS_LOG_DIR': '/workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120610101670339458', 'ZEUS_JOB_ID': 'rec00+try01', 'ZEUS_COST_THRESH': 'inf', 'ZEUS_ETA_KNOB': '0.5', 'ZEUS_TARGET_METRIC': '0.6', 'ZEUS_MONITOR_PATH': '/workspace/zeus/zeus_monitor/zeus_monitor', 'ZEUS_PROFILE_PARAMS': '10,40', 'ZEUS_USE_OPTIMAL_PL': 'True'}
+[run job] cwd=/workspace/zeus/examples/cifar100
+[run job] command=['python', 'train_lr.py', '--zeus', '--arch', 'shufflenetv2', '--batch_size', '1024', '--epochs', '100', '--seed', '1', '--learning_rate', '0.001']
+[run job] cost_ub=inf
+[run job] Job output logged to '/workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120610101670339458/rec00+try01.train.log'
+2022-12-06 10:11:03,357 [ZeusDataLoader(train)] Distributed data parallel: OFF
+2022-12-06 10:11:03,358 [ZeusDataLoader(train)] The profile window takes 50 iterations (10 for warmup + 40 for profile) and exceeds the number of iterations (49) in one epoch. Scaling the profile window to fit in one epoch...
+2022-12-06 10:11:03,358 [ZeusDataLoader(train)] Scaling done! New profile window takes 47 iterations (9 for warmup + 38 for profile).
+2022-12-06 10:11:03,404 [ZeusDataLoader(train)] Power limit range: [175000, 150000, 125000, 100000]
+2022-12-06 10:11:03,404 [ZeusDataLoader(train)] Power profiling: ON
