@@ -86,7 +86,7 @@ def main(args: argparse.Namespace) -> None:
         default_bs=args.b_0,
         default_lr=args.lr_0,  
         default_dropout=args.dropout_0,
-        workdir="/workspace/zeus/examples/cifar100",
+        workdir="/workspace/zeus/examples/neumf",
         # fmt: off
         command=[
             "python",
