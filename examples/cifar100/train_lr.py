@@ -169,8 +169,8 @@ def main(args: argparse.Namespace) -> None:
 
     # Prepare loss function and optimizer.
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(params=model.parameters(), lr=args.learning_rate)
-    # optimizer = optim.Adadelta(model.parameters())
+    # optimizer = optim.Adam(params=model.parameters(), lr=args.learning_rate)
+    optimizer = optim.Adadelta(model.parameters())
 
     # ZEUS
     # ZeusDataLoader may early stop training when the cost is expected
