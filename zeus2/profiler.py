@@ -482,7 +482,7 @@ class Profiler:
 
         curr_acc = 0.0
         profile = False
-        accs_to_test = set(0.0)
+        # accs_to_test = set([0.0])
         # Main training loop.
         for epoch in epoch_iter:            
             if curr_acc == 0.0 or (curr_acc > 0.2 and curr_acc < 0.3):
