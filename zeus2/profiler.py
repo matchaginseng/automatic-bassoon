@@ -32,6 +32,7 @@ import pynvml
 from zeus2.analyze import HistoryEntry
 from zeus2.job import Job
 from zeus2.metric import epoch_cost
+from zeus.util import get_env
 
 import torch
 from torch import nn, optim
@@ -455,6 +456,8 @@ class Profiler:
         env = deepcopy(os.environ)
         env.update(zeus_env)
 
+        print(f"[run job] {zeus_env=}")
+        print(get_env("ZEUS_MONITOR_PATH", str))
         train_loader = ProfileDataLoader(
                             train_dataset,
                             split="train",
