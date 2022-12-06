@@ -457,6 +457,9 @@ class Profiler:
         env.update(zeus_env)
         sleep(1.0)
 
+        os.environ["ZEUS_MONITOR_PATH"] = self.monitor_path
+        os.environ["ZEUS_LOG_PREFIX"] = "/workspace/zeus_logs"
+
         print(f"[run job] {zeus_env=}")
         print(get_env("ZEUS_MONITOR_PATH", str))
         train_loader = ProfileDataLoader(
@@ -533,7 +536,7 @@ class Profiler:
                         for param_group in optimizer.param_groups:
                             param_group['lr'] = lr
                         
-                        self.train(train_loader, model, criterion, optimizer, epoch)
+                        self.train(train_loader, model, criterion, optimizer, epoch, 128)
                         
                         job_id = f"bs{bs}+lr{lr:.5f}+pl{pl}"
                         history_json = Path(f"{logdir}/{job_id}.history_all.py")
