@@ -1,0 +1,39 @@
+Files already downloaded and verified
+Files already downloaded and verified
+power limit arg: 175
+learning rate arg: 0.00031780497164141406
+batch size arg: 2048
+ProfileDataLoader constructor: called constructor of DataLoader!
+[Profile DataLoader] The profile window takes 50 iterations (10 for warmup + 40 for profile) and exceeds the number of iterations (25) in one epoch. Scaling the profile window to fit in one epoch...
+[Profile DataLoader] Scaling done! New profile window takes 23 iterations (4 for warmup + 19 for profile).
+ProfileDataLoader constructor: called constructor of DataLoader!
+Launching Zeus monitor 0...
+[GPU_0] Set GPU power limit to 175W.
+Warm-up started with power limit 175W
+Training Epoch: 0 [2048/51200]	Loss: 4.6363
+Training Epoch: 0 [4096/51200]	Loss: 4.6076
+Training Epoch: 0 [6144/51200]	Loss: 4.5985
+Training Epoch: 0 [8192/51200]	Loss: 4.5952
+Training Epoch: 0 [10240/51200]	Loss: 4.5819
+Training Epoch: 0 [12288/51200]	Loss: 4.5659
+Training Epoch: 0 [14336/51200]	Loss: 4.5708
+Training Epoch: 0 [16384/51200]	Loss: 4.5597
+Training Epoch: 0 [18432/51200]	Loss: 4.5479
+Training Epoch: 0 [20480/51200]	Loss: 4.5285
+Training Epoch: 0 [22528/51200]	Loss: 4.5331
+Training Epoch: 0 [24576/51200]	Loss: 4.5222
+Training Epoch: 0 [26624/51200]	Loss: 4.4988
+Training Epoch: 0 [28672/51200]	Loss: 4.4963
+Training Epoch: 0 [30720/51200]	Loss: 4.5228
+Training Epoch: 0 [32768/51200]	Loss: 4.5124
+Training Epoch: 0 [34816/51200]	Loss: 4.5012
+Training Epoch: 0 [36864/51200]	Loss: 4.5009
+Training Epoch: 0 [38912/51200]	Loss: 4.4726
+Training Epoch: 0 [40960/51200]	Loss: 4.4589
+Training Epoch: 0 [43008/51200]	Loss: 4.4804
+Training Epoch: 0 [45056/51200]	Loss: 4.4560
+Training Epoch: 0 [47104/51200]	Loss: 4.4433
+Profile done with power limit 175W
+epoch 1 train time consumed: 44.11s
+Validation Epoch: 0, Average loss: 0.0023, Accuracy: 0.0095
+Stopped Zeus monitor 0.
