@@ -104,13 +104,16 @@ def avg_power(
     """
     df = cast(pd.DataFrame, pd.read_csv(logfile, engine="python", skipfooter=1))
     df["Time"] = pd.to_datetime(df["Time"])
-    print("df: ", df)
-    print("df time: ", df["Time"])
-    print(start, end)
+    # print("df: ", df)
+    # print("df time: ", df["Time"])
+    print("start ", start)
+    print("timedelta ", timedelta(seconds=start))
+    print(df["Time"] >= df.iloc[0]["Time"] + timedelta(seconds=start))
     if start is not None:
         df = df.loc[df["Time"] >= df.iloc[0]["Time"] + timedelta(seconds=start)]
     if end is not None:
         df = df.loc[df["Time"] <= df.iloc[0]["Time"] + timedelta(seconds=end)]
+    print(df)
     seconds = _get_seconds(df)
     watts = _get_watts(df)
     area = auc(seconds, watts)
