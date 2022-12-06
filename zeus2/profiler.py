@@ -145,124 +145,124 @@ class Profiler:
         os.makedirs(logdir, exist_ok=exist_ok)
         return logdir
 
-    def run_job(
-        self,
-        job: Job,
-        batch_size: int,
-        learning_rate: float,
-        dropout_rate: float,
-        power_limit: int,
-        seed: int,
-        logdir: str,
-        eta_knob: float,
-        cost_ub: float,
-    ) -> tuple[float, float, bool]:
-        r"""Launch the training job.
+    # def run_job(
+    #     self,
+    #     job: Job,
+    #     batch_size: int,
+    #     learning_rate: float,
+    #     dropout_rate: float,
+    #     power_limit: int,
+    #     seed: int,
+    #     logdir: str,
+    #     eta_knob: float,
+    #     cost_ub: float,
+    # ) -> tuple[float, float, bool]:
+    #     r"""Launch the training job.
 
-        Args:
-            job: The job to run.
-            batch_size: The batch size to use.
-            learning_rate: The learning rate to use, scaled based on `batch_size`.
-            dropout_rate: The dropout rate to use
-            seed: The random seed to use for training.
-            logdir: Directory to store log files in.
-            eta_knob: $\eta$ used in the cost metric.
-                $\textrm{cost} = \eta \cdot \textrm{ETA} + (1 - \eta) \cdot \textrm{MaxPower} \cdot \textrm{TTA}$
-            cost_ub: Cost upper bound. The job is terminated when the next epoch is going
-                to exceed the cost upper bound.
+    #     Args:
+    #         job: The job to run.
+    #         batch_size: The batch size to use.
+    #         learning_rate: The learning rate to use, scaled based on `batch_size`.
+    #         dropout_rate: The dropout rate to use
+    #         seed: The random seed to use for training.
+    #         logdir: Directory to store log files in.
+    #         eta_knob: $\eta$ used in the cost metric.
+    #             $\textrm{cost} = \eta \cdot \textrm{ETA} + (1 - \eta) \cdot \textrm{MaxPower} \cdot \textrm{TTA}$
+    #         cost_ub: Cost upper bound. The job is terminated when the next epoch is going
+    #             to exceed the cost upper bound.
 
-        Returns:
-            A tuple of energy consumption, time consumption, and whether the job reached the target metric.
-        """
-        # Generate job command
-        command = job.gen_command(batch_size, learning_rate, power_limit, dropout_rate, seed)
+    #     Returns:
+    #         A tuple of energy consumption, time consumption, and whether the job reached the target metric.
+    #     """
+    #     # Generate job command
+    #     command = job.gen_command(batch_size, learning_rate, power_limit, dropout_rate, seed)
 
-        # Set environment variables
-        # TODO: incorporate dropout rate
-        job_id = f"bs{batch_size}+lr{learning_rate:.5f}+pl{power_limit}"
-        zeus_env = dict(
-            ZEUS_LOG_DIR=logdir,
-            ZEUS_JOB_ID=job_id,
-            ZEUS_COST_THRESH="inf" if cost_ub == np.inf else str(cost_ub),
-            ZEUS_BATCH_SIZE=str(batch_size),
-            ZEUS_LEARNING_RATE=str(learning_rate),
-            ZEUS_ETA_KNOB=str(eta_knob),
-            ZEUS_POWER_LIMIT=str(power_limit),
-            # ZEUS_TARGET_METRIC=str(job.target_metric),
-            ZEUS_MONITOR_PATH=self.monitor_path,
-            ZEUS_PROFILE_PARAMS=f"{self.profile_warmup_iters},{self.profile_measure_iters}",
-            ZEUS_LOG_PREFIX="/workspace/zeus_logs",
-            # ZEUS_USE_OPTIMAL_PL=str(not self.observer_mode),
-        )
-        env = deepcopy(os.environ)
-        env.update(zeus_env)
+    #     # Set environment variables
+    #     # TODO: incorporate dropout rate
+    #     job_id = f"bs{batch_size}+lr{learning_rate:.5f}+pl{power_limit}"
+    #     zeus_env = dict(
+    #         ZEUS_LOG_DIR=logdir,
+    #         ZEUS_JOB_ID=job_id,
+    #         ZEUS_COST_THRESH="inf" if cost_ub == np.inf else str(cost_ub),
+    #         ZEUS_BATCH_SIZE=str(batch_size),
+    #         ZEUS_LEARNING_RATE=str(learning_rate),
+    #         ZEUS_ETA_KNOB=str(eta_knob),
+    #         ZEUS_POWER_LIMIT=str(power_limit),
+    #         # ZEUS_TARGET_METRIC=str(job.target_metric),
+    #         ZEUS_MONITOR_PATH=self.monitor_path,
+    #         ZEUS_PROFILE_PARAMS=f"{self.profile_warmup_iters},{self.profile_measure_iters}",
+    #         ZEUS_LOG_PREFIX="/workspace/zeus_logs",
+    #         # ZEUS_USE_OPTIMAL_PL=str(not self.observer_mode),
+    #     )
+    #     env = deepcopy(os.environ)
+    #     env.update(zeus_env)
 
-        # Training script output captured by the master.
-        job_output = f"{logdir}/{job_id}.train.log"
+    #     # Training script output captured by the master.
+    #     job_output = f"{logdir}/{job_id}.train.log"
 
-        # Training stats (energy, time, reached, end_epoch) written by ZeusDataLoader.
-        # This file being found means that the training job is done.
-        # train_json = Path(f"{logdir}/{job_id}.train.json")
+    #     # Training stats (energy, time, reached, end_epoch) written by ZeusDataLoader.
+    #     # This file being found means that the training job is done.
+    #     # train_json = Path(f"{logdir}/{job_id}.train.json")
 
-        # File that got written to in the profiling dataloader.
-        history_json = Path(f"{logdir}/{job_id}.history_all.py")
+    #     # File that got written to in the profiling dataloader.
+    #     history_json = Path(f"{logdir}/{job_id}.history_all.py")
 
-        # Reporting
-        print(f"[run job] Launching job with BS {batch_size}: and LR: {learning_rate} and PL: {power_limit} and DR: {dropout_rate}")
-        print(f"[run job] {zeus_env=}")
-        if job.workdir is not None:
-            print(f"[run job] cwd={job.workdir}")
-        print(f"[run job] {command=}")
-        print(f"[run job] {cost_ub=}")
-        print(f"[run job] Job output logged to '{job_output}'")
+    #     # Reporting
+    #     print(f"[run job] Launching job with BS {batch_size}: and LR: {learning_rate} and PL: {power_limit} and DR: {dropout_rate}")
+    #     print(f"[run job] {zeus_env=}")
+    #     if job.workdir is not None:
+    #         print(f"[run job] cwd={job.workdir}")
+    #     print(f"[run job] {command=}")
+    #     print(f"[run job] {cost_ub=}")
+    #     print(f"[run job] Job output logged to '{job_output}'")
 
-        # Run the job.
-        with open(job_output, "w") as f:
-            # Launch subprocess.
-            # stderr is redirected to stdout, and stdout to the job_output file.
-            proc = subprocess.Popen(
-                command,
-                cwd=job.workdir,
-                stderr=subprocess.STDOUT,
-                stdout=f,
-            )
+    #     # Run the job.
+    #     with open(job_output, "w") as f:
+    #         # Launch subprocess.
+    #         # stderr is redirected to stdout, and stdout to the job_output file.
+    #         proc = subprocess.Popen(
+    #             command,
+    #             cwd=job.workdir,
+    #             stderr=subprocess.STDOUT,
+    #             stdout=f,
+    #         )
 
-            # Check if training is done.
-            with open(job_output, "r") as jobf:
-                while proc.poll() is None:
-                    print(jobf.read(), end="")
-                    sleep(1.0)
+    #         # Check if training is done.
+    #         with open(job_output, "r") as jobf:
+    #             while proc.poll() is None:
+    #                 print(jobf.read(), end="")
+    #                 sleep(1.0)
 
-                # Print out the rest of the script output.
-                f.flush()
-                print(jobf.read())
+    #             # Print out the rest of the script output.
+    #             f.flush()
+    #             print(jobf.read())
 
-                # Report exitcode.
-                exitcode = proc.poll()
-                print(f"[run job] Job terminated with exit code {exitcode}.")
+    #             # Report exitcode.
+    #             exitcode = proc.poll()
+    #             print(f"[run job] Job terminated with exit code {exitcode}.")
 
-            # `history_json` must exist at this point.
-            if not history_json.exists():
-                raise RuntimeError(f"{history_json} does not exist.")
+    #         # `history_json` must exist at this point.
+    #         if not history_json.exists():
+    #             raise RuntimeError(f"{history_json} does not exist.")
 
-        # TODO: extract the cost from the file that got written out in the dataloader <- did i do it right? <- yas
-        with open(history_json, "r") as histf:
-            stats = json.load(histf)
-            print(f"[run job] {stats=}")
+    #     # TODO: extract the cost from the file that got written out in the dataloader <- did i do it right? <- yas
+    #     with open(history_json, "r") as histf:
+    #         stats = json.load(histf)
+    #         print(f"[run job] {stats=}")
 
-        # Read `train_json` for the training stats.
-        # with open(train_json, "r") as f:
-        #     stats = json.load(f)
-        #     print(f"[run job] {stats=}")
+    #     # Read `train_json` for the training stats.
+    #     # with open(train_json, "r") as f:
+    #     #     stats = json.load(f)
+    #     #     print(f"[run job] {stats=}")
 
-        # Casting
-        # if not isinstance(stats["reached"], bool):
-        #     stats["reached"] = stats["reached"].lower() == "true"
+    #     # Casting
+    #     # if not isinstance(stats["reached"], bool):
+    #     #     stats["reached"] = stats["reached"].lower() == "true"
 
-        return float(stats["energy"]), float(stats["time"]), float(stats["accuracy"]), float(stats["total_cost"])
+    #     return float(stats["energy"]), float(stats["time"]), float(stats["accuracy"]), float(stats["total_cost"])
 
-        # return float(stats["energy"]), float(stats["time"]), float(cost["cost"]), stats["reached"]
-        # not sure about how exactly to index into cost
+    #     # return float(stats["energy"]), float(stats["time"]), float(cost["cost"]), stats["reached"]
+    #     # not sure about how exactly to index into cost
 
     def _save_train_results(
         self, energy: float, time_: float, cost: float, reached: bool
@@ -285,137 +285,137 @@ class Profiler:
             self._log("Training done.")
             self._log(f"Saved {self.train_json}: {f.read()}")
 
-    def profile(
-        self, 
-        job: Job,
-        eta_knob: float,
-        beta_knob: float,
-        batch_sizes: list,
-        dropout_rates: list,
-        learning_rates: list) -> tuple[int, float, int]:
-        """Runs a job. Returns a tuple (bs, lr, pl) that minimizes our epoch cost
+    # def profile(
+    #     self, 
+    #     job: Job,
+    #     eta_knob: float,
+    #     beta_knob: float,
+    #     batch_sizes: list,
+    #     dropout_rates: list,
+    #     learning_rates: list) -> tuple[int, float, int]:
+    #     """Runs a job. Returns a tuple (bs, lr, pl) that minimizes our epoch cost
 
-        Args:
-            job: The job to run.
-            batch_sizes: List of feasible batch sizes.
-            beta_knob: `beta_knob * min_eta` is the early stopping cost threshold.
-                Set to `np.inf` to disable early stopping.
-            eta_knob: $\eta$ used in the cost metric.
-                $\textrm{cost} = \eta \cdot \textrm{ETA} + (1 - \eta) \cdot \textrm{MaxPower} \cdot \textrm{TTA}$
-        """
+    #     Args:
+    #         job: The job to run.
+    #         batch_sizes: List of feasible batch sizes.
+    #         beta_knob: `beta_knob * min_eta` is the early stopping cost threshold.
+    #             Set to `np.inf` to disable early stopping.
+    #         eta_knob: $\eta$ used in the cost metric.
+    #             $\textrm{cost} = \eta \cdot \textrm{ETA} + (1 - \eta) \cdot \textrm{MaxPower} \cdot \textrm{TTA}$
+    #     """
         
-        if eta_knob < 0.0 or eta_knob > 1.0:
-            raise ValueError("eta_knob must be in [0.0, 1.0].")
+    #     if eta_knob < 0.0 or eta_knob > 1.0:
+    #         raise ValueError("eta_knob must be in [0.0, 1.0].")
 
-        # Copy all internal state so that simulation does not modify any
-        # internal state and is deterministic w.r.t. the random seed.
-        seed = self.seed
+    #     # Copy all internal state so that simulation does not modify any
+    #     # internal state and is deterministic w.r.t. the random seed.
+    #     seed = self.seed
 
-        # ZEUS_LOG_DIR: Where all the logs and files are stored for this run.
-        logdir = self.build_logdir(job, eta_knob, beta_knob)
+    #     # ZEUS_LOG_DIR: Where all the logs and files are stored for this run.
+    #     logdir = self.build_logdir(job, eta_knob, beta_knob)
 
-        # Job history list to return.
-        history: list[HistoryEntry] = []
+    #     # Job history list to return.
+    #     history: list[HistoryEntry] = []
 
-        # Save job history to this file, continuously.
-        history_file = f"{logdir}/history.py"
+    #     # Save job history to this file, continuously.
+    #     history_file = f"{logdir}/history.py"
 
-        # beta_knob * min_cost is the early stopping cost threshold.
-        min_cost = np.inf
+    #     # beta_knob * min_cost is the early stopping cost threshold.
+    #     min_cost = np.inf
 
-        # list of (bs, lr) batch size tuples to try
-        bs_lr_dr = []
+    #     # list of (bs, lr) batch size tuples to try
+    #     bs_lr_dr = []
 
-        # dict of (bs, lr) opt power limits
-        opt_pl = {}
+    #     # dict of (bs, lr) opt power limits
+    #     opt_pl = {}
 
-        # batch_sizes is a list of all batch sizes the user wants us to try
-        for bs in batch_sizes:
-            # for lr in [job.scale_lr(bs * factor) for factor in [0.8, 0.9, 1, 1.1, 1.2]] :
-            for lr in [job.scale_lr(bs * factor) for factor in learning_rates]:
-                for dr in dropout_rates:
-                    bs_lr_dr.append((bs, lr, dr))
-                    opt_pl[(bs, lr, dr)] = 0 # initialize
+    #     # batch_sizes is a list of all batch sizes the user wants us to try
+    #     for bs in batch_sizes:
+    #         # for lr in [job.scale_lr(bs * factor) for factor in [0.8, 0.9, 1, 1.1, 1.2]] :
+    #         for lr in [job.scale_lr(bs * factor) for factor in learning_rates]:
+    #             for dr in dropout_rates:
+    #                 bs_lr_dr.append((bs, lr, dr))
+    #                 opt_pl[(bs, lr, dr)] = 0 # initialize
 
-        profile_time = 0.
+    #     profile_time = 0.
 
-        #
-        # 2-lvl optimization
-        for i in range(1, len(bs_lr_dr) + 1):
-            bs, lr, dr = bs_lr_dr[i - 1]
-            print(f"\n[Power Profiler] with batch size {bs} and learning rate {lr} and dropout rate {dr}")
+    #     #
+    #     # 2-lvl optimization
+    #     for i in range(1, len(bs_lr_dr) + 1):
+    #         bs, lr, dr = bs_lr_dr[i - 1]
+    #         print(f"\n[Power Profiler] with batch size {bs} and learning rate {lr} and dropout rate {dr}")
 
-            min_cost = float("inf")
+    #         min_cost = float("inf")
 
-            # initialize best pl for this combo
-            best_pl = -1
+    #         # initialize best pl for this combo
+    #         best_pl = -1
 
-            for pl in self.power_limits:
-                # cost_acc = 0.0
+    #         for pl in self.power_limits:
+    #             # cost_acc = 0.0
             
-                # Launch the job.
-                # Early stops based on cost_ub.
-                job_start_time = monotonic()
+    #             # Launch the job.
+    #             # Early stops based on cost_ub.
+    #             job_start_time = monotonic()
 
-                # we don't want to run job here we want to do the profiling
-                energy, time, accuracy, total_cost = self.run_job(
-                    job=job,
-                    batch_size=bs,
-                    learning_rate=lr,
-                    dropout_rate=dr,
-                    power_limit=pl,
-                    seed=seed,
-                    logdir=logdir,
-                    eta_knob=eta_knob,
-                    cost_ub=beta_knob * min_cost,
-                )
-                job_end_time = monotonic()
+    #             # we don't want to run job here we want to do the profiling
+    #             energy, time, accuracy, total_cost = self.run_job(
+    #                 job=job,
+    #                 batch_size=bs,
+    #                 learning_rate=lr,
+    #                 dropout_rate=dr,
+    #                 power_limit=pl,
+    #                 seed=seed,
+    #                 logdir=logdir,
+    #                 eta_knob=eta_knob,
+    #                 cost_ub=beta_knob * min_cost,
+    #             )
+    #             job_end_time = monotonic()
 
-                profile_time += job_end_time - job_start_time
-                # The random seed will be unique for each run, but still jobs will be
-                # deterministic w.r.t. each call to `run`.
-                # seed += 1
+    #             profile_time += job_end_time - job_start_time
+    #             # The random seed will be unique for each run, but still jobs will be
+    #             # deterministic w.r.t. each call to `run`.
+    #             # seed += 1
 
-                # Compute the cost of this try.
-                # num_gpus = torch.cuda.device_count()
+    #             # Compute the cost of this try.
+    #             # num_gpus = torch.cuda.device_count()
 
-                # cost = epoch_cost(energy, time, eta_knob, self.max_pl * num_gpus)
-                # print(f"[Zeus Master] {cost=}")
+    #             # cost = epoch_cost(energy, time, eta_knob, self.max_pl * num_gpus)
+    #             # print(f"[Zeus Master] {cost=}")
 
-                if total_cost < min_cost:
-                    min_cost = total_cost
-                    best_pl = pl 
-                    opt_pl[(bs, lr, dr)] = best_pl
+    #             if total_cost < min_cost:
+    #                 min_cost = total_cost
+    #                 best_pl = pl 
+    #                 opt_pl[(bs, lr, dr)] = best_pl
 
-                # Record history for visualization. TODO: change variables. the functions processing this may be total nonsense RN
-                history.append(HistoryEntry(bs, pl, energy, time, accuracy, total_cost))
-                with open(history_file, "w") as f:
-                    # Intended use:
-                    #
-                    # ```python
-                    # from zeus.analyze import HistoryEntry
-                    # history = eval(open(history_file).read())
-                    # ```
-                    f.write(pprint.pformat(history) + "\n")
+    #             # Record history for visualization. TODO: change variables. the functions processing this may be total nonsense RN
+    #             history.append(HistoryEntry(bs, pl, energy, time, accuracy, total_cost))
+    #             with open(history_file, "w") as f:
+    #                 # Intended use:
+    #                 #
+    #                 # ```python
+    #                 # from zeus.analyze import HistoryEntry
+    #                 # history = eval(open(history_file).read())
+    #                 # ```
+    #                 f.write(pprint.pformat(history) + "\n")
 
 
-        print(f"[Power Profiler]\n{history}")
+    #     print(f"[Power Profiler]\n{history}")
 
-        profiler_info = dict(
-            total_time=profile_time,
-            opt_bs=opt_bs,
-            opt_lr=opt_lr,
-            opt_pl=opt_pl[((opt_bs, opt_lr))]
-        )
+    #     profiler_info = dict(
+    #         total_time=profile_time,
+    #         opt_bs=opt_bs,
+    #         opt_lr=opt_lr,
+    #         opt_pl=opt_pl[((opt_bs, opt_lr))]
+    #     )
         
-        with open(f"{logdir}/profiler_info.json", "w") as f:
-            json.dump(profiler_info, f)
+    #     with open(f"{logdir}/profiler_info.json", "w") as f:
+    #         json.dump(profiler_info, f)
 
-        # find optimal setting to return: get argmin
-        opt_bs, opt_lr, opt_dr = min(opt_pl, key=opt_pl.get)
+    #     # find optimal setting to return: get argmin
+    #     opt_bs, opt_lr, opt_dr = min(opt_pl, key=opt_pl.get)
 
-        # return the optimal setting
-        return (opt_bs, opt_lr, opt_dr, opt_pl[(opt_bs, opt_lr, opt_dr)])
+    #     # return the optimal setting
+    #     return (opt_bs, opt_lr, opt_dr, opt_pl[(opt_bs, opt_lr, opt_dr)])
 
     def set_seed(seed: int) -> None:
         """Set random seed for reproducible results."""
@@ -432,7 +432,7 @@ class Profiler:
         seed=None) -> tuple[int, float, int]:
         if seed is not None:
             self.set_seed(seed)
-
+        # TODO: stuff IS being written to master.log which is all we've been using - do we want to write to train or history?
         model = shufflenetv2(0.0)
         # TODO: make this the actual logdir
         os.environ["ZEUS_MONITOR_PATH"] = self.monitor_path
@@ -482,10 +482,12 @@ class Profiler:
 
         curr_acc = 0.0
         profile = False
-        # accs_to_test = set([0.0])
+        # TODO: change to what we think is best
+        # list of accuracies for which we need to profile
+        accs_to_test = [0.5, 0.4, 0.3, 0.0]
         # Main training loop.
         for epoch in epoch_iter:            
-            if curr_acc == 0.0 or (curr_acc > 0.2 and curr_acc < 0.3):
+            if curr_acc >= accs_to_test.pop():
                 profile = True
                 # set the dataloader profiling to be true
                 # bs_lr_dr = []
@@ -498,7 +500,7 @@ class Profiler:
                         bs_lr.append((bs, lr))
                         opt_pl[(bs, lr)] = 0
 
-                profile_time = 0.
+                # profile_time = 0.
 
                 min_cost = float("inf")
                 for i in range(1, len(bs_lr) + 1):
@@ -522,17 +524,8 @@ class Profiler:
                         # TODO: maybe we need to shallow-copy the model?
                         self.train(train_loader, model, criterion, optimizer, epoch, 128)
                         acc = self.validate(val_loader, model, criterion, epoch, 128)
-                        energy, time, acc, cost = train_loader.calculate_cost(acc)
+                        _, _, _, cost = train_loader.calculate_cost(acc)
                         
-                        job_id = f"bs{bs}+lr{lr:.5f}+pl{pl}"
-                        # history_json = Path(f"{logdir}/{job_id}.history_all.py")
-                        
-                        # with open(history_json, "r") as histf:
-                        #     stats = json.load(histf)
-                        #     print(f"[run job] {stats=}")
-                        
-                        # energy, time, acc, cost = float(stats["energy"]), float(stats["time"]), float(stats["accuracy"]), float(stats["total_cost"])
-                        # print(f"[Power Profiler 2] ENERGY: {energy}, TIME: {time}, ACCURACY: {acc}, COST {cost}")
                         if cost < min_cost:
                             min_cost = cost
                             best_pl = pl 
