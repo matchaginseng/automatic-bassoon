@@ -178,10 +178,10 @@ def main(args: argparse.Namespace) -> None:
     for epoch in epoch_iter:
         start_time = time.time()
         train(train_loader, model, criterion, optimizer, epoch, args)
-        HR, NDCG, epoch = validate(val_loader, model, criterion, epoch, args, start_time)
+        HR, NDCG = validate(val_loader, model, criterion, epoch, args, start_time)
 
         if HR > best_hr:
-            best_hr, best_ndcg, best_epoch = HR, NDCG, epoch
+            best_hr, best_ndcg = HR, NDCG
 
         # ZEUS
         if args.zeus:
@@ -231,10 +231,7 @@ def validate(val_loader, model, criterion, epoch, args, start_time):
     print(f"Validation Epoch: {epoch}, HR: {np.mean(HR):.3f}\tNDCG: {np.mean(NDCG):.3f}")
     print(f"\tAverage Loss:{test_loss / num_samples:.4f}")
 
-    if HR > best_hr:
-        best_hr, best_ndcg, best_epoch = HR, NDCG, epoch
-
-    return best_hr, best_ndcg, best_epoch
+    return HR, NDCG
 
 def set_seed(seed: int) -> None:
     """Set random seed for reproducible results."""
