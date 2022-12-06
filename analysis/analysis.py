@@ -3,7 +3,8 @@ import matplotlib.pyplot as plt
 files = [
     "lr_0.0001_adam.txt", "lr_0.001_adam.txt", "lr_0.01_adam.txt", 
     "lr_0.01_sgd.txt", "lr_0.1_sgd.txt",
-    "dr_0.3.txt", "dr_0.5.txt", "dr_0.7.txt", "dr_0.9.txt"]
+    "dr_0.3.txt", "dr_0.5.txt", "dr_0.7.txt", "dr_0.9.txt",
+    "adadelta.txt"]
 
 ACC = "Accuracy: "
 TIME = ": time="
