@@ -296,7 +296,7 @@ class Zeus2Master:
         # TODO: Change learning rates
         # lrs = [1e-4, 1e-3, 1e-2, 1e-1]
         # lrs = [1e-2, 1e-1]
-        lrs = [1e-4, 1e-3, 5e-3, 1e-2, 5e-2, 5e-1]
+        lrs = [1e-3, 5e-3, 1e-2, 5e-2, 5e-1]
         print(f"[Zeus Master] Learning rates: {lrs}")
 
         # Hardcode batch size for shufflenetv2
