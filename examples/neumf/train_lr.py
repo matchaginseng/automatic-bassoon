@@ -83,14 +83,14 @@ def parse_args() -> argparse.Namespace:
 
     return parser.parse_args()
 
-train_data, test_data, user_num, item_num, train_mat = data_utils.load_all()
-
 
 def main(args: argparse.Namespace) -> None:
     """Run the main training routine."""
     # Set random seed.
     if args.seed is not None:
         set_seed(args.seed)
+
+    train_data, test_data, user_num, item_num, train_mat = data_utils.load_all()
 
     # Prepare model.
     # NOTE: Using torchvision.models would be also straightforward. For example:
