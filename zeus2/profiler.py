@@ -538,17 +538,17 @@ class Profiler:
                         
                         self.train(train_loader, model, criterion, optimizer, epoch, 128)
                         acc = self.validate(val_loader, model, criterion, epoch, 128)
-                        train_loader.calculate_cost(acc)
+                        energy, time, acc, cost = train_loader.calculate_cost(acc)
                         
                         job_id = f"bs{bs}+lr{lr:.5f}+pl{pl}"
-                        history_json = Path(f"{logdir}/{job_id}.history_all.py")
+                        # history_json = Path(f"{logdir}/{job_id}.history_all.py")
                         
-                        with open(history_json, "r") as histf:
-                            stats = json.load(histf)
-                            print(f"[run job] {stats=}")
+                        # with open(history_json, "r") as histf:
+                        #     stats = json.load(histf)
+                        #     print(f"[run job] {stats=}")
                         
-                        energy, time, acc, cost = float(stats["energy"]), float(stats["time"]), float(stats["accuracy"]), float(stats["total_cost"])
-                        print(f"[Power Profiler 2] ENERGY: {energy}, TIME: {time}, ACCURACY: {acc}, COST {cost}")
+                        # energy, time, acc, cost = float(stats["energy"]), float(stats["time"]), float(stats["accuracy"]), float(stats["total_cost"])
+                        # print(f"[Power Profiler 2] ENERGY: {energy}, TIME: {time}, ACCURACY: {acc}, COST {cost}")
                         if cost < min_cost:
                             min_cost = cost
                             best_pl = pl 

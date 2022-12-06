@@ -357,8 +357,8 @@ class ProfileDataLoader(DataLoader):
 
         total_cost = (frac_epochs / acc) * ((self.eta_knob * self.train_power_result + (1 - self.eta_knob) * self.max_pl / self.train_tput_result))
 
-        with open(self.history_file_all, "w") as f:
-            content = '''
+        # with open(self.history_file_all, "w") as f:
+        content = '''
                 {{
                     "bs": {bs},
                     "pl": {pl},
@@ -376,7 +376,9 @@ class ProfileDataLoader(DataLoader):
                         accuracy=acc,
                         total_cost = total_cost)
 
-            f.write(content)
+            # f.write(content)
+        print(content)
+        return self.train_power_result, self.time_consumed, acc, total_cost
 
     
     def _start_warmup(self) -> None:
@@ -492,7 +494,6 @@ class ProfileDataLoader(DataLoader):
     
     def set_learning_rate(self, new_lr):
         self.learning_rate = new_lr
-
 
 def kill_monitor():
     """Kill all Zeus power monitors."""
