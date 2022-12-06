@@ -26,7 +26,6 @@ import torch
 from torch import nn, optim
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
-from torchvision.models import model_names
 
 import evaluate
 import data_utils
@@ -46,9 +45,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--arch",
         metavar="ARCH",
-        default="NeuMF",
-        choices=model_names,
-        help="model architecture: " + " | ".join(model_names) + " (default: neumf)"
+        default="neumf",
+        help="model architecture: " + " (default: neumf)"
     )
     parser.add_argument(
         "--epochs", type=int, default=100, help="Maximum number of epochs to train."
