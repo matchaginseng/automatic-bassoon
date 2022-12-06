@@ -22,6 +22,7 @@ def metrics(model, criterion, test_loader, top_k):
 	for user, item, label in test_loader:
 		user = user.cuda()
 		item = item.cuda()
+		label = label.float().cuda()
 
 		predictions = model(user, item)
 		_, indices = torch.topk(predictions, top_k)
