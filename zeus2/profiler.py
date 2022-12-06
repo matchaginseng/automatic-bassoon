@@ -435,32 +435,9 @@ class Profiler:
 
         model = shufflenetv2(0.0)
         # TODO: make this the actual logdir
-        logdir = "zeus-logs/"
-
-        # TODO: these environment variables don't work correctly...fix
-        zeus_env = dict(
-            ZEUS_LOG_DIR=logdir,
-            ZEUS_JOB_ID="hello",
-            ZEUS_COST_THRESH="inf" ,
-            ZEUS_BATCH_SIZE=str(128),
-            ZEUS_LEARNING_RATE=str(0.1),
-            ZEUS_ETA_KNOB=str(eta_knob),
-            ZEUS_POWER_LIMIT=str(150),
-            # ZEUS_TARGET_METRIC=str(job.target_metric),
-            ZEUS_MONITOR_PATH=self.monitor_path,
-            ZEUS_PROFILE_PARAMS=f"{self.profile_warmup_iters},{self.profile_measure_iters}",
-            ZEUS_LOG_PREFIX="/workspace/zeus_logs",
-            # ZEUS_USE_OPTIMAL_PL=str(not self.observer_mode),
-        )
-
-        env = deepcopy(os.environ)
-        env.update(zeus_env)
-        sleep(1.0)
-
         os.environ["ZEUS_MONITOR_PATH"] = self.monitor_path
         os.environ["ZEUS_LOG_PREFIX"] = "/workspace/zeus_logs"
 
-        print(f"[run job] {zeus_env=}")
         print(get_env("ZEUS_MONITOR_PATH", str))
         train_loader = ProfileDataLoader(
                             train_dataset,
@@ -504,11 +481,15 @@ class Profiler:
         epoch_iter = range(100)
 
         curr_acc = 0.0
+        profile = False
+        accs_to_test = set(0.0)
         # Main training loop.
         for epoch in epoch_iter:            
             if curr_acc == 0.0 or (curr_acc > 0.2 and curr_acc < 0.3):
+                profile = True
                 # set the dataloader profiling to be true
                 # bs_lr_dr = []
+            if profile:
                 bs_lr = []
                 opt_pl = {}
                 for bs in batch_sizes:
@@ -538,6 +519,7 @@ class Profiler:
                         for param_group in optimizer.param_groups:
                             param_group['lr'] = lr
                         
+                        # TODO: maybe we need to shallow-copy the model?
                         self.train(train_loader, model, criterion, optimizer, epoch, 128)
                         acc = self.validate(val_loader, model, criterion, epoch, 128)
                         energy, time, acc, cost = train_loader.calculate_cost(acc)
@@ -571,15 +553,16 @@ class Profiler:
                 # find optimal setting to return: get argmin
                 opt_bs, opt_lr = min(opt_pl, key=opt_pl.get)
                 opt_pl = opt_pl[(opt_bs, opt_lr)]
-
-                # return the optimal setting
-                # return (opt_bs, opt_lr, opt_dr, opt_pl[(opt_bs, opt_lr, opt_dr)])
-            else:
+                profile = False
                 print("DONE PROFILING")
                 print(f"The optimal parameters are lr: {opt_lr} and pl: {opt_pl}")
                 train_loader.set_learning_rate(opt_lr)
                 train_loader.set_power_limit(opt_pl)
                 train_loader.profile = False
+                curr_acc = self.validate(val_loader, model, criterion, epoch, 128)
+                # return the optimal setting
+                # return (opt_bs, opt_lr, opt_dr, opt_pl[(opt_bs, opt_lr, opt_dr)])
+            else:
                 self.train(train_loader, model, criterion, optimizer, epoch, 128)
                 curr_acc = self.validate(val_loader, model, criterion, epoch, 128)
             # train_loader.calculate_cost(acc)
