@@ -537,6 +537,8 @@ class Profiler:
                             param_group['lr'] = lr
                         
                         self.train(train_loader, model, criterion, optimizer, epoch, 128)
+                        acc = self.validate(val_loader, model, criterion, epoch, 128)
+                        train_loader.calculate_cost(acc)
                         
                         job_id = f"bs{bs}+lr{lr:.5f}+pl{pl}"
                         history_json = Path(f"{logdir}/{job_id}.history_all.py")
