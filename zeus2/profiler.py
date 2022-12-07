@@ -21,10 +21,12 @@ import logging
 import os
 import pprint
 import subprocess
+import random
 from copy import deepcopy
 from shufflenetv2 import shufflenetv2
 from pathlib import Path
 from time import localtime, sleep, strftime, monotonic
+import copy
 
 import numpy as np
 import pynvml
@@ -432,42 +434,40 @@ class Profiler:
         seed=None) -> tuple[int, float, int]:
         if seed is not None:
             self.set_seed(seed)
-        # TODO: stuff IS being written to master.log which is all we've been using - do we want to write to train or history?
+
+        # TODO: make sure stuff is being written correctly 
         model = shufflenetv2(0.0)
-        # TODO: make this the actual logdir
+
+        logdir = self.build_logdir(job, eta_knob, beta_knob)
         os.environ["ZEUS_MONITOR_PATH"] = self.monitor_path
         os.environ["ZEUS_LOG_PREFIX"] = "/workspace/zeus_logs"
+        os.environ["ZEUS_LOG_PREFIX"] = logdir
 
-        print(get_env("ZEUS_MONITOR_PATH", str))
         train_loader = ProfileDataLoader(
                             train_dataset,
                             split="train",
                             profile=True,
-                            # batch_size=bs, #TODO: unhardcode this
-                            # learning_rate=lr, 
-                            # dropout_rate=dr,
-                            # power_limit=pl, #TODO: unhardcode this
                             shuffle=True,
                             num_workers=4, # TODO: this is the default value but maybe pass in as an arg
                         )
         val_loader = ProfileDataLoader(
                             val_dataset,
-                            profile=True,
                             split="eval",
-                            # batch_size=bs,
-                            # learning_rate=lr,
-                            # dropout_rate=dr,
-                            # power_limit=pl, 
+                            profile=False,
                             shuffle=False,
                             num_workers=4,
                         )
 
-        # TODO: unhardcode this
-        learning_rates = [1e-2, 1e-1]
+        # TODO: unhardcode these
         batch_sizes = [128]
         power_limits = [100, 150]
+        learning_rates = [1e-2, 1e-1]
+        dropout_rates = [0.5]
+
+        print(f"[Training Loop] Testing batch sizes: {batch_sizes}")
+        print(f"[Training Loop] Testing power limits: {power_limits}")
         print(f"[Training Loop] Testing learning rates: {learning_rates}")
-        # print(f"[Training Loop] Testing dropout rates: {dropout_rates}")
+        print(f"[Training Loop] Testing dropout rates: {dropout_rates}")
 
         # Send model to CUDA.
         model = model.cuda()
@@ -480,87 +480,104 @@ class Profiler:
         # TODO: unhardcode this
         epoch_iter = range(100)
 
-        curr_acc = 0.0
-        profile = False
         # TODO: change to what we think is best
-        # list of accuracies for which we need to profile
-        accs_to_test = [0.5, 0.4, 0.3, 0.0]
-        # Main training loop.
-        for epoch in epoch_iter:            
-            if curr_acc >= accs_to_test.pop():
-                profile = True
-                # set the dataloader profiling to be true
-                # bs_lr_dr = []
-            if profile:
-                bs_lr = []
+        # list of accuracy thresholds that trigger parameter profiling
+        acc_thresholds = [0.5, 0.4, 0.3]
+        threshold_acc = 0.0
+        curr_acc = 0.0
+
+        # main training loop
+        for epoch in epoch_iter:   
+            if curr_acc >= threshold_acc:
+                print(f"[Training Loop] Model's accuracy {curr_acc} surpasses threshold {threshold_acc}! Reprofiling...")
+                bs_lr_dr = []
                 opt_pl = {}
                 for bs in batch_sizes:
                     for lr in learning_rates:
-                        # for dr in dropout_rates:
-                        bs_lr.append((bs, lr))
-                        opt_pl[(bs, lr)] = 0
+                        for dr in dropout_rates:
+                            bs_lr_dr.append((bs, lr, dr))
+                            opt_pl[(bs, lr, dr)] = 0
 
-                # profile_time = 0.
-
-                min_cost = float("inf")
-                for i in range(1, len(bs_lr) + 1):
-                    bs, lr = bs_lr[i - 1]
-                    print(f"\n[Power Profiler] with batch size {bs} and learning rate {lr}")
-                    
+                profile_start_time = monotonic()
+                for i in range(1, len(bs_lr_dr) + 1):
+                    bs, lr, dr = bs_lr_dr[i - 1]
+                    print(f"[Training Loop] Profiling with batch size {bs} learning rate {lr} and dropout rate {dr}")
                     # initialize best pl for this combo
                     best_pl = -1
+                    min_cost = float("inf")
                     for pl in power_limits:
-                        # initialize a new train loader and val loader
-                        
-                        # profile_time += job_end_time - job_start_time
+                        # set the batch size, learning rate, dropout rate, and power limit of train and val dataloaders
+                        train_loader.set_batch_size(bs)
                         train_loader.set_learning_rate(lr)
+                        train_loader.set_dropout_rate(dr)
                         train_loader.set_power_limit(pl)
+
+                        val_loader.set_batch_size(bs)
+                        val_loader.set_learning_rate(lr)
+                        val_loader.set_dropout_rate(dr)
+                        val_loader.set_power_limit(pl)
                         
-                        # changing learning rate
-                        print(f"CHANGING LEARNING RATE TO {lr}")
-                        for param_group in optimizer.param_groups:
-                            param_group['lr'] = lr
-                        
-                        # TODO: maybe we need to shallow-copy the model?
-                        self.train(train_loader, model, criterion, optimizer, epoch, 128)
-                        acc = self.validate(val_loader, model, criterion, epoch, 128)
-                        _, _, _, cost = train_loader.calculate_cost(acc)
+                        # deepcopy the model for profiling
+                        model_copy = copy.deepcopy(model)
+                        model_copy = model_copy.cuda()
+                        optimizer_copy = optim.Adam(model_copy.parameters(), lr=lr)
+
+                        self.train(train_loader, model_copy, criterion, optimizer_copy, epoch, bs)
+                        acc = self.validate(val_loader, model_copy, criterion, epoch, bs)
+                        cost = train_loader.calculate_cost(acc, threshold_acc)
                         
                         if cost < min_cost:
                             min_cost = cost
                             best_pl = pl 
-                            opt_pl[(bs, lr)] = best_pl
+                            opt_pl[(bs, lr, dr)] = best_pl
 
-                        # history.append(HistoryEntry(bs, pl, energy, time, accuracy, total_cost))
-                        
-                # profiler_info = dict(
-                #     total_time=profile_time,
-                #     opt_bs=opt_bs,
-                #     opt_lr=opt_lr,
-                #     opt_pl=opt_pl[((opt_bs, opt_lr))]
-                # )
-
-                # with open(f"{logdir}/profiler_info.json", "w") as f:
-                #     json.dump(profiler_info, f)
+                profile_end_time = monotonic()
 
                 # find optimal setting to return: get argmin
-                opt_bs, opt_lr = min(opt_pl, key=opt_pl.get)
-                opt_pl = opt_pl[(opt_bs, opt_lr)]
-                profile = False
-                print("DONE PROFILING")
-                print(f"The optimal parameters are lr: {opt_lr} and pl: {opt_pl}")
+                opt_bs, opt_lr, opt_dr = min(opt_pl, key=opt_pl.get)
+                opt_pl = opt_pl[(opt_bs, opt_lr, opt_dr)]
+                print(f"[Training Loop] The optimal parameters are lr: {opt_lr} dr: {opt_dr} pl: {opt_pl}")
+
+                profiler_info = dict(
+                    threshold=threshold_acc,
+                    total_time=profile_end_time - profile_start_time,
+                    opt_bs=opt_bs,
+                    opt_lr=opt_lr,
+                    opt_dr=opt_dr,
+                    opt_pl=opt_pl[((opt_bs, opt_lr))]
+                )
+
+                with open(f"{logdir}/profiler_info.json", "a") as f:
+                    json.dump(profiler_info, f)
+                    f.close()
+                
+                # set optimal hyperparameters for train and val dataloaders
+                train_loader.set_batch_size(opt_bs)
                 train_loader.set_learning_rate(opt_lr)
                 train_loader.set_power_limit(opt_pl)
-                train_loader.profile = False
-                curr_acc = self.validate(val_loader, model, criterion, epoch, 128)
-                # return the optimal setting
-                # return (opt_bs, opt_lr, opt_dr, opt_pl[(opt_bs, opt_lr, opt_dr)])
-            else:
-                self.train(train_loader, model, criterion, optimizer, epoch, 128)
-                curr_acc = self.validate(val_loader, model, criterion, epoch, 128)
-            # train_loader.calculate_cost(acc)
-        
+                train_loader.set_dropout_rate(opt_dr)
 
+                val_loader.set_batch_size(opt_bs)
+                val_loader.set_learning_rate(opt_lr)
+                val_loader.set_power_limit(opt_pl)
+                val_loader.set_dropout_rate(opt_dr)
+
+                # dataloader should not continue profiling
+                train_loader.profile = False
+
+                # set threshold_acc to the next threshold accuracy (or 1 if there are no more)
+                threshold_acc = acc_thresholds.pop() if acc_thresholds else 1.0
+
+                # change the learning rate (https://stackoverflow.com/questions/48324152/pytorch-how-to-change-the-learning-rate-of-an-optimizer-at-any-given-moment-no)
+                for g in optimizer.param_groups:
+                    g['lr'] = opt_lr
+                
+                # change the dropout rate (https://stackoverflow.com/questions/65813108/changing-dropout-value-during-training)
+                model.dropout.p = opt_dr
+            else:
+                self.train(train_loader, model, criterion, optimizer, epoch, opt_bs)
+                curr_acc = self.validate(val_loader, model, criterion, epoch, opt_bs)
+        
     def train(self, train_loader, model, criterion, optimizer, epoch, batch_size):
         """Train the model for one epoch."""
         model.train()

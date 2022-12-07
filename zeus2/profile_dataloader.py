@@ -72,9 +72,10 @@ class ProfileDataLoader(DataLoader):
         self,
         *args,
         profile: bool = False,
-        batch_size: int = 128,
-        learning_rate: float = 0.01,
-        power_limit: int = 100,
+        batch_size: int = None,
+        learning_rate: float = None,
+        power_limit: int = None,
+        dropout_rate: float = None,
         warmup_iters: int = 10,
         measure_iters: int = 40,
         split: Literal["train", "eval"],
@@ -115,6 +116,7 @@ class ProfileDataLoader(DataLoader):
         self.prof_state = NOT_PROFILING
         self.batch_size = batch_size
         self.learning_rate = learning_rate
+        self.dropout_rate = dropout_rate
 
         # Call the constructor of DataLoader.
         super().__init__(*args, batch_size=batch_size, **kwargs)
@@ -155,9 +157,7 @@ class ProfileDataLoader(DataLoader):
             self.time_file.flush()
         
         # self.power_limit is in mW...
-        job_id = f"bs{batch_size}+lr{learning_rate:.5f}+pl{self.power_limit // 1000}"
- 
-        self.history_file_all = f"{self.logdir}/{job_id}.history_all.py"
+        # job_id = f"bs{batch_size}+lr{learning_rate:.5f}+pl{self.power_limit // 1000}+thresh{self.threshold}"
 
         # Initialize NVML and get GPU handle or each GPU at the master process.
         self.gpu_handles = []
@@ -352,35 +352,32 @@ class ProfileDataLoader(DataLoader):
             pynvml.nvmlDeviceSetPersistenceMode(handle, pynvml.NVML_FEATURE_ENABLED)
     
 
-    def calculate_cost(self, acc: float) -> None:
-        # print(len(self))
-        # frac_epochs = (self.warmup_iter + self.profile_iter) / len(self)
+    def calculate_cost(self, acc: float, threshold: float) -> None:
+        print(f"[ProfileDataLoader] writing cost to history_all.py")
+        history_all = f"{self.logdir}/threshold{threshold}.history_all.py"
         frac_epochs = (self.warmup_iter + self.profile_iter) / self.num_samples
 
-        total_cost = (frac_epochs / acc) * ((self.eta_knob * self.train_power_result + (1 - self.eta_knob) * self.max_pl / self.train_tput_result))
+        # TODO: change this cost fn!!
+        # total_cost = (frac_epochs / acc) * ((self.eta_knob * self.train_power_result + (1 - self.eta_knob) * self.max_pl / self.train_tput_result))
+        total_cost = (self.eta_knob * self.train_power_result + (1 - self.eta_knob) * self.max_pl) * self.time_consumed/acc
+        with open(history_all, "a") as f:
+            content = f'''
+                    {{
+                        "profile_threshold":{threshold},
+                        "bs": {self.batch_size},
+                        "pl": {self.power_limit},
+                        "lr": {self.learning_rate},
+                        "dr": {self.dropout_rate},
+                        "energy": {self.train_power_result},
+                        "time": {self.time_consumed},
+                        "accuracy": {acc},
+                        "total_cost": {total_cost}
+                    }}
+                    '''
+            print(content)
+            f.write(content)
 
-        # with open(self.history_file_all, "w") as f:
-        content = '''
-                {{
-                    "bs": {bs},
-                    "pl": {pl},
-                    "lr": {lr},
-                    "energy": {energy},
-                    "time": {time},
-                    "accuracy": {accuracy},
-                    "total_cost": {total_cost}
-                }}
-                '''.format(bs=self.batch_size, 
-                        pl=self.power_limit, 
-                        lr=self.learning_rate, 
-                        energy=self.train_power_result, 
-                        time=self.time_consumed, 
-                        accuracy=acc,
-                        total_cost = total_cost)
-
-            # f.write(content)
-        print(content)
-        return self.train_power_result, self.time_consumed, acc, total_cost
+        return total_cost
 
     
     def _start_warmup(self) -> None:
@@ -492,10 +489,20 @@ class ProfileDataLoader(DataLoader):
         print(f"Profile done with power limit {self.power_limit//1000}W")
     
     def set_power_limit(self, new_pl):
+        print(f"[ProfileDataLoader] set power limit to {new_pl}")
         self.power_limit = new_pl * 1000
     
     def set_learning_rate(self, new_lr):
+        print(f"[ProfileDataLoader] set learning rate to {new_lr}")
         self.learning_rate = new_lr
+    
+    def set_batch_size(self, new_bs):
+        print(f"[ProfileDataLoader] set batch size to {new_bs}")
+        self.batch_size = new_bs
+    
+    def set_dropout_rate(self, new_dr):
+        print(f"[ProfileDataLoader] set learning rate to {new_dr}")
+        self.dropout_rate = new_dr
 
 def kill_monitor():
     """Kill all Zeus power monitors."""
