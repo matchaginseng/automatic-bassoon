@@ -572,7 +572,8 @@ class Profiler:
                     shuffle=False,
                     num_workers=4,
                 )
-
+                train_loader._set_gpu_power_limit(opt_pl * 1000)
+                val_loader._set_gpu_power_limit(opt_pl * 1000)
                 # update the epoch of the trainloader for bookkeeping purposes
                 train_loader.epoch = epoch
                 # close out the list in the history_all file
