@@ -118,7 +118,6 @@ class Profiler:
         pynvml.nvmlShutdown()
 
         self.power_limits = list(range(self.max_pl, self.min_pl - 25, -25))
-        # self.power_limits = [175000, 150000, 125000, 100000]
         print(f"[Power Profiler] Power limits: {self.power_limits}")
 
     def build_logdir(
