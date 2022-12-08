@@ -464,12 +464,11 @@ class Profiler:
         optimizer = optim.Adam(params=model.parameters(), lr=0.01)
         # optimizer = optim.Adadelta(model.parameters())
 
-        epoch_iter = range(n_epochs)
         threshold_acc = 0.0
         curr_acc = 0.0
         epoch = 0
         # main training loop
-        while epoch < epoch_iter:
+        while epoch < n_epochs:
             if curr_acc >= threshold_acc:
                 print(f"[Training Loop] Model's accuracy {curr_acc} surpasses threshold {threshold_acc}! Reprofiling...")
                 bs_lr_dr = []
