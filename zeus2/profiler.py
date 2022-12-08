@@ -433,44 +433,29 @@ class Profiler:
         beta_knob: float,
         train_dataset,
         val_dataset,
+        target_acc: float,
+        n_epochs: int,
+        acc_thresholds: list[float], # list of accuracy thresholds that trigger parameter profiling
+        batch_sizes: list[int],
+        learning_rates: list[float],
+        dropout_rates: list[float],
         seed=None) -> tuple[int, float, int]:
+        
         if seed is not None:
             self.set_seed(seed)
-
-        # TODO: make sure stuff is being written correctly 
-        model = shufflenetv2(0.0)
 
         logdir = self.build_logdir(job, eta_knob, beta_knob)
         os.environ["ZEUS_MONITOR_PATH"] = self.monitor_path
         os.environ["ZEUS_LOG_PREFIX"] = "/workspace/zeus_logs"
         os.environ["ZEUS_LOG_DIR"] = logdir
 
-        train_loader = ProfileDataLoader(
-                            train_dataset,
-                            split="train",
-                            profile=True,
-                            shuffle=True,
-                            num_workers=4, # TODO: this is the default value but maybe pass in as an arg
-                        )
-        val_loader = ProfileDataLoader(
-                            val_dataset,
-                            split="eval",
-                            profile=False,
-                            shuffle=False,
-                            num_workers=4,
-                        )
-
-        # TODO: unhardcode these
-        batch_sizes = [128]
-        power_limits = [100, 150]
-        learning_rates = [1e-2, 1e-1]
-        dropout_rates = [0.5]
-
         print(f"[Training Loop] Testing batch sizes: {batch_sizes}")
-        print(f"[Training Loop] Testing power limits: {power_limits}")
+        print(f"[Training Loop] Testing power limits: {self.power_limits}")
         print(f"[Training Loop] Testing learning rates: {learning_rates}")
         print(f"[Training Loop] Testing dropout rates: {dropout_rates}")
+        print(f"[Training Loop] Reprofiling at accuracy thresholds {acc_thresholds}")
 
+        model = shufflenetv2(0.0)
         # Send model to CUDA.
         model = model.cuda()
 
@@ -479,17 +464,12 @@ class Profiler:
         optimizer = optim.Adam(params=model.parameters(), lr=0.01)
         # optimizer = optim.Adadelta(model.parameters())
 
-        # TODO: unhardcode this
-        epoch_iter = range(100)
-
-        # TODO: change to what we think is best
-        # list of accuracy thresholds that trigger parameter profiling
-        acc_thresholds = [0.5, 0.4, 0.2]
+        epoch_iter = range(n_epochs)
         threshold_acc = 0.0
         curr_acc = 0.0
-
+        epoch = 0
         # main training loop
-        for epoch in epoch_iter:   
+        while epoch < epoch_iter:
             if curr_acc >= threshold_acc:
                 print(f"[Training Loop] Model's accuracy {curr_acc} surpasses threshold {threshold_acc}! Reprofiling...")
                 bs_lr_dr = []
@@ -506,49 +486,40 @@ class Profiler:
                     # initialize best pl for this combo
                     best_pl = -1
                     min_cost = float("inf")
-                    for pl in power_limits:
+                    for pl in self.power_limits:
                         print(f"[Training Loop] Profiling with batch size {bs} learning rate {lr} dropout rate {dr} power limit {pl}")
                         # set the batch size, learning rate, dropout rate, and power limit of train and val dataloaders
-                        # TODO: we can't set batch size after dataloader initialized...maybe its worth it to init a new dataloader?
-                        # train_loader.set_batch_size(bs)
                         train_loader = ProfileDataLoader(
-                                            train_dataset,
-                                            batch_size=bs,
-                                            learning_rate=lr,
-                                            dropout_rate=dr,
-                                            power_limit=pl,
-                                            split="train",
-                                            profile=True,
-                                            shuffle=True,
-                                            num_workers=4, # TODO: this is the default value but maybe pass in as an arg
-                                        )
+                            train_dataset,
+                            batch_size=bs,
+                            learning_rate=lr,
+                            dropout_rate=dr,
+                            power_limit=pl,
+                            split="train",
+                            profile=True,
+                            shuffle=True,
+                            warmup_iters=self.profile_warmup_iters,
+                            measure_iters=self.profile_measure_iters,
+                            num_workers=4, # TODO: this is the default value but maybe pass in as an arg
+                        )
                         val_loader = ProfileDataLoader(
-                                            val_dataset,
-                                            batch_size=bs,
-                                            learning_rate=lr,
-                                            dropout_rate=dr,
-                                            power_limit=pl,
-                                            split="eval",
-                                            profile=False,
-                                            shuffle=False,
-                                            num_workers=4,
-                                        )
+                            val_dataset,
+                            batch_size=bs,
+                            learning_rate=lr,
+                            dropout_rate=dr,
+                            power_limit=pl,
+                            split="eval",
+                            profile=False,
+                            shuffle=False,
+                            num_workers=4,
+                        )
 
-                        # train_loader.set_learning_rate(lr)
-                        # train_loader.set_dropout_rate(dr)
-                        # train_loader.set_power_limit(pl)
-
-                        # # val_loader.set_batch_size(bs)
-                        # val_loader.set_learning_rate(lr)
-                        # val_loader.set_dropout_rate(dr)
-                        # val_loader.set_power_limit(pl)
-                        
                         # deepcopy the model for profiling
                         model_copy = copy.deepcopy(model)
                         model_copy = model_copy.cuda()
                         optimizer_copy = optim.Adam(model_copy.parameters(), lr=lr)
 
-                        self.train(train_loader, model_copy, criterion, optimizer_copy, epoch, bs)
+                        self.train(train_loader, model_copy, criterion, optimizer_copy, epoch, bs, True)
                         acc = self.validate(val_loader, model_copy, criterion, epoch, bs)
                         cost = train_loader.calculate_cost(acc, threshold_acc)
                         
@@ -574,22 +545,41 @@ class Profiler:
                 )
 
                 with open(f"{logdir}/profiler_info.json", "a") as f:
+                    if epoch == 0:
+                        f.write("[")
                     json.dump(profiler_info, f)
-                    f.close()
+                    f.write(",")
                 
                 # set optimal hyperparameters for train and val dataloaders
-                # train_loader.set_batch_size(opt_bs)
-                train_loader.set_learning_rate(opt_lr)
-                train_loader.set_power_limit(opt_pl)
-                train_loader.set_dropout_rate(opt_dr)
+                train_loader = ProfileDataLoader(
+                    train_dataset,
+                    batch_size=opt_bs,
+                    learning_rate=opt_lr,
+                    dropout_rate=opt_dr,
+                    power_limit=opt_pl,
+                    split="train",
+                    profile=False,
+                    shuffle=True,
+                    num_workers=4,
+                )
+                val_loader = ProfileDataLoader(
+                    val_dataset,
+                    batch_size=opt_bs,
+                    learning_rate=opt_lr,
+                    dropout_rate=opt_dr,
+                    power_limit=opt_pl,
+                    split="eval",
+                    profile=False,
+                    shuffle=False,
+                    num_workers=4,
+                )
 
-                # val_loader.set_batch_size(opt_bs)
-                val_loader.set_learning_rate(opt_lr)
-                val_loader.set_power_limit(opt_pl)
-                val_loader.set_dropout_rate(opt_dr)
-
-                # dataloader should not continue profiling
-                train_loader.profile = False
+                # update the epoch of the trainloader for bookkeeping purposes
+                train_loader.epoch = epoch
+                # close out the list in the history_all file
+                history_all = f"{self.logdir}/threshold{threshold_acc}.history_all.py"
+                with open(history_all, "a") as f:
+                    f.write("]")
 
                 # set threshold_acc to the next threshold accuracy (or 1 if there are no more)
                 threshold_acc = acc_thresholds.pop() if acc_thresholds else 1.0
@@ -600,14 +590,20 @@ class Profiler:
                 
                 # change the dropout rate (https://stackoverflow.com/questions/65813108/changing-dropout-value-during-training)
                 model.dropout.p = opt_dr
-
-                # redo this epoch for real training
-                epoch = epoch - 1
             else:
                 self.train(train_loader, model, criterion, optimizer, epoch, opt_bs)
                 curr_acc = self.validate(val_loader, model, criterion, epoch, opt_bs)
-   
-    def train(self, train_loader, model, criterion, optimizer, epoch, batch_size):
+                epoch += 1
+                if curr_acc >= target_acc:
+                    print(f"[Training Loop] Target accuracy {target_acc} reached!")
+                    break
+            
+        with open(f"{logdir}/profiler_info.json", "a") as f:
+            f.write("]")
+        
+        print("[Training Loop] Training done")
+        
+    def train(self, train_loader, model, criterion, optimizer, epoch, batch_size, profile=False):
         """Train the model for one epoch."""
         model.train()
         num_samples = len(train_loader) * batch_size
@@ -622,7 +618,8 @@ class Profiler:
             loss.backward()
             optimizer.step()
 
-            # TODO: maybe make this print something different while profiling?
+            if profile:
+                print(f"Profiling... ")
             print(
                 f"Training Epoch: {epoch} [{(batch_index + 1) * batch_size}/{num_samples}]"
                 f"\tLoss: {loss.item():0.4f}"

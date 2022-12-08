@@ -71,6 +71,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--max_epochs", type=int, default=100, help="Max number of epochs to train"
     )
+    parser.add_argument("--warmup_iters", type=int)
+    parser.add_argument("--profile_iters", type=int)
+    parser.add_argument('--acc_thresholds', nargs='+', default=[])
+    parser.add_argument('--batch_sizes', nargs='+', default=[])
+    parser.add_argument('--learning_rates', nargs='+', default=[])
+    parser.add_argument('--dropout_rates', nargs='+', default=[])
 
     return parser.parse_args()
 
@@ -94,13 +100,14 @@ def main(args: argparse.Namespace) -> None:
         seed=args.seed,
         monitor_path="/workspace/zeus/zeus_monitor/zeus_monitor",
         observer_mode=False,
-        profile_warmup_iters=10,
-        profile_measure_iters=40,
+        profile_warmup_iters=args.warmup_iters,
+        profile_measure_iters=args.profile_iters,
     )
 
     # Definition of the CIFAR100 job.
     # The `Job` class encloses all information needed to run training. The `command` parameter is
     # a command template. Curly-braced parameters are recognized by Zeus and automatically filled.
+    # TODO: get rid of this
     job = Job(
         dataset="cifar100",
         network="shufflenetv2",
@@ -129,33 +136,7 @@ def main(args: argparse.Namespace) -> None:
     )
 
     # Generate a list of batch sizes with only power-of-two values.
-    batch_sizes = [args.b_min]
-    # TODO: don't hardcode the dropout_rates
-    dropout_rates = [0.1, 0.9]
-    learning_rates = [args.lr_min + x*(args.lr_max-args.lr_min)/args.num_lr for x in range(args.num_lr)]
-    while (bs := batch_sizes[-1] * 2) <= args.b_max:
-        batch_sizes.append(bs)
 
-    # TODO: Edit this comment
-    # Create a designated log directory inside `args.log_base` just for this run of Zeus.
-    # Six types of outputs are generated.
-    # 1. Power monitor ouptut (`bs{batch_size}+e{epoch_num}.power.log`):
-    #      Raw output of the Zeus power monitor.
-    # 2. Profiling results (`bs{batch_size}.power.json`):
-    #      Train-time average power consumption and throughput for each power limit,
-    #      the optimal power limit determined from the result of profiling, and
-    #      eval-time average power consumption and throughput for the optimal power limit.
-    # 3. Training script output (`rec{recurrence_num}+try{trial_num}.train.log`):
-    #      The raw output of the training script. `trial_num` exists because the job
-    #      may be early stopped and re-run with another batch size.
-    # 4. Training result (`rec{recurrence_num}+try{trial_num}+bs{batch_size}.train.json`):
-    #      The total energy, time, and cost consumed, and the number of epochs trained
-    #      until the job terminated. Also, whether the job reached the target metric at the
-    #      time of termination. Early-stopped jobs will not have reached their target metric.
-    # 5. ZeusMaster output (`master.log`): Output from ZeusMaster, including MAB outputs.
-    # 6. Job history (`history.py`):
-    #      A python file holding a list of `HistoryEntry` objects. Intended use is:
-    #      `history = eval(open("history.py").read())` after importing `HistoryEntry`.
     master_logdir = master.build_logdir(
         job=job,
         eta_knob=args.eta_knob,
@@ -166,16 +147,6 @@ def main(args: argparse.Namespace) -> None:
     # Overwrite the stdout file descriptor with an instance of `FileAndConsole`, so that
     # all calls to `print` will write to both the console and the master log file.
     sys.stdout = FileAndConsole(Path(master_logdir) / "master.log")
-
-    # Run Zeus!
-    # bs, lr, dr, pl = master.profile(
-    #     job=job,
-    #     learning_rates=learning_rates,
-    #     batch_sizes=batch_sizes,
-    #     dropout_rates=dropout_rates,
-    #     beta_knob=args.beta_knob,
-    #     eta_knob=args.eta_knob,
-    # )
 
     # Prepare datasets.
     train_dataset = datasets.CIFAR100(
@@ -211,8 +182,19 @@ def main(args: argparse.Namespace) -> None:
             ),
         )
     
-    master.train_with_profiling(job=job, eta_knob=args.eta_knob, beta_knob=args.beta_knob, train_dataset=train_dataset, val_dataset=val_dataset)
-    # print(f"optimized batch size: {bs}, learning rate: {lr}, dropout_rate: {dr}, power limit: {pl}")
+    master.train_with_profiling(
+        job=job, 
+        eta_knob=args.eta_knob, 
+        beta_knob=args.beta_knob, 
+        train_dataset=train_dataset, 
+        val_dataset=val_dataset,
+        target_acc=args.target_metric,
+        n_epochs=args.max_epochs,
+        acc_thresholds=args.acc_thresholds,
+        batch_sizes=args.batch_sizes,
+        learning_rates=args.learning_rates,
+        dropout_rates=args.dropout_rates
+    )
 
 
 if __name__ == "__main__":
