@@ -577,7 +577,7 @@ class Profiler:
                 # update the epoch of the trainloader for bookkeeping purposes
                 train_loader.epoch = epoch
                 # close out the list in the history_all file
-                history_all = f"{self.logdir}/threshold{threshold_acc}.history_all.py"
+                history_all = f"{logdir}/threshold{threshold_acc}.history_all.py"
                 with open(history_all, "a") as f:
                     f.write("]")
 
@@ -620,10 +620,11 @@ class Profiler:
 
             if profile:
                 print(f"Profiling... ")
-            print(
-                f"Training Epoch: {epoch} [{(batch_index + 1) * batch_size}/{num_samples}]"
-                f"\tLoss: {loss.item():0.4f}"
-            )
+            else:
+                print(
+                    f"Training Epoch: {epoch} [{(batch_index + 1) * batch_size}/{num_samples}]"
+                    f"\tLoss: {loss.item():0.4f}"
+                )
 
     @torch.no_grad()
     def validate(self, val_loader, model, criterion, epoch, batch_size):
