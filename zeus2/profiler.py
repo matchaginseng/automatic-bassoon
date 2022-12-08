@@ -497,6 +497,7 @@ class Profiler:
                             split="train",
                             profile=True,
                             shuffle=True,
+                            eta_knob=eta_knob,
                             warmup_iters=self.profile_warmup_iters,
                             measure_iters=self.profile_measure_iters,
                             num_workers=4, # TODO: this is the default value but maybe pass in as an arg
@@ -510,6 +511,7 @@ class Profiler:
                             split="eval",
                             profile=False,
                             shuffle=False,
+                            eta_knob=eta_knob,
                             num_workers=4,
                         )
 
@@ -559,6 +561,7 @@ class Profiler:
                     split="train",
                     profile=False,
                     shuffle=True,
+                    eta_knob=eta_knob,
                     num_workers=4,
                 )
                 val_loader = ProfileDataLoader(
@@ -570,6 +573,7 @@ class Profiler:
                     split="eval",
                     profile=False,
                     shuffle=False,
+                    eta_knob=eta_knob,
                     num_workers=4,
                 )
 

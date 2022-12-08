@@ -80,6 +80,7 @@ class ProfileDataLoader(DataLoader):
         measure_iters: int = 40,
         split: Literal["train", "eval"],
         subset_proportion: float = 1.0,
+        eta_knob: float = 0.5,
         # eat_batch_size: bool = False,
         only_scale_time: bool = False,
         **kwargs,
@@ -127,7 +128,8 @@ class ProfileDataLoader(DataLoader):
         self.monitor_path = get_env("ZEUS_MONITOR_PATH", str)
         self.monitor_sleep_ms = get_env("ZEUS_MONITOR_SLEEP_MS", int, default=100)
         self.log_prefix = get_env("ZEUS_LOG_PREFIX", str)
-        self.eta_knob = get_env("ZEUS_ETA_KNOB", float, default=0.5)
+        self.eta_knob = eta_knob
+        print(f"Eta knob set to {self.eta_knob}")
         # self.target_metric = get_env("ZEUS_TARGET_METRIC", float)
         
         self.power_limit = power_limit * 1000 # in mW
