@@ -511,6 +511,29 @@ class Profiler:
                         # set the batch size, learning rate, dropout rate, and power limit of train and val dataloaders
                         # TODO: we can't set batch size after dataloader initialized...maybe its worth it to init a new dataloader?
                         # train_loader.set_batch_size(bs)
+                        train_loader = ProfileDataLoader(
+                                            train_dataset,
+                                            batch_size=bs,
+                                            learning_rate=lr,
+                                            dropout_rate=dr,
+                                            power_limit=pl,
+                                            split="train",
+                                            profile=True,
+                                            shuffle=True,
+                                            num_workers=4, # TODO: this is the default value but maybe pass in as an arg
+                                        )
+                        val_loader = ProfileDataLoader(
+                                            val_dataset,
+                                            batch_size=bs,
+                                            learning_rate=lr,
+                                            dropout_rate=dr,
+                                            power_limit=pl,
+                                            split="eval",
+                                            profile=False,
+                                            shuffle=False,
+                                            num_workers=4,
+                                        )
+
                         train_loader.set_learning_rate(lr)
                         train_loader.set_dropout_rate(dr)
                         train_loader.set_power_limit(pl)
@@ -577,10 +600,13 @@ class Profiler:
                 
                 # change the dropout rate (https://stackoverflow.com/questions/65813108/changing-dropout-value-during-training)
                 model.dropout.p = opt_dr
+
+                # redo this epoch for real training
+                epoch = epoch - 1
             else:
                 self.train(train_loader, model, criterion, optimizer, epoch, opt_bs)
                 curr_acc = self.validate(val_loader, model, criterion, epoch, opt_bs)
-        
+   
     def train(self, train_loader, model, criterion, optimizer, epoch, batch_size):
         """Train the model for one epoch."""
         model.train()
@@ -596,6 +622,7 @@ class Profiler:
             loss.backward()
             optimizer.step()
 
+            # TODO: maybe make this print something different while profiling?
             print(
                 f"Training Epoch: {epoch} [{(batch_index + 1) * batch_size}/{num_samples}]"
                 f"\tLoss: {loss.item():0.4f}"

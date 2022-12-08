@@ -363,7 +363,7 @@ class ProfileDataLoader(DataLoader):
         with open(history_all, "a") as f:
             content = f'''
                     {{
-                        "profile_threshold":{threshold},
+                        "profile_threshold": {threshold},
                         "bs": {self.batch_size},
                         "pl": {self.power_limit},
                         "lr": {self.learning_rate},
@@ -486,7 +486,7 @@ class ProfileDataLoader(DataLoader):
         throughput = samples_processed / self.time_consumed
         self.train_tput_result = throughput
 
-        print(f"Profile done with power limit {self.power_limit//1000}W")
+        print("Profile done")
     
     def set_power_limit(self, new_pl):
         if self._is_train:
