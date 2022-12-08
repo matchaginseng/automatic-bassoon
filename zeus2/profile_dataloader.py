@@ -496,9 +496,9 @@ class ProfileDataLoader(DataLoader):
         print(f"[ProfileDataLoader] set learning rate to {new_lr}")
         self.learning_rate = new_lr
     
-    def set_batch_size(self, new_bs):
-        print(f"[ProfileDataLoader] set batch size to {new_bs}")
-        self.batch_size = new_bs
+    # def set_batch_size(self, new_bs):
+    #     print(f"[ProfileDataLoader] set batch size to {new_bs}")
+    #     self.batch_size = new_bs
     
     def set_dropout_rate(self, new_dr):
         print(f"[ProfileDataLoader] set learning rate to {new_dr}")

@@ -509,12 +509,13 @@ class Profiler:
                     min_cost = float("inf")
                     for pl in power_limits:
                         # set the batch size, learning rate, dropout rate, and power limit of train and val dataloaders
-                        train_loader.set_batch_size(bs)
+                        # TODO: we can't set batch size after dataloader initialized...maybe its worth it to init a new dataloader?
+                        # train_loader.set_batch_size(bs)
                         train_loader.set_learning_rate(lr)
                         train_loader.set_dropout_rate(dr)
                         train_loader.set_power_limit(pl)
 
-                        val_loader.set_batch_size(bs)
+                        # val_loader.set_batch_size(bs)
                         val_loader.set_learning_rate(lr)
                         val_loader.set_dropout_rate(dr)
                         val_loader.set_power_limit(pl)
