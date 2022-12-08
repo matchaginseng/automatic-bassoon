@@ -40,13 +40,16 @@ class HistoryEntry:
     """
 
     bs: int
-    lr: float
     pl: int
-    factor: float
+    lr: float
     energy: float
+    reached: bool
     time: float
-    accuracy: float
-    total_cost: float
+#     factor: float
+#     energy: float
+#     time: float
+#     accuracy: float
+#     total_cost: float
 
 
 def energy(
