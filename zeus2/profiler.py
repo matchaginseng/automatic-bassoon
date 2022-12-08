@@ -547,7 +547,7 @@ class Profiler:
                     opt_bs=opt_bs,
                     opt_lr=opt_lr,
                     opt_dr=opt_dr,
-                    opt_pl=opt_pl[((opt_bs, opt_lr))]
+                    opt_pl=opt_pl
                 )
 
                 with open(f"{logdir}/profiler_info.json", "a") as f:

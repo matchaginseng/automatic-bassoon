@@ -489,11 +489,13 @@ class ProfileDataLoader(DataLoader):
         print(f"Profile done with power limit {self.power_limit//1000}W")
     
     def set_power_limit(self, new_pl):
-        print(f"[ProfileDataLoader] set power limit to {new_pl}")
+        if self._is_train:
+            print(f"[ProfileDataLoader] set power limit to {new_pl}")
         self.power_limit = new_pl * 1000
     
     def set_learning_rate(self, new_lr):
-        print(f"[ProfileDataLoader] set learning rate to {new_lr}")
+        if self._is_train:
+            print(f"[ProfileDataLoader] set learning rate to {new_lr}")
         self.learning_rate = new_lr
     
     # def set_batch_size(self, new_bs):
@@ -501,7 +503,8 @@ class ProfileDataLoader(DataLoader):
     #     self.batch_size = new_bs
     
     def set_dropout_rate(self, new_dr):
-        print(f"[ProfileDataLoader] set dropout rate to {new_dr}")
+        if self._is_train:
+            print(f"[ProfileDataLoader] set dropout rate to {new_dr}")
         self.dropout_rate = new_dr
 
 def kill_monitor():
