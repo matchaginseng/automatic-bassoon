@@ -533,7 +533,7 @@ class Profiler:
                 # find optimal setting to return: get argmin
                 opt_bs, opt_lr, opt_dr = min(opt_pl, key=opt_pl.get)
                 opt_pl = opt_pl[(opt_bs, opt_lr, opt_dr)]
-                print(f"[Training Loop] The optimal parameters are lr: {opt_lr} dr: {opt_dr} pl: {opt_pl}")
+                print(f"[Training Loop] The optimal parameters are lr: {opt_lr} dr: {opt_dr} bs: {opt_bs} pl: {opt_pl}")
 
                 profiler_info = dict(
                     threshold=threshold_acc,
