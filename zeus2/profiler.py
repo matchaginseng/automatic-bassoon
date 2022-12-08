@@ -443,7 +443,7 @@ class Profiler:
         logdir = self.build_logdir(job, eta_knob, beta_knob)
         os.environ["ZEUS_MONITOR_PATH"] = self.monitor_path
         os.environ["ZEUS_LOG_PREFIX"] = "/workspace/zeus_logs"
-        os.environ["ZEUS_LOG_PREFIX"] = logdir
+        os.environ["ZEUS_LOG_DIR"] = logdir
 
         train_loader = ProfileDataLoader(
                             train_dataset,

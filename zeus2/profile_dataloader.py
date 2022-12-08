@@ -501,7 +501,7 @@ class ProfileDataLoader(DataLoader):
     #     self.batch_size = new_bs
     
     def set_dropout_rate(self, new_dr):
-        print(f"[ProfileDataLoader] set learning rate to {new_dr}")
+        print(f"[ProfileDataLoader] set dropout rate to {new_dr}")
         self.dropout_rate = new_dr
 
 def kill_monitor():
