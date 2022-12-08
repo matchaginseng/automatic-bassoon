@@ -73,10 +73,10 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--warmup_iters", type=int)
     parser.add_argument("--profile_iters", type=int)
-    parser.add_argument('--acc_thresholds', nargs='+', default=[])
-    parser.add_argument('--batch_sizes', nargs='+', default=[])
-    parser.add_argument('--learning_rates', nargs='+', default=[])
-    parser.add_argument('--dropout_rates', nargs='+', default=[])
+    parser.add_argument('--acc_thresholds', type=float, nargs='+', default=[])
+    parser.add_argument('--batch_sizes', type=int, nargs='+', default=[])
+    parser.add_argument('--learning_rates', type=float, nargs='+', default=[])
+    parser.add_argument('--dropout_rates', type=float, nargs='+', default=[])
 
     return parser.parse_args()
 
