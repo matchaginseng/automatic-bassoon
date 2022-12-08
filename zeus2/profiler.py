@@ -139,6 +139,7 @@ class Profiler:
             exist_ok: Passed to `os.makedirs`. If `False`, will err if the directory
                 already exists.
         """
+        print(job)
         now = strftime("%Y%m%d%H%M%s", localtime())
         logdir = (
             job.to_logdir() + f"+eta{eta_knob}+beta{beta_knob}+{now}"
@@ -425,7 +426,8 @@ class Profiler:
         torch.manual_seed(seed)
         torch.cuda.manual_seed_all(seed)
 
-    def train_with_profiling(self, 
+    def train_with_profiling(
+        self, 
         job: Job,
         eta_knob: float,
         beta_knob: float,
