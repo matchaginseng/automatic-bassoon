@@ -131,6 +131,8 @@ class ProfileDataLoader(DataLoader):
         # self.target_metric = get_env("ZEUS_TARGET_METRIC", float)
         
         self.power_limit = power_limit * 1000 # in mW
+        if not profile:
+            self._set_gpu_power_limit(self.power_limit)
 
         # Train-time power profiling result. Maps power limit to avg_power & throughput.
         self.train_power_result: float = 0.
@@ -294,6 +296,7 @@ class ProfileDataLoader(DataLoader):
             if (
                 self.prof_state == NOT_PROFILING
             ):
+                print(f"[ProfileDataLoader] Profiling for {self.warmup_iter} warmup iters and {self.profile_iter} profile iters")
                 self._start_warmup()
             # We're done warming up. Start the actual profiling window.
             elif (
