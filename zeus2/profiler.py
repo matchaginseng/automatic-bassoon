@@ -543,7 +543,7 @@ class Profiler:
                     opt_pl=opt_pl
                 )
 
-                with open(f"{logdir}/profiler_info.json", "a") as f:
+                with open(f"{logdir}/profiler_info.py", "a") as f:
                     if epoch == 0:
                         f.write("[")
                     json.dump(profiler_info, f)
@@ -602,7 +602,7 @@ class Profiler:
                     print(f"[Training Loop] Target accuracy {target_acc} reached!")
                     break
             
-        with open(f"{logdir}/profiler_info.json", "a") as f:
+        with open(f"{logdir}/profiler_info.py", "a") as f:
             f.write("]")
         
         print("[Training Loop] Training done")
