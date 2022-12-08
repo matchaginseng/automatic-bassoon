@@ -555,12 +555,12 @@ class Profiler:
                     f.close()
                 
                 # set optimal hyperparameters for train and val dataloaders
-                train_loader.set_batch_size(opt_bs)
+                # train_loader.set_batch_size(opt_bs)
                 train_loader.set_learning_rate(opt_lr)
                 train_loader.set_power_limit(opt_pl)
                 train_loader.set_dropout_rate(opt_dr)
 
-                val_loader.set_batch_size(opt_bs)
+                # val_loader.set_batch_size(opt_bs)
                 val_loader.set_learning_rate(opt_lr)
                 val_loader.set_power_limit(opt_pl)
                 val_loader.set_dropout_rate(opt_dr)
