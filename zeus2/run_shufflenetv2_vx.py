@@ -211,7 +211,7 @@ def main(args: argparse.Namespace) -> None:
             ),
         )
     
-    master.train_with_profiling(job=Job, eta_knob=args.eta_knob, beta_knob=args.beta_knob, train_dataset=train_dataset, val_dataset=val_dataset)
+    master.train_with_profiling(job=job, eta_knob=args.eta_knob, beta_knob=args.beta_knob, train_dataset=train_dataset, val_dataset=val_dataset)
     # print(f"optimized batch size: {bs}, learning rate: {lr}, dropout_rate: {dr}, power limit: {pl}")
 
 
