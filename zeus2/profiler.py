@@ -484,7 +484,7 @@ class Profiler:
 
         # TODO: change to what we think is best
         # list of accuracy thresholds that trigger parameter profiling
-        acc_thresholds = [0.5, 0.4, 0.3]
+        acc_thresholds = [0.5, 0.4, 0.2]
         threshold_acc = 0.0
         curr_acc = 0.0
 
@@ -503,11 +503,11 @@ class Profiler:
                 profile_start_time = monotonic()
                 for i in range(1, len(bs_lr_dr) + 1):
                     bs, lr, dr = bs_lr_dr[i - 1]
-                    print(f"[Training Loop] Profiling with batch size {bs} learning rate {lr} and dropout rate {dr}")
                     # initialize best pl for this combo
                     best_pl = -1
                     min_cost = float("inf")
                     for pl in power_limits:
+                        print(f"[Training Loop] Profiling with batch size {bs} learning rate {lr} dropout rate {dr} power limit {pl}")
                         # set the batch size, learning rate, dropout rate, and power limit of train and val dataloaders
                         # TODO: we can't set batch size after dataloader initialized...maybe its worth it to init a new dataloader?
                         # train_loader.set_batch_size(bs)
@@ -534,14 +534,14 @@ class Profiler:
                                             num_workers=4,
                                         )
 
-                        train_loader.set_learning_rate(lr)
-                        train_loader.set_dropout_rate(dr)
-                        train_loader.set_power_limit(pl)
+                        # train_loader.set_learning_rate(lr)
+                        # train_loader.set_dropout_rate(dr)
+                        # train_loader.set_power_limit(pl)
 
-                        # val_loader.set_batch_size(bs)
-                        val_loader.set_learning_rate(lr)
-                        val_loader.set_dropout_rate(dr)
-                        val_loader.set_power_limit(pl)
+                        # # val_loader.set_batch_size(bs)
+                        # val_loader.set_learning_rate(lr)
+                        # val_loader.set_dropout_rate(dr)
+                        # val_loader.set_power_limit(pl)
                         
                         # deepcopy the model for profiling
                         model_copy = copy.deepcopy(model)
