@@ -324,7 +324,8 @@ class ProfileDataLoader(DataLoader):
                         )
     
                 raise StopIteration
-        
+        # elif self._is_train and not self.profile:
+
         self.sample_num += 1
         return data
 
