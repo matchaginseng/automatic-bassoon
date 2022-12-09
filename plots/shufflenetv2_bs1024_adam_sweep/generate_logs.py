@@ -1,5 +1,5 @@
 
-path = '/Users/helencho/Desktop/senior/cs243/automatic-bassoon/plots/docker_data/hc_remaining_lr_adam_shufflenetv2_bs1024/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120611401670344805/master.log'
+path = '/Users/helencho/Desktop/senior/cs243/automatic-bassoon/plots/docker_data/hc_finegrained_lr_bs1024_shufflenetv2/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/master.log'
 
 # Go through line by line and write new file
 with open(path, 'r') as log:

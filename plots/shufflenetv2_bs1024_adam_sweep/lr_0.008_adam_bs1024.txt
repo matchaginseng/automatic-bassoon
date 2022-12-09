@@ -1,0 +1,3120 @@
+[run job] Launching job with BS 1024: and LR: 0.008
+[run job] zeus_env={'ZEUS_LOG_DIR': '/workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224', 'ZEUS_JOB_ID': 'rec02+try01', 'ZEUS_COST_THRESH': 'inf', 'ZEUS_ETA_KNOB': '0.5', 'ZEUS_TARGET_METRIC': '0.6', 'ZEUS_MONITOR_PATH': '/workspace/zeus/zeus_monitor/zeus_monitor', 'ZEUS_PROFILE_PARAMS': '10,40', 'ZEUS_USE_OPTIMAL_PL': 'True'}
+[run job] cwd=/workspace/zeus/examples/cifar100
+[run job] command=['python', 'train_lr.py', '--zeus', '--arch', 'shufflenetv2', '--batch_size', '1024', '--epochs', '100', '--seed', '1', '--learning_rate', '0.008']
+[run job] cost_ub=inf
+[run job] Job output logged to '/workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/rec02+try01.train.log'
+2022-12-08 18:36:49,880 [ZeusDataLoader(train)] Distributed data parallel: OFF
+2022-12-08 18:36:49,881 [ZeusDataLoader(train)] The profile window takes 50 iterations (10 for warmup + 40 for profile) and exceeds the number of iterations (49) in one epoch. Scaling the profile window to fit in one epoch...
+2022-12-08 18:36:49,881 [ZeusDataLoader(train)] Scaling done! New profile window takes 47 iterations (9 for warmup + 38 for profile).
+2022-12-08 18:36:49,926 [ZeusDataLoader(train)] Power limit range: [175000, 150000, 125000, 100000]
+2022-12-08 18:36:49,926 [ZeusDataLoader(train)] Power profiling: ON
+2022-12-08 18:36:52,175 [ZeusDataLoader(train)] Up to epoch 0: time=0.00, energy=0.00, cost=0.00
+2022-12-08 18:36:52,176 [ZeusDataLoader(train)] Epoch 1 begin.
+Files already downloaded and verified
+Files already downloaded and verified
+2022-12-08 18:36:52,424 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 23:36:52.427 [ZeusMonitor] Monitor started.
+2022-12-08 23:36:52.427 [ZeusMonitor] Running indefinitely. 2022-12-08 23:36:52.427 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-08 23:36:52.427 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e1+gpu0.power.log
+2022-12-08 18:36:53,167 [ZeusDataLoader(train)] [GPU_0] Set GPU power limit to 175W.
+2022-12-08 18:36:53,167 [ZeusDataLoader(train)] Warm-up started with power limit 175W
+2022-12-08 18:37:01,960 [ZeusDataLoader(train)] Profile started with power limit 175W
+2022-12-08 18:37:35,507 [ZeusDataLoader(train)] Profile done with power limit 175W
+2022-12-08 18:37:37,173 [ZeusDataLoader(train)] train epoch 1 done: time=44.99 energy=6739.93
+2022-12-08 18:37:37,176 [ZeusDataLoader(eval)] Epoch 1 begin.
+Training Epoch: 0 [1024/50176]	Loss: 4.6235
+Training Epoch: 0 [2048/50176]	Loss: 6.5609
+Training Epoch: 0 [3072/50176]	Loss: 5.4589
+Training Epoch: 0 [4096/50176]	Loss: 4.8740
+Training Epoch: 0 [5120/50176]	Loss: 4.9515
+Training Epoch: 0 [6144/50176]	Loss: 4.7686
+Training Epoch: 0 [7168/50176]	Loss: 4.7694
+Training Epoch: 0 [8192/50176]	Loss: 4.8981
+Training Epoch: 0 [9216/50176]	Loss: 5.6788
+Training Epoch: 0 [10240/50176]	Loss: 5.1294
+Training Epoch: 0 [11264/50176]	Loss: 4.8662
+Training Epoch: 0 [12288/50176]	Loss: 4.6394
+Training Epoch: 0 [13312/50176]	Loss: 4.7853
+Training Epoch: 0 [14336/50176]	Loss: 4.7435
+Training Epoch: 0 [15360/50176]	Loss: 4.7046
+Training Epoch: 0 [16384/50176]	Loss: 4.7112
+Training Epoch: 0 [17408/50176]	Loss: 4.6787
+Training Epoch: 0 [18432/50176]	Loss: 4.6695
+Training Epoch: 0 [19456/50176]	Loss: 4.6661
+Training Epoch: 0 [20480/50176]	Loss: 4.6287
+Training Epoch: 0 [21504/50176]	Loss: 4.6132
+Training Epoch: 0 [22528/50176]	Loss: 4.6057
+Training Epoch: 0 [23552/50176]	Loss: 4.5908
+Training Epoch: 0 [24576/50176]	Loss: 4.5807
+Training Epoch: 0 [25600/50176]	Loss: 4.5838
+Training Epoch: 0 [26624/50176]	Loss: 4.5740
+Training Epoch: 0 [27648/50176]	Loss: 4.5796
+Training Epoch: 0 [28672/50176]	Loss: 4.5391
+Training Epoch: 0 [29696/50176]	Loss: 4.5473
+Training Epoch: 0 [30720/50176]	Loss: 4.5346
+Training Epoch: 0 [31744/50176]	Loss: 4.5334
+Training Epoch: 0 [32768/50176]	Loss: 4.5139
+Training Epoch: 0 [33792/50176]	Loss: 4.5023
+Training Epoch: 0 [34816/50176]	Loss: 4.4634
+Training Epoch: 0 [35840/50176]	Loss: 4.4623
+Training Epoch: 0 [36864/50176]	Loss: 4.4515
+Training Epoch: 0 [37888/50176]	Loss: 4.4539
+Training Epoch: 0 [38912/50176]	Loss: 4.4331
+Training Epoch: 0 [39936/50176]	Loss: 4.4583
+Training Epoch: 0 [40960/50176]	Loss: 4.4334
+Training Epoch: 0 [41984/50176]	Loss: 4.4364
+Training Epoch: 0 [43008/50176]	Loss: 4.4188
+Training Epoch: 0 [44032/50176]	Loss: 4.4139
+Training Epoch: 0 [45056/50176]	Loss: 4.4026
+Training Epoch: 0 [46080/50176]	Loss: 4.3715
+Training Epoch: 0 [47104/50176]	Loss: 4.3945
+Training Epoch: 0 [48128/50176]	Loss: 4.3869
+Training Epoch: 0 [49152/50176]	Loss: 4.3907
+Training Epoch: 0 [50176/50176]	Loss: 4.3718
+2022-12-08 23:37:40.897 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 18:37:40,908 [ZeusDataLoader(eval)] eval epoch 1 done: time=3.72 energy=515.81
+2022-12-08 18:37:40,908 [ZeusDataLoader(train)] Up to epoch 1: time=48.71, energy=7255.75, cost=7890.20
+2022-12-08 18:37:40,909 [ZeusDataLoader(train)] Epoch 2 begin.
+Validation Epoch: 0, Average loss: 0.0043, Accuracy: 0.0254
+2022-12-08 18:37:41,157 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 23:37:41.159 [ZeusMonitor] Monitor started.
+2022-12-08 23:37:41.160 [ZeusMonitor] Running indefinitely. 2022-12-08 23:37:41.160 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-08 23:37:41.160 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e2+gpu0.power.log
+2022-12-08 18:37:41,847 [ZeusDataLoader(train)] [GPU_0] Set GPU power limit to 150W.
+2022-12-08 18:37:41,847 [ZeusDataLoader(train)] Warm-up started with power limit 150W
+2022-12-08 18:37:50,187 [ZeusDataLoader(train)] Profile started with power limit 150W
+2022-12-08 18:38:24,777 [ZeusDataLoader(train)] Profile done with power limit 150W
+2022-12-08 18:38:26,497 [ZeusDataLoader(train)] train epoch 2 done: time=45.58 energy=6544.72
+2022-12-08 18:38:26,501 [ZeusDataLoader(eval)] Epoch 2 begin.
+Training Epoch: 1 [1024/50176]	Loss: 4.3727
+Training Epoch: 1 [2048/50176]	Loss: 4.3116
+Training Epoch: 1 [3072/50176]	Loss: 4.3159
+Training Epoch: 1 [4096/50176]	Loss: 4.3315
+Training Epoch: 1 [5120/50176]	Loss: 4.3138
+Training Epoch: 1 [6144/50176]	Loss: 4.3117
+Training Epoch: 1 [7168/50176]	Loss: 4.2865
+Training Epoch: 1 [8192/50176]	Loss: 4.2208
+Training Epoch: 1 [9216/50176]	Loss: 4.3047
+Training Epoch: 1 [10240/50176]	Loss: 4.2650
+Training Epoch: 1 [11264/50176]	Loss: 4.2541
+Training Epoch: 1 [12288/50176]	Loss: 4.2240
+Training Epoch: 1 [13312/50176]	Loss: 4.1624
+Training Epoch: 1 [14336/50176]	Loss: 4.2142
+Training Epoch: 1 [15360/50176]	Loss: 4.1625
+Training Epoch: 1 [16384/50176]	Loss: 4.2214
+Training Epoch: 1 [17408/50176]	Loss: 4.1651
+Training Epoch: 1 [18432/50176]	Loss: 4.1082
+Training Epoch: 1 [19456/50176]	Loss: 4.1620
+Training Epoch: 1 [20480/50176]	Loss: 4.1036
+Training Epoch: 1 [21504/50176]	Loss: 4.0947
+Training Epoch: 1 [22528/50176]	Loss: 4.0633
+Training Epoch: 1 [23552/50176]	Loss: 4.0437
+Training Epoch: 1 [24576/50176]	Loss: 4.0357
+Training Epoch: 1 [25600/50176]	Loss: 4.0500
+Training Epoch: 1 [26624/50176]	Loss: 4.0164
+Training Epoch: 1 [27648/50176]	Loss: 4.0375
+Training Epoch: 1 [28672/50176]	Loss: 3.9834
+Training Epoch: 1 [29696/50176]	Loss: 4.0577
+Training Epoch: 1 [30720/50176]	Loss: 3.9652
+Training Epoch: 1 [31744/50176]	Loss: 3.9846
+Training Epoch: 1 [32768/50176]	Loss: 3.9437
+Training Epoch: 1 [33792/50176]	Loss: 3.9938
+Training Epoch: 1 [34816/50176]	Loss: 3.9999
+Training Epoch: 1 [35840/50176]	Loss: 3.9885
+Training Epoch: 1 [36864/50176]	Loss: 3.9635
+Training Epoch: 1 [37888/50176]	Loss: 3.9365
+Training Epoch: 1 [38912/50176]	Loss: 3.9690
+Training Epoch: 1 [39936/50176]	Loss: 3.9386
+Training Epoch: 1 [40960/50176]	Loss: 4.0184
+Training Epoch: 1 [41984/50176]	Loss: 3.9177
+Training Epoch: 1 [43008/50176]	Loss: 3.9117
+Training Epoch: 1 [44032/50176]	Loss: 3.8606
+Training Epoch: 1 [45056/50176]	Loss: 3.9374
+Training Epoch: 1 [46080/50176]	Loss: 3.8764
+Training Epoch: 1 [47104/50176]	Loss: 3.9267
+Training Epoch: 1 [48128/50176]	Loss: 3.9243
+Training Epoch: 1 [49152/50176]	Loss: 3.9262
+Training Epoch: 1 [50176/50176]	Loss: 3.8944
+2022-12-08 23:38:30.355 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 18:38:30,374 [ZeusDataLoader(eval)] eval epoch 2 done: time=3.86 energy=506.42
+2022-12-08 18:38:30,374 [ZeusDataLoader(train)] Up to epoch 2: time=98.16, energy=14306.89, cost=15742.21
+2022-12-08 18:38:30,375 [ZeusDataLoader(train)] Epoch 3 begin.
+Validation Epoch: 1, Average loss: 0.0039, Accuracy: 0.0701
+2022-12-08 18:38:30,629 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 23:38:30.632 [ZeusMonitor] Monitor started.
+2022-12-08 23:38:30.632 [ZeusMonitor] Running indefinitely. 2022-12-08 23:38:30.632 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-08 23:38:30.632 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e3+gpu0.power.log
+2022-12-08 18:38:31,383 [ZeusDataLoader(train)] [GPU_0] Set GPU power limit to 125W.
+2022-12-08 18:38:31,383 [ZeusDataLoader(train)] Warm-up started with power limit 125W
+2022-12-08 18:38:40,762 [ZeusDataLoader(train)] Profile started with power limit 125W
+2022-12-08 18:39:20,027 [ZeusDataLoader(train)] Profile done with power limit 125W
+2022-12-08 18:39:21,962 [ZeusDataLoader(train)] train epoch 3 done: time=51.58 energy=6231.36
+2022-12-08 18:39:21,965 [ZeusDataLoader(eval)] Epoch 3 begin.
+Training Epoch: 2 [1024/50176]	Loss: 3.8237
+Training Epoch: 2 [2048/50176]	Loss: 3.8796
+Training Epoch: 2 [3072/50176]	Loss: 3.8318
+Training Epoch: 2 [4096/50176]	Loss: 3.7921
+Training Epoch: 2 [5120/50176]	Loss: 3.7861
+Training Epoch: 2 [6144/50176]	Loss: 3.8107
+Training Epoch: 2 [7168/50176]	Loss: 3.8501
+Training Epoch: 2 [8192/50176]	Loss: 3.8752
+Training Epoch: 2 [9216/50176]	Loss: 3.8154
+Training Epoch: 2 [10240/50176]	Loss: 3.7522
+Training Epoch: 2 [11264/50176]	Loss: 3.7656
+Training Epoch: 2 [12288/50176]	Loss: 3.7342
+Training Epoch: 2 [13312/50176]	Loss: 3.7305
+Training Epoch: 2 [14336/50176]	Loss: 3.7595
+Training Epoch: 2 [15360/50176]	Loss: 3.8406
+Training Epoch: 2 [16384/50176]	Loss: 3.8436
+Training Epoch: 2 [17408/50176]	Loss: 3.8051
+Training Epoch: 2 [18432/50176]	Loss: 3.7735
+Training Epoch: 2 [19456/50176]	Loss: 3.7887
+Training Epoch: 2 [20480/50176]	Loss: 3.7395
+Training Epoch: 2 [21504/50176]	Loss: 3.7991
+Training Epoch: 2 [22528/50176]	Loss: 3.7670
+Training Epoch: 2 [23552/50176]	Loss: 3.7087
+Training Epoch: 2 [24576/50176]	Loss: 3.7891
+Training Epoch: 2 [25600/50176]	Loss: 3.7485
+Training Epoch: 2 [26624/50176]	Loss: 3.7674
+Training Epoch: 2 [27648/50176]	Loss: 3.7273
+Training Epoch: 2 [28672/50176]	Loss: 3.7549
+Training Epoch: 2 [29696/50176]	Loss: 3.6764
+Training Epoch: 2 [30720/50176]	Loss: 3.6942
+Training Epoch: 2 [31744/50176]	Loss: 3.6965
+Training Epoch: 2 [32768/50176]	Loss: 3.6962
+Training Epoch: 2 [33792/50176]	Loss: 3.7547
+Training Epoch: 2 [34816/50176]	Loss: 3.7336
+Training Epoch: 2 [35840/50176]	Loss: 3.6518
+Training Epoch: 2 [36864/50176]	Loss: 3.6617
+Training Epoch: 2 [37888/50176]	Loss: 3.7896
+Training Epoch: 2 [38912/50176]	Loss: 3.6487
+Training Epoch: 2 [39936/50176]	Loss: 3.5910
+Training Epoch: 2 [40960/50176]	Loss: 3.6326
+Training Epoch: 2 [41984/50176]	Loss: 3.6743
+Training Epoch: 2 [43008/50176]	Loss: 3.6914
+Training Epoch: 2 [44032/50176]	Loss: 3.5751
+Training Epoch: 2 [45056/50176]	Loss: 3.6054
+Training Epoch: 2 [46080/50176]	Loss: 3.6463
+Training Epoch: 2 [47104/50176]	Loss: 3.6046
+Training Epoch: 2 [48128/50176]	Loss: 3.5709
+Training Epoch: 2 [49152/50176]	Loss: 3.6165
+Training Epoch: 2 [50176/50176]	Loss: 3.5645
+2022-12-08 23:39:26.170 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 18:39:26,185 [ZeusDataLoader(eval)] eval epoch 3 done: time=4.21 energy=484.27
+2022-12-08 18:39:26,185 [ZeusDataLoader(train)] Up to epoch 3: time=153.95, energy=21022.52, cost=23981.59
+2022-12-08 18:39:26,186 [ZeusDataLoader(train)] Epoch 4 begin.
+Validation Epoch: 2, Average loss: 0.0036, Accuracy: 0.1261
+2022-12-08 18:39:26,449 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 23:39:26.451 [ZeusMonitor] Monitor started.
+2022-12-08 23:39:26.452 [ZeusMonitor] Running indefinitely. 2022-12-08 23:39:26.452 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-08 23:39:26.452 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e4+gpu0.power.log
+2022-12-08 18:39:27,209 [ZeusDataLoader(train)] [GPU_0] Set GPU power limit to 100W.
+2022-12-08 18:39:27,209 [ZeusDataLoader(train)] Warm-up started with power limit 100W
+2022-12-08 18:39:52,095 [ZeusDataLoader(train)] Profile started with power limit 100W
+2022-12-08 18:41:35,707 [ZeusDataLoader(train)] Profile done with power limit 100W
+2022-12-08 18:41:35,707 [ZeusDataLoader(train)] This was the last power limit to explore.
+2022-12-08 18:41:35,707 [ZeusDataLoader(train)] Cost-optimal power limit is 175W
+2022-12-08 18:41:35,710 [ZeusDataLoader(train)] [GPU_0] Set GPU power limit to 175W.
+2022-12-08 18:41:38,096 [ZeusDataLoader(train)] train epoch 4 done: time=131.87 energy=13455.37
+2022-12-08 18:41:38,107 [ZeusDataLoader(eval)] Epoch 4 begin.
+Training Epoch: 3 [1024/50176]	Loss: 3.4952
+Training Epoch: 3 [2048/50176]	Loss: 3.4863
+Training Epoch: 3 [3072/50176]	Loss: 3.5551
+Training Epoch: 3 [4096/50176]	Loss: 3.5752
+Training Epoch: 3 [5120/50176]	Loss: 3.5508
+Training Epoch: 3 [6144/50176]	Loss: 3.5268
+Training Epoch: 3 [7168/50176]	Loss: 3.5774
+Training Epoch: 3 [8192/50176]	Loss: 3.5459
+Training Epoch: 3 [9216/50176]	Loss: 3.5303
+Training Epoch: 3 [10240/50176]	Loss: 3.5463
+Training Epoch: 3 [11264/50176]	Loss: 3.5467
+Training Epoch: 3 [12288/50176]	Loss: 3.5223
+Training Epoch: 3 [13312/50176]	Loss: 3.5239
+Training Epoch: 3 [14336/50176]	Loss: 3.4896
+Training Epoch: 3 [15360/50176]	Loss: 3.4849
+Training Epoch: 3 [16384/50176]	Loss: 3.5094
+Training Epoch: 3 [17408/50176]	Loss: 3.4532
+Training Epoch: 3 [18432/50176]	Loss: 3.4896
+Training Epoch: 3 [19456/50176]	Loss: 3.4936
+Training Epoch: 3 [20480/50176]	Loss: 3.4440
+Training Epoch: 3 [21504/50176]	Loss: 3.5033
+Training Epoch: 3 [22528/50176]	Loss: 3.4346
+Training Epoch: 3 [23552/50176]	Loss: 3.4511
+Training Epoch: 3 [24576/50176]	Loss: 3.5007
+Training Epoch: 3 [25600/50176]	Loss: 3.4015
+Training Epoch: 3 [26624/50176]	Loss: 3.5323
+Training Epoch: 3 [27648/50176]	Loss: 3.4895
+Training Epoch: 3 [28672/50176]	Loss: 3.4126
+Training Epoch: 3 [29696/50176]	Loss: 3.4325
+Training Epoch: 3 [30720/50176]	Loss: 3.4579
+Training Epoch: 3 [31744/50176]	Loss: 3.4446
+Training Epoch: 3 [32768/50176]	Loss: 3.3749
+Training Epoch: 3 [33792/50176]	Loss: 3.3107
+Training Epoch: 3 [34816/50176]	Loss: 3.3998
+Training Epoch: 3 [35840/50176]	Loss: 3.3200
+Training Epoch: 3 [36864/50176]	Loss: 3.4074
+Training Epoch: 3 [37888/50176]	Loss: 3.4280
+Training Epoch: 3 [38912/50176]	Loss: 3.4413
+Training Epoch: 3 [39936/50176]	Loss: 3.4125
+Training Epoch: 3 [40960/50176]	Loss: 3.3271
+Training Epoch: 3 [41984/50176]	Loss: 3.3527
+Training Epoch: 3 [43008/50176]	Loss: 3.2397
+Training Epoch: 3 [44032/50176]	Loss: 3.2833
+Training Epoch: 3 [45056/50176]	Loss: 3.3139
+Training Epoch: 3 [46080/50176]	Loss: 3.3349
+Training Epoch: 3 [47104/50176]	Loss: 3.3023
+Training Epoch: 3 [48128/50176]	Loss: 3.4297
+Training Epoch: 3 [49152/50176]	Loss: 3.3231
+Training Epoch: 3 [50176/50176]	Loss: 3.3624
+2022-12-08 23:41:42.167 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 18:41:42,214 [ZeusDataLoader(eval)] Power profiling done.
+2022-12-08 18:41:42,214 [ZeusDataLoader(eval)] Saved /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+lr0.0080000.power.json: {"job_id": "rec02+try01", "train_power": {"175000": 154.89953148785654, "150000": 146.71964346885522, "125000": 122.82062575056527, "100000": 101.98676264846775}, "train_throughput": {"175000": 1.133277720351713, "150000": 1.0989740762460123, "125000": 0.9681039581727158, "100000": 0.3668091756560675}, "eval_power": {"175000": 128.0308069670569, "150000": 131.06058502963776, "125000": 115.01601627718911}, "eval_throughput": {"175000": 2.444335818105813, "150000": 2.587981317609751, "125000": 2.3750444149937446}, "optimal_pl": 175000}
+2022-12-08 18:41:42,214 [ZeusDataLoader(eval)] eval epoch 4 done: time=4.09 energy=523.79
+2022-12-08 18:41:42,214 [ZeusDataLoader(train)] Up to epoch 4: time=289.91, energy=35001.67, cost=42867.91
+2022-12-08 18:41:42,215 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 18:41:42,215 [ZeusDataLoader(train)] Expected next epoch: time=337.24, energy=42222.92, cost=50619.77
+2022-12-08 18:41:42,216 [ZeusDataLoader(train)] Epoch 5 begin.
+Validation Epoch: 3, Average loss: 0.0034, Accuracy: 0.1719
+2022-12-08 18:41:42,536 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 18:41:42,537 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-08 23:41:42.539 [ZeusMonitor] Monitor started.
+2022-12-08 23:41:42.539 [ZeusMonitor] Running indefinitely. 2022-12-08 23:41:42.539 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-08 23:41:42.539 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e5+gpu0.power.log
+2022-12-08 18:42:26,327 [ZeusDataLoader(train)] train epoch 5 done: time=44.10 energy=6693.36
+2022-12-08 18:42:26,331 [ZeusDataLoader(eval)] Epoch 5 begin.
+Training Epoch: 4 [1024/50176]	Loss: 3.3479
+Training Epoch: 4 [2048/50176]	Loss: 3.2454
+Training Epoch: 4 [3072/50176]	Loss: 3.2534
+Training Epoch: 4 [4096/50176]	Loss: 3.2191
+Training Epoch: 4 [5120/50176]	Loss: 3.2302
+Training Epoch: 4 [6144/50176]	Loss: 3.2602
+Training Epoch: 4 [7168/50176]	Loss: 3.2570
+Training Epoch: 4 [8192/50176]	Loss: 3.2602
+Training Epoch: 4 [9216/50176]	Loss: 3.2607
+Training Epoch: 4 [10240/50176]	Loss: 3.1910
+Training Epoch: 4 [11264/50176]	Loss: 3.2237
+Training Epoch: 4 [12288/50176]	Loss: 3.2093
+Training Epoch: 4 [13312/50176]	Loss: 3.2103
+Training Epoch: 4 [14336/50176]	Loss: 3.2911
+Training Epoch: 4 [15360/50176]	Loss: 3.2145
+Training Epoch: 4 [16384/50176]	Loss: 3.1503
+Training Epoch: 4 [17408/50176]	Loss: 3.2117
+Training Epoch: 4 [18432/50176]	Loss: 3.2370
+Training Epoch: 4 [19456/50176]	Loss: 3.2128
+Training Epoch: 4 [20480/50176]	Loss: 3.1801
+Training Epoch: 4 [21504/50176]	Loss: 3.1919
+Training Epoch: 4 [22528/50176]	Loss: 3.1203
+Training Epoch: 4 [23552/50176]	Loss: 3.1912
+Training Epoch: 4 [24576/50176]	Loss: 3.1170
+Training Epoch: 4 [25600/50176]	Loss: 3.1213
+Training Epoch: 4 [26624/50176]	Loss: 3.1110
+Training Epoch: 4 [27648/50176]	Loss: 3.2079
+Training Epoch: 4 [28672/50176]	Loss: 3.0982
+Training Epoch: 4 [29696/50176]	Loss: 3.2290
+Training Epoch: 4 [30720/50176]	Loss: 3.1909
+Training Epoch: 4 [31744/50176]	Loss: 3.1514
+Training Epoch: 4 [32768/50176]	Loss: 3.1549
+Training Epoch: 4 [33792/50176]	Loss: 3.0805
+Training Epoch: 4 [34816/50176]	Loss: 3.0806
+Training Epoch: 4 [35840/50176]	Loss: 3.1830
+Training Epoch: 4 [36864/50176]	Loss: 3.1471
+Training Epoch: 4 [37888/50176]	Loss: 3.3034
+Training Epoch: 4 [38912/50176]	Loss: 3.0685
+Training Epoch: 4 [39936/50176]	Loss: 3.1219
+Training Epoch: 4 [40960/50176]	Loss: 3.0832
+Training Epoch: 4 [41984/50176]	Loss: 3.0523
+Training Epoch: 4 [43008/50176]	Loss: 3.0872
+Training Epoch: 4 [44032/50176]	Loss: 2.9990
+Training Epoch: 4 [45056/50176]	Loss: 3.0603
+Training Epoch: 4 [46080/50176]	Loss: 3.1172
+Training Epoch: 4 [47104/50176]	Loss: 3.1641
+Training Epoch: 4 [48128/50176]	Loss: 3.1180
+Training Epoch: 4 [49152/50176]	Loss: 3.0725
+Training Epoch: 4 [50176/50176]	Loss: 3.1745
+2022-12-08 23:42:30.075 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 18:42:30,092 [ZeusDataLoader(eval)] eval epoch 5 done: time=3.75 energy=512.47
+2022-12-08 18:42:30,093 [ZeusDataLoader(train)] Up to epoch 5: time=337.76, energy=42207.51, cost=50658.14
+2022-12-08 18:42:30,093 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 18:42:30,093 [ZeusDataLoader(train)] Expected next epoch: time=385.09, energy=49428.75, cost=58410.01
+2022-12-08 18:42:30,094 [ZeusDataLoader(train)] Epoch 6 begin.
+Validation Epoch: 4, Average loss: 0.0030, Accuracy: 0.2347
+2022-12-08 18:42:30,362 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 18:42:30,363 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-08 23:42:30.365 [ZeusMonitor] Monitor started.
+2022-12-08 23:42:30.365 [ZeusMonitor] Running indefinitely. 2022-12-08 23:42:30.365 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-08 23:42:30.365 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e6+gpu0.power.log
+2022-12-08 18:43:14,276 [ZeusDataLoader(train)] train epoch 6 done: time=44.17 energy=6708.88
+2022-12-08 18:43:14,279 [ZeusDataLoader(eval)] Epoch 6 begin.
+Training Epoch: 5 [1024/50176]	Loss: 2.9428
+Training Epoch: 5 [2048/50176]	Loss: 3.0334
+Training Epoch: 5 [3072/50176]	Loss: 3.0820
+Training Epoch: 5 [4096/50176]	Loss: 2.9716
+Training Epoch: 5 [5120/50176]	Loss: 2.9532
+Training Epoch: 5 [6144/50176]	Loss: 3.0059
+Training Epoch: 5 [7168/50176]	Loss: 2.9142
+Training Epoch: 5 [8192/50176]	Loss: 3.0029
+Training Epoch: 5 [9216/50176]	Loss: 2.9509
+Training Epoch: 5 [10240/50176]	Loss: 2.9890
+Training Epoch: 5 [11264/50176]	Loss: 3.0606
+Training Epoch: 5 [12288/50176]	Loss: 2.8621
+Training Epoch: 5 [13312/50176]	Loss: 2.9241
+Training Epoch: 5 [14336/50176]	Loss: 2.9345
+Training Epoch: 5 [15360/50176]	Loss: 3.0467
+Training Epoch: 5 [16384/50176]	Loss: 2.9309
+Training Epoch: 5 [17408/50176]	Loss: 2.9937
+Training Epoch: 5 [18432/50176]	Loss: 2.9313
+Training Epoch: 5 [19456/50176]	Loss: 2.9633
+Training Epoch: 5 [20480/50176]	Loss: 2.9158
+Training Epoch: 5 [21504/50176]	Loss: 2.8469
+Training Epoch: 5 [22528/50176]	Loss: 2.9903
+Training Epoch: 5 [23552/50176]	Loss: 3.0014
+Training Epoch: 5 [24576/50176]	Loss: 2.9101
+Training Epoch: 5 [25600/50176]	Loss: 2.9507
+Training Epoch: 5 [26624/50176]	Loss: 2.9033
+Training Epoch: 5 [27648/50176]	Loss: 2.8880
+Training Epoch: 5 [28672/50176]	Loss: 2.9158
+Training Epoch: 5 [29696/50176]	Loss: 2.8968
+Training Epoch: 5 [30720/50176]	Loss: 2.8567
+Training Epoch: 5 [31744/50176]	Loss: 2.8812
+Training Epoch: 5 [32768/50176]	Loss: 2.9253
+Training Epoch: 5 [33792/50176]	Loss: 2.8569
+Training Epoch: 5 [34816/50176]	Loss: 2.8617
+Training Epoch: 5 [35840/50176]	Loss: 2.9755
+Training Epoch: 5 [36864/50176]	Loss: 2.7801
+Training Epoch: 5 [37888/50176]	Loss: 2.8435
+Training Epoch: 5 [38912/50176]	Loss: 2.8201
+Training Epoch: 5 [39936/50176]	Loss: 2.9207
+Training Epoch: 5 [40960/50176]	Loss: 2.7913
+Training Epoch: 5 [41984/50176]	Loss: 2.8664
+Training Epoch: 5 [43008/50176]	Loss: 2.8549
+Training Epoch: 5 [44032/50176]	Loss: 2.8561
+Training Epoch: 5 [45056/50176]	Loss: 2.9361
+Training Epoch: 5 [46080/50176]	Loss: 2.8074
+Training Epoch: 5 [47104/50176]	Loss: 2.8431
+Training Epoch: 5 [48128/50176]	Loss: 2.8609
+Training Epoch: 5 [49152/50176]	Loss: 2.8861
+Training Epoch: 5 [50176/50176]	Loss: 2.8317
+2022-12-08 23:43:18.004 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 18:43:18,022 [ZeusDataLoader(eval)] eval epoch 6 done: time=3.73 energy=514.68
+2022-12-08 18:43:18,022 [ZeusDataLoader(train)] Up to epoch 6: time=385.67, energy=49431.07, cost=58461.86
+2022-12-08 18:43:18,023 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 18:43:18,023 [ZeusDataLoader(train)] Expected next epoch: time=433.00, energy=56652.31, cost=66213.73
+2022-12-08 18:43:18,024 [ZeusDataLoader(train)] Epoch 7 begin.
+Validation Epoch: 5, Average loss: 0.0028, Accuracy: 0.2656
+2022-12-08 18:43:18,282 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 18:43:18,283 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-08 23:43:18.285 [ZeusMonitor] Monitor started.
+2022-12-08 23:43:18.285 [ZeusMonitor] Running indefinitely. 2022-12-08 23:43:18.285 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-08 23:43:18.285 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e7+gpu0.power.log
+2022-12-08 18:44:02,245 [ZeusDataLoader(train)] train epoch 7 done: time=44.21 energy=6716.60
+2022-12-08 18:44:02,249 [ZeusDataLoader(eval)] Epoch 7 begin.
+Training Epoch: 6 [1024/50176]	Loss: 2.7490
+Training Epoch: 6 [2048/50176]	Loss: 2.7388
+Training Epoch: 6 [3072/50176]	Loss: 2.8353
+Training Epoch: 6 [4096/50176]	Loss: 2.7847
+Training Epoch: 6 [5120/50176]	Loss: 2.6622
+Training Epoch: 6 [6144/50176]	Loss: 2.7322
+Training Epoch: 6 [7168/50176]	Loss: 2.7706
+Training Epoch: 6 [8192/50176]	Loss: 2.7210
+Training Epoch: 6 [9216/50176]	Loss: 2.8270
+Training Epoch: 6 [10240/50176]	Loss: 2.7503
+Training Epoch: 6 [11264/50176]	Loss: 2.7496
+Training Epoch: 6 [12288/50176]	Loss: 2.7962
+Training Epoch: 6 [13312/50176]	Loss: 2.7388
+Training Epoch: 6 [14336/50176]	Loss: 2.6940
+Training Epoch: 6 [15360/50176]	Loss: 2.6253
+Training Epoch: 6 [16384/50176]	Loss: 2.7416
+Training Epoch: 6 [17408/50176]	Loss: 2.6940
+Training Epoch: 6 [18432/50176]	Loss: 2.7550
+Training Epoch: 6 [19456/50176]	Loss: 2.6294
+Training Epoch: 6 [20480/50176]	Loss: 2.7718
+Training Epoch: 6 [21504/50176]	Loss: 2.7961
+Training Epoch: 6 [22528/50176]	Loss: 2.6917
+Training Epoch: 6 [23552/50176]	Loss: 2.6965
+Training Epoch: 6 [24576/50176]	Loss: 2.6981
+Training Epoch: 6 [25600/50176]	Loss: 2.6333
+Training Epoch: 6 [26624/50176]	Loss: 2.7197
+Training Epoch: 6 [27648/50176]	Loss: 2.7295
+Training Epoch: 6 [28672/50176]	Loss: 2.5435
+Training Epoch: 6 [29696/50176]	Loss: 2.6894
+Training Epoch: 6 [30720/50176]	Loss: 2.6895
+Training Epoch: 6 [31744/50176]	Loss: 2.6571
+Training Epoch: 6 [32768/50176]	Loss: 2.6571
+Training Epoch: 6 [33792/50176]	Loss: 2.6758
+Training Epoch: 6 [34816/50176]	Loss: 2.7017
+Training Epoch: 6 [35840/50176]	Loss: 2.6636
+Training Epoch: 6 [36864/50176]	Loss: 2.6960
+Training Epoch: 6 [37888/50176]	Loss: 2.7183
+Training Epoch: 6 [38912/50176]	Loss: 2.7014
+Training Epoch: 6 [39936/50176]	Loss: 2.6992
+Training Epoch: 6 [40960/50176]	Loss: 2.6737
+Training Epoch: 6 [41984/50176]	Loss: 2.6313
+Training Epoch: 6 [43008/50176]	Loss: 2.6134
+Training Epoch: 6 [44032/50176]	Loss: 2.6431
+Training Epoch: 6 [45056/50176]	Loss: 2.6261
+Training Epoch: 6 [46080/50176]	Loss: 2.7008
+Training Epoch: 6 [47104/50176]	Loss: 2.5921
+Training Epoch: 6 [48128/50176]	Loss: 2.6704
+Training Epoch: 6 [49152/50176]	Loss: 2.5596
+Training Epoch: 6 [50176/50176]	Loss: 2.6145
+2022-12-08 23:44:06.015 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 18:44:06,037 [ZeusDataLoader(eval)] eval epoch 7 done: time=3.78 energy=530.49
+2022-12-08 18:44:06,037 [ZeusDataLoader(train)] Up to epoch 7: time=433.66, energy=56678.16, cost=66284.67
+2022-12-08 18:44:06,037 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 18:44:06,037 [ZeusDataLoader(train)] Expected next epoch: time=480.99, energy=63899.40, cost=74036.53
+2022-12-08 18:44:06,039 [ZeusDataLoader(train)] Epoch 8 begin.
+Validation Epoch: 6, Average loss: 0.0027, Accuracy: 0.2957
+2022-12-08 18:44:06,235 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 18:44:06,236 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-08 23:44:06.238 [ZeusMonitor] Monitor started.
+2022-12-08 23:44:06.238 [ZeusMonitor] Running indefinitely. 2022-12-08 23:44:06.238 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-08 23:44:06.238 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e8+gpu0.power.log
+2022-12-08 18:44:50,211 [ZeusDataLoader(train)] train epoch 8 done: time=44.16 energy=6704.78
+2022-12-08 18:44:50,215 [ZeusDataLoader(eval)] Epoch 8 begin.
+Training Epoch: 7 [1024/50176]	Loss: 2.5706
+Training Epoch: 7 [2048/50176]	Loss: 2.5368
+Training Epoch: 7 [3072/50176]	Loss: 2.4830
+Training Epoch: 7 [4096/50176]	Loss: 2.4832
+Training Epoch: 7 [5120/50176]	Loss: 2.5321
+Training Epoch: 7 [6144/50176]	Loss: 2.5444
+Training Epoch: 7 [7168/50176]	Loss: 2.5367
+Training Epoch: 7 [8192/50176]	Loss: 2.5021
+Training Epoch: 7 [9216/50176]	Loss: 2.4010
+Training Epoch: 7 [10240/50176]	Loss: 2.4803
+Training Epoch: 7 [11264/50176]	Loss: 2.4362
+Training Epoch: 7 [12288/50176]	Loss: 2.4804
+Training Epoch: 7 [13312/50176]	Loss: 2.4719
+Training Epoch: 7 [14336/50176]	Loss: 2.6037
+Training Epoch: 7 [15360/50176]	Loss: 2.5075
+Training Epoch: 7 [16384/50176]	Loss: 2.5123
+Training Epoch: 7 [17408/50176]	Loss: 2.5592
+Training Epoch: 7 [18432/50176]	Loss: 2.4921
+Training Epoch: 7 [19456/50176]	Loss: 2.5144
+Training Epoch: 7 [20480/50176]	Loss: 2.5130
+Training Epoch: 7 [21504/50176]	Loss: 2.5727
+Training Epoch: 7 [22528/50176]	Loss: 2.4916
+Training Epoch: 7 [23552/50176]	Loss: 2.4811
+Training Epoch: 7 [24576/50176]	Loss: 2.4509
+Training Epoch: 7 [25600/50176]	Loss: 2.4996
+Training Epoch: 7 [26624/50176]	Loss: 2.5470
+Training Epoch: 7 [27648/50176]	Loss: 2.5492
+Training Epoch: 7 [28672/50176]	Loss: 2.4421
+Training Epoch: 7 [29696/50176]	Loss: 2.5049
+Training Epoch: 7 [30720/50176]	Loss: 2.4451
+Training Epoch: 7 [31744/50176]	Loss: 2.4985
+Training Epoch: 7 [32768/50176]	Loss: 2.3915
+Training Epoch: 7 [33792/50176]	Loss: 2.5314
+Training Epoch: 7 [34816/50176]	Loss: 2.5097
+Training Epoch: 7 [35840/50176]	Loss: 2.3894
+Training Epoch: 7 [36864/50176]	Loss: 2.3160
+Training Epoch: 7 [37888/50176]	Loss: 2.3872
+Training Epoch: 7 [38912/50176]	Loss: 2.4953
+Training Epoch: 7 [39936/50176]	Loss: 2.5112
+Training Epoch: 7 [40960/50176]	Loss: 2.5039
+Training Epoch: 7 [41984/50176]	Loss: 2.4125
+Training Epoch: 7 [43008/50176]	Loss: 2.4061
+Training Epoch: 7 [44032/50176]	Loss: 2.3434
+Training Epoch: 7 [45056/50176]	Loss: 2.4706
+Training Epoch: 7 [46080/50176]	Loss: 2.4447
+Training Epoch: 7 [47104/50176]	Loss: 2.3437
+Training Epoch: 7 [48128/50176]	Loss: 2.3659
+Training Epoch: 7 [49152/50176]	Loss: 2.4949
+Training Epoch: 7 [50176/50176]	Loss: 2.3867
+2022-12-08 23:44:53.984 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 18:44:54,006 [ZeusDataLoader(eval)] eval epoch 8 done: time=3.78 energy=525.25
+2022-12-08 18:44:54,006 [ZeusDataLoader(train)] Up to epoch 8: time=481.61, energy=63908.19, cost=74094.93
+2022-12-08 18:44:54,006 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 18:44:54,006 [ZeusDataLoader(train)] Expected next epoch: time=528.94, energy=71129.43, cost=81846.79
+2022-12-08 18:44:54,007 [ZeusDataLoader(train)] Epoch 9 begin.
+Validation Epoch: 7, Average loss: 0.0027, Accuracy: 0.3080
+2022-12-08 18:44:54,213 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 18:44:54,214 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-08 23:44:54.218 [ZeusMonitor] Monitor started.
+2022-12-08 23:44:54.218 [ZeusMonitor] Running indefinitely. 2022-12-08 23:44:54.218 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-08 23:44:54.218 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e9+gpu0.power.log
+2022-12-08 18:45:38,201 [ZeusDataLoader(train)] train epoch 9 done: time=44.18 energy=6709.47
+2022-12-08 18:45:38,204 [ZeusDataLoader(eval)] Epoch 9 begin.
+Training Epoch: 8 [1024/50176]	Loss: 2.4435
+Training Epoch: 8 [2048/50176]	Loss: 2.4197
+Training Epoch: 8 [3072/50176]	Loss: 2.3966
+Training Epoch: 8 [4096/50176]	Loss: 2.2833
+Training Epoch: 8 [5120/50176]	Loss: 2.2257
+Training Epoch: 8 [6144/50176]	Loss: 2.3041
+Training Epoch: 8 [7168/50176]	Loss: 2.3206
+Training Epoch: 8 [8192/50176]	Loss: 2.3088
+Training Epoch: 8 [9216/50176]	Loss: 2.2151
+Training Epoch: 8 [10240/50176]	Loss: 2.2666
+Training Epoch: 8 [11264/50176]	Loss: 2.3196
+Training Epoch: 8 [12288/50176]	Loss: 2.3344
+Training Epoch: 8 [13312/50176]	Loss: 2.3231
+Training Epoch: 8 [14336/50176]	Loss: 2.3006
+Training Epoch: 8 [15360/50176]	Loss: 2.3700
+Training Epoch: 8 [16384/50176]	Loss: 2.2883
+Training Epoch: 8 [17408/50176]	Loss: 2.3499
+Training Epoch: 8 [18432/50176]	Loss: 2.3200
+Training Epoch: 8 [19456/50176]	Loss: 2.2506
+Training Epoch: 8 [20480/50176]	Loss: 2.2396
+Training Epoch: 8 [21504/50176]	Loss: 2.2263
+Training Epoch: 8 [22528/50176]	Loss: 2.2886
+Training Epoch: 8 [23552/50176]	Loss: 2.2528
+Training Epoch: 8 [24576/50176]	Loss: 2.3340
+Training Epoch: 8 [25600/50176]	Loss: 2.2788
+Training Epoch: 8 [26624/50176]	Loss: 2.3022
+Training Epoch: 8 [27648/50176]	Loss: 2.2438
+Training Epoch: 8 [28672/50176]	Loss: 2.3001
+Training Epoch: 8 [29696/50176]	Loss: 2.2818
+Training Epoch: 8 [30720/50176]	Loss: 2.2706
+Training Epoch: 8 [31744/50176]	Loss: 2.2775
+Training Epoch: 8 [32768/50176]	Loss: 2.2288
+Training Epoch: 8 [33792/50176]	Loss: 2.3817
+Training Epoch: 8 [34816/50176]	Loss: 2.3105
+Training Epoch: 8 [35840/50176]	Loss: 2.3340
+Training Epoch: 8 [36864/50176]	Loss: 2.2939
+Training Epoch: 8 [37888/50176]	Loss: 2.2771
+Training Epoch: 8 [38912/50176]	Loss: 2.2586
+Training Epoch: 8 [39936/50176]	Loss: 2.3385
+Training Epoch: 8 [40960/50176]	Loss: 2.2707
+Training Epoch: 8 [41984/50176]	Loss: 2.2718
+Training Epoch: 8 [43008/50176]	Loss: 2.2942
+Training Epoch: 8 [44032/50176]	Loss: 2.3590
+Training Epoch: 8 [45056/50176]	Loss: 2.3253
+Training Epoch: 8 [46080/50176]	Loss: 2.2091
+Training Epoch: 8 [47104/50176]	Loss: 2.3317
+Training Epoch: 8 [48128/50176]	Loss: 2.1727
+Training Epoch: 8 [49152/50176]	Loss: 2.3131
+Training Epoch: 8 [50176/50176]	Loss: 2.2553
+2022-12-08 23:45:41.997 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 18:45:42,040 [ZeusDataLoader(eval)] eval epoch 9 done: time=3.83 energy=533.37
+2022-12-08 18:45:42,041 [ZeusDataLoader(train)] Up to epoch 9: time=529.62, energy=71151.03, cost=81917.39
+2022-12-08 18:45:42,041 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 18:45:42,041 [ZeusDataLoader(train)] Expected next epoch: time=576.95, energy=78372.27, cost=89669.26
+2022-12-08 18:45:42,042 [ZeusDataLoader(train)] Epoch 10 begin.
+Validation Epoch: 8, Average loss: 0.0023, Accuracy: 0.3766
+2022-12-08 18:45:42,302 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 18:45:42,303 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-08 23:45:42.305 [ZeusMonitor] Monitor started.
+2022-12-08 23:45:42.305 [ZeusMonitor] Running indefinitely. 2022-12-08 23:45:42.305 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-08 23:45:42.305 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e10+gpu0.power.log
+2022-12-08 18:46:26,219 [ZeusDataLoader(train)] train epoch 10 done: time=44.17 energy=6713.41
+2022-12-08 18:46:26,223 [ZeusDataLoader(eval)] Epoch 10 begin.
+Training Epoch: 9 [1024/50176]	Loss: 2.1574
+Training Epoch: 9 [2048/50176]	Loss: 2.1566
+Training Epoch: 9 [3072/50176]	Loss: 2.1950
+Training Epoch: 9 [4096/50176]	Loss: 2.1446
+Training Epoch: 9 [5120/50176]	Loss: 2.2591
+Training Epoch: 9 [6144/50176]	Loss: 2.0872
+Training Epoch: 9 [7168/50176]	Loss: 2.2391
+Training Epoch: 9 [8192/50176]	Loss: 2.1818
+Training Epoch: 9 [9216/50176]	Loss: 2.1778
+Training Epoch: 9 [10240/50176]	Loss: 2.1751
+Training Epoch: 9 [11264/50176]	Loss: 2.2629
+Training Epoch: 9 [12288/50176]	Loss: 2.1853
+Training Epoch: 9 [13312/50176]	Loss: 2.0897
+Training Epoch: 9 [14336/50176]	Loss: 2.2158
+Training Epoch: 9 [15360/50176]	Loss: 2.1849
+Training Epoch: 9 [16384/50176]	Loss: 2.1617
+Training Epoch: 9 [17408/50176]	Loss: 2.0814
+Training Epoch: 9 [18432/50176]	Loss: 2.2285
+Training Epoch: 9 [19456/50176]	Loss: 2.1429
+Training Epoch: 9 [20480/50176]	Loss: 2.1248
+Training Epoch: 9 [21504/50176]	Loss: 2.1590
+Training Epoch: 9 [22528/50176]	Loss: 2.1106
+Training Epoch: 9 [23552/50176]	Loss: 2.0905
+Training Epoch: 9 [24576/50176]	Loss: 2.1375
+Training Epoch: 9 [25600/50176]	Loss: 2.1076
+Training Epoch: 9 [26624/50176]	Loss: 2.1045
+Training Epoch: 9 [27648/50176]	Loss: 2.1920
+Training Epoch: 9 [28672/50176]	Loss: 2.1879
+Training Epoch: 9 [29696/50176]	Loss: 2.1759
+Training Epoch: 9 [30720/50176]	Loss: 2.0751
+Training Epoch: 9 [31744/50176]	Loss: 2.1549
+Training Epoch: 9 [32768/50176]	Loss: 2.1177
+Training Epoch: 9 [33792/50176]	Loss: 2.0943
+Training Epoch: 9 [34816/50176]	Loss: 2.2008
+Training Epoch: 9 [35840/50176]	Loss: 2.0812
+Training Epoch: 9 [36864/50176]	Loss: 2.1663
+Training Epoch: 9 [37888/50176]	Loss: 2.1381
+Training Epoch: 9 [38912/50176]	Loss: 2.1576
+Training Epoch: 9 [39936/50176]	Loss: 2.0980
+Training Epoch: 9 [40960/50176]	Loss: 2.1417
+Training Epoch: 9 [41984/50176]	Loss: 2.0291
+Training Epoch: 9 [43008/50176]	Loss: 2.1836
+Training Epoch: 9 [44032/50176]	Loss: 2.1212
+Training Epoch: 9 [45056/50176]	Loss: 2.0484
+Training Epoch: 9 [46080/50176]	Loss: 2.0463
+Training Epoch: 9 [47104/50176]	Loss: 2.1103
+Training Epoch: 9 [48128/50176]	Loss: 2.0858
+Training Epoch: 9 [49152/50176]	Loss: 2.0828
+Training Epoch: 9 [50176/50176]	Loss: 1.9905
+2022-12-08 23:46:30.052 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 18:46:30,073 [ZeusDataLoader(eval)] eval epoch 10 done: time=3.84 energy=534.05
+2022-12-08 18:46:30,074 [ZeusDataLoader(train)] Up to epoch 10: time=577.63, energy=78398.49, cost=89742.03
+2022-12-08 18:46:30,074 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 18:46:30,074 [ZeusDataLoader(train)] Expected next epoch: time=624.96, energy=85619.73, cost=97493.89
+2022-12-08 18:46:30,075 [ZeusDataLoader(train)] Epoch 11 begin.
+Validation Epoch: 9, Average loss: 0.0025, Accuracy: 0.3473
+2022-12-08 18:46:30,329 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 18:46:30,330 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-08 23:46:30.332 [ZeusMonitor] Monitor started.
+2022-12-08 23:46:30.332 [ZeusMonitor] Running indefinitely. 2022-12-08 23:46:30.332 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-08 23:46:30.332 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e11+gpu0.power.log
+2022-12-08 18:47:14,252 [ZeusDataLoader(train)] train epoch 11 done: time=44.17 energy=6711.54
+2022-12-08 18:47:14,258 [ZeusDataLoader(eval)] Epoch 11 begin.
+Training Epoch: 10 [1024/50176]	Loss: 2.0406
+Training Epoch: 10 [2048/50176]	Loss: 1.9901
+Training Epoch: 10 [3072/50176]	Loss: 1.9961
+Training Epoch: 10 [4096/50176]	Loss: 2.1087
+Training Epoch: 10 [5120/50176]	Loss: 1.9613
+Training Epoch: 10 [6144/50176]	Loss: 2.0566
+Training Epoch: 10 [7168/50176]	Loss: 1.9590
+Training Epoch: 10 [8192/50176]	Loss: 1.9099
+Training Epoch: 10 [9216/50176]	Loss: 2.0256
+Training Epoch: 10 [10240/50176]	Loss: 1.9404
+Training Epoch: 10 [11264/50176]	Loss: 2.1038
+Training Epoch: 10 [12288/50176]	Loss: 2.0135
+Training Epoch: 10 [13312/50176]	Loss: 2.1166
+Training Epoch: 10 [14336/50176]	Loss: 2.1087
+Training Epoch: 10 [15360/50176]	Loss: 2.0684
+Training Epoch: 10 [16384/50176]	Loss: 2.0913
+Training Epoch: 10 [17408/50176]	Loss: 2.1137
+Training Epoch: 10 [18432/50176]	Loss: 1.9709
+Training Epoch: 10 [19456/50176]	Loss: 2.0160
+Training Epoch: 10 [20480/50176]	Loss: 2.0017
+Training Epoch: 10 [21504/50176]	Loss: 2.0390
+Training Epoch: 10 [22528/50176]	Loss: 2.0317
+Training Epoch: 10 [23552/50176]	Loss: 2.0328
+Training Epoch: 10 [24576/50176]	Loss: 2.0053
+Training Epoch: 10 [25600/50176]	Loss: 1.9681
+Training Epoch: 10 [26624/50176]	Loss: 1.9717
+Training Epoch: 10 [27648/50176]	Loss: 2.0028
+Training Epoch: 10 [28672/50176]	Loss: 2.0779
+Training Epoch: 10 [29696/50176]	Loss: 2.1335
+Training Epoch: 10 [30720/50176]	Loss: 1.9491
+Training Epoch: 10 [31744/50176]	Loss: 2.0740
+Training Epoch: 10 [32768/50176]	Loss: 1.9405
+Training Epoch: 10 [33792/50176]	Loss: 1.9853
+Training Epoch: 10 [34816/50176]	Loss: 2.0252
+Training Epoch: 10 [35840/50176]	Loss: 2.1107
+Training Epoch: 10 [36864/50176]	Loss: 2.0533
+Training Epoch: 10 [37888/50176]	Loss: 1.9044
+Training Epoch: 10 [38912/50176]	Loss: 1.9980
+Training Epoch: 10 [39936/50176]	Loss: 2.1149
+Training Epoch: 10 [40960/50176]	Loss: 1.9121
+Training Epoch: 10 [41984/50176]	Loss: 1.9026
+Training Epoch: 10 [43008/50176]	Loss: 2.0380
+Training Epoch: 10 [44032/50176]	Loss: 2.0042
+Training Epoch: 10 [45056/50176]	Loss: 1.9547
+Training Epoch: 10 [46080/50176]	Loss: 1.8579
+Training Epoch: 10 [47104/50176]	Loss: 2.0059
+Training Epoch: 10 [48128/50176]	Loss: 2.0064
+Training Epoch: 10 [49152/50176]	Loss: 2.0441
+Training Epoch: 10 [50176/50176]	Loss: 2.0167
+2022-12-08 23:47:18.085 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 18:47:18,118 [ZeusDataLoader(eval)] eval epoch 11 done: time=3.85 energy=534.52
+2022-12-08 18:47:18,119 [ZeusDataLoader(train)] Up to epoch 11: time=625.65, energy=85644.56, cost=97566.89
+2022-12-08 18:47:18,119 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 18:47:18,119 [ZeusDataLoader(train)] Expected next epoch: time=672.98, energy=92865.80, cost=105318.75
+2022-12-08 18:47:18,120 [ZeusDataLoader(train)] Epoch 12 begin.
+Validation Epoch: 10, Average loss: 0.0021, Accuracy: 0.4209
+2022-12-08 18:47:18,372 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 18:47:18,373 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-08 23:47:18.375 [ZeusMonitor] Monitor started.
+2022-12-08 23:47:18.375 [ZeusMonitor] Running indefinitely. 2022-12-08 23:47:18.375 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-08 23:47:18.375 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e12+gpu0.power.log
+2022-12-08 18:48:02,330 [ZeusDataLoader(train)] train epoch 12 done: time=44.20 energy=6722.17
+2022-12-08 18:48:02,333 [ZeusDataLoader(eval)] Epoch 12 begin.
+Training Epoch: 11 [1024/50176]	Loss: 1.8626
+Training Epoch: 11 [2048/50176]	Loss: 1.8860
+Training Epoch: 11 [3072/50176]	Loss: 1.8808
+Training Epoch: 11 [4096/50176]	Loss: 2.0291
+Training Epoch: 11 [5120/50176]	Loss: 1.9978
+Training Epoch: 11 [6144/50176]	Loss: 1.7627
+Training Epoch: 11 [7168/50176]	Loss: 1.7599
+Training Epoch: 11 [8192/50176]	Loss: 1.8739
+Training Epoch: 11 [9216/50176]	Loss: 1.8879
+Training Epoch: 11 [10240/50176]	Loss: 1.9910
+Training Epoch: 11 [11264/50176]	Loss: 1.9027
+Training Epoch: 11 [12288/50176]	Loss: 1.9055
+Training Epoch: 11 [13312/50176]	Loss: 2.0010
+Training Epoch: 11 [14336/50176]	Loss: 1.8103
+Training Epoch: 11 [15360/50176]	Loss: 1.9123
+Training Epoch: 11 [16384/50176]	Loss: 1.8938
+Training Epoch: 11 [17408/50176]	Loss: 1.8750
+Training Epoch: 11 [18432/50176]	Loss: 1.8849
+Training Epoch: 11 [19456/50176]	Loss: 1.8458
+Training Epoch: 11 [20480/50176]	Loss: 1.9988
+Training Epoch: 11 [21504/50176]	Loss: 1.9854
+Training Epoch: 11 [22528/50176]	Loss: 1.9407
+Training Epoch: 11 [23552/50176]	Loss: 1.9659
+Training Epoch: 11 [24576/50176]	Loss: 1.9217
+Training Epoch: 11 [25600/50176]	Loss: 1.9086
+Training Epoch: 11 [26624/50176]	Loss: 1.8004
+Training Epoch: 11 [27648/50176]	Loss: 1.8816
+Training Epoch: 11 [28672/50176]	Loss: 1.9119
+Training Epoch: 11 [29696/50176]	Loss: 1.9521
+Training Epoch: 11 [30720/50176]	Loss: 1.9046
+Training Epoch: 11 [31744/50176]	Loss: 1.8823
+Training Epoch: 11 [32768/50176]	Loss: 1.9051
+Training Epoch: 11 [33792/50176]	Loss: 1.9125
+Training Epoch: 11 [34816/50176]	Loss: 1.9448
+Training Epoch: 11 [35840/50176]	Loss: 1.9133
+Training Epoch: 11 [36864/50176]	Loss: 1.8493
+Training Epoch: 11 [37888/50176]	Loss: 1.9506
+Training Epoch: 11 [38912/50176]	Loss: 1.9133
+Training Epoch: 11 [39936/50176]	Loss: 1.8883
+Training Epoch: 11 [40960/50176]	Loss: 1.8474
+Training Epoch: 11 [41984/50176]	Loss: 1.9259
+Training Epoch: 11 [43008/50176]	Loss: 1.9395
+Training Epoch: 11 [44032/50176]	Loss: 1.9193
+Training Epoch: 11 [45056/50176]	Loss: 1.9567
+Training Epoch: 11 [46080/50176]	Loss: 1.8041
+Training Epoch: 11 [47104/50176]	Loss: 1.9116
+Training Epoch: 11 [48128/50176]	Loss: 1.8852
+Training Epoch: 11 [49152/50176]	Loss: 1.8319
+Training Epoch: 11 [50176/50176]	Loss: 1.9489
+2022-12-08 23:48:06.118 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 18:48:06,141 [ZeusDataLoader(eval)] eval epoch 12 done: time=3.80 energy=514.34
+2022-12-08 18:48:06,141 [ZeusDataLoader(train)] Up to epoch 12: time=673.65, energy=92881.06, cost=105384.94
+2022-12-08 18:48:06,141 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 18:48:06,141 [ZeusDataLoader(train)] Expected next epoch: time=720.98, energy=100102.30, cost=113136.81
+2022-12-08 18:48:06,142 [ZeusDataLoader(train)] Epoch 13 begin.
+Validation Epoch: 11, Average loss: 0.0027, Accuracy: 0.3356
+2022-12-08 18:48:06,402 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 18:48:06,402 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-08 23:48:06.412 [ZeusMonitor] Monitor started.
+2022-12-08 23:48:06.413 [ZeusMonitor] Running indefinitely. 2022-12-08 23:48:06.413 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-08 23:48:06.413 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e13+gpu0.power.log
+2022-12-08 18:48:50,530 [ZeusDataLoader(train)] train epoch 13 done: time=44.38 energy=6709.98
+2022-12-08 18:48:50,534 [ZeusDataLoader(eval)] Epoch 13 begin.
+Training Epoch: 12 [1024/50176]	Loss: 1.7862
+Training Epoch: 12 [2048/50176]	Loss: 1.7517
+Training Epoch: 12 [3072/50176]	Loss: 1.8506
+Training Epoch: 12 [4096/50176]	Loss: 1.7962
+Training Epoch: 12 [5120/50176]	Loss: 1.6731
+Training Epoch: 12 [6144/50176]	Loss: 1.7907
+Training Epoch: 12 [7168/50176]	Loss: 1.8805
+Training Epoch: 12 [8192/50176]	Loss: 1.6884
+Training Epoch: 12 [9216/50176]	Loss: 1.8419
+Training Epoch: 12 [10240/50176]	Loss: 1.7553
+Training Epoch: 12 [11264/50176]	Loss: 1.9231
+Training Epoch: 12 [12288/50176]	Loss: 1.7671
+Training Epoch: 12 [13312/50176]	Loss: 1.7352
+Training Epoch: 12 [14336/50176]	Loss: 1.8225
+Training Epoch: 12 [15360/50176]	Loss: 1.6952
+Training Epoch: 12 [16384/50176]	Loss: 1.7419
+Training Epoch: 12 [17408/50176]	Loss: 1.7404
+Training Epoch: 12 [18432/50176]	Loss: 1.7567
+Training Epoch: 12 [19456/50176]	Loss: 1.7794
+Training Epoch: 12 [20480/50176]	Loss: 1.8304
+Training Epoch: 12 [21504/50176]	Loss: 1.8587
+Training Epoch: 12 [22528/50176]	Loss: 1.7336
+Training Epoch: 12 [23552/50176]	Loss: 1.8273
+Training Epoch: 12 [24576/50176]	Loss: 1.7455
+Training Epoch: 12 [25600/50176]	Loss: 1.8600
+Training Epoch: 12 [26624/50176]	Loss: 1.8540
+Training Epoch: 12 [27648/50176]	Loss: 1.7361
+Training Epoch: 12 [28672/50176]	Loss: 1.8301
+Training Epoch: 12 [29696/50176]	Loss: 1.8159
+Training Epoch: 12 [30720/50176]	Loss: 1.7816
+Training Epoch: 12 [31744/50176]	Loss: 1.7821
+Training Epoch: 12 [32768/50176]	Loss: 1.8269
+Training Epoch: 12 [33792/50176]	Loss: 1.7308
+Training Epoch: 12 [34816/50176]	Loss: 1.8022
+Training Epoch: 12 [35840/50176]	Loss: 1.7643
+Training Epoch: 12 [36864/50176]	Loss: 1.8104
+Training Epoch: 12 [37888/50176]	Loss: 1.8295
+Training Epoch: 12 [38912/50176]	Loss: 1.6985
+Training Epoch: 12 [39936/50176]	Loss: 1.8881
+Training Epoch: 12 [40960/50176]	Loss: 1.7172
+Training Epoch: 12 [41984/50176]	Loss: 1.8966
+Training Epoch: 12 [43008/50176]	Loss: 1.7856
+Training Epoch: 12 [44032/50176]	Loss: 1.8783
+Training Epoch: 12 [45056/50176]	Loss: 1.7297
+Training Epoch: 12 [46080/50176]	Loss: 1.8126
+Training Epoch: 12 [47104/50176]	Loss: 1.7376
+Training Epoch: 12 [48128/50176]	Loss: 1.7285
+Training Epoch: 12 [49152/50176]	Loss: 1.7642
+Training Epoch: 12 [50176/50176]	Loss: 1.7365
+2022-12-08 23:48:54.366 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 18:48:54,395 [ZeusDataLoader(eval)] eval epoch 13 done: time=3.85 energy=531.04
+2022-12-08 18:48:54,396 [ZeusDataLoader(train)] Up to epoch 13: time=721.88, energy=100122.08, cost=113225.73
+2022-12-08 18:48:54,396 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 18:48:54,396 [ZeusDataLoader(train)] Expected next epoch: time=769.21, energy=107343.32, cost=120977.60
+2022-12-08 18:48:54,397 [ZeusDataLoader(train)] Epoch 14 begin.
+Validation Epoch: 12, Average loss: 0.0020, Accuracy: 0.4578
+2022-12-08 18:48:54,599 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 18:48:54,600 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-08 23:48:54.604 [ZeusMonitor] Monitor started.
+2022-12-08 23:48:54.604 [ZeusMonitor] Running indefinitely. 2022-12-08 23:48:54.604 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-08 23:48:54.604 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e14+gpu0.power.log
+2022-12-08 18:49:38,625 [ZeusDataLoader(train)] train epoch 14 done: time=44.22 energy=6721.60
+2022-12-08 18:49:38,628 [ZeusDataLoader(eval)] Epoch 14 begin.
+Training Epoch: 13 [1024/50176]	Loss: 1.6607
+Training Epoch: 13 [2048/50176]	Loss: 1.6761
+Training Epoch: 13 [3072/50176]	Loss: 1.7285
+Training Epoch: 13 [4096/50176]	Loss: 1.6237
+Training Epoch: 13 [5120/50176]	Loss: 1.6967
+Training Epoch: 13 [6144/50176]	Loss: 1.6828
+Training Epoch: 13 [7168/50176]	Loss: 1.6311
+Training Epoch: 13 [8192/50176]	Loss: 1.6384
+Training Epoch: 13 [9216/50176]	Loss: 1.6941
+Training Epoch: 13 [10240/50176]	Loss: 1.7803
+Training Epoch: 13 [11264/50176]	Loss: 1.6194
+Training Epoch: 13 [12288/50176]	Loss: 1.6865
+Training Epoch: 13 [13312/50176]	Loss: 1.6974
+Training Epoch: 13 [14336/50176]	Loss: 1.6880
+Training Epoch: 13 [15360/50176]	Loss: 1.6881
+Training Epoch: 13 [16384/50176]	Loss: 1.6848
+Training Epoch: 13 [17408/50176]	Loss: 1.6735
+Training Epoch: 13 [18432/50176]	Loss: 1.6457
+Training Epoch: 13 [19456/50176]	Loss: 1.6817
+Training Epoch: 13 [20480/50176]	Loss: 1.6689
+Training Epoch: 13 [21504/50176]	Loss: 1.7080
+Training Epoch: 13 [22528/50176]	Loss: 1.6670
+Training Epoch: 13 [23552/50176]	Loss: 1.7357
+Training Epoch: 13 [24576/50176]	Loss: 1.6907
+Training Epoch: 13 [25600/50176]	Loss: 1.6932
+Training Epoch: 13 [26624/50176]	Loss: 1.7735
+Training Epoch: 13 [27648/50176]	Loss: 1.6649
+Training Epoch: 13 [28672/50176]	Loss: 1.7142
+Training Epoch: 13 [29696/50176]	Loss: 1.7088
+Training Epoch: 13 [30720/50176]	Loss: 1.7109
+Training Epoch: 13 [31744/50176]	Loss: 1.7384
+Training Epoch: 13 [32768/50176]	Loss: 1.6169
+Training Epoch: 13 [33792/50176]	Loss: 1.7467
+Training Epoch: 13 [34816/50176]	Loss: 1.8102
+Training Epoch: 13 [35840/50176]	Loss: 1.8271
+Training Epoch: 13 [36864/50176]	Loss: 1.7080
+Training Epoch: 13 [37888/50176]	Loss: 1.7824
+Training Epoch: 13 [38912/50176]	Loss: 1.6175
+Training Epoch: 13 [39936/50176]	Loss: 1.6950
+Training Epoch: 13 [40960/50176]	Loss: 1.6677
+Training Epoch: 13 [41984/50176]	Loss: 1.7463
+Training Epoch: 13 [43008/50176]	Loss: 1.6347
+Training Epoch: 13 [44032/50176]	Loss: 1.7643
+Training Epoch: 13 [45056/50176]	Loss: 1.6927
+Training Epoch: 13 [46080/50176]	Loss: 1.6501
+Training Epoch: 13 [47104/50176]	Loss: 1.7082
+Training Epoch: 13 [48128/50176]	Loss: 1.7111
+Training Epoch: 13 [49152/50176]	Loss: 1.6177
+Training Epoch: 13 [50176/50176]	Loss: 1.8394
+2022-12-08 23:49:42.372 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 18:49:42,389 [ZeusDataLoader(eval)] eval epoch 14 done: time=3.75 energy=514.81
+2022-12-08 18:49:42,389 [ZeusDataLoader(train)] Up to epoch 14: time=769.85, energy=107358.49, cost=121041.39
+2022-12-08 18:49:42,389 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 18:49:42,389 [ZeusDataLoader(train)] Expected next epoch: time=817.18, energy=114579.73, cost=128793.26
+2022-12-08 18:49:42,390 [ZeusDataLoader(train)] Epoch 15 begin.
+Validation Epoch: 13, Average loss: 0.0021, Accuracy: 0.4581
+2022-12-08 18:49:42,639 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 18:49:42,640 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-08 23:49:42.642 [ZeusMonitor] Monitor started.
+2022-12-08 23:49:42.642 [ZeusMonitor] Running indefinitely. 2022-12-08 23:49:42.642 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-08 23:49:42.642 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e15+gpu0.power.log
+2022-12-08 18:50:26,605 [ZeusDataLoader(train)] train epoch 15 done: time=44.21 energy=6723.44
+2022-12-08 18:50:26,608 [ZeusDataLoader(eval)] Epoch 15 begin.
+Training Epoch: 14 [1024/50176]	Loss: 1.5586
+Training Epoch: 14 [2048/50176]	Loss: 1.6423
+Training Epoch: 14 [3072/50176]	Loss: 1.6316
+Training Epoch: 14 [4096/50176]	Loss: 1.7124
+Training Epoch: 14 [5120/50176]	Loss: 1.5668
+Training Epoch: 14 [6144/50176]	Loss: 1.6185
+Training Epoch: 14 [7168/50176]	Loss: 1.5581
+Training Epoch: 14 [8192/50176]	Loss: 1.6196
+Training Epoch: 14 [9216/50176]	Loss: 1.5383
+Training Epoch: 14 [10240/50176]	Loss: 1.5797
+Training Epoch: 14 [11264/50176]	Loss: 1.5939
+Training Epoch: 14 [12288/50176]	Loss: 1.6405
+Training Epoch: 14 [13312/50176]	Loss: 1.6312
+Training Epoch: 14 [14336/50176]	Loss: 1.5757
+Training Epoch: 14 [15360/50176]	Loss: 1.5826
+Training Epoch: 14 [16384/50176]	Loss: 1.5207
+Training Epoch: 14 [17408/50176]	Loss: 1.6674
+Training Epoch: 14 [18432/50176]	Loss: 1.6133
+Training Epoch: 14 [19456/50176]	Loss: 1.5524
+Training Epoch: 14 [20480/50176]	Loss: 1.6382
+Training Epoch: 14 [21504/50176]	Loss: 1.6613
+Training Epoch: 14 [22528/50176]	Loss: 1.5819
+Training Epoch: 14 [23552/50176]	Loss: 1.6082
+Training Epoch: 14 [24576/50176]	Loss: 1.6267
+Training Epoch: 14 [25600/50176]	Loss: 1.6704
+Training Epoch: 14 [26624/50176]	Loss: 1.5703
+Training Epoch: 14 [27648/50176]	Loss: 1.5288
+Training Epoch: 14 [28672/50176]	Loss: 1.7004
+Training Epoch: 14 [29696/50176]	Loss: 1.6098
+Training Epoch: 14 [30720/50176]	Loss: 1.6083
+Training Epoch: 14 [31744/50176]	Loss: 1.5871
+Training Epoch: 14 [32768/50176]	Loss: 1.7279
+Training Epoch: 14 [33792/50176]	Loss: 1.6684
+Training Epoch: 14 [34816/50176]	Loss: 1.6361
+Training Epoch: 14 [35840/50176]	Loss: 1.6680
+Training Epoch: 14 [36864/50176]	Loss: 1.7580
+Training Epoch: 14 [37888/50176]	Loss: 1.6178
+Training Epoch: 14 [38912/50176]	Loss: 1.6732
+Training Epoch: 14 [39936/50176]	Loss: 1.6482
+Training Epoch: 14 [40960/50176]	Loss: 1.6602
+Training Epoch: 14 [41984/50176]	Loss: 1.7177
+Training Epoch: 14 [43008/50176]	Loss: 1.6652
+Training Epoch: 14 [44032/50176]	Loss: 1.6125
+Training Epoch: 14 [45056/50176]	Loss: 1.6755
+Training Epoch: 14 [46080/50176]	Loss: 1.6055
+Training Epoch: 14 [47104/50176]	Loss: 1.5527
+Training Epoch: 14 [48128/50176]	Loss: 1.6133
+Training Epoch: 14 [49152/50176]	Loss: 1.6313
+Training Epoch: 14 [50176/50176]	Loss: 1.6787
+2022-12-08 23:50:30.348 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 18:50:30,387 [ZeusDataLoader(eval)] eval epoch 15 done: time=3.77 energy=513.83
+2022-12-08 18:50:30,388 [ZeusDataLoader(train)] Up to epoch 15: time=817.83, energy=114595.76, cost=128857.92
+2022-12-08 18:50:30,388 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 18:50:30,388 [ZeusDataLoader(train)] Expected next epoch: time=865.16, energy=121817.00, cost=136609.78
+2022-12-08 18:50:30,389 [ZeusDataLoader(train)] Epoch 16 begin.
+Validation Epoch: 14, Average loss: 0.0018, Accuracy: 0.5038
+2022-12-08 18:50:30,641 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 18:50:30,642 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-08 23:50:30.643 [ZeusMonitor] Monitor started.
+2022-12-08 23:50:30.644 [ZeusMonitor] Running indefinitely. 2022-12-08 23:50:30.644 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-08 23:50:30.644 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e16+gpu0.power.log
+2022-12-08 18:51:14,672 [ZeusDataLoader(train)] train epoch 16 done: time=44.27 energy=6718.59
+2022-12-08 18:51:14,675 [ZeusDataLoader(eval)] Epoch 16 begin.
+Training Epoch: 15 [1024/50176]	Loss: 1.6088
+Training Epoch: 15 [2048/50176]	Loss: 1.5098
+Training Epoch: 15 [3072/50176]	Loss: 1.5342
+Training Epoch: 15 [4096/50176]	Loss: 1.5097
+Training Epoch: 15 [5120/50176]	Loss: 1.5144
+Training Epoch: 15 [6144/50176]	Loss: 1.5275
+Training Epoch: 15 [7168/50176]	Loss: 1.4897
+Training Epoch: 15 [8192/50176]	Loss: 1.5686
+Training Epoch: 15 [9216/50176]	Loss: 1.5704
+Training Epoch: 15 [10240/50176]	Loss: 1.5381
+Training Epoch: 15 [11264/50176]	Loss: 1.5316
+Training Epoch: 15 [12288/50176]	Loss: 1.6055
+Training Epoch: 15 [13312/50176]	Loss: 1.5016
+Training Epoch: 15 [14336/50176]	Loss: 1.5384
+Training Epoch: 15 [15360/50176]	Loss: 1.6014
+Training Epoch: 15 [16384/50176]	Loss: 1.6032
+Training Epoch: 15 [17408/50176]	Loss: 1.5559
+Training Epoch: 15 [18432/50176]	Loss: 1.5443
+Training Epoch: 15 [19456/50176]	Loss: 1.5125
+Training Epoch: 15 [20480/50176]	Loss: 1.4662
+Training Epoch: 15 [21504/50176]	Loss: 1.4688
+Training Epoch: 15 [22528/50176]	Loss: 1.6281
+Training Epoch: 15 [23552/50176]	Loss: 1.5585
+Training Epoch: 15 [24576/50176]	Loss: 1.4942
+Training Epoch: 15 [25600/50176]	Loss: 1.5110
+Training Epoch: 15 [26624/50176]	Loss: 1.5467
+Training Epoch: 15 [27648/50176]	Loss: 1.5718
+Training Epoch: 15 [28672/50176]	Loss: 1.4543
+Training Epoch: 15 [29696/50176]	Loss: 1.5722
+Training Epoch: 15 [30720/50176]	Loss: 1.5200
+Training Epoch: 15 [31744/50176]	Loss: 1.5597
+Training Epoch: 15 [32768/50176]	Loss: 1.5365
+Training Epoch: 15 [33792/50176]	Loss: 1.4800
+Training Epoch: 15 [34816/50176]	Loss: 1.6052
+Training Epoch: 15 [35840/50176]	Loss: 1.5520
+Training Epoch: 15 [36864/50176]	Loss: 1.5396
+Training Epoch: 15 [37888/50176]	Loss: 1.5629
+Training Epoch: 15 [38912/50176]	Loss: 1.4760
+Training Epoch: 15 [39936/50176]	Loss: 1.5818
+Training Epoch: 15 [40960/50176]	Loss: 1.5613
+Training Epoch: 15 [41984/50176]	Loss: 1.5926
+Training Epoch: 15 [43008/50176]	Loss: 1.5828
+Training Epoch: 15 [44032/50176]	Loss: 1.5095
+Training Epoch: 15 [45056/50176]	Loss: 1.5139
+Training Epoch: 15 [46080/50176]	Loss: 1.5776
+Training Epoch: 15 [47104/50176]	Loss: 1.4997
+Training Epoch: 15 [48128/50176]	Loss: 1.5410
+Training Epoch: 15 [49152/50176]	Loss: 1.4349
+Training Epoch: 15 [50176/50176]	Loss: 1.4930
+2022-12-08 23:51:18.482 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 18:51:18,534 [ZeusDataLoader(eval)] eval epoch 16 done: time=3.85 energy=533.34
+2022-12-08 18:51:18,534 [ZeusDataLoader(train)] Up to epoch 16: time=865.95, energy=121847.69, cost=136694.68
+2022-12-08 18:51:18,534 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 18:51:18,534 [ZeusDataLoader(train)] Expected next epoch: time=913.28, energy=129068.93, cost=144446.55
+2022-12-08 18:51:18,535 [ZeusDataLoader(train)] Epoch 17 begin.
+Validation Epoch: 15, Average loss: 0.0018, Accuracy: 0.5110
+2022-12-08 18:51:18,793 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 18:51:18,794 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-08 23:51:18.796 [ZeusMonitor] Monitor started.
+2022-12-08 23:51:18.796 [ZeusMonitor] Running indefinitely. 2022-12-08 23:51:18.796 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-08 23:51:18.796 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e17+gpu0.power.log
+2022-12-08 18:52:02,847 [ZeusDataLoader(train)] train epoch 17 done: time=44.30 energy=6719.48
+2022-12-08 18:52:02,852 [ZeusDataLoader(eval)] Epoch 17 begin.
+Training Epoch: 16 [1024/50176]	Loss: 1.4852
+Training Epoch: 16 [2048/50176]	Loss: 1.4973
+Training Epoch: 16 [3072/50176]	Loss: 1.5083
+Training Epoch: 16 [4096/50176]	Loss: 1.4837
+Training Epoch: 16 [5120/50176]	Loss: 1.4992
+Training Epoch: 16 [6144/50176]	Loss: 1.4087
+Training Epoch: 16 [7168/50176]	Loss: 1.4383
+Training Epoch: 16 [8192/50176]	Loss: 1.3715
+Training Epoch: 16 [9216/50176]	Loss: 1.4630
+Training Epoch: 16 [10240/50176]	Loss: 1.4029
+Training Epoch: 16 [11264/50176]	Loss: 1.4620
+Training Epoch: 16 [12288/50176]	Loss: 1.4601
+Training Epoch: 16 [13312/50176]	Loss: 1.4543
+Training Epoch: 16 [14336/50176]	Loss: 1.4841
+Training Epoch: 16 [15360/50176]	Loss: 1.5050
+Training Epoch: 16 [16384/50176]	Loss: 1.4799
+Training Epoch: 16 [17408/50176]	Loss: 1.4723
+Training Epoch: 16 [18432/50176]	Loss: 1.5782
+Training Epoch: 16 [19456/50176]	Loss: 1.4751
+Training Epoch: 16 [20480/50176]	Loss: 1.4498
+Training Epoch: 16 [21504/50176]	Loss: 1.4660
+Training Epoch: 16 [22528/50176]	Loss: 1.4577
+Training Epoch: 16 [23552/50176]	Loss: 1.5093
+Training Epoch: 16 [24576/50176]	Loss: 1.5107
+Training Epoch: 16 [25600/50176]	Loss: 1.4812
+Training Epoch: 16 [26624/50176]	Loss: 1.4726
+Training Epoch: 16 [27648/50176]	Loss: 1.5247
+Training Epoch: 16 [28672/50176]	Loss: 1.5160
+Training Epoch: 16 [29696/50176]	Loss: 1.4255
+Training Epoch: 16 [30720/50176]	Loss: 1.4923
+Training Epoch: 16 [31744/50176]	Loss: 1.5208
+Training Epoch: 16 [32768/50176]	Loss: 1.5170
+Training Epoch: 16 [33792/50176]	Loss: 1.4676
+Training Epoch: 16 [34816/50176]	Loss: 1.4997
+Training Epoch: 16 [35840/50176]	Loss: 1.5623
+Training Epoch: 16 [36864/50176]	Loss: 1.5238
+Training Epoch: 16 [37888/50176]	Loss: 1.4466
+Training Epoch: 16 [38912/50176]	Loss: 1.4650
+Training Epoch: 16 [39936/50176]	Loss: 1.5760
+Training Epoch: 16 [40960/50176]	Loss: 1.5600
+Training Epoch: 16 [41984/50176]	Loss: 1.4995
+Training Epoch: 16 [43008/50176]	Loss: 1.4568
+Training Epoch: 16 [44032/50176]	Loss: 1.4996
+Training Epoch: 16 [45056/50176]	Loss: 1.5826
+Training Epoch: 16 [46080/50176]	Loss: 1.5066
+Training Epoch: 16 [47104/50176]	Loss: 1.5066
+Training Epoch: 16 [48128/50176]	Loss: 1.5538
+Training Epoch: 16 [49152/50176]	Loss: 1.5631
+Training Epoch: 16 [50176/50176]	Loss: 1.4545
+2022-12-08 23:52:06.647 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 18:52:06,699 [ZeusDataLoader(eval)] eval epoch 17 done: time=3.84 energy=528.48
+2022-12-08 18:52:06,699 [ZeusDataLoader(train)] Up to epoch 17: time=914.09, energy=129095.65, cost=144531.10
+2022-12-08 18:52:06,699 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 18:52:06,699 [ZeusDataLoader(train)] Expected next epoch: time=961.42, energy=136316.89, cost=152282.96
+2022-12-08 18:52:06,701 [ZeusDataLoader(train)] Epoch 18 begin.
+Validation Epoch: 16, Average loss: 0.0017, Accuracy: 0.5232
+2022-12-08 18:52:06,957 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 18:52:06,958 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-08 23:52:06.960 [ZeusMonitor] Monitor started.
+2022-12-08 23:52:06.972 [ZeusMonitor] Running indefinitely. 2022-12-08 23:52:06.972 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-08 23:52:06.972 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e18+gpu0.power.log
+2022-12-08 18:52:51,005 [ZeusDataLoader(train)] train epoch 18 done: time=44.30 energy=6712.20
+2022-12-08 18:52:51,009 [ZeusDataLoader(eval)] Epoch 18 begin.
+Training Epoch: 17 [1024/50176]	Loss: 1.3765
+Training Epoch: 17 [2048/50176]	Loss: 1.3819
+Training Epoch: 17 [3072/50176]	Loss: 1.2645
+Training Epoch: 17 [4096/50176]	Loss: 1.3161
+Training Epoch: 17 [5120/50176]	Loss: 1.4565
+Training Epoch: 17 [6144/50176]	Loss: 1.4136
+Training Epoch: 17 [7168/50176]	Loss: 1.3318
+Training Epoch: 17 [8192/50176]	Loss: 1.3620
+Training Epoch: 17 [9216/50176]	Loss: 1.4344
+Training Epoch: 17 [10240/50176]	Loss: 1.3083
+Training Epoch: 17 [11264/50176]	Loss: 1.3366
+Training Epoch: 17 [12288/50176]	Loss: 1.3886
+Training Epoch: 17 [13312/50176]	Loss: 1.3521
+Training Epoch: 17 [14336/50176]	Loss: 1.3553
+Training Epoch: 17 [15360/50176]	Loss: 1.3716
+Training Epoch: 17 [16384/50176]	Loss: 1.3877
+Training Epoch: 17 [17408/50176]	Loss: 1.4542
+Training Epoch: 17 [18432/50176]	Loss: 1.4844
+Training Epoch: 17 [19456/50176]	Loss: 1.3362
+Training Epoch: 17 [20480/50176]	Loss: 1.4131
+Training Epoch: 17 [21504/50176]	Loss: 1.4510
+Training Epoch: 17 [22528/50176]	Loss: 1.4900
+Training Epoch: 17 [23552/50176]	Loss: 1.3723
+Training Epoch: 17 [24576/50176]	Loss: 1.4598
+Training Epoch: 17 [25600/50176]	Loss: 1.4082
+Training Epoch: 17 [26624/50176]	Loss: 1.4221
+Training Epoch: 17 [27648/50176]	Loss: 1.4140
+Training Epoch: 17 [28672/50176]	Loss: 1.4554
+Training Epoch: 17 [29696/50176]	Loss: 1.4542
+Training Epoch: 17 [30720/50176]	Loss: 1.5078
+Training Epoch: 17 [31744/50176]	Loss: 1.4099
+Training Epoch: 17 [32768/50176]	Loss: 1.3580
+Training Epoch: 17 [33792/50176]	Loss: 1.4710
+Training Epoch: 17 [34816/50176]	Loss: 1.4294
+Training Epoch: 17 [35840/50176]	Loss: 1.3123
+Training Epoch: 17 [36864/50176]	Loss: 1.4649
+Training Epoch: 17 [37888/50176]	Loss: 1.4239
+Training Epoch: 17 [38912/50176]	Loss: 1.5082
+Training Epoch: 17 [39936/50176]	Loss: 1.4890
+Training Epoch: 17 [40960/50176]	Loss: 1.4115
+Training Epoch: 17 [41984/50176]	Loss: 1.5108
+Training Epoch: 17 [43008/50176]	Loss: 1.4163
+Training Epoch: 17 [44032/50176]	Loss: 1.4883
+Training Epoch: 17 [45056/50176]	Loss: 1.4485
+Training Epoch: 17 [46080/50176]	Loss: 1.3501
+Training Epoch: 17 [47104/50176]	Loss: 1.3847
+Training Epoch: 17 [48128/50176]	Loss: 1.4271
+Training Epoch: 17 [49152/50176]	Loss: 1.4338
+Training Epoch: 17 [50176/50176]	Loss: 1.4558
+2022-12-08 23:52:54.803 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 18:52:54,845 [ZeusDataLoader(eval)] eval epoch 18 done: time=3.83 energy=530.69
+2022-12-08 18:52:54,845 [ZeusDataLoader(train)] Up to epoch 18: time=962.22, energy=136338.53, cost=152363.21
+2022-12-08 18:52:54,845 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 18:52:54,845 [ZeusDataLoader(train)] Expected next epoch: time=1009.54, energy=143559.77, cost=160115.07
+2022-12-08 18:52:54,846 [ZeusDataLoader(train)] Epoch 19 begin.
+Validation Epoch: 17, Average loss: 0.0019, Accuracy: 0.4804
+2022-12-08 18:52:55,040 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 18:52:55,041 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-08 23:52:55.045 [ZeusMonitor] Monitor started.
+2022-12-08 23:52:55.045 [ZeusMonitor] Running indefinitely. 2022-12-08 23:52:55.045 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-08 23:52:55.045 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e19+gpu0.power.log
+2022-12-08 18:53:39,041 [ZeusDataLoader(train)] train epoch 19 done: time=44.19 energy=6709.53
+2022-12-08 18:53:39,044 [ZeusDataLoader(eval)] Epoch 19 begin.
+Training Epoch: 18 [1024/50176]	Loss: 1.3323
+Training Epoch: 18 [2048/50176]	Loss: 1.3730
+Training Epoch: 18 [3072/50176]	Loss: 1.3475
+Training Epoch: 18 [4096/50176]	Loss: 1.3463
+Training Epoch: 18 [5120/50176]	Loss: 1.3277
+Training Epoch: 18 [6144/50176]	Loss: 1.3324
+Training Epoch: 18 [7168/50176]	Loss: 1.3123
+Training Epoch: 18 [8192/50176]	Loss: 1.3502
+Training Epoch: 18 [9216/50176]	Loss: 1.3174
+Training Epoch: 18 [10240/50176]	Loss: 1.3071
+Training Epoch: 18 [11264/50176]	Loss: 1.3396
+Training Epoch: 18 [12288/50176]	Loss: 1.3009
+Training Epoch: 18 [13312/50176]	Loss: 1.3674
+Training Epoch: 18 [14336/50176]	Loss: 1.3414
+Training Epoch: 18 [15360/50176]	Loss: 1.4386
+Training Epoch: 18 [16384/50176]	Loss: 1.3669
+Training Epoch: 18 [17408/50176]	Loss: 1.4119
+Training Epoch: 18 [18432/50176]	Loss: 1.3649
+Training Epoch: 18 [19456/50176]	Loss: 1.3965
+Training Epoch: 18 [20480/50176]	Loss: 1.3436
+Training Epoch: 18 [21504/50176]	Loss: 1.4045
+Training Epoch: 18 [22528/50176]	Loss: 1.3970
+Training Epoch: 18 [23552/50176]	Loss: 1.2743
+Training Epoch: 18 [24576/50176]	Loss: 1.2914
+Training Epoch: 18 [25600/50176]	Loss: 1.2928
+Training Epoch: 18 [26624/50176]	Loss: 1.2139
+Training Epoch: 18 [27648/50176]	Loss: 1.3572
+Training Epoch: 18 [28672/50176]	Loss: 1.3580
+Training Epoch: 18 [29696/50176]	Loss: 1.3918
+Training Epoch: 18 [30720/50176]	Loss: 1.4165
+Training Epoch: 18 [31744/50176]	Loss: 1.4606
+Training Epoch: 18 [32768/50176]	Loss: 1.3684
+Training Epoch: 18 [33792/50176]	Loss: 1.3978
+Training Epoch: 18 [34816/50176]	Loss: 1.3197
+Training Epoch: 18 [35840/50176]	Loss: 1.4642
+Training Epoch: 18 [36864/50176]	Loss: 1.4128
+Training Epoch: 18 [37888/50176]	Loss: 1.2872
+Training Epoch: 18 [38912/50176]	Loss: 1.4065
+Training Epoch: 18 [39936/50176]	Loss: 1.3857
+Training Epoch: 18 [40960/50176]	Loss: 1.3667
+Training Epoch: 18 [41984/50176]	Loss: 1.3735
+Training Epoch: 18 [43008/50176]	Loss: 1.3505
+Training Epoch: 18 [44032/50176]	Loss: 1.3812
+Training Epoch: 18 [45056/50176]	Loss: 1.3470
+Training Epoch: 18 [46080/50176]	Loss: 1.3695
+Training Epoch: 18 [47104/50176]	Loss: 1.3660
+Training Epoch: 18 [48128/50176]	Loss: 1.3299
+Training Epoch: 18 [49152/50176]	Loss: 1.3484
+Training Epoch: 18 [50176/50176]	Loss: 1.3852
+2022-12-08 23:53:42.851 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 18:53:42,883 [ZeusDataLoader(eval)] eval epoch 19 done: time=3.83 energy=529.09
+2022-12-08 18:53:42,883 [ZeusDataLoader(train)] Up to epoch 19: time=1010.23, energy=143577.15, cost=160183.86
+2022-12-08 18:53:42,883 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 18:53:42,883 [ZeusDataLoader(train)] Expected next epoch: time=1057.56, energy=150798.39, cost=167935.72
+2022-12-08 18:53:42,884 [ZeusDataLoader(train)] Epoch 20 begin.
+Validation Epoch: 18, Average loss: 0.0017, Accuracy: 0.5224
+2022-12-08 18:53:43,130 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 18:53:43,131 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-08 23:53:43.133 [ZeusMonitor] Monitor started.
+2022-12-08 23:53:43.133 [ZeusMonitor] Running indefinitely. 2022-12-08 23:53:43.133 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-08 23:53:43.133 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e20+gpu0.power.log
+2022-12-08 18:54:27,497 [ZeusDataLoader(train)] train epoch 20 done: time=44.60 energy=6776.97
+2022-12-08 18:54:27,500 [ZeusDataLoader(eval)] Epoch 20 begin.
+Training Epoch: 19 [1024/50176]	Loss: 1.2241
+Training Epoch: 19 [2048/50176]	Loss: 1.2721
+Training Epoch: 19 [3072/50176]	Loss: 1.2142
+Training Epoch: 19 [4096/50176]	Loss: 1.2821
+Training Epoch: 19 [5120/50176]	Loss: 1.2538
+Training Epoch: 19 [6144/50176]	Loss: 1.2617
+Training Epoch: 19 [7168/50176]	Loss: 1.2272
+Training Epoch: 19 [8192/50176]	Loss: 1.2317
+Training Epoch: 19 [9216/50176]	Loss: 1.2522
+Training Epoch: 19 [10240/50176]	Loss: 1.3418
+Training Epoch: 19 [11264/50176]	Loss: 1.3300
+Training Epoch: 19 [12288/50176]	Loss: 1.2912
+Training Epoch: 19 [13312/50176]	Loss: 1.2978
+Training Epoch: 19 [14336/50176]	Loss: 1.3138
+Training Epoch: 19 [15360/50176]	Loss: 1.2896
+Training Epoch: 19 [16384/50176]	Loss: 1.2840
+Training Epoch: 19 [17408/50176]	Loss: 1.3697
+Training Epoch: 19 [18432/50176]	Loss: 1.2722
+Training Epoch: 19 [19456/50176]	Loss: 1.1878
+Training Epoch: 19 [20480/50176]	Loss: 1.3307
+Training Epoch: 19 [21504/50176]	Loss: 1.2335
+Training Epoch: 19 [22528/50176]	Loss: 1.4234
+Training Epoch: 19 [23552/50176]	Loss: 1.3984
+Training Epoch: 19 [24576/50176]	Loss: 1.2286
+Training Epoch: 19 [25600/50176]	Loss: 1.2631
+Training Epoch: 19 [26624/50176]	Loss: 1.3585
+Training Epoch: 19 [27648/50176]	Loss: 1.2358
+Training Epoch: 19 [28672/50176]	Loss: 1.3194
+Training Epoch: 19 [29696/50176]	Loss: 1.3542
+Training Epoch: 19 [30720/50176]	Loss: 1.3510
+Training Epoch: 19 [31744/50176]	Loss: 1.3467
+Training Epoch: 19 [32768/50176]	Loss: 1.3775
+Training Epoch: 19 [33792/50176]	Loss: 1.3060
+Training Epoch: 19 [34816/50176]	Loss: 1.3237
+Training Epoch: 19 [35840/50176]	Loss: 1.3205
+Training Epoch: 19 [36864/50176]	Loss: 1.3145
+Training Epoch: 19 [37888/50176]	Loss: 1.2900
+Training Epoch: 19 [38912/50176]	Loss: 1.3570
+Training Epoch: 19 [39936/50176]	Loss: 1.2637
+Training Epoch: 19 [40960/50176]	Loss: 1.2496
+Training Epoch: 19 [41984/50176]	Loss: 1.3649
+Training Epoch: 19 [43008/50176]	Loss: 1.3410
+Training Epoch: 19 [44032/50176]	Loss: 1.3109
+Training Epoch: 19 [45056/50176]	Loss: 1.2926
+Training Epoch: 19 [46080/50176]	Loss: 1.2889
+Training Epoch: 19 [47104/50176]	Loss: 1.3319
+Training Epoch: 19 [48128/50176]	Loss: 1.2169
+Training Epoch: 19 [49152/50176]	Loss: 1.3830
+Training Epoch: 19 [50176/50176]	Loss: 1.2842
+2022-12-08 23:54:31.331 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 18:54:31,355 [ZeusDataLoader(eval)] eval epoch 20 done: time=3.85 energy=533.27
+2022-12-08 18:54:31,356 [ZeusDataLoader(train)] Up to epoch 20: time=1058.68, energy=150887.39, cost=168078.35
+2022-12-08 18:54:31,356 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 18:54:31,356 [ZeusDataLoader(train)] Expected next epoch: time=1106.01, energy=158108.64, cost=175830.21
+2022-12-08 18:54:31,357 [ZeusDataLoader(train)] Epoch 21 begin.
+Validation Epoch: 19, Average loss: 0.0017, Accuracy: 0.5371
+2022-12-08 18:54:31,604 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 18:54:31,605 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-08 23:54:31.607 [ZeusMonitor] Monitor started.
+2022-12-08 23:54:31.607 [ZeusMonitor] Running indefinitely. 2022-12-08 23:54:31.607 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-08 23:54:31.607 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e21+gpu0.power.log
+2022-12-08 18:55:16,124 [ZeusDataLoader(train)] train epoch 21 done: time=44.76 energy=6806.51
+2022-12-08 18:55:16,127 [ZeusDataLoader(eval)] Epoch 21 begin.
+Training Epoch: 20 [1024/50176]	Loss: 1.2095
+Training Epoch: 20 [2048/50176]	Loss: 1.2392
+Training Epoch: 20 [3072/50176]	Loss: 1.2355
+Training Epoch: 20 [4096/50176]	Loss: 1.1389
+Training Epoch: 20 [5120/50176]	Loss: 1.1911
+Training Epoch: 20 [6144/50176]	Loss: 1.2580
+Training Epoch: 20 [7168/50176]	Loss: 1.1921
+Training Epoch: 20 [8192/50176]	Loss: 1.2019
+Training Epoch: 20 [9216/50176]	Loss: 1.1751
+Training Epoch: 20 [10240/50176]	Loss: 1.1878
+Training Epoch: 20 [11264/50176]	Loss: 1.2472
+Training Epoch: 20 [12288/50176]	Loss: 1.1917
+Training Epoch: 20 [13312/50176]	Loss: 1.1665
+Training Epoch: 20 [14336/50176]	Loss: 1.2383
+Training Epoch: 20 [15360/50176]	Loss: 1.2394
+Training Epoch: 20 [16384/50176]	Loss: 1.3126
+Training Epoch: 20 [17408/50176]	Loss: 1.2234
+Training Epoch: 20 [18432/50176]	Loss: 1.2835
+Training Epoch: 20 [19456/50176]	Loss: 1.3259
+Training Epoch: 20 [20480/50176]	Loss: 1.1968
+Training Epoch: 20 [21504/50176]	Loss: 1.2874
+Training Epoch: 20 [22528/50176]	Loss: 1.2471
+Training Epoch: 20 [23552/50176]	Loss: 1.1387
+Training Epoch: 20 [24576/50176]	Loss: 1.2817
+Training Epoch: 20 [25600/50176]	Loss: 1.3212
+Training Epoch: 20 [26624/50176]	Loss: 1.2531
+Training Epoch: 20 [27648/50176]	Loss: 1.1714
+Training Epoch: 20 [28672/50176]	Loss: 1.3261
+Training Epoch: 20 [29696/50176]	Loss: 1.2132
+Training Epoch: 20 [30720/50176]	Loss: 1.2321
+Training Epoch: 20 [31744/50176]	Loss: 1.2620
+Training Epoch: 20 [32768/50176]	Loss: 1.2634
+Training Epoch: 20 [33792/50176]	Loss: 1.2262
+Training Epoch: 20 [34816/50176]	Loss: 1.2802
+Training Epoch: 20 [35840/50176]	Loss: 1.1811
+Training Epoch: 20 [36864/50176]	Loss: 1.2662
+Training Epoch: 20 [37888/50176]	Loss: 1.2005
+Training Epoch: 20 [38912/50176]	Loss: 1.2470
+Training Epoch: 20 [39936/50176]	Loss: 1.2577
+Training Epoch: 20 [40960/50176]	Loss: 1.3298
+Training Epoch: 20 [41984/50176]	Loss: 1.2782
+Training Epoch: 20 [43008/50176]	Loss: 1.2056
+Training Epoch: 20 [44032/50176]	Loss: 1.1399
+Training Epoch: 20 [45056/50176]	Loss: 1.2393
+Training Epoch: 20 [46080/50176]	Loss: 1.2207
+Training Epoch: 20 [47104/50176]	Loss: 1.3225
+Training Epoch: 20 [48128/50176]	Loss: 1.2460
+Training Epoch: 20 [49152/50176]	Loss: 1.3243
+Training Epoch: 20 [50176/50176]	Loss: 1.2882
+2022-12-08 23:55:19.988 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 18:55:20,015 [ZeusDataLoader(eval)] eval epoch 21 done: time=3.88 energy=541.06
+2022-12-08 18:55:20,015 [ZeusDataLoader(train)] Up to epoch 21: time=1107.32, energy=158234.96, cost=176007.84
+2022-12-08 18:55:20,015 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 18:55:20,015 [ZeusDataLoader(train)] Expected next epoch: time=1154.65, energy=165456.21, cost=183759.71
+2022-12-08 18:55:20,016 [ZeusDataLoader(train)] Epoch 22 begin.
+Validation Epoch: 20, Average loss: 0.0017, Accuracy: 0.5259
+2022-12-08 18:55:20,276 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 18:55:20,277 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-08 23:55:20.279 [ZeusMonitor] Monitor started.
+2022-12-08 23:55:20.279 [ZeusMonitor] Running indefinitely. 2022-12-08 23:55:20.279 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-08 23:55:20.279 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e22+gpu0.power.log
+2022-12-08 18:56:04,679 [ZeusDataLoader(train)] train epoch 22 done: time=44.65 energy=6787.83
+2022-12-08 18:56:04,682 [ZeusDataLoader(eval)] Epoch 22 begin.
+Training Epoch: 21 [1024/50176]	Loss: 1.1557
+Training Epoch: 21 [2048/50176]	Loss: 1.1344
+Training Epoch: 21 [3072/50176]	Loss: 1.1732
+Training Epoch: 21 [4096/50176]	Loss: 1.2098
+Training Epoch: 21 [5120/50176]	Loss: 1.1165
+Training Epoch: 21 [6144/50176]	Loss: 1.1445
+Training Epoch: 21 [7168/50176]	Loss: 1.0880
+Training Epoch: 21 [8192/50176]	Loss: 1.1651
+Training Epoch: 21 [9216/50176]	Loss: 1.1657
+Training Epoch: 21 [10240/50176]	Loss: 1.1280
+Training Epoch: 21 [11264/50176]	Loss: 1.1346
+Training Epoch: 21 [12288/50176]	Loss: 1.1333
+Training Epoch: 21 [13312/50176]	Loss: 1.1544
+Training Epoch: 21 [14336/50176]	Loss: 1.1972
+Training Epoch: 21 [15360/50176]	Loss: 1.1489
+Training Epoch: 21 [16384/50176]	Loss: 1.2013
+Training Epoch: 21 [17408/50176]	Loss: 1.1298
+Training Epoch: 21 [18432/50176]	Loss: 1.1363
+Training Epoch: 21 [19456/50176]	Loss: 1.2138
+Training Epoch: 21 [20480/50176]	Loss: 1.2018
+Training Epoch: 21 [21504/50176]	Loss: 1.2186
+Training Epoch: 21 [22528/50176]	Loss: 1.2671
+Training Epoch: 21 [23552/50176]	Loss: 1.2380
+Training Epoch: 21 [24576/50176]	Loss: 1.1718
+Training Epoch: 21 [25600/50176]	Loss: 1.2146
+Training Epoch: 21 [26624/50176]	Loss: 1.2360
+Training Epoch: 21 [27648/50176]	Loss: 1.1912
+Training Epoch: 21 [28672/50176]	Loss: 1.1401
+Training Epoch: 21 [29696/50176]	Loss: 1.2544
+Training Epoch: 21 [30720/50176]	Loss: 1.1843
+Training Epoch: 21 [31744/50176]	Loss: 1.2140
+Training Epoch: 21 [32768/50176]	Loss: 1.2265
+Training Epoch: 21 [33792/50176]	Loss: 1.1742
+Training Epoch: 21 [34816/50176]	Loss: 1.1431
+Training Epoch: 21 [35840/50176]	Loss: 1.2230
+Training Epoch: 21 [36864/50176]	Loss: 1.1617
+Training Epoch: 21 [37888/50176]	Loss: 1.3046
+Training Epoch: 21 [38912/50176]	Loss: 1.2286
+Training Epoch: 21 [39936/50176]	Loss: 1.2483
+Training Epoch: 21 [40960/50176]	Loss: 1.2012
+Training Epoch: 21 [41984/50176]	Loss: 1.2144
+Training Epoch: 21 [43008/50176]	Loss: 1.2422
+Training Epoch: 21 [44032/50176]	Loss: 1.2820
+Training Epoch: 21 [45056/50176]	Loss: 1.2149
+Training Epoch: 21 [46080/50176]	Loss: 1.2343
+Training Epoch: 21 [47104/50176]	Loss: 1.2823
+Training Epoch: 21 [48128/50176]	Loss: 1.2441
+Training Epoch: 21 [49152/50176]	Loss: 1.2386
+Training Epoch: 21 [50176/50176]	Loss: 1.2359
+2022-12-08 23:56:08.468 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 18:56:08,501 [ZeusDataLoader(eval)] eval epoch 22 done: time=3.81 energy=536.53
+2022-12-08 18:56:08,501 [ZeusDataLoader(train)] Up to epoch 22: time=1155.78, energy=165559.33, cost=183910.56
+2022-12-08 18:56:08,501 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 18:56:08,501 [ZeusDataLoader(train)] Expected next epoch: time=1203.11, energy=172780.57, cost=191662.42
+2022-12-08 18:56:08,502 [ZeusDataLoader(train)] Epoch 23 begin.
+Validation Epoch: 21, Average loss: 0.0017, Accuracy: 0.5335
+2022-12-08 18:56:08,775 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 18:56:08,776 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-08 23:56:08.778 [ZeusMonitor] Monitor started.
+2022-12-08 23:56:08.778 [ZeusMonitor] Running indefinitely. 2022-12-08 23:56:08.778 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-08 23:56:08.778 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e23+gpu0.power.log
+2022-12-08 18:56:52,671 [ZeusDataLoader(train)] train epoch 23 done: time=44.16 energy=6703.69
+2022-12-08 18:56:52,674 [ZeusDataLoader(eval)] Epoch 23 begin.
+Training Epoch: 22 [1024/50176]	Loss: 1.1833
+Training Epoch: 22 [2048/50176]	Loss: 1.1434
+Training Epoch: 22 [3072/50176]	Loss: 1.1101
+Training Epoch: 22 [4096/50176]	Loss: 0.9956
+Training Epoch: 22 [5120/50176]	Loss: 1.0924
+Training Epoch: 22 [6144/50176]	Loss: 1.1465
+Training Epoch: 22 [7168/50176]	Loss: 1.1217
+Training Epoch: 22 [8192/50176]	Loss: 1.2005
+Training Epoch: 22 [9216/50176]	Loss: 1.1457
+Training Epoch: 22 [10240/50176]	Loss: 1.0664
+Training Epoch: 22 [11264/50176]	Loss: 1.1789
+Training Epoch: 22 [12288/50176]	Loss: 1.1829
+Training Epoch: 22 [13312/50176]	Loss: 1.0314
+Training Epoch: 22 [14336/50176]	Loss: 1.1017
+Training Epoch: 22 [15360/50176]	Loss: 1.1030
+Training Epoch: 22 [16384/50176]	Loss: 1.1343
+Training Epoch: 22 [17408/50176]	Loss: 1.0922
+Training Epoch: 22 [18432/50176]	Loss: 1.1032
+Training Epoch: 22 [19456/50176]	Loss: 1.1472
+Training Epoch: 22 [20480/50176]	Loss: 1.1768
+Training Epoch: 22 [21504/50176]	Loss: 1.1212
+Training Epoch: 22 [22528/50176]	Loss: 1.2524
+Training Epoch: 22 [23552/50176]	Loss: 1.1749
+Training Epoch: 22 [24576/50176]	Loss: 1.1420
+Training Epoch: 22 [25600/50176]	Loss: 1.1321
+Training Epoch: 22 [26624/50176]	Loss: 1.2298
+Training Epoch: 22 [27648/50176]	Loss: 1.1671
+Training Epoch: 22 [28672/50176]	Loss: 1.1905
+Training Epoch: 22 [29696/50176]	Loss: 1.2225
+Training Epoch: 22 [30720/50176]	Loss: 1.1029
+Training Epoch: 22 [31744/50176]	Loss: 1.2413
+Training Epoch: 22 [32768/50176]	Loss: 1.1542
+Training Epoch: 22 [33792/50176]	Loss: 1.1936
+Training Epoch: 22 [34816/50176]	Loss: 1.1827
+Training Epoch: 22 [35840/50176]	Loss: 1.1436
+Training Epoch: 22 [36864/50176]	Loss: 1.1116
+Training Epoch: 22 [37888/50176]	Loss: 1.1526
+Training Epoch: 22 [38912/50176]	Loss: 1.0867
+Training Epoch: 22 [39936/50176]	Loss: 1.1597
+Training Epoch: 22 [40960/50176]	Loss: 1.1576
+Training Epoch: 22 [41984/50176]	Loss: 1.2348
+Training Epoch: 22 [43008/50176]	Loss: 1.1911
+Training Epoch: 22 [44032/50176]	Loss: 1.1003
+Training Epoch: 22 [45056/50176]	Loss: 1.1709
+Training Epoch: 22 [46080/50176]	Loss: 1.1157
+Training Epoch: 22 [47104/50176]	Loss: 1.1189
+Training Epoch: 22 [48128/50176]	Loss: 1.2705
+Training Epoch: 22 [49152/50176]	Loss: 1.2085
+Training Epoch: 22 [50176/50176]	Loss: 1.0984
+2022-12-08 23:56:56.411 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 18:56:56,434 [ZeusDataLoader(eval)] eval epoch 23 done: time=3.75 energy=516.83
+2022-12-08 18:56:56,434 [ZeusDataLoader(train)] Up to epoch 23: time=1203.69, energy=172779.85, cost=191713.00
+2022-12-08 18:56:56,435 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 18:56:56,435 [ZeusDataLoader(train)] Expected next epoch: time=1251.02, energy=180001.09, cost=199464.87
+2022-12-08 18:56:56,436 [ZeusDataLoader(train)] Epoch 24 begin.
+Validation Epoch: 22, Average loss: 0.0017, Accuracy: 0.5431
+2022-12-08 18:56:56,682 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 18:56:56,683 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-08 23:56:56.693 [ZeusMonitor] Monitor started.
+2022-12-08 23:56:56.693 [ZeusMonitor] Running indefinitely. 2022-12-08 23:56:56.693 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-08 23:56:56.693 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e24+gpu0.power.log
+2022-12-08 18:57:40,660 [ZeusDataLoader(train)] train epoch 24 done: time=44.22 energy=6705.98
+2022-12-08 18:57:40,663 [ZeusDataLoader(eval)] Epoch 24 begin.
+Training Epoch: 23 [1024/50176]	Loss: 1.0774
+Training Epoch: 23 [2048/50176]	Loss: 1.0672
+Training Epoch: 23 [3072/50176]	Loss: 1.0261
+Training Epoch: 23 [4096/50176]	Loss: 1.0642
+Training Epoch: 23 [5120/50176]	Loss: 1.0519
+Training Epoch: 23 [6144/50176]	Loss: 1.0768
+Training Epoch: 23 [7168/50176]	Loss: 1.0942
+Training Epoch: 23 [8192/50176]	Loss: 1.0584
+Training Epoch: 23 [9216/50176]	Loss: 1.0585
+Training Epoch: 23 [10240/50176]	Loss: 1.0482
+Training Epoch: 23 [11264/50176]	Loss: 1.0809
+Training Epoch: 23 [12288/50176]	Loss: 0.9921
+Training Epoch: 23 [13312/50176]	Loss: 1.1719
+Training Epoch: 23 [14336/50176]	Loss: 1.1051
+Training Epoch: 23 [15360/50176]	Loss: 1.0718
+Training Epoch: 23 [16384/50176]	Loss: 1.1028
+Training Epoch: 23 [17408/50176]	Loss: 1.1567
+Training Epoch: 23 [18432/50176]	Loss: 1.0124
+Training Epoch: 23 [19456/50176]	Loss: 1.1077
+Training Epoch: 23 [20480/50176]	Loss: 1.0794
+Training Epoch: 23 [21504/50176]	Loss: 1.0935
+Training Epoch: 23 [22528/50176]	Loss: 1.0708
+Training Epoch: 23 [23552/50176]	Loss: 1.0354
+Training Epoch: 23 [24576/50176]	Loss: 1.0720
+Training Epoch: 23 [25600/50176]	Loss: 1.1277
+Training Epoch: 23 [26624/50176]	Loss: 1.1030
+Training Epoch: 23 [27648/50176]	Loss: 1.0800
+Training Epoch: 23 [28672/50176]	Loss: 1.0790
+Training Epoch: 23 [29696/50176]	Loss: 1.1190
+Training Epoch: 23 [30720/50176]	Loss: 1.0864
+Training Epoch: 23 [31744/50176]	Loss: 1.1559
+Training Epoch: 23 [32768/50176]	Loss: 1.1398
+Training Epoch: 23 [33792/50176]	Loss: 1.1015
+Training Epoch: 23 [34816/50176]	Loss: 1.1548
+Training Epoch: 23 [35840/50176]	Loss: 1.1083
+Training Epoch: 23 [36864/50176]	Loss: 1.0560
+Training Epoch: 23 [37888/50176]	Loss: 1.1283
+Training Epoch: 23 [38912/50176]	Loss: 1.1930
+Training Epoch: 23 [39936/50176]	Loss: 1.2007
+Training Epoch: 23 [40960/50176]	Loss: 1.1638
+Training Epoch: 23 [41984/50176]	Loss: 1.1260
+Training Epoch: 23 [43008/50176]	Loss: 1.0947
+Training Epoch: 23 [44032/50176]	Loss: 1.1886
+Training Epoch: 23 [45056/50176]	Loss: 1.1636
+Training Epoch: 23 [46080/50176]	Loss: 1.2342
+Training Epoch: 23 [47104/50176]	Loss: 1.1706
+Training Epoch: 23 [48128/50176]	Loss: 1.1241
+Training Epoch: 23 [49152/50176]	Loss: 1.0984
+Training Epoch: 23 [50176/50176]	Loss: 1.0993
+2022-12-08 23:57:44.467 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 18:57:44,497 [ZeusDataLoader(eval)] eval epoch 24 done: time=3.83 energy=532.36
+2022-12-08 18:57:44,498 [ZeusDataLoader(train)] Up to epoch 24: time=1251.73, energy=180018.19, cost=199535.75
+2022-12-08 18:57:44,498 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 18:57:44,498 [ZeusDataLoader(train)] Expected next epoch: time=1299.06, energy=187239.43, cost=207287.61
+2022-12-08 18:57:44,499 [ZeusDataLoader(train)] Epoch 25 begin.
+Validation Epoch: 23, Average loss: 0.0016, Accuracy: 0.5648
+2022-12-08 18:57:44,740 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 18:57:44,741 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-08 23:57:44.742 [ZeusMonitor] Monitor started.
+2022-12-08 23:57:44.743 [ZeusMonitor] Running indefinitely. 2022-12-08 23:57:44.743 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-08 23:57:44.743 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e25+gpu0.power.log
+2022-12-08 18:58:28,750 [ZeusDataLoader(train)] train epoch 25 done: time=44.24 energy=6718.51
+2022-12-08 18:58:28,753 [ZeusDataLoader(eval)] Epoch 25 begin.
+Training Epoch: 24 [1024/50176]	Loss: 0.9954
+Training Epoch: 24 [2048/50176]	Loss: 0.9520
+Training Epoch: 24 [3072/50176]	Loss: 1.0276
+Training Epoch: 24 [4096/50176]	Loss: 0.9614
+Training Epoch: 24 [5120/50176]	Loss: 0.9882
+Training Epoch: 24 [6144/50176]	Loss: 0.9703
+Training Epoch: 24 [7168/50176]	Loss: 1.0540
+Training Epoch: 24 [8192/50176]	Loss: 0.9906
+Training Epoch: 24 [9216/50176]	Loss: 1.0153
+Training Epoch: 24 [10240/50176]	Loss: 1.0039
+Training Epoch: 24 [11264/50176]	Loss: 0.9797
+Training Epoch: 24 [12288/50176]	Loss: 0.9779
+Training Epoch: 24 [13312/50176]	Loss: 1.0253
+Training Epoch: 24 [14336/50176]	Loss: 1.0227
+Training Epoch: 24 [15360/50176]	Loss: 0.9822
+Training Epoch: 24 [16384/50176]	Loss: 0.9356
+Training Epoch: 24 [17408/50176]	Loss: 1.0719
+Training Epoch: 24 [18432/50176]	Loss: 1.0341
+Training Epoch: 24 [19456/50176]	Loss: 1.0886
+Training Epoch: 24 [20480/50176]	Loss: 1.0266
+Training Epoch: 24 [21504/50176]	Loss: 1.0388
+Training Epoch: 24 [22528/50176]	Loss: 1.0349
+Training Epoch: 24 [23552/50176]	Loss: 1.0887
+Training Epoch: 24 [24576/50176]	Loss: 1.0053
+Training Epoch: 24 [25600/50176]	Loss: 1.0373
+Training Epoch: 24 [26624/50176]	Loss: 1.0374
+Training Epoch: 24 [27648/50176]	Loss: 1.0850
+Training Epoch: 24 [28672/50176]	Loss: 1.0206
+Training Epoch: 24 [29696/50176]	Loss: 1.0418
+Training Epoch: 24 [30720/50176]	Loss: 1.1256
+Training Epoch: 24 [31744/50176]	Loss: 1.1192
+Training Epoch: 24 [32768/50176]	Loss: 1.0467
+Training Epoch: 24 [33792/50176]	Loss: 1.0266
+Training Epoch: 24 [34816/50176]	Loss: 1.1512
+Training Epoch: 24 [35840/50176]	Loss: 1.1669
+Training Epoch: 24 [36864/50176]	Loss: 1.0356
+Training Epoch: 24 [37888/50176]	Loss: 1.0351
+Training Epoch: 24 [38912/50176]	Loss: 1.1560
+Training Epoch: 24 [39936/50176]	Loss: 1.0034
+Training Epoch: 24 [40960/50176]	Loss: 1.0907
+Training Epoch: 24 [41984/50176]	Loss: 1.1219
+Training Epoch: 24 [43008/50176]	Loss: 1.1272
+Training Epoch: 24 [44032/50176]	Loss: 0.9822
+Training Epoch: 24 [45056/50176]	Loss: 1.0923
+Training Epoch: 24 [46080/50176]	Loss: 1.0459
+Training Epoch: 24 [47104/50176]	Loss: 1.1726
+Training Epoch: 24 [48128/50176]	Loss: 1.2020
+Training Epoch: 24 [49152/50176]	Loss: 1.0799
+Training Epoch: 24 [50176/50176]	Loss: 1.1293
+2022-12-08 23:58:32.519 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 18:58:32,544 [ZeusDataLoader(eval)] eval epoch 25 done: time=3.78 energy=516.49
+2022-12-08 18:58:32,544 [ZeusDataLoader(train)] Up to epoch 25: time=1299.76, energy=187253.19, cost=207355.36
+2022-12-08 18:58:32,544 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 18:58:32,544 [ZeusDataLoader(train)] Expected next epoch: time=1347.09, energy=194474.43, cost=215107.22
+2022-12-08 18:58:32,545 [ZeusDataLoader(train)] Epoch 26 begin.
+Validation Epoch: 24, Average loss: 0.0016, Accuracy: 0.5677
+2022-12-08 18:58:32,790 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 18:58:32,791 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-08 23:58:32.805 [ZeusMonitor] Monitor started.
+2022-12-08 23:58:32.805 [ZeusMonitor] Running indefinitely. 2022-12-08 23:58:32.805 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-08 23:58:32.805 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e26+gpu0.power.log
+2022-12-08 18:59:16,747 [ZeusDataLoader(train)] train epoch 26 done: time=44.19 energy=6704.75
+2022-12-08 18:59:16,750 [ZeusDataLoader(eval)] Epoch 26 begin.
+Training Epoch: 25 [1024/50176]	Loss: 0.8872
+Training Epoch: 25 [2048/50176]	Loss: 0.9386
+Training Epoch: 25 [3072/50176]	Loss: 0.9571
+Training Epoch: 25 [4096/50176]	Loss: 0.9930
+Training Epoch: 25 [5120/50176]	Loss: 0.9308
+Training Epoch: 25 [6144/50176]	Loss: 0.9995
+Training Epoch: 25 [7168/50176]	Loss: 0.9707
+Training Epoch: 25 [8192/50176]	Loss: 0.9748
+Training Epoch: 25 [9216/50176]	Loss: 1.0238
+Training Epoch: 25 [10240/50176]	Loss: 0.9585
+Training Epoch: 25 [11264/50176]	Loss: 0.9658
+Training Epoch: 25 [12288/50176]	Loss: 0.9247
+Training Epoch: 25 [13312/50176]	Loss: 0.9508
+Training Epoch: 25 [14336/50176]	Loss: 0.9506
+Training Epoch: 25 [15360/50176]	Loss: 1.0044
+Training Epoch: 25 [16384/50176]	Loss: 0.9806
+Training Epoch: 25 [17408/50176]	Loss: 0.9437
+Training Epoch: 25 [18432/50176]	Loss: 1.0469
+Training Epoch: 25 [19456/50176]	Loss: 0.9728
+Training Epoch: 25 [20480/50176]	Loss: 0.9962
+Training Epoch: 25 [21504/50176]	Loss: 0.9471
+Training Epoch: 25 [22528/50176]	Loss: 1.0443
+Training Epoch: 25 [23552/50176]	Loss: 1.0117
+Training Epoch: 25 [24576/50176]	Loss: 0.9801
+Training Epoch: 25 [25600/50176]	Loss: 0.9897
+Training Epoch: 25 [26624/50176]	Loss: 1.0510
+Training Epoch: 25 [27648/50176]	Loss: 1.0121
+Training Epoch: 25 [28672/50176]	Loss: 1.0196
+Training Epoch: 25 [29696/50176]	Loss: 1.0048
+Training Epoch: 25 [30720/50176]	Loss: 1.0326
+Training Epoch: 25 [31744/50176]	Loss: 0.9883
+Training Epoch: 25 [32768/50176]	Loss: 1.0412
+Training Epoch: 25 [33792/50176]	Loss: 0.9328
+Training Epoch: 25 [34816/50176]	Loss: 1.0235
+Training Epoch: 25 [35840/50176]	Loss: 0.9950
+Training Epoch: 25 [36864/50176]	Loss: 1.0264
+Training Epoch: 25 [37888/50176]	Loss: 0.9682
+Training Epoch: 25 [38912/50176]	Loss: 1.0300
+Training Epoch: 25 [39936/50176]	Loss: 1.0502
+Training Epoch: 25 [40960/50176]	Loss: 1.0422
+Training Epoch: 25 [41984/50176]	Loss: 1.0626
+Training Epoch: 25 [43008/50176]	Loss: 1.0652
+Training Epoch: 25 [44032/50176]	Loss: 1.0420
+Training Epoch: 25 [45056/50176]	Loss: 1.1034
+Training Epoch: 25 [46080/50176]	Loss: 1.1080
+Training Epoch: 25 [47104/50176]	Loss: 1.0809
+Training Epoch: 25 [48128/50176]	Loss: 1.0889
+Training Epoch: 25 [49152/50176]	Loss: 1.0908
+Training Epoch: 25 [50176/50176]	Loss: 1.0768
+2022-12-08 23:59:20.488 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 18:59:20,506 [ZeusDataLoader(eval)] eval epoch 26 done: time=3.75 energy=524.81
+2022-12-08 18:59:20,506 [ZeusDataLoader(train)] Up to epoch 26: time=1347.70, energy=194482.75, cost=215164.88
+2022-12-08 18:59:20,506 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 18:59:20,506 [ZeusDataLoader(train)] Expected next epoch: time=1395.03, energy=201703.99, cost=222916.74
+2022-12-08 18:59:20,507 [ZeusDataLoader(train)] Epoch 27 begin.
+Validation Epoch: 25, Average loss: 0.0016, Accuracy: 0.5710
+2022-12-08 18:59:20,761 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 18:59:20,762 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-08 23:59:20.764 [ZeusMonitor] Monitor started.
+2022-12-08 23:59:20.764 [ZeusMonitor] Running indefinitely. 2022-12-08 23:59:20.764 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-08 23:59:20.764 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e27+gpu0.power.log
+2022-12-08 19:00:04,788 [ZeusDataLoader(train)] train epoch 27 done: time=44.27 energy=6714.75
+2022-12-08 19:00:04,792 [ZeusDataLoader(eval)] Epoch 27 begin.
+Training Epoch: 26 [1024/50176]	Loss: 0.8971
+Training Epoch: 26 [2048/50176]	Loss: 0.9755
+Training Epoch: 26 [3072/50176]	Loss: 0.9845
+Training Epoch: 26 [4096/50176]	Loss: 0.9280
+Training Epoch: 26 [5120/50176]	Loss: 0.9684
+Training Epoch: 26 [6144/50176]	Loss: 0.9460
+Training Epoch: 26 [7168/50176]	Loss: 0.9338
+Training Epoch: 26 [8192/50176]	Loss: 0.9020
+Training Epoch: 26 [9216/50176]	Loss: 0.8566
+Training Epoch: 26 [10240/50176]	Loss: 0.9497
+Training Epoch: 26 [11264/50176]	Loss: 0.9917
+Training Epoch: 26 [12288/50176]	Loss: 0.8937
+Training Epoch: 26 [13312/50176]	Loss: 0.8328
+Training Epoch: 26 [14336/50176]	Loss: 0.8880
+Training Epoch: 26 [15360/50176]	Loss: 0.8912
+Training Epoch: 26 [16384/50176]	Loss: 0.8849
+Training Epoch: 26 [17408/50176]	Loss: 0.8960
+Training Epoch: 26 [18432/50176]	Loss: 0.9488
+Training Epoch: 26 [19456/50176]	Loss: 1.0033
+Training Epoch: 26 [20480/50176]	Loss: 0.9378
+Training Epoch: 26 [21504/50176]	Loss: 0.9205
+Training Epoch: 26 [22528/50176]	Loss: 0.8861
+Training Epoch: 26 [23552/50176]	Loss: 0.9580
+Training Epoch: 26 [24576/50176]	Loss: 0.9253
+Training Epoch: 26 [25600/50176]	Loss: 0.9259
+Training Epoch: 26 [26624/50176]	Loss: 0.9543
+Training Epoch: 26 [27648/50176]	Loss: 1.0039
+Training Epoch: 26 [28672/50176]	Loss: 0.9504
+Training Epoch: 26 [29696/50176]	Loss: 0.9544
+Training Epoch: 26 [30720/50176]	Loss: 0.9989
+Training Epoch: 26 [31744/50176]	Loss: 0.9821
+Training Epoch: 26 [32768/50176]	Loss: 0.9397
+Training Epoch: 26 [33792/50176]	Loss: 1.0519
+Training Epoch: 26 [34816/50176]	Loss: 0.9988
+Training Epoch: 26 [35840/50176]	Loss: 0.9787
+Training Epoch: 26 [36864/50176]	Loss: 0.9488
+Training Epoch: 26 [37888/50176]	Loss: 1.0217
+Training Epoch: 26 [38912/50176]	Loss: 0.9728
+Training Epoch: 26 [39936/50176]	Loss: 1.0729
+Training Epoch: 26 [40960/50176]	Loss: 0.9850
+Training Epoch: 26 [41984/50176]	Loss: 1.0357
+Training Epoch: 26 [43008/50176]	Loss: 1.0249
+Training Epoch: 26 [44032/50176]	Loss: 1.0108
+Training Epoch: 26 [45056/50176]	Loss: 0.9838
+Training Epoch: 26 [46080/50176]	Loss: 1.0483
+Training Epoch: 26 [47104/50176]	Loss: 0.9876
+Training Epoch: 26 [48128/50176]	Loss: 1.0305
+Training Epoch: 26 [49152/50176]	Loss: 0.9522
+Training Epoch: 26 [50176/50176]	Loss: 1.0194
+2022-12-09 00:00:08.634 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 19:00:08,654 [ZeusDataLoader(eval)] eval epoch 27 done: time=3.85 energy=528.33
+2022-12-08 19:00:08,654 [ZeusDataLoader(train)] Up to epoch 27: time=1395.82, energy=201725.83, cost=222997.40
+2022-12-08 19:00:08,654 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 19:00:08,654 [ZeusDataLoader(train)] Expected next epoch: time=1443.15, energy=208947.07, cost=230749.27
+2022-12-08 19:00:08,655 [ZeusDataLoader(train)] Epoch 28 begin.
+Validation Epoch: 26, Average loss: 0.0018, Accuracy: 0.5520
+2022-12-08 19:00:08,868 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 19:00:08,869 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-09 00:00:08.873 [ZeusMonitor] Monitor started.
+2022-12-09 00:00:08.873 [ZeusMonitor] Running indefinitely. 2022-12-09 00:00:08.873 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-09 00:00:08.873 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e28+gpu0.power.log
+2022-12-08 19:00:52,887 [ZeusDataLoader(train)] train epoch 28 done: time=44.22 energy=6702.61
+2022-12-08 19:00:52,890 [ZeusDataLoader(eval)] Epoch 28 begin.
+Training Epoch: 27 [1024/50176]	Loss: 0.8357
+Training Epoch: 27 [2048/50176]	Loss: 0.8820
+Training Epoch: 27 [3072/50176]	Loss: 0.8543
+Training Epoch: 27 [4096/50176]	Loss: 0.9306
+Training Epoch: 27 [5120/50176]	Loss: 0.8524
+Training Epoch: 27 [6144/50176]	Loss: 0.8992
+Training Epoch: 27 [7168/50176]	Loss: 0.8345
+Training Epoch: 27 [8192/50176]	Loss: 0.9068
+Training Epoch: 27 [9216/50176]	Loss: 0.8938
+Training Epoch: 27 [10240/50176]	Loss: 0.9015
+Training Epoch: 27 [11264/50176]	Loss: 0.8870
+Training Epoch: 27 [12288/50176]	Loss: 0.8672
+Training Epoch: 27 [13312/50176]	Loss: 0.8808
+Training Epoch: 27 [14336/50176]	Loss: 0.9021
+Training Epoch: 27 [15360/50176]	Loss: 0.8973
+Training Epoch: 27 [16384/50176]	Loss: 0.9267
+Training Epoch: 27 [17408/50176]	Loss: 0.8731
+Training Epoch: 27 [18432/50176]	Loss: 0.9164
+Training Epoch: 27 [19456/50176]	Loss: 0.9079
+Training Epoch: 27 [20480/50176]	Loss: 0.8991
+Training Epoch: 27 [21504/50176]	Loss: 0.9583
+Training Epoch: 27 [22528/50176]	Loss: 0.9079
+Training Epoch: 27 [23552/50176]	Loss: 0.8656
+Training Epoch: 27 [24576/50176]	Loss: 0.9711
+Training Epoch: 27 [25600/50176]	Loss: 0.9265
+Training Epoch: 27 [26624/50176]	Loss: 0.9516
+Training Epoch: 27 [27648/50176]	Loss: 0.9286
+Training Epoch: 27 [28672/50176]	Loss: 0.9134
+Training Epoch: 27 [29696/50176]	Loss: 0.9094
+Training Epoch: 27 [30720/50176]	Loss: 0.9041
+Training Epoch: 27 [31744/50176]	Loss: 0.9863
+Training Epoch: 27 [32768/50176]	Loss: 0.9758
+Training Epoch: 27 [33792/50176]	Loss: 0.9517
+Training Epoch: 27 [34816/50176]	Loss: 1.0407
+Training Epoch: 27 [35840/50176]	Loss: 1.0051
+Training Epoch: 27 [36864/50176]	Loss: 0.9055
+Training Epoch: 27 [37888/50176]	Loss: 0.9473
+Training Epoch: 27 [38912/50176]	Loss: 0.9533
+Training Epoch: 27 [39936/50176]	Loss: 1.0124
+Training Epoch: 27 [40960/50176]	Loss: 0.9876
+Training Epoch: 27 [41984/50176]	Loss: 0.9407
+Training Epoch: 27 [43008/50176]	Loss: 0.9330
+Training Epoch: 27 [44032/50176]	Loss: 1.0044
+Training Epoch: 27 [45056/50176]	Loss: 0.9546
+Training Epoch: 27 [46080/50176]	Loss: 0.9792
+Training Epoch: 27 [47104/50176]	Loss: 1.0376
+Training Epoch: 27 [48128/50176]	Loss: 0.9544
+Training Epoch: 27 [49152/50176]	Loss: 0.9966
+Training Epoch: 27 [50176/50176]	Loss: 1.0095
+2022-12-09 00:00:56.683 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 19:00:56,738 [ZeusDataLoader(eval)] eval epoch 28 done: time=3.84 energy=527.98
+2022-12-08 19:00:56,739 [ZeusDataLoader(train)] Up to epoch 28: time=1443.88, energy=208956.42, cost=230818.14
+2022-12-08 19:00:56,739 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 19:00:56,739 [ZeusDataLoader(train)] Expected next epoch: time=1491.21, energy=216177.66, cost=238570.00
+2022-12-08 19:00:56,740 [ZeusDataLoader(train)] Epoch 29 begin.
+Validation Epoch: 27, Average loss: 0.0024, Accuracy: 0.4645
+2022-12-08 19:00:56,997 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 19:00:56,998 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-09 00:00:57.000 [ZeusMonitor] Monitor started.
+2022-12-09 00:00:57.000 [ZeusMonitor] Running indefinitely. 2022-12-09 00:00:57.000 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-09 00:00:57.000 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e29+gpu0.power.log
+2022-12-08 19:01:41,061 [ZeusDataLoader(train)] train epoch 29 done: time=44.31 energy=6718.55
+2022-12-08 19:01:41,065 [ZeusDataLoader(eval)] Epoch 29 begin.
+Training Epoch: 28 [1024/50176]	Loss: 0.8096
+Training Epoch: 28 [2048/50176]	Loss: 0.8838
+Training Epoch: 28 [3072/50176]	Loss: 0.8028
+Training Epoch: 28 [4096/50176]	Loss: 0.9359
+Training Epoch: 28 [5120/50176]	Loss: 0.8376
+Training Epoch: 28 [6144/50176]	Loss: 0.8143
+Training Epoch: 28 [7168/50176]	Loss: 0.7993
+Training Epoch: 28 [8192/50176]	Loss: 0.8115
+Training Epoch: 28 [9216/50176]	Loss: 0.8689
+Training Epoch: 28 [10240/50176]	Loss: 0.8315
+Training Epoch: 28 [11264/50176]	Loss: 0.8009
+Training Epoch: 28 [12288/50176]	Loss: 0.8920
+Training Epoch: 28 [13312/50176]	Loss: 0.8220
+Training Epoch: 28 [14336/50176]	Loss: 0.8908
+Training Epoch: 28 [15360/50176]	Loss: 0.9176
+Training Epoch: 28 [16384/50176]	Loss: 0.8981
+Training Epoch: 28 [17408/50176]	Loss: 0.8787
+Training Epoch: 28 [18432/50176]	Loss: 0.8101
+Training Epoch: 28 [19456/50176]	Loss: 0.9265
+Training Epoch: 28 [20480/50176]	Loss: 0.8446
+Training Epoch: 28 [21504/50176]	Loss: 0.8798
+Training Epoch: 28 [22528/50176]	Loss: 0.9526
+Training Epoch: 28 [23552/50176]	Loss: 0.9124
+Training Epoch: 28 [24576/50176]	Loss: 0.8080
+Training Epoch: 28 [25600/50176]	Loss: 0.8694
+Training Epoch: 28 [26624/50176]	Loss: 0.9140
+Training Epoch: 28 [27648/50176]	Loss: 0.9211
+Training Epoch: 28 [28672/50176]	Loss: 0.8887
+Training Epoch: 28 [29696/50176]	Loss: 0.8882
+Training Epoch: 28 [30720/50176]	Loss: 0.9076
+Training Epoch: 28 [31744/50176]	Loss: 0.8922
+Training Epoch: 28 [32768/50176]	Loss: 0.8631
+Training Epoch: 28 [33792/50176]	Loss: 0.8673
+Training Epoch: 28 [34816/50176]	Loss: 0.8939
+Training Epoch: 28 [35840/50176]	Loss: 0.8701
+Training Epoch: 28 [36864/50176]	Loss: 1.0028
+Training Epoch: 28 [37888/50176]	Loss: 0.8929
+Training Epoch: 28 [38912/50176]	Loss: 0.8890
+Training Epoch: 28 [39936/50176]	Loss: 0.8899
+Training Epoch: 28 [40960/50176]	Loss: 0.9852
+Training Epoch: 28 [41984/50176]	Loss: 0.8592
+Training Epoch: 28 [43008/50176]	Loss: 0.8954
+Training Epoch: 28 [44032/50176]	Loss: 0.9025
+Training Epoch: 28 [45056/50176]	Loss: 1.0555
+Training Epoch: 28 [46080/50176]	Loss: 0.9642
+Training Epoch: 28 [47104/50176]	Loss: 0.9092
+Training Epoch: 28 [48128/50176]	Loss: 0.8581
+Training Epoch: 28 [49152/50176]	Loss: 0.9453
+Training Epoch: 28 [50176/50176]	Loss: 0.9020
+2022-12-09 00:01:44.907 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 19:01:44,938 [ZeusDataLoader(eval)] eval epoch 29 done: time=3.86 energy=526.53
+2022-12-08 19:01:44,938 [ZeusDataLoader(train)] Up to epoch 29: time=1492.06, energy=216201.50, cost=238656.11
+2022-12-08 19:01:44,938 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 19:01:44,938 [ZeusDataLoader(train)] Expected next epoch: time=1539.39, energy=223422.74, cost=246407.97
+2022-12-08 19:01:44,939 [ZeusDataLoader(train)] Epoch 30 begin.
+Validation Epoch: 28, Average loss: 0.0023, Accuracy: 0.4916
+2022-12-08 19:01:45,205 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 19:01:45,205 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-09 00:01:45.207 [ZeusMonitor] Monitor started.
+2022-12-09 00:01:45.207 [ZeusMonitor] Running indefinitely. 2022-12-09 00:01:45.207 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-09 00:01:45.207 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e30+gpu0.power.log
+2022-12-08 19:02:29,187 [ZeusDataLoader(train)] train epoch 30 done: time=44.24 energy=6713.35
+2022-12-08 19:02:29,190 [ZeusDataLoader(eval)] Epoch 30 begin.
+Training Epoch: 29 [1024/50176]	Loss: 0.8038
+Training Epoch: 29 [2048/50176]	Loss: 0.7729
+Training Epoch: 29 [3072/50176]	Loss: 0.7609
+Training Epoch: 29 [4096/50176]	Loss: 0.8007
+Training Epoch: 29 [5120/50176]	Loss: 0.8409
+Training Epoch: 29 [6144/50176]	Loss: 0.7855
+Training Epoch: 29 [7168/50176]	Loss: 0.7875
+Training Epoch: 29 [8192/50176]	Loss: 0.7816
+Training Epoch: 29 [9216/50176]	Loss: 0.8934
+Training Epoch: 29 [10240/50176]	Loss: 0.8491
+Training Epoch: 29 [11264/50176]	Loss: 0.8706
+Training Epoch: 29 [12288/50176]	Loss: 0.8572
+Training Epoch: 29 [13312/50176]	Loss: 0.7274
+Training Epoch: 29 [14336/50176]	Loss: 0.8049
+Training Epoch: 29 [15360/50176]	Loss: 0.9395
+Training Epoch: 29 [16384/50176]	Loss: 0.8177
+Training Epoch: 29 [17408/50176]	Loss: 0.8092
+Training Epoch: 29 [18432/50176]	Loss: 0.8392
+Training Epoch: 29 [19456/50176]	Loss: 0.9150
+Training Epoch: 29 [20480/50176]	Loss: 0.7993
+Training Epoch: 29 [21504/50176]	Loss: 0.8662
+Training Epoch: 29 [22528/50176]	Loss: 0.7252
+Training Epoch: 29 [23552/50176]	Loss: 0.8261
+Training Epoch: 29 [24576/50176]	Loss: 0.8108
+Training Epoch: 29 [25600/50176]	Loss: 0.8336
+Training Epoch: 29 [26624/50176]	Loss: 0.8028
+Training Epoch: 29 [27648/50176]	Loss: 0.8632
+Training Epoch: 29 [28672/50176]	Loss: 0.8131
+Training Epoch: 29 [29696/50176]	Loss: 0.7894
+Training Epoch: 29 [30720/50176]	Loss: 0.8612
+Training Epoch: 29 [31744/50176]	Loss: 0.8430
+Training Epoch: 29 [32768/50176]	Loss: 0.8797
+Training Epoch: 29 [33792/50176]	Loss: 0.8829
+Training Epoch: 29 [34816/50176]	Loss: 0.9077
+Training Epoch: 29 [35840/50176]	Loss: 0.7504
+Training Epoch: 29 [36864/50176]	Loss: 0.8499
+Training Epoch: 29 [37888/50176]	Loss: 0.8358
+Training Epoch: 29 [38912/50176]	Loss: 0.8542
+Training Epoch: 29 [39936/50176]	Loss: 0.8892
+Training Epoch: 29 [40960/50176]	Loss: 0.9048
+Training Epoch: 29 [41984/50176]	Loss: 0.8360
+Training Epoch: 29 [43008/50176]	Loss: 0.9281
+Training Epoch: 29 [44032/50176]	Loss: 0.9128
+Training Epoch: 29 [45056/50176]	Loss: 0.8861
+Training Epoch: 29 [46080/50176]	Loss: 0.9138
+Training Epoch: 29 [47104/50176]	Loss: 0.8413
+Training Epoch: 29 [48128/50176]	Loss: 0.9518
+Training Epoch: 29 [49152/50176]	Loss: 0.9026
+Training Epoch: 29 [50176/50176]	Loss: 0.9809
+2022-12-09 00:02:32.984 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 19:02:33,002 [ZeusDataLoader(eval)] eval epoch 30 done: time=3.80 energy=525.85
+2022-12-08 19:02:33,003 [ZeusDataLoader(train)] Up to epoch 30: time=1540.10, energy=223440.70, cost=246479.37
+2022-12-08 19:02:33,003 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 19:02:33,003 [ZeusDataLoader(train)] Expected next epoch: time=1587.43, energy=230661.94, cost=254231.23
+2022-12-08 19:02:33,004 [ZeusDataLoader(train)] Epoch 31 begin.
+Validation Epoch: 29, Average loss: 0.0019, Accuracy: 0.5319
+2022-12-08 19:02:33,266 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 19:02:33,267 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-09 00:02:33.283 [ZeusMonitor] Monitor started.
+2022-12-09 00:02:33.283 [ZeusMonitor] Running indefinitely. 2022-12-09 00:02:33.283 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-09 00:02:33.283 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e31+gpu0.power.log
+2022-12-08 19:03:17,192 [ZeusDataLoader(train)] train epoch 31 done: time=44.18 energy=6711.06
+2022-12-08 19:03:17,196 [ZeusDataLoader(eval)] Epoch 31 begin.
+Training Epoch: 30 [1024/50176]	Loss: 0.8836
+Training Epoch: 30 [2048/50176]	Loss: 0.7783
+Training Epoch: 30 [3072/50176]	Loss: 0.7832
+Training Epoch: 30 [4096/50176]	Loss: 0.7768
+Training Epoch: 30 [5120/50176]	Loss: 0.7512
+Training Epoch: 30 [6144/50176]	Loss: 0.7647
+Training Epoch: 30 [7168/50176]	Loss: 0.7666
+Training Epoch: 30 [8192/50176]	Loss: 0.7088
+Training Epoch: 30 [9216/50176]	Loss: 0.7748
+Training Epoch: 30 [10240/50176]	Loss: 0.7425
+Training Epoch: 30 [11264/50176]	Loss: 0.7996
+Training Epoch: 30 [12288/50176]	Loss: 0.7728
+Training Epoch: 30 [13312/50176]	Loss: 0.7833
+Training Epoch: 30 [14336/50176]	Loss: 0.7478
+Training Epoch: 30 [15360/50176]	Loss: 0.7598
+Training Epoch: 30 [16384/50176]	Loss: 0.8086
+Training Epoch: 30 [17408/50176]	Loss: 0.7717
+Training Epoch: 30 [18432/50176]	Loss: 0.7531
+Training Epoch: 30 [19456/50176]	Loss: 0.7791
+Training Epoch: 30 [20480/50176]	Loss: 0.7669
+Training Epoch: 30 [21504/50176]	Loss: 0.7511
+Training Epoch: 30 [22528/50176]	Loss: 0.8010
+Training Epoch: 30 [23552/50176]	Loss: 0.7860
+Training Epoch: 30 [24576/50176]	Loss: 0.7884
+Training Epoch: 30 [25600/50176]	Loss: 0.8069
+Training Epoch: 30 [26624/50176]	Loss: 0.7822
+Training Epoch: 30 [27648/50176]	Loss: 0.8611
+Training Epoch: 30 [28672/50176]	Loss: 0.9061
+Training Epoch: 30 [29696/50176]	Loss: 0.8022
+Training Epoch: 30 [30720/50176]	Loss: 0.7932
+Training Epoch: 30 [31744/50176]	Loss: 0.7502
+Training Epoch: 30 [32768/50176]	Loss: 0.7880
+Training Epoch: 30 [33792/50176]	Loss: 0.8328
+Training Epoch: 30 [34816/50176]	Loss: 0.8981
+Training Epoch: 30 [35840/50176]	Loss: 0.8109
+Training Epoch: 30 [36864/50176]	Loss: 0.8479
+Training Epoch: 30 [37888/50176]	Loss: 0.8739
+Training Epoch: 30 [38912/50176]	Loss: 0.8700
+Training Epoch: 30 [39936/50176]	Loss: 0.8302
+Training Epoch: 30 [40960/50176]	Loss: 0.8684
+Training Epoch: 30 [41984/50176]	Loss: 0.8227
+Training Epoch: 30 [43008/50176]	Loss: 0.9153
+Training Epoch: 30 [44032/50176]	Loss: 0.7802
+Training Epoch: 30 [45056/50176]	Loss: 0.8609
+Training Epoch: 30 [46080/50176]	Loss: 0.8510
+Training Epoch: 30 [47104/50176]	Loss: 0.8173
+Training Epoch: 30 [48128/50176]	Loss: 0.8173
+Training Epoch: 30 [49152/50176]	Loss: 0.8943
+Training Epoch: 30 [50176/50176]	Loss: 0.9492
+2022-12-09 00:03:20.977 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 19:03:21,010 [ZeusDataLoader(eval)] eval epoch 31 done: time=3.80 energy=530.46
+2022-12-08 19:03:21,010 [ZeusDataLoader(train)] Up to epoch 31: time=1588.09, energy=230682.22, cost=254298.76
+2022-12-08 19:03:21,010 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 19:03:21,010 [ZeusDataLoader(train)] Expected next epoch: time=1635.42, energy=237903.46, cost=262050.62
+2022-12-08 19:03:21,011 [ZeusDataLoader(train)] Epoch 32 begin.
+Validation Epoch: 30, Average loss: 0.0017, Accuracy: 0.5522
+2022-12-08 19:03:21,279 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 19:03:21,280 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-09 00:03:21.282 [ZeusMonitor] Monitor started.
+2022-12-09 00:03:21.282 [ZeusMonitor] Running indefinitely. 2022-12-09 00:03:21.282 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-09 00:03:21.282 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e32+gpu0.power.log
+2022-12-08 19:04:05,183 [ZeusDataLoader(train)] train epoch 32 done: time=44.16 energy=6710.74
+2022-12-08 19:04:05,187 [ZeusDataLoader(eval)] Epoch 32 begin.
+Training Epoch: 31 [1024/50176]	Loss: 0.7475
+Training Epoch: 31 [2048/50176]	Loss: 0.6890
+Training Epoch: 31 [3072/50176]	Loss: 0.7729
+Training Epoch: 31 [4096/50176]	Loss: 0.6696
+Training Epoch: 31 [5120/50176]	Loss: 0.7343
+Training Epoch: 31 [6144/50176]	Loss: 0.7336
+Training Epoch: 31 [7168/50176]	Loss: 0.7271
+Training Epoch: 31 [8192/50176]	Loss: 0.7638
+Training Epoch: 31 [9216/50176]	Loss: 0.7206
+Training Epoch: 31 [10240/50176]	Loss: 0.7828
+Training Epoch: 31 [11264/50176]	Loss: 0.7465
+Training Epoch: 31 [12288/50176]	Loss: 0.7780
+Training Epoch: 31 [13312/50176]	Loss: 0.7524
+Training Epoch: 31 [14336/50176]	Loss: 0.7042
+Training Epoch: 31 [15360/50176]	Loss: 0.7012
+Training Epoch: 31 [16384/50176]	Loss: 0.7085
+Training Epoch: 31 [17408/50176]	Loss: 0.7581
+Training Epoch: 31 [18432/50176]	Loss: 0.7579
+Training Epoch: 31 [19456/50176]	Loss: 0.7767
+Training Epoch: 31 [20480/50176]	Loss: 0.7767
+Training Epoch: 31 [21504/50176]	Loss: 0.8159
+Training Epoch: 31 [22528/50176]	Loss: 0.7192
+Training Epoch: 31 [23552/50176]	Loss: 0.8174
+Training Epoch: 31 [24576/50176]	Loss: 0.7398
+Training Epoch: 31 [25600/50176]	Loss: 0.7597
+Training Epoch: 31 [26624/50176]	Loss: 0.7976
+Training Epoch: 31 [27648/50176]	Loss: 0.7763
+Training Epoch: 31 [28672/50176]	Loss: 0.7548
+Training Epoch: 31 [29696/50176]	Loss: 0.8122
+Training Epoch: 31 [30720/50176]	Loss: 0.7719
+Training Epoch: 31 [31744/50176]	Loss: 0.7650
+Training Epoch: 31 [32768/50176]	Loss: 0.8391
+Training Epoch: 31 [33792/50176]	Loss: 0.7977
+Training Epoch: 31 [34816/50176]	Loss: 0.9249
+Training Epoch: 31 [35840/50176]	Loss: 0.8088
+Training Epoch: 31 [36864/50176]	Loss: 0.7876
+Training Epoch: 31 [37888/50176]	Loss: 0.8174
+Training Epoch: 31 [38912/50176]	Loss: 0.8704
+Training Epoch: 31 [39936/50176]	Loss: 0.8696
+Training Epoch: 31 [40960/50176]	Loss: 0.8757
+Training Epoch: 31 [41984/50176]	Loss: 0.7920
+Training Epoch: 31 [43008/50176]	Loss: 0.7691
+Training Epoch: 31 [44032/50176]	Loss: 0.7844
+Training Epoch: 31 [45056/50176]	Loss: 0.8511
+Training Epoch: 31 [46080/50176]	Loss: 0.8245
+Training Epoch: 31 [47104/50176]	Loss: 0.7893
+Training Epoch: 31 [48128/50176]	Loss: 0.8797
+Training Epoch: 31 [49152/50176]	Loss: 0.7956
+Training Epoch: 31 [50176/50176]	Loss: 0.7503
+2022-12-09 00:04:08.904 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 19:04:08,913 [ZeusDataLoader(eval)] eval epoch 32 done: time=3.72 energy=524.03
+2022-12-08 19:04:08,914 [ZeusDataLoader(train)] Up to epoch 32: time=1635.97, energy=237916.99, cost=262105.76
+2022-12-08 19:04:08,914 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 19:04:08,914 [ZeusDataLoader(train)] Expected next epoch: time=1683.30, energy=245138.23, cost=269857.62
+2022-12-08 19:04:08,915 [ZeusDataLoader(train)] Epoch 33 begin.
+Validation Epoch: 31, Average loss: 0.0018, Accuracy: 0.5548
+2022-12-08 19:04:09,166 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 19:04:09,167 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-09 00:04:09.181 [ZeusMonitor] Monitor started.
+2022-12-09 00:04:09.181 [ZeusMonitor] Running indefinitely. 2022-12-09 00:04:09.181 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-09 00:04:09.181 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e33+gpu0.power.log
+2022-12-08 19:04:53,123 [ZeusDataLoader(train)] train epoch 33 done: time=44.20 energy=6710.19
+2022-12-08 19:04:53,127 [ZeusDataLoader(eval)] Epoch 33 begin.
+Training Epoch: 32 [1024/50176]	Loss: 0.6782
+Training Epoch: 32 [2048/50176]	Loss: 0.6518
+Training Epoch: 32 [3072/50176]	Loss: 0.7405
+Training Epoch: 32 [4096/50176]	Loss: 0.6940
+Training Epoch: 32 [5120/50176]	Loss: 0.7134
+Training Epoch: 32 [6144/50176]	Loss: 0.7423
+Training Epoch: 32 [7168/50176]	Loss: 0.6744
+Training Epoch: 32 [8192/50176]	Loss: 0.6943
+Training Epoch: 32 [9216/50176]	Loss: 0.6602
+Training Epoch: 32 [10240/50176]	Loss: 0.6830
+Training Epoch: 32 [11264/50176]	Loss: 0.7165
+Training Epoch: 32 [12288/50176]	Loss: 0.7189
+Training Epoch: 32 [13312/50176]	Loss: 0.7499
+Training Epoch: 32 [14336/50176]	Loss: 0.7255
+Training Epoch: 32 [15360/50176]	Loss: 0.6731
+Training Epoch: 32 [16384/50176]	Loss: 0.6362
+Training Epoch: 32 [17408/50176]	Loss: 0.7398
+Training Epoch: 32 [18432/50176]	Loss: 0.6945
+Training Epoch: 32 [19456/50176]	Loss: 0.6958
+Training Epoch: 32 [20480/50176]	Loss: 0.6865
+Training Epoch: 32 [21504/50176]	Loss: 0.7416
+Training Epoch: 32 [22528/50176]	Loss: 0.7609
+Training Epoch: 32 [23552/50176]	Loss: 0.7661
+Training Epoch: 32 [24576/50176]	Loss: 0.6466
+Training Epoch: 32 [25600/50176]	Loss: 0.7394
+Training Epoch: 32 [26624/50176]	Loss: 0.7090
+Training Epoch: 32 [27648/50176]	Loss: 0.6648
+Training Epoch: 32 [28672/50176]	Loss: 0.7249
+Training Epoch: 32 [29696/50176]	Loss: 0.7506
+Training Epoch: 32 [30720/50176]	Loss: 0.7248
+Training Epoch: 32 [31744/50176]	Loss: 0.7282
+Training Epoch: 32 [32768/50176]	Loss: 0.6928
+Training Epoch: 32 [33792/50176]	Loss: 0.7920
+Training Epoch: 32 [34816/50176]	Loss: 0.8425
+Training Epoch: 32 [35840/50176]	Loss: 0.7283
+Training Epoch: 32 [36864/50176]	Loss: 0.7408
+Training Epoch: 32 [37888/50176]	Loss: 0.7361
+Training Epoch: 32 [38912/50176]	Loss: 0.7075
+Training Epoch: 32 [39936/50176]	Loss: 0.7852
+Training Epoch: 32 [40960/50176]	Loss: 0.7320
+Training Epoch: 32 [41984/50176]	Loss: 0.7035
+Training Epoch: 32 [43008/50176]	Loss: 0.8103
+Training Epoch: 32 [44032/50176]	Loss: 0.7973
+Training Epoch: 32 [45056/50176]	Loss: 0.6756
+Training Epoch: 32 [46080/50176]	Loss: 0.8688
+Training Epoch: 32 [47104/50176]	Loss: 0.8235
+Training Epoch: 32 [48128/50176]	Loss: 0.7871
+Training Epoch: 32 [49152/50176]	Loss: 0.7709
+Training Epoch: 32 [50176/50176]	Loss: 0.8063
+2022-12-09 00:04:56.875 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 19:04:56,895 [ZeusDataLoader(eval)] eval epoch 33 done: time=3.76 energy=517.03
+2022-12-08 19:04:56,895 [ZeusDataLoader(train)] Up to epoch 33: time=1683.93, energy=245144.21, cost=269915.72
+2022-12-08 19:04:56,895 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 19:04:56,895 [ZeusDataLoader(train)] Expected next epoch: time=1731.26, energy=252365.46, cost=277667.59
+2022-12-08 19:04:56,896 [ZeusDataLoader(train)] Epoch 34 begin.
+Validation Epoch: 32, Average loss: 0.0016, Accuracy: 0.5851
+2022-12-08 19:04:57,109 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 19:04:57,110 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-09 00:04:57.113 [ZeusMonitor] Monitor started.
+2022-12-09 00:04:57.113 [ZeusMonitor] Running indefinitely. 2022-12-09 00:04:57.113 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-09 00:04:57.113 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e34+gpu0.power.log
+2022-12-08 19:05:41,063 [ZeusDataLoader(train)] train epoch 34 done: time=44.16 energy=6711.48
+2022-12-08 19:05:41,066 [ZeusDataLoader(eval)] Epoch 34 begin.
+Training Epoch: 33 [1024/50176]	Loss: 0.6855
+Training Epoch: 33 [2048/50176]	Loss: 0.6069
+Training Epoch: 33 [3072/50176]	Loss: 0.6766
+Training Epoch: 33 [4096/50176]	Loss: 0.6537
+Training Epoch: 33 [5120/50176]	Loss: 0.6568
+Training Epoch: 33 [6144/50176]	Loss: 0.6572
+Training Epoch: 33 [7168/50176]	Loss: 0.6999
+Training Epoch: 33 [8192/50176]	Loss: 0.6378
+Training Epoch: 33 [9216/50176]	Loss: 0.6701
+Training Epoch: 33 [10240/50176]	Loss: 0.7196
+Training Epoch: 33 [11264/50176]	Loss: 0.6849
+Training Epoch: 33 [12288/50176]	Loss: 0.6948
+Training Epoch: 33 [13312/50176]	Loss: 0.6489
+Training Epoch: 33 [14336/50176]	Loss: 0.6418
+Training Epoch: 33 [15360/50176]	Loss: 0.6345
+Training Epoch: 33 [16384/50176]	Loss: 0.6608
+Training Epoch: 33 [17408/50176]	Loss: 0.6545
+Training Epoch: 33 [18432/50176]	Loss: 0.6969
+Training Epoch: 33 [19456/50176]	Loss: 0.6691
+Training Epoch: 33 [20480/50176]	Loss: 0.6926
+Training Epoch: 33 [21504/50176]	Loss: 0.7148
+Training Epoch: 33 [22528/50176]	Loss: 0.6317
+Training Epoch: 33 [23552/50176]	Loss: 0.7060
+Training Epoch: 33 [24576/50176]	Loss: 0.7024
+Training Epoch: 33 [25600/50176]	Loss: 0.7200
+Training Epoch: 33 [26624/50176]	Loss: 0.6384
+Training Epoch: 33 [27648/50176]	Loss: 0.6544
+Training Epoch: 33 [28672/50176]	Loss: 0.6875
+Training Epoch: 33 [29696/50176]	Loss: 0.6812
+Training Epoch: 33 [30720/50176]	Loss: 0.7001
+Training Epoch: 33 [31744/50176]	Loss: 0.7164
+Training Epoch: 33 [32768/50176]	Loss: 0.6852
+Training Epoch: 33 [33792/50176]	Loss: 0.7425
+Training Epoch: 33 [34816/50176]	Loss: 0.7167
+Training Epoch: 33 [35840/50176]	Loss: 0.6886
+Training Epoch: 33 [36864/50176]	Loss: 0.6836
+Training Epoch: 33 [37888/50176]	Loss: 0.7311
+Training Epoch: 33 [38912/50176]	Loss: 0.7220
+Training Epoch: 33 [39936/50176]	Loss: 0.7234
+Training Epoch: 33 [40960/50176]	Loss: 0.6736
+Training Epoch: 33 [41984/50176]	Loss: 0.7422
+Training Epoch: 33 [43008/50176]	Loss: 0.7300
+Training Epoch: 33 [44032/50176]	Loss: 0.7643
+Training Epoch: 33 [45056/50176]	Loss: 0.7788
+Training Epoch: 33 [46080/50176]	Loss: 0.6699
+Training Epoch: 33 [47104/50176]	Loss: 0.7452
+Training Epoch: 33 [48128/50176]	Loss: 0.7052
+Training Epoch: 33 [49152/50176]	Loss: 0.6811
+Training Epoch: 33 [50176/50176]	Loss: 0.7615
+2022-12-09 00:05:44.798 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 19:05:44,813 [ZeusDataLoader(eval)] eval epoch 34 done: time=3.74 energy=525.01
+2022-12-08 19:05:44,814 [ZeusDataLoader(train)] Up to epoch 34: time=1731.82, energy=252380.70, cost=277724.90
+2022-12-08 19:05:44,814 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 19:05:44,814 [ZeusDataLoader(train)] Expected next epoch: time=1779.15, energy=259601.94, cost=285476.77
+2022-12-08 19:05:44,815 [ZeusDataLoader(train)] Epoch 35 begin.
+Validation Epoch: 33, Average loss: 0.0020, Accuracy: 0.5371
+2022-12-08 19:05:45,075 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 19:05:45,076 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-09 00:05:45.078 [ZeusMonitor] Monitor started.
+2022-12-09 00:05:45.078 [ZeusMonitor] Running indefinitely. 2022-12-09 00:05:45.078 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-09 00:05:45.078 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e35+gpu0.power.log
+2022-12-08 19:06:29,067 [ZeusDataLoader(train)] train epoch 35 done: time=44.24 energy=6711.30
+2022-12-08 19:06:29,071 [ZeusDataLoader(eval)] Epoch 35 begin.
+Training Epoch: 34 [1024/50176]	Loss: 0.5314
+Training Epoch: 34 [2048/50176]	Loss: 0.6310
+Training Epoch: 34 [3072/50176]	Loss: 0.5868
+Training Epoch: 34 [4096/50176]	Loss: 0.5746
+Training Epoch: 34 [5120/50176]	Loss: 0.6153
+Training Epoch: 34 [6144/50176]	Loss: 0.6202
+Training Epoch: 34 [7168/50176]	Loss: 0.5969
+Training Epoch: 34 [8192/50176]	Loss: 0.6559
+Training Epoch: 34 [9216/50176]	Loss: 0.6052
+Training Epoch: 34 [10240/50176]	Loss: 0.6454
+Training Epoch: 34 [11264/50176]	Loss: 0.5924
+Training Epoch: 34 [12288/50176]	Loss: 0.6688
+Training Epoch: 34 [13312/50176]	Loss: 0.6500
+Training Epoch: 34 [14336/50176]	Loss: 0.6061
+Training Epoch: 34 [15360/50176]	Loss: 0.6184
+Training Epoch: 34 [16384/50176]	Loss: 0.7347
+Training Epoch: 34 [17408/50176]	Loss: 0.6613
+Training Epoch: 34 [18432/50176]	Loss: 0.6256
+Training Epoch: 34 [19456/50176]	Loss: 0.5795
+Training Epoch: 34 [20480/50176]	Loss: 0.6835
+Training Epoch: 34 [21504/50176]	Loss: 0.6532
+Training Epoch: 34 [22528/50176]	Loss: 0.6349
+Training Epoch: 34 [23552/50176]	Loss: 0.6548
+Training Epoch: 34 [24576/50176]	Loss: 0.5721
+Training Epoch: 34 [25600/50176]	Loss: 0.6857
+Training Epoch: 34 [26624/50176]	Loss: 0.6828
+Training Epoch: 34 [27648/50176]	Loss: 0.6702
+Training Epoch: 34 [28672/50176]	Loss: 0.6543
+Training Epoch: 34 [29696/50176]	Loss: 0.6956
+Training Epoch: 34 [30720/50176]	Loss: 0.6497
+Training Epoch: 34 [31744/50176]	Loss: 0.6812
+Training Epoch: 34 [32768/50176]	Loss: 0.6660
+Training Epoch: 34 [33792/50176]	Loss: 0.6712
+Training Epoch: 34 [34816/50176]	Loss: 0.6617
+Training Epoch: 34 [35840/50176]	Loss: 0.6698
+Training Epoch: 34 [36864/50176]	Loss: 0.6791
+Training Epoch: 34 [37888/50176]	Loss: 0.6745
+Training Epoch: 34 [38912/50176]	Loss: 0.5897
+Training Epoch: 34 [39936/50176]	Loss: 0.7587
+Training Epoch: 34 [40960/50176]	Loss: 0.6656
+Training Epoch: 34 [41984/50176]	Loss: 0.6528
+Training Epoch: 34 [43008/50176]	Loss: 0.6706
+Training Epoch: 34 [44032/50176]	Loss: 0.6609
+Training Epoch: 34 [45056/50176]	Loss: 0.8056
+Training Epoch: 34 [46080/50176]	Loss: 0.6642
+Training Epoch: 34 [47104/50176]	Loss: 0.7015
+Training Epoch: 34 [48128/50176]	Loss: 0.6879
+Training Epoch: 34 [49152/50176]	Loss: 0.7000
+Training Epoch: 34 [50176/50176]	Loss: 0.7024
+2022-12-09 00:06:32.860 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 19:06:32,904 [ZeusDataLoader(eval)] eval epoch 35 done: time=3.82 energy=530.08
+2022-12-08 19:06:32,904 [ZeusDataLoader(train)] Up to epoch 35: time=1779.89, energy=259622.08, cost=285551.46
+2022-12-08 19:06:32,904 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 19:06:32,904 [ZeusDataLoader(train)] Expected next epoch: time=1827.22, energy=266843.32, cost=293303.33
+2022-12-08 19:06:32,905 [ZeusDataLoader(train)] Epoch 36 begin.
+Validation Epoch: 34, Average loss: 0.0017, Accuracy: 0.5825
+2022-12-08 19:06:33,157 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 19:06:33,158 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-09 00:06:33.160 [ZeusMonitor] Monitor started.
+2022-12-09 00:06:33.160 [ZeusMonitor] Running indefinitely. 2022-12-09 00:06:33.160 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-09 00:06:33.160 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e36+gpu0.power.log
+2022-12-08 19:07:17,158 [ZeusDataLoader(train)] train epoch 36 done: time=44.24 energy=6718.38
+2022-12-08 19:07:17,161 [ZeusDataLoader(eval)] Epoch 36 begin.
+Training Epoch: 35 [1024/50176]	Loss: 0.5827
+Training Epoch: 35 [2048/50176]	Loss: 0.6169
+Training Epoch: 35 [3072/50176]	Loss: 0.6174
+Training Epoch: 35 [4096/50176]	Loss: 0.5610
+Training Epoch: 35 [5120/50176]	Loss: 0.6002
+Training Epoch: 35 [6144/50176]	Loss: 0.5620
+Training Epoch: 35 [7168/50176]	Loss: 0.5929
+Training Epoch: 35 [8192/50176]	Loss: 0.6133
+Training Epoch: 35 [9216/50176]	Loss: 0.5295
+Training Epoch: 35 [10240/50176]	Loss: 0.6125
+Training Epoch: 35 [11264/50176]	Loss: 0.6355
+Training Epoch: 35 [12288/50176]	Loss: 0.6473
+Training Epoch: 35 [13312/50176]	Loss: 0.6140
+Training Epoch: 35 [14336/50176]	Loss: 0.6184
+Training Epoch: 35 [15360/50176]	Loss: 0.5999
+Training Epoch: 35 [16384/50176]	Loss: 0.6146
+Training Epoch: 35 [17408/50176]	Loss: 0.6396
+Training Epoch: 35 [18432/50176]	Loss: 0.6682
+Training Epoch: 35 [19456/50176]	Loss: 0.6383
+Training Epoch: 35 [20480/50176]	Loss: 0.5858
+Training Epoch: 35 [21504/50176]	Loss: 0.6043
+Training Epoch: 35 [22528/50176]	Loss: 0.6583
+Training Epoch: 35 [23552/50176]	Loss: 0.6087
+Training Epoch: 35 [24576/50176]	Loss: 0.6722
+Training Epoch: 35 [25600/50176]	Loss: 0.5921
+Training Epoch: 35 [26624/50176]	Loss: 0.6060
+Training Epoch: 35 [27648/50176]	Loss: 0.6053
+Training Epoch: 35 [28672/50176]	Loss: 0.6927
+Training Epoch: 35 [29696/50176]	Loss: 0.6028
+Training Epoch: 35 [30720/50176]	Loss: 0.6842
+Training Epoch: 35 [31744/50176]	Loss: 0.6296
+Training Epoch: 35 [32768/50176]	Loss: 0.6251
+Training Epoch: 35 [33792/50176]	Loss: 0.5896
+Training Epoch: 35 [34816/50176]	Loss: 0.5952
+Training Epoch: 35 [35840/50176]	Loss: 0.6564
+Training Epoch: 35 [36864/50176]	Loss: 0.7170
+Training Epoch: 35 [37888/50176]	Loss: 0.6705
+Training Epoch: 35 [38912/50176]	Loss: 0.6715
+Training Epoch: 35 [39936/50176]	Loss: 0.7853
+Training Epoch: 35 [40960/50176]	Loss: 0.6411
+Training Epoch: 35 [41984/50176]	Loss: 0.6796
+Training Epoch: 35 [43008/50176]	Loss: 0.6263
+Training Epoch: 35 [44032/50176]	Loss: 0.6658
+Training Epoch: 35 [45056/50176]	Loss: 0.6705
+Training Epoch: 35 [46080/50176]	Loss: 0.6810
+Training Epoch: 35 [47104/50176]	Loss: 0.6873
+Training Epoch: 35 [48128/50176]	Loss: 0.6913
+Training Epoch: 35 [49152/50176]	Loss: 0.6664
+Training Epoch: 35 [50176/50176]	Loss: 0.6413
+2022-12-09 00:07:20.914 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 19:07:20,925 [ZeusDataLoader(eval)] eval epoch 36 done: time=3.75 energy=514.65
+2022-12-08 19:07:20,925 [ZeusDataLoader(train)] Up to epoch 36: time=1827.89, energy=266855.11, cost=293367.83
+2022-12-08 19:07:20,925 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 19:07:20,925 [ZeusDataLoader(train)] Expected next epoch: time=1875.22, energy=274076.35, cost=301119.70
+2022-12-08 19:07:20,926 [ZeusDataLoader(train)] Epoch 37 begin.
+Validation Epoch: 35, Average loss: 0.0018, Accuracy: 0.5751
+2022-12-08 19:07:21,194 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 19:07:21,195 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-09 00:07:21.197 [ZeusMonitor] Monitor started.
+2022-12-09 00:07:21.197 [ZeusMonitor] Running indefinitely. 2022-12-09 00:07:21.197 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-09 00:07:21.197 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e37+gpu0.power.log
+2022-12-08 19:08:05,182 [ZeusDataLoader(train)] train epoch 37 done: time=44.25 energy=6730.78
+2022-12-08 19:08:05,186 [ZeusDataLoader(eval)] Epoch 37 begin.
+Training Epoch: 36 [1024/50176]	Loss: 0.5030
+Training Epoch: 36 [2048/50176]	Loss: 0.5849
+Training Epoch: 36 [3072/50176]	Loss: 0.5173
+Training Epoch: 36 [4096/50176]	Loss: 0.5602
+Training Epoch: 36 [5120/50176]	Loss: 0.5734
+Training Epoch: 36 [6144/50176]	Loss: 0.5328
+Training Epoch: 36 [7168/50176]	Loss: 0.5919
+Training Epoch: 36 [8192/50176]	Loss: 0.5748
+Training Epoch: 36 [9216/50176]	Loss: 0.5713
+Training Epoch: 36 [10240/50176]	Loss: 0.6153
+Training Epoch: 36 [11264/50176]	Loss: 0.5437
+Training Epoch: 36 [12288/50176]	Loss: 0.5652
+Training Epoch: 36 [13312/50176]	Loss: 0.5573
+Training Epoch: 36 [14336/50176]	Loss: 0.5403
+Training Epoch: 36 [15360/50176]	Loss: 0.6103
+Training Epoch: 36 [16384/50176]	Loss: 0.5452
+Training Epoch: 36 [17408/50176]	Loss: 0.5800
+Training Epoch: 36 [18432/50176]	Loss: 0.5893
+Training Epoch: 36 [19456/50176]	Loss: 0.5799
+Training Epoch: 36 [20480/50176]	Loss: 0.5771
+Training Epoch: 36 [21504/50176]	Loss: 0.5857
+Training Epoch: 36 [22528/50176]	Loss: 0.6533
+Training Epoch: 36 [23552/50176]	Loss: 0.5663
+Training Epoch: 36 [24576/50176]	Loss: 0.5877
+Training Epoch: 36 [25600/50176]	Loss: 0.6700
+Training Epoch: 36 [26624/50176]	Loss: 0.6199
+Training Epoch: 36 [27648/50176]	Loss: 0.5991
+Training Epoch: 36 [28672/50176]	Loss: 0.6368
+Training Epoch: 36 [29696/50176]	Loss: 0.5964
+Training Epoch: 36 [30720/50176]	Loss: 0.5986
+Training Epoch: 36 [31744/50176]	Loss: 0.5963
+Training Epoch: 36 [32768/50176]	Loss: 0.5915
+Training Epoch: 36 [33792/50176]	Loss: 0.6017
+Training Epoch: 36 [34816/50176]	Loss: 0.6190
+Training Epoch: 36 [35840/50176]	Loss: 0.5974
+Training Epoch: 36 [36864/50176]	Loss: 0.6050
+Training Epoch: 36 [37888/50176]	Loss: 0.6582
+Training Epoch: 36 [38912/50176]	Loss: 0.6225
+Training Epoch: 36 [39936/50176]	Loss: 0.6332
+Training Epoch: 36 [40960/50176]	Loss: 0.6298
+Training Epoch: 36 [41984/50176]	Loss: 0.6815
+Training Epoch: 36 [43008/50176]	Loss: 0.6861
+Training Epoch: 36 [44032/50176]	Loss: 0.7168
+Training Epoch: 36 [45056/50176]	Loss: 0.6345
+Training Epoch: 36 [46080/50176]	Loss: 0.6122
+Training Epoch: 36 [47104/50176]	Loss: 0.6544
+Training Epoch: 36 [48128/50176]	Loss: 0.6285
+Training Epoch: 36 [49152/50176]	Loss: 0.6338
+Training Epoch: 36 [50176/50176]	Loss: 0.6124
+2022-12-09 00:08:08.967 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 19:08:09,026 [ZeusDataLoader(eval)] eval epoch 37 done: time=3.83 energy=533.15
+2022-12-08 19:08:09,026 [ZeusDataLoader(train)] Up to epoch 37: time=1875.97, energy=274119.04, cost=301206.64
+2022-12-08 19:08:09,027 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 19:08:09,027 [ZeusDataLoader(train)] Expected next epoch: time=1923.30, energy=281340.28, cost=308958.51
+2022-12-08 19:08:09,028 [ZeusDataLoader(train)] Epoch 38 begin.
+Validation Epoch: 36, Average loss: 0.0019, Accuracy: 0.5728
+2022-12-08 19:08:09,327 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 19:08:09,328 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-09 00:08:09.350 [ZeusMonitor] Monitor started.
+2022-12-09 00:08:09.350 [ZeusMonitor] Running indefinitely. 2022-12-09 00:08:09.350 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-09 00:08:09.350 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e38+gpu0.power.log
+2022-12-08 19:08:53,282 [ZeusDataLoader(train)] train epoch 38 done: time=44.25 energy=6707.83
+2022-12-08 19:08:53,286 [ZeusDataLoader(eval)] Epoch 38 begin.
+Training Epoch: 37 [1024/50176]	Loss: 0.5298
+Training Epoch: 37 [2048/50176]	Loss: 0.6152
+Training Epoch: 37 [3072/50176]	Loss: 0.5143
+Training Epoch: 37 [4096/50176]	Loss: 0.6079
+Training Epoch: 37 [5120/50176]	Loss: 0.5231
+Training Epoch: 37 [6144/50176]	Loss: 0.5641
+Training Epoch: 37 [7168/50176]	Loss: 0.5770
+Training Epoch: 37 [8192/50176]	Loss: 0.5400
+Training Epoch: 37 [9216/50176]	Loss: 0.5474
+Training Epoch: 37 [10240/50176]	Loss: 0.5589
+Training Epoch: 37 [11264/50176]	Loss: 0.5965
+Training Epoch: 37 [12288/50176]	Loss: 0.5471
+Training Epoch: 37 [13312/50176]	Loss: 0.5318
+Training Epoch: 37 [14336/50176]	Loss: 0.5212
+Training Epoch: 37 [15360/50176]	Loss: 0.5683
+Training Epoch: 37 [16384/50176]	Loss: 0.5307
+Training Epoch: 37 [17408/50176]	Loss: 0.5491
+Training Epoch: 37 [18432/50176]	Loss: 0.5478
+Training Epoch: 37 [19456/50176]	Loss: 0.5421
+Training Epoch: 37 [20480/50176]	Loss: 0.5486
+Training Epoch: 37 [21504/50176]	Loss: 0.6179
+Training Epoch: 37 [22528/50176]	Loss: 0.5737
+Training Epoch: 37 [23552/50176]	Loss: 0.5524
+Training Epoch: 37 [24576/50176]	Loss: 0.5464
+Training Epoch: 37 [25600/50176]	Loss: 0.5740
+Training Epoch: 37 [26624/50176]	Loss: 0.6311
+Training Epoch: 37 [27648/50176]	Loss: 0.5902
+Training Epoch: 37 [28672/50176]	Loss: 0.6087
+Training Epoch: 37 [29696/50176]	Loss: 0.6553
+Training Epoch: 37 [30720/50176]	Loss: 0.5512
+Training Epoch: 37 [31744/50176]	Loss: 0.5421
+Training Epoch: 37 [32768/50176]	Loss: 0.5688
+Training Epoch: 37 [33792/50176]	Loss: 0.5812
+Training Epoch: 37 [34816/50176]	Loss: 0.5963
+Training Epoch: 37 [35840/50176]	Loss: 0.6131
+Training Epoch: 37 [36864/50176]	Loss: 0.5526
+Training Epoch: 37 [37888/50176]	Loss: 0.6530
+Training Epoch: 37 [38912/50176]	Loss: 0.6515
+Training Epoch: 37 [39936/50176]	Loss: 0.6043
+Training Epoch: 37 [40960/50176]	Loss: 0.6262
+Training Epoch: 37 [41984/50176]	Loss: 0.5954
+Training Epoch: 37 [43008/50176]	Loss: 0.6371
+Training Epoch: 37 [44032/50176]	Loss: 0.6374
+Training Epoch: 37 [45056/50176]	Loss: 0.6299
+Training Epoch: 37 [46080/50176]	Loss: 0.6005
+Training Epoch: 37 [47104/50176]	Loss: 0.6457
+Training Epoch: 37 [48128/50176]	Loss: 0.6496
+Training Epoch: 37 [49152/50176]	Loss: 0.6066
+Training Epoch: 37 [50176/50176]	Loss: 0.6730
+2022-12-09 00:08:57.061 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 19:08:57,071 [ZeusDataLoader(eval)] eval epoch 38 done: time=3.78 energy=527.79
+2022-12-08 19:08:57,072 [ZeusDataLoader(train)] Up to epoch 38: time=1923.99, energy=281354.66, cost=309026.45
+2022-12-08 19:08:57,072 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 19:08:57,072 [ZeusDataLoader(train)] Expected next epoch: time=1971.32, energy=288575.90, cost=316778.31
+2022-12-08 19:08:57,073 [ZeusDataLoader(train)] Epoch 39 begin.
+Validation Epoch: 37, Average loss: 0.0017, Accuracy: 0.5816
+2022-12-08 19:08:57,315 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 19:08:57,316 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-09 00:08:57.330 [ZeusMonitor] Monitor started.
+2022-12-09 00:08:57.330 [ZeusMonitor] Running indefinitely. 2022-12-09 00:08:57.330 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-09 00:08:57.330 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e39+gpu0.power.log
+2022-12-08 19:09:41,276 [ZeusDataLoader(train)] train epoch 39 done: time=44.19 energy=6710.44
+2022-12-08 19:09:41,279 [ZeusDataLoader(eval)] Epoch 39 begin.
+Training Epoch: 38 [1024/50176]	Loss: 0.5565
+Training Epoch: 38 [2048/50176]	Loss: 0.5065
+Training Epoch: 38 [3072/50176]	Loss: 0.5228
+Training Epoch: 38 [4096/50176]	Loss: 0.5050
+Training Epoch: 38 [5120/50176]	Loss: 0.4974
+Training Epoch: 38 [6144/50176]	Loss: 0.4859
+Training Epoch: 38 [7168/50176]	Loss: 0.5478
+Training Epoch: 38 [8192/50176]	Loss: 0.5112
+Training Epoch: 38 [9216/50176]	Loss: 0.4730
+Training Epoch: 38 [10240/50176]	Loss: 0.5157
+Training Epoch: 38 [11264/50176]	Loss: 0.5634
+Training Epoch: 38 [12288/50176]	Loss: 0.5508
+Training Epoch: 38 [13312/50176]	Loss: 0.4754
+Training Epoch: 38 [14336/50176]	Loss: 0.5485
+Training Epoch: 38 [15360/50176]	Loss: 0.5244
+Training Epoch: 38 [16384/50176]	Loss: 0.5052
+Training Epoch: 38 [17408/50176]	Loss: 0.5224
+Training Epoch: 38 [18432/50176]	Loss: 0.5362
+Training Epoch: 38 [19456/50176]	Loss: 0.4982
+Training Epoch: 38 [20480/50176]	Loss: 0.5277
+Training Epoch: 38 [21504/50176]	Loss: 0.4809
+Training Epoch: 38 [22528/50176]	Loss: 0.5563
+Training Epoch: 38 [23552/50176]	Loss: 0.5656
+Training Epoch: 38 [24576/50176]	Loss: 0.5282
+Training Epoch: 38 [25600/50176]	Loss: 0.5546
+Training Epoch: 38 [26624/50176]	Loss: 0.5776
+Training Epoch: 38 [27648/50176]	Loss: 0.5433
+Training Epoch: 38 [28672/50176]	Loss: 0.6035
+Training Epoch: 38 [29696/50176]	Loss: 0.5439
+Training Epoch: 38 [30720/50176]	Loss: 0.4945
+Training Epoch: 38 [31744/50176]	Loss: 0.5589
+Training Epoch: 38 [32768/50176]	Loss: 0.5628
+Training Epoch: 38 [33792/50176]	Loss: 0.5503
+Training Epoch: 38 [34816/50176]	Loss: 0.6083
+Training Epoch: 38 [35840/50176]	Loss: 0.5430
+Training Epoch: 38 [36864/50176]	Loss: 0.5778
+Training Epoch: 38 [37888/50176]	Loss: 0.5598
+Training Epoch: 38 [38912/50176]	Loss: 0.5306
+Training Epoch: 38 [39936/50176]	Loss: 0.6135
+Training Epoch: 38 [40960/50176]	Loss: 0.6064
+Training Epoch: 38 [41984/50176]	Loss: 0.5418
+Training Epoch: 38 [43008/50176]	Loss: 0.5852
+Training Epoch: 38 [44032/50176]	Loss: 0.5999
+Training Epoch: 38 [45056/50176]	Loss: 0.5550
+Training Epoch: 38 [46080/50176]	Loss: 0.5759
+Training Epoch: 38 [47104/50176]	Loss: 0.6427
+Training Epoch: 38 [48128/50176]	Loss: 0.5347
+Training Epoch: 38 [49152/50176]	Loss: 0.6589
+Training Epoch: 38 [50176/50176]	Loss: 0.5588
+2022-12-09 00:09:45.086 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 19:09:45,118 [ZeusDataLoader(eval)] eval epoch 39 done: time=3.83 energy=537.52
+2022-12-08 19:09:45,119 [ZeusDataLoader(train)] Up to epoch 39: time=1972.01, energy=288602.63, cost=316852.52
+2022-12-08 19:09:45,119 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 19:09:45,119 [ZeusDataLoader(train)] Expected next epoch: time=2019.34, energy=295823.87, cost=324604.38
+2022-12-08 19:09:45,120 [ZeusDataLoader(train)] Epoch 40 begin.
+Validation Epoch: 38, Average loss: 0.0018, Accuracy: 0.5864
+2022-12-08 19:09:45,372 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 19:09:45,373 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-09 00:09:45.375 [ZeusMonitor] Monitor started.
+2022-12-09 00:09:45.375 [ZeusMonitor] Running indefinitely. 2022-12-09 00:09:45.375 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-09 00:09:45.375 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e40+gpu0.power.log
+2022-12-08 19:10:29,415 [ZeusDataLoader(train)] train epoch 40 done: time=44.29 energy=6717.75
+2022-12-08 19:10:29,420 [ZeusDataLoader(eval)] Epoch 40 begin.
+Training Epoch: 39 [1024/50176]	Loss: 0.4388
+Training Epoch: 39 [2048/50176]	Loss: 0.4665
+Training Epoch: 39 [3072/50176]	Loss: 0.4734
+Training Epoch: 39 [4096/50176]	Loss: 0.5157
+Training Epoch: 39 [5120/50176]	Loss: 0.5138
+Training Epoch: 39 [6144/50176]	Loss: 0.5130
+Training Epoch: 39 [7168/50176]	Loss: 0.4104
+Training Epoch: 39 [8192/50176]	Loss: 0.4875
+Training Epoch: 39 [9216/50176]	Loss: 0.4733
+Training Epoch: 39 [10240/50176]	Loss: 0.5064
+Training Epoch: 39 [11264/50176]	Loss: 0.4844
+Training Epoch: 39 [12288/50176]	Loss: 0.4706
+Training Epoch: 39 [13312/50176]	Loss: 0.4872
+Training Epoch: 39 [14336/50176]	Loss: 0.4975
+Training Epoch: 39 [15360/50176]	Loss: 0.4635
+Training Epoch: 39 [16384/50176]	Loss: 0.4911
+Training Epoch: 39 [17408/50176]	Loss: 0.4876
+Training Epoch: 39 [18432/50176]	Loss: 0.4959
+Training Epoch: 39 [19456/50176]	Loss: 0.4866
+Training Epoch: 39 [20480/50176]	Loss: 0.4826
+Training Epoch: 39 [21504/50176]	Loss: 0.5374
+Training Epoch: 39 [22528/50176]	Loss: 0.4772
+Training Epoch: 39 [23552/50176]	Loss: 0.4873
+Training Epoch: 39 [24576/50176]	Loss: 0.4590
+Training Epoch: 39 [25600/50176]	Loss: 0.5238
+Training Epoch: 39 [26624/50176]	Loss: 0.5483
+Training Epoch: 39 [27648/50176]	Loss: 0.4956
+Training Epoch: 39 [28672/50176]	Loss: 0.4803
+Training Epoch: 39 [29696/50176]	Loss: 0.5383
+Training Epoch: 39 [30720/50176]	Loss: 0.5174
+Training Epoch: 39 [31744/50176]	Loss: 0.5404
+Training Epoch: 39 [32768/50176]	Loss: 0.5026
+Training Epoch: 39 [33792/50176]	Loss: 0.5245
+Training Epoch: 39 [34816/50176]	Loss: 0.5211
+Training Epoch: 39 [35840/50176]	Loss: 0.5274
+Training Epoch: 39 [36864/50176]	Loss: 0.4745
+Training Epoch: 39 [37888/50176]	Loss: 0.5385
+Training Epoch: 39 [38912/50176]	Loss: 0.5461
+Training Epoch: 39 [39936/50176]	Loss: 0.6177
+Training Epoch: 39 [40960/50176]	Loss: 0.5362
+Training Epoch: 39 [41984/50176]	Loss: 0.5386
+Training Epoch: 39 [43008/50176]	Loss: 0.5450
+Training Epoch: 39 [44032/50176]	Loss: 0.5562
+Training Epoch: 39 [45056/50176]	Loss: 0.5860
+Training Epoch: 39 [46080/50176]	Loss: 0.5085
+Training Epoch: 39 [47104/50176]	Loss: 0.5714
+Training Epoch: 39 [48128/50176]	Loss: 0.5145
+Training Epoch: 39 [49152/50176]	Loss: 0.5818
+Training Epoch: 39 [50176/50176]	Loss: 0.6236
+2022-12-09 00:10:33.204 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 19:10:33,250 [ZeusDataLoader(eval)] eval epoch 40 done: time=3.82 energy=533.24
+2022-12-08 19:10:33,250 [ZeusDataLoader(train)] Up to epoch 40: time=2020.12, energy=295853.61, cost=324687.47
+2022-12-08 19:10:33,250 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 19:10:33,250 [ZeusDataLoader(train)] Expected next epoch: time=2067.45, energy=303074.85, cost=332439.34
+2022-12-08 19:10:33,251 [ZeusDataLoader(train)] Epoch 41 begin.
+Validation Epoch: 39, Average loss: 0.0020, Accuracy: 0.5711
+2022-12-08 19:10:33,516 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 19:10:33,517 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-09 00:10:33.519 [ZeusMonitor] Monitor started.
+2022-12-09 00:10:33.519 [ZeusMonitor] Running indefinitely. 2022-12-09 00:10:33.519 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-09 00:10:33.519 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e41+gpu0.power.log
+2022-12-08 19:11:17,581 [ZeusDataLoader(train)] train epoch 41 done: time=44.32 energy=6731.30
+2022-12-08 19:11:17,584 [ZeusDataLoader(eval)] Epoch 41 begin.
+Training Epoch: 40 [1024/50176]	Loss: 0.3985
+Training Epoch: 40 [2048/50176]	Loss: 0.4625
+Training Epoch: 40 [3072/50176]	Loss: 0.5129
+Training Epoch: 40 [4096/50176]	Loss: 0.4647
+Training Epoch: 40 [5120/50176]	Loss: 0.4849
+Training Epoch: 40 [6144/50176]	Loss: 0.4762
+Training Epoch: 40 [7168/50176]	Loss: 0.4260
+Training Epoch: 40 [8192/50176]	Loss: 0.4274
+Training Epoch: 40 [9216/50176]	Loss: 0.4718
+Training Epoch: 40 [10240/50176]	Loss: 0.4558
+Training Epoch: 40 [11264/50176]	Loss: 0.4755
+Training Epoch: 40 [12288/50176]	Loss: 0.4522
+Training Epoch: 40 [13312/50176]	Loss: 0.4752
+Training Epoch: 40 [14336/50176]	Loss: 0.4593
+Training Epoch: 40 [15360/50176]	Loss: 0.4348
+Training Epoch: 40 [16384/50176]	Loss: 0.4760
+Training Epoch: 40 [17408/50176]	Loss: 0.5083
+Training Epoch: 40 [18432/50176]	Loss: 0.4827
+Training Epoch: 40 [19456/50176]	Loss: 0.4430
+Training Epoch: 40 [20480/50176]	Loss: 0.4781
+Training Epoch: 40 [21504/50176]	Loss: 0.4762
+Training Epoch: 40 [22528/50176]	Loss: 0.4583
+Training Epoch: 40 [23552/50176]	Loss: 0.4908
+Training Epoch: 40 [24576/50176]	Loss: 0.5190
+Training Epoch: 40 [25600/50176]	Loss: 0.4843
+Training Epoch: 40 [26624/50176]	Loss: 0.4967
+Training Epoch: 40 [27648/50176]	Loss: 0.4537
+Training Epoch: 40 [28672/50176]	Loss: 0.4364
+Training Epoch: 40 [29696/50176]	Loss: 0.4665
+Training Epoch: 40 [30720/50176]	Loss: 0.4628
+Training Epoch: 40 [31744/50176]	Loss: 0.5073
+Training Epoch: 40 [32768/50176]	Loss: 0.5567
+Training Epoch: 40 [33792/50176]	Loss: 0.5066
+Training Epoch: 40 [34816/50176]	Loss: 0.4968
+Training Epoch: 40 [35840/50176]	Loss: 0.4572
+Training Epoch: 40 [36864/50176]	Loss: 0.4358
+Training Epoch: 40 [37888/50176]	Loss: 0.4440
+Training Epoch: 40 [38912/50176]	Loss: 0.5022
+Training Epoch: 40 [39936/50176]	Loss: 0.5216
+Training Epoch: 40 [40960/50176]	Loss: 0.5603
+Training Epoch: 40 [41984/50176]	Loss: 0.4899
+Training Epoch: 40 [43008/50176]	Loss: 0.5157
+Training Epoch: 40 [44032/50176]	Loss: 0.5017
+Training Epoch: 40 [45056/50176]	Loss: 0.4938
+Training Epoch: 40 [46080/50176]	Loss: 0.5523
+Training Epoch: 40 [47104/50176]	Loss: 0.5090
+Training Epoch: 40 [48128/50176]	Loss: 0.5574
+Training Epoch: 40 [49152/50176]	Loss: 0.5262
+Training Epoch: 40 [50176/50176]	Loss: 0.5224
+2022-12-09 00:11:21.331 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 19:11:21,346 [ZeusDataLoader(eval)] eval epoch 41 done: time=3.75 energy=515.35
+2022-12-08 19:11:21,346 [ZeusDataLoader(train)] Up to epoch 41: time=2068.20, energy=303100.26, cost=332517.28
+2022-12-08 19:11:21,346 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 19:11:21,346 [ZeusDataLoader(train)] Expected next epoch: time=2115.52, energy=310321.50, cost=340269.14
+2022-12-08 19:11:21,347 [ZeusDataLoader(train)] Epoch 42 begin.
+Validation Epoch: 40, Average loss: 0.0019, Accuracy: 0.5791
+2022-12-08 19:11:21,595 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 19:11:21,596 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-09 00:11:21.598 [ZeusMonitor] Monitor started.
+2022-12-09 00:11:21.598 [ZeusMonitor] Running indefinitely. 2022-12-09 00:11:21.598 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-09 00:11:21.598 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e42+gpu0.power.log
+2022-12-08 19:12:05,604 [ZeusDataLoader(train)] train epoch 42 done: time=44.25 energy=6721.53
+2022-12-08 19:12:05,608 [ZeusDataLoader(eval)] Epoch 42 begin.
+Training Epoch: 41 [1024/50176]	Loss: 0.4174
+Training Epoch: 41 [2048/50176]	Loss: 0.4170
+Training Epoch: 41 [3072/50176]	Loss: 0.4483
+Training Epoch: 41 [4096/50176]	Loss: 0.4489
+Training Epoch: 41 [5120/50176]	Loss: 0.4237
+Training Epoch: 41 [6144/50176]	Loss: 0.4474
+Training Epoch: 41 [7168/50176]	Loss: 0.4761
+Training Epoch: 41 [8192/50176]	Loss: 0.4310
+Training Epoch: 41 [9216/50176]	Loss: 0.4490
+Training Epoch: 41 [10240/50176]	Loss: 0.4535
+Training Epoch: 41 [11264/50176]	Loss: 0.4499
+Training Epoch: 41 [12288/50176]	Loss: 0.4122
+Training Epoch: 41 [13312/50176]	Loss: 0.4497
+Training Epoch: 41 [14336/50176]	Loss: 0.5107
+Training Epoch: 41 [15360/50176]	Loss: 0.4677
+Training Epoch: 41 [16384/50176]	Loss: 0.4005
+Training Epoch: 41 [17408/50176]	Loss: 0.4235
+Training Epoch: 41 [18432/50176]	Loss: 0.4593
+Training Epoch: 41 [19456/50176]	Loss: 0.4769
+Training Epoch: 41 [20480/50176]	Loss: 0.4326
+Training Epoch: 41 [21504/50176]	Loss: 0.4720
+Training Epoch: 41 [22528/50176]	Loss: 0.4570
+Training Epoch: 41 [23552/50176]	Loss: 0.4697
+Training Epoch: 41 [24576/50176]	Loss: 0.4434
+Training Epoch: 41 [25600/50176]	Loss: 0.4932
+Training Epoch: 41 [26624/50176]	Loss: 0.4850
+Training Epoch: 41 [27648/50176]	Loss: 0.4464
+Training Epoch: 41 [28672/50176]	Loss: 0.5358
+Training Epoch: 41 [29696/50176]	Loss: 0.4802
+Training Epoch: 41 [30720/50176]	Loss: 0.4836
+Training Epoch: 41 [31744/50176]	Loss: 0.4647
+Training Epoch: 41 [32768/50176]	Loss: 0.4805
+Training Epoch: 41 [33792/50176]	Loss: 0.4601
+Training Epoch: 41 [34816/50176]	Loss: 0.4731
+Training Epoch: 41 [35840/50176]	Loss: 0.4830
+Training Epoch: 41 [36864/50176]	Loss: 0.4891
+Training Epoch: 41 [37888/50176]	Loss: 0.4755
+Training Epoch: 41 [38912/50176]	Loss: 0.4849
+Training Epoch: 41 [39936/50176]	Loss: 0.4964
+Training Epoch: 41 [40960/50176]	Loss: 0.5388
+Training Epoch: 41 [41984/50176]	Loss: 0.5799
+Training Epoch: 41 [43008/50176]	Loss: 0.4695
+Training Epoch: 41 [44032/50176]	Loss: 0.5276
+Training Epoch: 41 [45056/50176]	Loss: 0.5029
+Training Epoch: 41 [46080/50176]	Loss: 0.4995
+Training Epoch: 41 [47104/50176]	Loss: 0.5166
+Training Epoch: 41 [48128/50176]	Loss: 0.4674
+Training Epoch: 41 [49152/50176]	Loss: 0.5049
+Training Epoch: 41 [50176/50176]	Loss: 0.4925
+2022-12-09 00:12:09.367 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 19:12:09,378 [ZeusDataLoader(eval)] eval epoch 42 done: time=3.76 energy=519.00
+2022-12-08 19:12:09,378 [ZeusDataLoader(train)] Up to epoch 42: time=2116.20, energy=310340.79, cost=340338.32
+2022-12-08 19:12:09,378 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 19:12:09,378 [ZeusDataLoader(train)] Expected next epoch: time=2163.53, energy=317562.03, cost=348090.18
+2022-12-08 19:12:09,379 [ZeusDataLoader(train)] Epoch 43 begin.
+Validation Epoch: 41, Average loss: 0.0019, Accuracy: 0.5865
+2022-12-08 19:12:09,588 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 19:12:09,589 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-09 00:12:09.593 [ZeusMonitor] Monitor started.
+2022-12-09 00:12:09.593 [ZeusMonitor] Running indefinitely. 2022-12-09 00:12:09.593 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-09 00:12:09.593 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e43+gpu0.power.log
+2022-12-08 19:12:53,665 [ZeusDataLoader(train)] train epoch 43 done: time=44.28 energy=6717.20
+2022-12-08 19:12:53,669 [ZeusDataLoader(eval)] Epoch 43 begin.
+Training Epoch: 42 [1024/50176]	Loss: 0.4127
+Training Epoch: 42 [2048/50176]	Loss: 0.3816
+Training Epoch: 42 [3072/50176]	Loss: 0.4021
+Training Epoch: 42 [4096/50176]	Loss: 0.3932
+Training Epoch: 42 [5120/50176]	Loss: 0.4101
+Training Epoch: 42 [6144/50176]	Loss: 0.4383
+Training Epoch: 42 [7168/50176]	Loss: 0.4045
+Training Epoch: 42 [8192/50176]	Loss: 0.3940
+Training Epoch: 42 [9216/50176]	Loss: 0.3730
+Training Epoch: 42 [10240/50176]	Loss: 0.4326
+Training Epoch: 42 [11264/50176]	Loss: 0.3911
+Training Epoch: 42 [12288/50176]	Loss: 0.4275
+Training Epoch: 42 [13312/50176]	Loss: 0.4537
+Training Epoch: 42 [14336/50176]	Loss: 0.4179
+Training Epoch: 42 [15360/50176]	Loss: 0.4324
+Training Epoch: 42 [16384/50176]	Loss: 0.4023
+Training Epoch: 42 [17408/50176]	Loss: 0.4118
+Training Epoch: 42 [18432/50176]	Loss: 0.3925
+Training Epoch: 42 [19456/50176]	Loss: 0.4891
+Training Epoch: 42 [20480/50176]	Loss: 0.3758
+Training Epoch: 42 [21504/50176]	Loss: 0.4419
+Training Epoch: 42 [22528/50176]	Loss: 0.4413
+Training Epoch: 42 [23552/50176]	Loss: 0.4251
+Training Epoch: 42 [24576/50176]	Loss: 0.4219
+Training Epoch: 42 [25600/50176]	Loss: 0.4485
+Training Epoch: 42 [26624/50176]	Loss: 0.4092
+Training Epoch: 42 [27648/50176]	Loss: 0.5118
+Training Epoch: 42 [28672/50176]	Loss: 0.4740
+Training Epoch: 42 [29696/50176]	Loss: 0.4748
+Training Epoch: 42 [30720/50176]	Loss: 0.4263
+Training Epoch: 42 [31744/50176]	Loss: 0.4897
+Training Epoch: 42 [32768/50176]	Loss: 0.4519
+Training Epoch: 42 [33792/50176]	Loss: 0.4534
+Training Epoch: 42 [34816/50176]	Loss: 0.4900
+Training Epoch: 42 [35840/50176]	Loss: 0.5045
+Training Epoch: 42 [36864/50176]	Loss: 0.4419
+Training Epoch: 42 [37888/50176]	Loss: 0.4682
+Training Epoch: 42 [38912/50176]	Loss: 0.4792
+Training Epoch: 42 [39936/50176]	Loss: 0.4292
+Training Epoch: 42 [40960/50176]	Loss: 0.4580
+Training Epoch: 42 [41984/50176]	Loss: 0.4653
+Training Epoch: 42 [43008/50176]	Loss: 0.4943
+Training Epoch: 42 [44032/50176]	Loss: 0.4743
+Training Epoch: 42 [45056/50176]	Loss: 0.4851
+Training Epoch: 42 [46080/50176]	Loss: 0.4886
+Training Epoch: 42 [47104/50176]	Loss: 0.5079
+Training Epoch: 42 [48128/50176]	Loss: 0.4330
+Training Epoch: 42 [49152/50176]	Loss: 0.5045
+Training Epoch: 42 [50176/50176]	Loss: 0.4854
+2022-12-09 00:12:57.410 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 19:12:57,422 [ZeusDataLoader(eval)] eval epoch 43 done: time=3.74 energy=514.01
+2022-12-08 19:12:57,423 [ZeusDataLoader(train)] Up to epoch 43: time=2164.23, energy=317572.00, cost=348155.87
+2022-12-08 19:12:57,423 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 19:12:57,423 [ZeusDataLoader(train)] Expected next epoch: time=2211.56, energy=324793.24, cost=355907.74
+2022-12-08 19:12:57,424 [ZeusDataLoader(train)] Epoch 44 begin.
+Validation Epoch: 42, Average loss: 0.0019, Accuracy: 0.5731
+2022-12-08 19:12:57,625 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 19:12:57,626 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-09 00:12:57.630 [ZeusMonitor] Monitor started.
+2022-12-09 00:12:57.630 [ZeusMonitor] Running indefinitely. 2022-12-09 00:12:57.630 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-09 00:12:57.630 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e44+gpu0.power.log
+2022-12-08 19:13:41,658 [ZeusDataLoader(train)] train epoch 44 done: time=44.23 energy=6726.09
+2022-12-08 19:13:41,662 [ZeusDataLoader(eval)] Epoch 44 begin.
+Training Epoch: 43 [1024/50176]	Loss: 0.3495
+Training Epoch: 43 [2048/50176]	Loss: 0.4277
+Training Epoch: 43 [3072/50176]	Loss: 0.3662
+Training Epoch: 43 [4096/50176]	Loss: 0.3902
+Training Epoch: 43 [5120/50176]	Loss: 0.4000
+Training Epoch: 43 [6144/50176]	Loss: 0.3612
+Training Epoch: 43 [7168/50176]	Loss: 0.4101
+Training Epoch: 43 [8192/50176]	Loss: 0.4090
+Training Epoch: 43 [9216/50176]	Loss: 0.4601
+Training Epoch: 43 [10240/50176]	Loss: 0.4337
+Training Epoch: 43 [11264/50176]	Loss: 0.4104
+Training Epoch: 43 [12288/50176]	Loss: 0.3723
+Training Epoch: 43 [13312/50176]	Loss: 0.3892
+Training Epoch: 43 [14336/50176]	Loss: 0.4191
+Training Epoch: 43 [15360/50176]	Loss: 0.4107
+Training Epoch: 43 [16384/50176]	Loss: 0.4659
+Training Epoch: 43 [17408/50176]	Loss: 0.3940
+Training Epoch: 43 [18432/50176]	Loss: 0.3661
+Training Epoch: 43 [19456/50176]	Loss: 0.4052
+Training Epoch: 43 [20480/50176]	Loss: 0.3818
+Training Epoch: 43 [21504/50176]	Loss: 0.4172
+Training Epoch: 43 [22528/50176]	Loss: 0.3942
+Training Epoch: 43 [23552/50176]	Loss: 0.3619
+Training Epoch: 43 [24576/50176]	Loss: 0.4090
+Training Epoch: 43 [25600/50176]	Loss: 0.4363
+Training Epoch: 43 [26624/50176]	Loss: 0.4440
+Training Epoch: 43 [27648/50176]	Loss: 0.4212
+Training Epoch: 43 [28672/50176]	Loss: 0.4367
+Training Epoch: 43 [29696/50176]	Loss: 0.4035
+Training Epoch: 43 [30720/50176]	Loss: 0.4248
+Training Epoch: 43 [31744/50176]	Loss: 0.4100
+Training Epoch: 43 [32768/50176]	Loss: 0.4476
+Training Epoch: 43 [33792/50176]	Loss: 0.4204
+Training Epoch: 43 [34816/50176]	Loss: 0.4420
+Training Epoch: 43 [35840/50176]	Loss: 0.4324
+Training Epoch: 43 [36864/50176]	Loss: 0.4662
+Training Epoch: 43 [37888/50176]	Loss: 0.4698
+Training Epoch: 43 [38912/50176]	Loss: 0.4208
+Training Epoch: 43 [39936/50176]	Loss: 0.4385
+Training Epoch: 43 [40960/50176]	Loss: 0.4015
+Training Epoch: 43 [41984/50176]	Loss: 0.4481
+Training Epoch: 43 [43008/50176]	Loss: 0.4424
+Training Epoch: 43 [44032/50176]	Loss: 0.4482
+Training Epoch: 43 [45056/50176]	Loss: 0.4623
+Training Epoch: 43 [46080/50176]	Loss: 0.4833
+Training Epoch: 43 [47104/50176]	Loss: 0.4871
+Training Epoch: 43 [48128/50176]	Loss: 0.4444
+Training Epoch: 43 [49152/50176]	Loss: 0.4254
+Training Epoch: 43 [50176/50176]	Loss: 0.4597
+2022-12-09 00:13:45.446 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 19:13:45,502 [ZeusDataLoader(eval)] eval epoch 44 done: time=3.83 energy=535.47
+2022-12-08 19:13:45,502 [ZeusDataLoader(train)] Up to epoch 44: time=2212.28, energy=324833.56, cost=355991.58
+2022-12-08 19:13:45,502 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 19:13:45,502 [ZeusDataLoader(train)] Expected next epoch: time=2259.61, energy=332054.80, cost=363743.44
+2022-12-08 19:13:45,503 [ZeusDataLoader(train)] Epoch 45 begin.
+Validation Epoch: 43, Average loss: 0.0020, Accuracy: 0.5841
+2022-12-08 19:13:45,757 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 19:13:45,758 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-09 00:13:45.760 [ZeusMonitor] Monitor started.
+2022-12-09 00:13:45.760 [ZeusMonitor] Running indefinitely. 2022-12-09 00:13:45.760 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-09 00:13:45.760 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e45+gpu0.power.log
+2022-12-08 19:14:29,725 [ZeusDataLoader(train)] train epoch 45 done: time=44.21 energy=6712.17
+2022-12-08 19:14:29,728 [ZeusDataLoader(eval)] Epoch 45 begin.
+Training Epoch: 44 [1024/50176]	Loss: 0.3403
+Training Epoch: 44 [2048/50176]	Loss: 0.3781
+Training Epoch: 44 [3072/50176]	Loss: 0.3875
+Training Epoch: 44 [4096/50176]	Loss: 0.3654
+Training Epoch: 44 [5120/50176]	Loss: 0.3638
+Training Epoch: 44 [6144/50176]	Loss: 0.3319
+Training Epoch: 44 [7168/50176]	Loss: 0.3626
+Training Epoch: 44 [8192/50176]	Loss: 0.3504
+Training Epoch: 44 [9216/50176]	Loss: 0.3949
+Training Epoch: 44 [10240/50176]	Loss: 0.3355
+Training Epoch: 44 [11264/50176]	Loss: 0.4018
+Training Epoch: 44 [12288/50176]	Loss: 0.3267
+Training Epoch: 44 [13312/50176]	Loss: 0.3886
+Training Epoch: 44 [14336/50176]	Loss: 0.3419
+Training Epoch: 44 [15360/50176]	Loss: 0.3384
+Training Epoch: 44 [16384/50176]	Loss: 0.3653
+Training Epoch: 44 [17408/50176]	Loss: 0.3916
+Training Epoch: 44 [18432/50176]	Loss: 0.4125
+Training Epoch: 44 [19456/50176]	Loss: 0.4015
+Training Epoch: 44 [20480/50176]	Loss: 0.3936
+Training Epoch: 44 [21504/50176]	Loss: 0.4428
+Training Epoch: 44 [22528/50176]	Loss: 0.3767
+Training Epoch: 44 [23552/50176]	Loss: 0.3722
+Training Epoch: 44 [24576/50176]	Loss: 0.4042
+Training Epoch: 44 [25600/50176]	Loss: 0.4053
+Training Epoch: 44 [26624/50176]	Loss: 0.3994
+Training Epoch: 44 [27648/50176]	Loss: 0.3848
+Training Epoch: 44 [28672/50176]	Loss: 0.3935
+Training Epoch: 44 [29696/50176]	Loss: 0.4012
+Training Epoch: 44 [30720/50176]	Loss: 0.3738
+Training Epoch: 44 [31744/50176]	Loss: 0.4478
+Training Epoch: 44 [32768/50176]	Loss: 0.3632
+Training Epoch: 44 [33792/50176]	Loss: 0.4287
+Training Epoch: 44 [34816/50176]	Loss: 0.4126
+Training Epoch: 44 [35840/50176]	Loss: 0.4251
+Training Epoch: 44 [36864/50176]	Loss: 0.4388
+Training Epoch: 44 [37888/50176]	Loss: 0.4477
+Training Epoch: 44 [38912/50176]	Loss: 0.4238
+Training Epoch: 44 [39936/50176]	Loss: 0.4248
+Training Epoch: 44 [40960/50176]	Loss: 0.4151
+Training Epoch: 44 [41984/50176]	Loss: 0.3991
+Training Epoch: 44 [43008/50176]	Loss: 0.3854
+Training Epoch: 44 [44032/50176]	Loss: 0.4105
+Training Epoch: 44 [45056/50176]	Loss: 0.4490
+Training Epoch: 44 [46080/50176]	Loss: 0.4354
+Training Epoch: 44 [47104/50176]	Loss: 0.4373
+Training Epoch: 44 [48128/50176]	Loss: 0.4051
+Training Epoch: 44 [49152/50176]	Loss: 0.4476
+Training Epoch: 44 [50176/50176]	Loss: 0.4059
+2022-12-09 00:14:33.556 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 19:14:33,599 [ZeusDataLoader(eval)] eval epoch 45 done: time=3.86 energy=531.39
+2022-12-08 19:14:33,599 [ZeusDataLoader(train)] Up to epoch 45: time=2260.36, energy=332077.12, cost=363819.83
+2022-12-08 19:14:33,599 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 19:14:33,599 [ZeusDataLoader(train)] Expected next epoch: time=2307.69, energy=339298.36, cost=371571.69
+2022-12-08 19:14:33,600 [ZeusDataLoader(train)] Epoch 46 begin.
+Validation Epoch: 44, Average loss: 0.0020, Accuracy: 0.5862
+2022-12-08 19:14:33,852 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 19:14:33,853 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-09 00:14:33.855 [ZeusMonitor] Monitor started.
+2022-12-09 00:14:33.855 [ZeusMonitor] Running indefinitely. 2022-12-09 00:14:33.855 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-09 00:14:33.855 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e46+gpu0.power.log
+2022-12-08 19:15:17,874 [ZeusDataLoader(train)] train epoch 46 done: time=44.27 energy=6714.64
+2022-12-08 19:15:17,878 [ZeusDataLoader(eval)] Epoch 46 begin.
+Training Epoch: 45 [1024/50176]	Loss: 0.3480
+Training Epoch: 45 [2048/50176]	Loss: 0.3210
+Training Epoch: 45 [3072/50176]	Loss: 0.3123
+Training Epoch: 45 [4096/50176]	Loss: 0.3781
+Training Epoch: 45 [5120/50176]	Loss: 0.3284
+Training Epoch: 45 [6144/50176]	Loss: 0.3655
+Training Epoch: 45 [7168/50176]	Loss: 0.2988
+Training Epoch: 45 [8192/50176]	Loss: 0.3345
+Training Epoch: 45 [9216/50176]	Loss: 0.3732
+Training Epoch: 45 [10240/50176]	Loss: 0.3727
+Training Epoch: 45 [11264/50176]	Loss: 0.3763
+Training Epoch: 45 [12288/50176]	Loss: 0.3889
+Training Epoch: 45 [13312/50176]	Loss: 0.3685
+Training Epoch: 45 [14336/50176]	Loss: 0.3918
+Training Epoch: 45 [15360/50176]	Loss: 0.3767
+Training Epoch: 45 [16384/50176]	Loss: 0.4316
+Training Epoch: 45 [17408/50176]	Loss: 0.2987
+Training Epoch: 45 [18432/50176]	Loss: 0.3800
+Training Epoch: 45 [19456/50176]	Loss: 0.3649
+Training Epoch: 45 [20480/50176]	Loss: 0.3808
+Training Epoch: 45 [21504/50176]	Loss: 0.3906
+Training Epoch: 45 [22528/50176]	Loss: 0.3641
+Training Epoch: 45 [23552/50176]	Loss: 0.3367
+Training Epoch: 45 [24576/50176]	Loss: 0.3595
+Training Epoch: 45 [25600/50176]	Loss: 0.3631
+Training Epoch: 45 [26624/50176]	Loss: 0.3856
+Training Epoch: 45 [27648/50176]	Loss: 0.3615
+Training Epoch: 45 [28672/50176]	Loss: 0.3727
+Training Epoch: 45 [29696/50176]	Loss: 0.3715
+Training Epoch: 45 [30720/50176]	Loss: 0.3694
+Training Epoch: 45 [31744/50176]	Loss: 0.3623
+Training Epoch: 45 [32768/50176]	Loss: 0.3849
+Training Epoch: 45 [33792/50176]	Loss: 0.3333
+Training Epoch: 45 [34816/50176]	Loss: 0.3620
+Training Epoch: 45 [35840/50176]	Loss: 0.4137
+Training Epoch: 45 [36864/50176]	Loss: 0.3978
+Training Epoch: 45 [37888/50176]	Loss: 0.4144
+Training Epoch: 45 [38912/50176]	Loss: 0.3836
+Training Epoch: 45 [39936/50176]	Loss: 0.4100
+Training Epoch: 45 [40960/50176]	Loss: 0.4012
+Training Epoch: 45 [41984/50176]	Loss: 0.3992
+Training Epoch: 45 [43008/50176]	Loss: 0.4534
+Training Epoch: 45 [44032/50176]	Loss: 0.4074
+Training Epoch: 45 [45056/50176]	Loss: 0.4564
+Training Epoch: 45 [46080/50176]	Loss: 0.4704
+Training Epoch: 45 [47104/50176]	Loss: 0.3931
+Training Epoch: 45 [48128/50176]	Loss: 0.3254
+Training Epoch: 45 [49152/50176]	Loss: 0.3762
+Training Epoch: 45 [50176/50176]	Loss: 0.4948
+2022-12-09 00:15:21.666 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 19:15:21,678 [ZeusDataLoader(eval)] eval epoch 46 done: time=3.79 energy=537.15
+2022-12-08 19:15:21,678 [ZeusDataLoader(train)] Up to epoch 46: time=2308.41, energy=339328.90, cost=371650.64
+2022-12-08 19:15:21,678 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 19:15:21,678 [ZeusDataLoader(train)] Expected next epoch: time=2355.74, energy=346550.14, cost=379402.50
+2022-12-08 19:15:21,679 [ZeusDataLoader(train)] Epoch 47 begin.
+Validation Epoch: 45, Average loss: 0.0020, Accuracy: 0.5867
+2022-12-08 19:15:21,940 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 19:15:21,941 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-09 00:15:21.943 [ZeusMonitor] Monitor started.
+2022-12-09 00:15:21.943 [ZeusMonitor] Running indefinitely. 2022-12-09 00:15:21.943 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-09 00:15:21.943 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e47+gpu0.power.log
+2022-12-08 19:16:05,859 [ZeusDataLoader(train)] train epoch 47 done: time=44.17 energy=6707.78
+2022-12-08 19:16:05,862 [ZeusDataLoader(eval)] Epoch 47 begin.
+Training Epoch: 46 [1024/50176]	Loss: 0.2892
+Training Epoch: 46 [2048/50176]	Loss: 0.3557
+Training Epoch: 46 [3072/50176]	Loss: 0.3622
+Training Epoch: 46 [4096/50176]	Loss: 0.3359
+Training Epoch: 46 [5120/50176]	Loss: 0.3422
+Training Epoch: 46 [6144/50176]	Loss: 0.3592
+Training Epoch: 46 [7168/50176]	Loss: 0.3468
+Training Epoch: 46 [8192/50176]	Loss: 0.3063
+Training Epoch: 46 [9216/50176]	Loss: 0.3783
+Training Epoch: 46 [10240/50176]	Loss: 0.3474
+Training Epoch: 46 [11264/50176]	Loss: 0.3344
+Training Epoch: 46 [12288/50176]	Loss: 0.3443
+Training Epoch: 46 [13312/50176]	Loss: 0.2973
+Training Epoch: 46 [14336/50176]	Loss: 0.2976
+Training Epoch: 46 [15360/50176]	Loss: 0.3328
+Training Epoch: 46 [16384/50176]	Loss: 0.3578
+Training Epoch: 46 [17408/50176]	Loss: 0.3811
+Training Epoch: 46 [18432/50176]	Loss: 0.3830
+Training Epoch: 46 [19456/50176]	Loss: 0.3642
+Training Epoch: 46 [20480/50176]	Loss: 0.3237
+Training Epoch: 46 [21504/50176]	Loss: 0.4010
+Training Epoch: 46 [22528/50176]	Loss: 0.3338
+Training Epoch: 46 [23552/50176]	Loss: 0.3972
+Training Epoch: 46 [24576/50176]	Loss: 0.3356
+Training Epoch: 46 [25600/50176]	Loss: 0.3587
+Training Epoch: 46 [26624/50176]	Loss: 0.3768
+Training Epoch: 46 [27648/50176]	Loss: 0.3724
+Training Epoch: 46 [28672/50176]	Loss: 0.3625
+Training Epoch: 46 [29696/50176]	Loss: 0.3545
+Training Epoch: 46 [30720/50176]	Loss: 0.3691
+Training Epoch: 46 [31744/50176]	Loss: 0.3945
+Training Epoch: 46 [32768/50176]	Loss: 0.3070
+Training Epoch: 46 [33792/50176]	Loss: 0.4173
+Training Epoch: 46 [34816/50176]	Loss: 0.3874
+Training Epoch: 46 [35840/50176]	Loss: 0.3916
+Training Epoch: 46 [36864/50176]	Loss: 0.3500
+Training Epoch: 46 [37888/50176]	Loss: 0.3660
+Training Epoch: 46 [38912/50176]	Loss: 0.3596
+Training Epoch: 46 [39936/50176]	Loss: 0.4028
+Training Epoch: 46 [40960/50176]	Loss: 0.3887
+Training Epoch: 46 [41984/50176]	Loss: 0.3937
+Training Epoch: 46 [43008/50176]	Loss: 0.3660
+Training Epoch: 46 [44032/50176]	Loss: 0.3718
+Training Epoch: 46 [45056/50176]	Loss: 0.3737
+Training Epoch: 46 [46080/50176]	Loss: 0.3886
+Training Epoch: 46 [47104/50176]	Loss: 0.4113
+Training Epoch: 46 [48128/50176]	Loss: 0.3846
+Training Epoch: 46 [49152/50176]	Loss: 0.3993
+Training Epoch: 46 [50176/50176]	Loss: 0.4050
+2022-12-09 00:16:09.671 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 19:16:09,724 [ZeusDataLoader(eval)] eval epoch 47 done: time=3.85 energy=529.87
+2022-12-08 19:16:09,724 [ZeusDataLoader(train)] Up to epoch 47: time=2356.44, energy=346566.55, cost=379471.51
+2022-12-08 19:16:09,724 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 19:16:09,724 [ZeusDataLoader(train)] Expected next epoch: time=2403.77, energy=353787.79, cost=387223.38
+2022-12-08 19:16:09,725 [ZeusDataLoader(train)] Epoch 48 begin.
+Validation Epoch: 46, Average loss: 0.0020, Accuracy: 0.5817
+2022-12-08 19:16:09,952 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-08 19:16:09,953 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-09 00:16:09.955 [ZeusMonitor] Monitor started.
+2022-12-09 00:16:09.955 [ZeusMonitor] Running indefinitely. 2022-12-09 00:16:09.955 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-09 00:16:09.955 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e48+gpu0.power.log
+2022-12-08 19:16:54,475 [ZeusDataLoader(train)] train epoch 48 done: time=44.74 energy=6794.35
+2022-12-08 19:16:54,479 [ZeusDataLoader(eval)] Epoch 48 begin.
+Training Epoch: 47 [1024/50176]	Loss: 0.3089
+Training Epoch: 47 [2048/50176]	Loss: 0.3428
+Training Epoch: 47 [3072/50176]	Loss: 0.3527
+Training Epoch: 47 [4096/50176]	Loss: 0.3045
+Training Epoch: 47 [5120/50176]	Loss: 0.3184
+Training Epoch: 47 [6144/50176]	Loss: 0.3434
+Training Epoch: 47 [7168/50176]	Loss: 0.3183
+Training Epoch: 47 [8192/50176]	Loss: 0.3277
+Training Epoch: 47 [9216/50176]	Loss: 0.3089
+Training Epoch: 47 [10240/50176]	Loss: 0.3518
+Training Epoch: 47 [11264/50176]	Loss: 0.3451
+Training Epoch: 47 [12288/50176]	Loss: 0.3287
+Training Epoch: 47 [13312/50176]	Loss: 0.3466
+Training Epoch: 47 [14336/50176]	Loss: 0.3235
+Training Epoch: 47 [15360/50176]	Loss: 0.2991
+Training Epoch: 47 [16384/50176]	Loss: 0.3622
+Training Epoch: 47 [17408/50176]	Loss: 0.4037
+Training Epoch: 47 [18432/50176]	Loss: 0.3255
+Training Epoch: 47 [19456/50176]	Loss: 0.3383
+Training Epoch: 47 [20480/50176]	Loss: 0.3063
+Training Epoch: 47 [21504/50176]	Loss: 0.3295
+Training Epoch: 47 [22528/50176]	Loss: 0.3555
+Training Epoch: 47 [23552/50176]	Loss: 0.3398
+Training Epoch: 47 [24576/50176]	Loss: 0.3323
+Training Epoch: 47 [25600/50176]	Loss: 0.3728
+Training Epoch: 47 [26624/50176]	Loss: 0.3006
+Training Epoch: 47 [27648/50176]	Loss: 0.3421
+Training Epoch: 47 [28672/50176]	Loss: 0.3844
+Training Epoch: 47 [29696/50176]	Loss: 0.3558
+Training Epoch: 47 [30720/50176]	Loss: 0.3913
+Training Epoch: 47 [31744/50176]	Loss: 0.3705
+Training Epoch: 47 [32768/50176]	Loss: 0.3872
+Training Epoch: 47 [33792/50176]	Loss: 0.3960
+Training Epoch: 47 [34816/50176]	Loss: 0.3549
+Training Epoch: 47 [35840/50176]	Loss: 0.3374
+Training Epoch: 47 [36864/50176]	Loss: 0.3631
+Training Epoch: 47 [37888/50176]	Loss: 0.3901
+Training Epoch: 47 [38912/50176]	Loss: 0.3817
+Training Epoch: 47 [39936/50176]	Loss: 0.4068
+Training Epoch: 47 [40960/50176]	Loss: 0.3553
+Training Epoch: 47 [41984/50176]	Loss: 0.3894
+Training Epoch: 47 [43008/50176]	Loss: 0.3682
+Training Epoch: 47 [44032/50176]	Loss: 0.3745
+Training Epoch: 47 [45056/50176]	Loss: 0.3620
+Training Epoch: 47 [46080/50176]	Loss: 0.3991
+Training Epoch: 47 [47104/50176]	Loss: 0.3540
+Training Epoch: 47 [48128/50176]	Loss: 0.3690
+Training Epoch: 47 [49152/50176]	Loss: 0.3846
+Training Epoch: 47 [50176/50176]	Loss: 0.3826
+2022-12-09 00:16:58.360 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 19:16:58,393 [ZeusDataLoader(eval)] eval epoch 48 done: time=3.90 energy=541.33
+2022-12-08 19:16:58,393 [ZeusDataLoader(train)] Up to epoch 48: time=2405.08, energy=353902.23, cost=387395.79
+2022-12-08 19:16:58,393 [ZeusDataLoader(train)] Optimal PL train & eval expected time=47.33 energy=7221.24
+2022-12-08 19:16:58,393 [ZeusDataLoader(train)] Expected next epoch: time=2452.41, energy=361123.47, cost=395147.65
+2022-12-08 19:16:58,394 [ZeusDataLoader(train)] Epoch 49 begin.
+Validation Epoch: 47, Average loss: 0.0020, Accuracy: 0.5938
+2022-12-08 19:16:58,668 [ZeusDataLoader(train)] [GPU_0] Zeus monitor started.
+2022-12-09 00:16:58.669 [ZeusMonitor] Monitor started.
+2022-12-09 00:16:58.669 [ZeusMonitor] Running indefinitely. 2022-12-09 00:16:58.669 [ZeusMonitor] Sleeping 100ms after each poll. 
+2022-12-09 00:16:58.669 [ZeusMonitor] Logfile path: /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/bs1024+e49+gpu0.power.log
+2022-12-08 19:16:58,669 [ZeusDataLoader(train)] Steady state power limit: OPT 175W
+2022-12-08 19:17:43,181 [ZeusDataLoader(train)] train epoch 49 done: time=44.78 energy=6800.64
+2022-12-08 19:17:43,185 [ZeusDataLoader(eval)] Epoch 49 begin.
+Training Epoch: 48 [1024/50176]	Loss: 0.2597
+Training Epoch: 48 [2048/50176]	Loss: 0.2806
+Training Epoch: 48 [3072/50176]	Loss: 0.3063
+Training Epoch: 48 [4096/50176]	Loss: 0.2872
+Training Epoch: 48 [5120/50176]	Loss: 0.2942
+Training Epoch: 48 [6144/50176]	Loss: 0.2912
+Training Epoch: 48 [7168/50176]	Loss: 0.3245
+Training Epoch: 48 [8192/50176]	Loss: 0.3026
+Training Epoch: 48 [9216/50176]	Loss: 0.3093
+Training Epoch: 48 [10240/50176]	Loss: 0.3072
+Training Epoch: 48 [11264/50176]	Loss: 0.3524
+Training Epoch: 48 [12288/50176]	Loss: 0.3295
+Training Epoch: 48 [13312/50176]	Loss: 0.2543
+Training Epoch: 48 [14336/50176]	Loss: 0.3375
+Training Epoch: 48 [15360/50176]	Loss: 0.3057
+Training Epoch: 48 [16384/50176]	Loss: 0.3040
+Training Epoch: 48 [17408/50176]	Loss: 0.2990
+Training Epoch: 48 [18432/50176]	Loss: 0.2814
+Training Epoch: 48 [19456/50176]	Loss: 0.2984
+Training Epoch: 48 [20480/50176]	Loss: 0.3076
+Training Epoch: 48 [21504/50176]	Loss: 0.3323
+Training Epoch: 48 [22528/50176]	Loss: 0.2837
+Training Epoch: 48 [23552/50176]	Loss: 0.3297
+Training Epoch: 48 [24576/50176]	Loss: 0.3358
+Training Epoch: 48 [25600/50176]	Loss: 0.3170
+Training Epoch: 48 [26624/50176]	Loss: 0.2975
+Training Epoch: 48 [27648/50176]	Loss: 0.2959
+Training Epoch: 48 [28672/50176]	Loss: 0.3238
+Training Epoch: 48 [29696/50176]	Loss: 0.3257
+Training Epoch: 48 [30720/50176]	Loss: 0.3276
+Training Epoch: 48 [31744/50176]	Loss: 0.3221
+Training Epoch: 48 [32768/50176]	Loss: 0.3420
+Training Epoch: 48 [33792/50176]	Loss: 0.3423
+Training Epoch: 48 [34816/50176]	Loss: 0.3077
+Training Epoch: 48 [35840/50176]	Loss: 0.2975
+Training Epoch: 48 [36864/50176]	Loss: 0.3218
+Training Epoch: 48 [37888/50176]	Loss: 0.3217
+Training Epoch: 48 [38912/50176]	Loss: 0.3527
+Training Epoch: 48 [39936/50176]	Loss: 0.3837
+Training Epoch: 48 [40960/50176]	Loss: 0.3420
+Training Epoch: 48 [41984/50176]	Loss: 0.3375
+Training Epoch: 48 [43008/50176]	Loss: 0.3828
+Training Epoch: 48 [44032/50176]	Loss: 0.3338
+Training Epoch: 48 [45056/50176]	Loss: 0.2942
+Training Epoch: 48 [46080/50176]	Loss: 0.3672
+Training Epoch: 48 [47104/50176]	Loss: 0.3633
+Training Epoch: 48 [48128/50176]	Loss: 0.3702
+Training Epoch: 48 [49152/50176]	Loss: 0.3620
+Training Epoch: 48 [50176/50176]	Loss: 0.3799
+2022-12-09 00:17:47.043 [ZeusMonitor] Caught signal 2, end monitoring.
+2022-12-08 19:17:47,093 [ZeusDataLoader(eval)] eval epoch 49 done: time=3.90 energy=542.97
+2022-12-08 19:17:47,093 [ZeusDataLoader(train)] Up to epoch 49: time=2453.76, energy=361245.85, cost=395326.87
+2022-12-08 19:17:47,094 [ZeusDataLoader(train)] Target metric 0.6 was reached! Stopping.
+2022-12-08 19:17:47,094 [ZeusDataLoader(train)] Training done.
+2022-12-08 19:17:47,094 [ZeusDataLoader(train)] Saved /workspace/zeus_logs/cifar100+shufflenetv2+bs1024+adam+lr0.001+tm0.6+me100+x100+eta0.5+beta2.0+2022120817401670539224/rec02+try01+bs1024+lr0.0080000.train.json: {"energy": 361245.8512208044, "time": 2453.759384225974, "cost": 395326.87173017487, "num_epochs": 49, "reached": true}
+Validation Epoch: 48, Average loss: 0.0020, Accuracy: 0.6037
+
+[run job] Job terminated with exit code 0.
+[run job] stats={'energy': 361245.8512208044, 'time': 2453.759384225974, 'cost': 395326.87173017487, 'num_epochs': 49, 'reached': True}
+[run job; power] power_stats={'job_id': 'rec02+try01', 'train_power': {'175000': 154.89953148785654, '150000': 146.71964346885522, '125000': 122.82062575056527, '100000': 101.98676264846775}, 'train_throughput': {'175000': 1.133277720351713, '150000': 1.0989740762460123, '125000': 0.9681039581727158, '100000': 0.3668091756560675}, 'eval_power': {'175000': 128.0308069670569, '150000': 131.06058502963776, '125000': 115.01601627718911}, 'eval_throughput': {'175000': 2.444335818105813, '150000': 2.587981317609751, '125000': 2.3750444149937446}, 'optimal_pl': 175000}
+[Zeus Master] cost=395326.87173017487
+
+[Zeus Master] Reached target metric in 1 try.

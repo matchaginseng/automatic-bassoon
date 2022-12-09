@@ -3,4 +3,11 @@
  HistoryEntry(bs=1024, pl=175.0, lr=0.005, energy=240343.41170650077, reached=True, time=1745.0100623509989),
  HistoryEntry(bs=1024, pl=175.0, lr=0.01, energy=512864.726165234, reached=True, time=3675.9740900210018),
  HistoryEntry(bs=1024, pl=150.0, lr=0.05, energy=673308.1082976655, reached=False, time=4862.071877154984),
- HistoryEntry(bs=1024, pl=150.0, lr=0.5, energy=630375.3421898179, reached=False, time=4775.313635210998)]
+ HistoryEntry(bs=1024, pl=150.0, lr=0.5, energy=630375.3421898179, reached=False, time=4775.313635210998),
+ HistoryEntry(bs=1024, pl=175.0, lr=0.006, energy=245090.3820494143, reached=True, time=1682.810654917026),
+ HistoryEntry(bs=1024, pl=175.0, lr=0.007, energy=244904.68639563024, reached=True, time=1681.7110675940203),
+ HistoryEntry(bs=1024, pl=175.0, lr=0.008, energy=361245.8512208044, reached=True, time=2453.759384225974),
+ HistoryEntry(bs=1024, pl=175.0, lr=0.009, energy=469427.69630999834, reached=True, time=3171.8975488980213),
+ HistoryEntry(bs=128, pl=175.0, lr=0.001, energy=288446.70, reached=True, time=2144.71),
+ HistoryEntry(bs=128, pl=150.0, lr=0.01, energy=877096.59, reached=True, time=7223.74),
+ HistoryEntry(bs=128, pl=150.0, lr=0.0001, energy=1301103.76, reached=False, time=8957.13)]
