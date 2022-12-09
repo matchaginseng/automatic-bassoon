@@ -1,32 +1,32 @@
-from eta00.threshold00history_all import data as data0000
-from eta00.threshold03history_all import data as data0300
-from eta00.threshold04history_all import data as data0400
-from eta00.threshold05history_all import data as data0500
+# from eta00.threshold00history_all import data as data0000
+# from eta00.threshold03history_all import data as data0300
+# from eta00.threshold04history_all import data as data0400
+# from eta00.threshold05history_all import data as data0500
 
-from eta05.threshold00history_all import data as data0005
-from eta05.threshold03history_all import data as data0305
-from eta05.threshold04history_all import data as data0405
-from eta05.threshold05history_all import data as data0505
-
-from eta10.threshold00history_all import data as data0010
-from eta10.threshold03history_all import data as data0310
-from eta10.threshold04history_all import data as data0410
-from eta10.threshold05history_all import data as data0510
-
-# from eta00opt.threshold00history_all import data as data0000
-# from eta00opt.threshold03history_all import data as data0300
-# from eta00opt.threshold04history_all import data as data0400
-# from eta00opt.threshold05history_all import data as data0500
-
-# from eta05opt.threshold00history_all import data as data0005
+# from eta05.threshold00history_all import data as data0005
 # from eta05.threshold03history_all import data as data0305
 # from eta05.threshold04history_all import data as data0405
 # from eta05.threshold05history_all import data as data0505
 
-# from eta10opt.threshold00history_all import data as data0010
-# from eta10opt.threshold03history_all import data as data0310
-# from eta10opt.threshold04history_all import data as data0410
-# from eta10opt.threshold05history_all import data as data0510
+# from eta10.threshold00history_all import data as data0010
+# from eta10.threshold03history_all import data as data0310
+# from eta10.threshold04history_all import data as data0410
+# from eta10.threshold05history_all import data as data0510
+
+from eta00opt.threshold00history_all import data as data0000
+from eta00opt.threshold03history_all import data as data0300
+from eta00opt.threshold04history_all import data as data0400
+from eta00opt.threshold05history_all import data as data0500
+
+from eta05opt.threshold00history_all import data as data0005
+from eta05.threshold03history_all import data as data0305
+from eta05.threshold04history_all import data as data0405
+from eta05.threshold05history_all import data as data0505
+
+from eta10opt.threshold00history_all import data as data0010
+from eta10opt.threshold03history_all import data as data0310
+from eta10opt.threshold04history_all import data as data0410
+from eta10opt.threshold05history_all import data as data0510
 
 import numpy as np
 import math
@@ -72,7 +72,7 @@ for ind, data in enumerate(datas):
 
 fig.text(0.5, 0.02, 'Power Limit', ha='center', fontsize=12)
 fig.supylabel('Log Cost')
-fig.legend(handles, [f"BS {bs}" for bs in bss] + [f"LR {lr}" for lr in lrs] + [f"DR {dr}" for dr in drs], ncol=3, loc='upper left', framealpha=1, prop={'size': 9})
+fig.legend(handles, [f"BS {bs}" for bs in bss] + [f"LR {lr}" for lr in lrs] + [f"DR {dr}" for dr in drs], ncol=3, loc='upper left', framealpha=1, prop={'size': 8})
 fig.tight_layout(rect=[0, 0.03, 1, 0.95])
-fig.suptitle(f"Profiling results")
+fig.suptitle(f"Profiling results\nOptimizer State Persisted")
 plt.show()
