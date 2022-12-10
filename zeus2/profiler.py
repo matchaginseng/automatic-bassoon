@@ -27,6 +27,7 @@ from shufflenetv2 import shufflenetv2
 from pathlib import Path
 from time import localtime, sleep, strftime, monotonic
 import copy
+from collections import defaultdict
 
 import numpy as np
 import pynvml
@@ -219,70 +220,63 @@ class Profiler:
         while epoch < n_epochs:
             if curr_acc >= threshold_acc:
                 print(f"[Training Loop] Model's accuracy {curr_acc} surpasses threshold {threshold_acc}! Reprofiling...")
-                bs_lr_dr = []
-                opt_pl = {}
+                bs_lr_dr_pl = []
+                costs = defaultdict(float)
                 for bs in batch_sizes:
                     for lr in learning_rates:
                         for dr in dropout_rates:
-                            bs_lr_dr.append((bs, lr, dr))
-                            opt_pl[(bs, lr, dr)] = 0
+                            for pl in self.power_limits:
+                                bs_lr_dr_pl.append((bs, lr, dr, pl))
 
                 profile_start_time = monotonic()
-                for i in range(1, len(bs_lr_dr) + 1):
-                    bs, lr, dr = bs_lr_dr[i - 1]
+                for i in range(1, len(bs_lr_dr_pl) + 1):
+                    bs, lr, dr, pl = bs_lr_dr_pl[i - 1]
                     # initialize best pl for this combo
-                    best_pl = -1
-                    min_cost = float("inf")
-                    for pl in self.power_limits:
-                        print(f"[Training Loop] Profiling with batch size {bs} learning rate {lr} dropout rate {dr} power limit {pl}")
-                        # set the batch size, learning rate, dropout rate, and power limit of train and val dataloaders
-                        train_loader = ProfileDataLoader(
-                            train_dataset,
-                            batch_size=bs,
-                            learning_rate=lr,
-                            dropout_rate=dr,
-                            power_limit=pl,
-                            split="train",
-                            profile=True,
-                            shuffle=True,
-                            eta_knob=eta_knob,
-                            warmup_iters=self.profile_warmup_iters,
-                            measure_iters=self.profile_measure_iters,
-                            num_workers=4, # TODO: this is the default value but maybe pass in as an arg
-                        )
-                        val_loader = ProfileDataLoader(
-                            val_dataset,
-                            batch_size=bs,
-                            learning_rate=lr,
-                            dropout_rate=dr,
-                            power_limit=pl,
-                            split="eval",
-                            profile=False,
-                            shuffle=False,
-                            eta_knob=eta_knob,
-                            num_workers=4,
-                        )
+                    print(f"[Training Loop] Profiling with batch size {bs} learning rate {lr} dropout rate {dr} power limit {pl}")
+                    # set the batch size, learning rate, dropout rate, and power limit of train and val dataloaders
+                    train_loader = ProfileDataLoader(
+                        train_dataset,
+                        batch_size=bs,
+                        learning_rate=lr,
+                        dropout_rate=dr,
+                        power_limit=pl,
+                        split="train",
+                        profile=True,
+                        shuffle=True,
+                        eta_knob=eta_knob,
+                        warmup_iters=self.profile_warmup_iters,
+                        measure_iters=self.profile_measure_iters,
+                        num_workers=4, # TODO: this is the default value but maybe pass in as an arg
+                    )
+                    val_loader = ProfileDataLoader(
+                        val_dataset,
+                        batch_size=bs,
+                        learning_rate=lr,
+                        dropout_rate=dr,
+                        power_limit=pl,
+                        split="eval",
+                        profile=False,
+                        shuffle=False,
+                        eta_knob=eta_knob,
+                        num_workers=4,
+                    )
 
-                        # deepcopy the model for profiling
-                        model_copy = copy.deepcopy(model)
-                        model_copy = model_copy.cuda()
-                        # optimizer_copy = copy.deepcopy(optimizer)
-                        optimizer_copy = optim.Adam(model_copy.parameters(), lr=lr)
+                    # deepcopy the model for profiling
+                    model_copy = copy.deepcopy(model)
+                    model_copy = model_copy.cuda()
+                    # optimizer_copy = copy.deepcopy(optimizer)
+                    optimizer_copy = optim.Adam(model_copy.parameters(), lr=lr)
 
-                        self.train(train_loader, model_copy, criterion, optimizer_copy, epoch, bs, True)
-                        acc = self.validate(val_loader, model_copy, criterion, epoch, bs)
-                        cost = train_loader.calculate_cost(acc, threshold_acc)
-                        
-                        if cost < min_cost:
-                            min_cost = cost
-                            best_pl = pl 
-                            opt_pl[(bs, lr, dr)] = best_pl
+                    self.train(train_loader, model_copy, criterion, optimizer_copy, epoch, bs, True)
+                    acc = self.validate(val_loader, model_copy, criterion, epoch, bs)
+                    cost = train_loader.calculate_cost(acc, threshold_acc)
+                    
+                    costs[(bs, lr, dr, pl)] = cost
 
                 profile_end_time = monotonic()
 
                 # find optimal setting to return: get argmin
-                opt_bs, opt_lr, opt_dr = min(opt_pl, key=opt_pl.get)
-                opt_pl = opt_pl[(opt_bs, opt_lr, opt_dr)]
+                opt_bs, opt_lr, opt_dr, opt_pl = min(opt_pl, key=opt_pl.get)
                 print(f"[Training Loop] The optimal parameters are lr: {opt_lr} dr: {opt_dr} bs: {opt_bs} pl: {opt_pl}")
 
                 profiler_info = dict(
