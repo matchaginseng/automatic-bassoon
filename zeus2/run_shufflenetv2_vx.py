@@ -41,15 +41,15 @@ def parse_args() -> argparse.Namespace:
         "--b_max", type=int, default=4096, help="Largest batch size to consider"
     )
 
-    # The range of learning rates to consider. 
+    # The range of learning rate factors to consider. 
     parser.add_argument(
-        "--lr_min", type=float, default=0.8, help="Smallest learning rate multiplier to consider"
+        "--lrf_min", type=float, default=0.8, help="Smallest learning rate factor to consider"
     )
     parser.add_argument(
-        "--lr_max", type=float, default=1.2, help="Largest learning rate multiplier to consider"
+        "--lrf_max", type=float, default=1.2, help="Largest learning rate factor to consider"
     )
     parser.add_argument(
-        "--num_lr", type=int, default=5, help="Number of learning rates values to consider"
+        "--num_lrf", type=int, default=5, help="Number of learning rates factors to consider"
     )
 
     # The \\eta knob trades off time and energy consumption. See Equation 2 in the paper.
@@ -124,8 +124,6 @@ def main(args: argparse.Namespace) -> None:
         # fmt: on
     )
 
-    # Generate a list of batch sizes with only power-of-two values.
-
     master_logdir = master.build_logdir(
         job=job,
         eta_knob=args.eta_knob,
@@ -184,7 +182,6 @@ def main(args: argparse.Namespace) -> None:
         learning_rates=args.learning_rates,
         dropout_rates=args.dropout_rates
     )
-
 
 if __name__ == "__main__":
     main(parse_args())

@@ -175,11 +175,26 @@ class Profiler:
         batch_sizes: list[int],
         learning_rates: list[float],
         dropout_rates: list[float],
-        seed=None) -> tuple[int, float, int]:
+        seed = None) -> tuple[int, float, int]:
+        """Runs a job. Returns a tuple (bs, lr, pl) that minimizes our epoch cost
+
+        Args:
+            job: The job to run.
+            batch_sizes: List of feasible batch sizes.
+            beta_knob: `beta_knob * min_eta` is the early stopping cost threshold.
+                Set to `np.inf` to disable early stopping.
+            eta_knob: $\eta$ used in the cost metric.
+                $\textrm{cost} = \eta \cdot \textrm{ETA} + (1 - \eta) \cdot \textrm{MaxPower} \cdot \textrm{Time}/\textrm{Acc}$
+        """
         
         if seed is not None:
             self.set_seed(seed)
+        
+        # Sanity check
+        if eta_knob < 0.0 or eta_knob > 1.0:
+            raise ValueError("eta_knob must be in [0.0, 1.0].")
 
+        # ZEUS_LOG_DIR: Where all the logs and files are stored for this run.
         logdir = self.build_logdir(job, eta_knob, beta_knob)
         os.environ["ZEUS_MONITOR_PATH"] = self.monitor_path
         os.environ["ZEUS_LOG_PREFIX"] = "/workspace/zeus_logs"
