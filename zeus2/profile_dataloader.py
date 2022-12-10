@@ -362,8 +362,6 @@ class ProfileDataLoader(DataLoader):
         history_all = f"{self.logdir}/threshold{threshold_str}history_all.py"
         # frac_epochs = (self.warmup_iter + self.profile_iter) / self.num_samples
 
-        # TODO: change this cost fn!!
-        # total_cost = (frac_epochs / acc) * ((self.eta_knob * self.train_power_result + (1 - self.eta_knob) * self.max_pl / self.train_tput_result))
         total_cost = (self.eta_knob * self.train_power_result + (1 - self.eta_knob) * self.max_pl) * self.time_consumed/acc
         with open(history_all, "a") as f:
             if self.epoch == 1:

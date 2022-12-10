@@ -20,7 +20,7 @@ def parse_args() -> argparse.Namespace:
     """Parse commandline arguments."""
     parser = argparse.ArgumentParser()
 
-    # This random seed is used for
+    # This random seed is a legacy from Zeus. It was originally used for
     # 1. Multi-Armed Bandit inside PruningGTSBatchSizeOptimizer, and
     # 2. Providing random seeds for training.
     # Especially for 2, the random seed given to the nth recurrence job is args.seed + n.
@@ -71,30 +71,21 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--max_epochs", type=int, default=100, help="Max number of epochs to train"
     )
-    parser.add_argument("--warmup_iters", type=int)
-    parser.add_argument("--profile_iters", type=int)
-    parser.add_argument('--acc_thresholds', type=float, nargs='+', default=[])
-    parser.add_argument('--batch_sizes', type=int, nargs='+', default=[])
-    parser.add_argument('--learning_rates', type=float, nargs='+', default=[])
-    parser.add_argument('--dropout_rates', type=float, nargs='+', default=[])
+    parser.add_argument("--warmup_iters", type=int, default=3)
+    parser.add_argument("--profile_iters", type=int, default=10)
+    parser.add_argument('--acc_thresholds', type=float, nargs='+', default=[], help="Accuracy thresholds to profile on.")
+    parser.add_argument('--batch_sizes', type=int, nargs='+', default=[], help="Batch sizes to profile over.")
+    parser.add_argument('--learning_rates', type=float, nargs='+', default=[], help="Learning rates to profile over.")
+    parser.add_argument('--dropout_rates', type=float, nargs='+', default=[], help="Dropout rates to profile over.")
 
     return parser.parse_args()
 
 
 def main(args: argparse.Namespace) -> None:
-    """Run Zeus on CIFAR100."""
+    """Run automatic-bassoon on CIFAR100."""
 
-    # The top-level class for running Zeus.
-    # - The batch size optimizer is desinged as a pluggable policy.
+    # The top-level class for running automatic-bassoon.
     # - Paths (log_base and monitor_path) assume our Docker image's directory structure.
-    # - For CIFAR100, one epoch of training may not take even ten seconds (especially for
-    #   small models like squeezenet). ZeusDataLoader automatically handles profiling power
-    #   limits over multiple training epochs such that the profiling window of each power
-    #   limit fully fits in one epoch. However, the epoch duration may be so short that
-    #   profiling even one power limit may not fully fit in one epoch. In such cases,
-    #   ZeusDataLoader raises a RuntimeError, and the profiling window should be narrowed
-    #   by giving smaller values to profile_warmup_iters and profile_measure_iters in the
-    #   constructor of ZeusMaster.
     master = Profiler(
         log_base="/workspace/zeus_logs",
         seed=args.seed,
@@ -107,7 +98,6 @@ def main(args: argparse.Namespace) -> None:
     # Definition of the CIFAR100 job.
     # The `Job` class encloses all information needed to run training. The `command` parameter is
     # a command template. Curly-braced parameters are recognized by Zeus and automatically filled.
-    # TODO: get rid of this
     job = Job(
         dataset="cifar100",
         network="shufflenetv2",
@@ -130,7 +120,6 @@ def main(args: argparse.Namespace) -> None:
             "--learning_rate", "{learning_rate}",
             "--dropout_rate", "{dropout_rate}",
             "--power_limit", "{power_limit}",
-            # "--dropout_rate", "{dropout_rate}"
         ],
         # fmt: on
     )
