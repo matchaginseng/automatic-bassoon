@@ -53,7 +53,8 @@ We provide one working example of our profiler on ShuffleNetV2 with the [CIFAR10
 To run our profiler, make sure the Docker image is up and running and that you're in the `workspace/zeus/zeus2` folder inside the Docker container. An example command is:
 
 ```
-# All arguments shown are default values, except for `acc_thresholds`, `batch_sizes`, `learning_rates`, and `dropout_rates`, which default to empty lists. 
+# All arguments shown are default values, except for `acc_thresholds`, `batch_sizes`, 
+# `learning_rates`, and `dropout_rates`, which default to empty lists. 
 python run_shufflenet_vx.py \
     --seed 1 \
     --b_0 1024 \
