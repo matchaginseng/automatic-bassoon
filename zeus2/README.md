@@ -1,9 +1,4 @@
 <div align="center">
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/img/logo_dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/img/logo_light.svg">
-  <img alt="Zeus logo" width="55%" src="docs/assets/img/logo_dark.svg">
-</picture>
 <h1>Automatic Bassoon: Zeus 2 Electric Boogaloo</h1>
 </div>
 
