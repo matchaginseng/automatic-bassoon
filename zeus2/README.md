@@ -37,10 +37,12 @@ The steps are:
 
 This will spawn the Docker image. The `-v` command mounts the repo at `/workspace/zeus` in the Docker container. Our code lives in the `zeus/zeus2` folder.
 
-Then we want to make the power monitor. So:
-9. `cd zeus/zeus_monitor`
-10. `cmake .`
-11. `make`
+Then we want to make the power monitor, so run:
+```
+cd zeus/zeus_monitor
+cmake .
+make
+```
 
 The resulting power monitor binary is `/workspace/zeus/zeus_monitor/zeus_monitor` inside the Docker container.
 
