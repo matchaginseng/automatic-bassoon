@@ -57,7 +57,7 @@ def parse_args() -> argparse.Namespace:
     )
 
     parser.add_argument("--learning_rate", type=float, default=0.001, help="Default learning rate")
-    # parser.add_argument("--dropout_rate", type=float, default=1.0, help="Default dropout rate")
+    parser.add_argument("--dropout_rate", type=float, default=0.2, help="Default dropout rate")
 
     # ZEUS
     runtime_mode = parser.add_mutually_exclusive_group()
@@ -80,7 +80,9 @@ def main(args: argparse.Namespace) -> None:
     # Prepare model.
     # NOTE: Using torchvision.models would be also straightforward. For example:
     #       model = vars(torchvision.models)[args.arch](num_classes=100)
-    model = shufflenetv2()
+
+    # we don't want to recreate the model each time
+    model = shufflenetv2(args.dropout_rate)
 
     # Prepare datasets.
     train_dataset = datasets.CIFAR100(
@@ -163,7 +165,8 @@ def main(args: argparse.Namespace) -> None:
         train(train_loader, model, criterion, optimizer, epoch, args)
         acc = validate(val_loader, model, criterion, epoch, args)
         train_loader.calculate_cost(acc)
-        break
+        if acc > 0.01:
+            
 
 def train(train_loader, model, criterion, optimizer, epoch, args):
     """Train the model for one epoch."""

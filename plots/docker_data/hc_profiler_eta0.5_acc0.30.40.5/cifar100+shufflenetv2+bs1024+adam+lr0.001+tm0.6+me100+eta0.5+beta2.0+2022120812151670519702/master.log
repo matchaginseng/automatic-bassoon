@@ -1,0 +1,1004 @@
+Files already downloaded and verified
+Files already downloaded and verified
+Job(cifar100,shufflenetv2,adam,0.6,bs1024~100)
+[Training Loop] Testing batch sizes: [128, 256, 512, 1024]
+[Training Loop] Testing power limits: [175, 150, 125, 100]
+[Training Loop] Testing learning rates: [0.001, 0.005, 0.01]
+[Training Loop] Testing dropout rates: [0.0, 0.25, 0.5]
+[Training Loop] Reprofiling at accuracy thresholds [0.3, 0.4, 0.5]
+[Training Loop] Model's accuracy 0.0 surpasses threshold 0.0! Reprofiling...
+[Training Loop] Profiling with batch size 128 learning rate 0.001 dropout rate 0.0 power limit 175
+ProfileDataLoader constructor: called constructor of DataLoader!
+ProfileDataLoader constructor: called constructor of DataLoader!
+Launching Zeus monitor 0...
+[ProfileDataLoader] Profiling for 3 warmup iters and 10 profile iters
+[GPU_0] Set GPU power limit to 175W.
+Warm-up started with power limit 175W
+Profiling... [128/50048]	Loss: 4.6201
+Profiling... [256/50048]	Loss: 4.6444
+Profiling... [384/50048]	Loss: 4.6728
+Profiling... [512/50048]	Loss: 4.7458
+Profiling... [640/50048]	Loss: 4.7509
+Profiling... [768/50048]	Loss: 4.6610
+Profiling... [896/50048]	Loss: 4.6315
+Profiling... [1024/50048]	Loss: 4.6884
+Profiling... [1152/50048]	Loss: 4.6864
+Profiling... [1280/50048]	Loss: 4.7046
+Profiling... [1408/50048]	Loss: 4.6331
+Profiling... [1536/50048]	Loss: 4.6946
+Profiling... [1664/50048]	Loss: 4.6144
+Profile done
+epoch 1 train time consumed: 3.84s
+Validation Epoch: 0, Average loss: 0.0364, Accuracy: 0.0099
+[ProfileDataLoader] writing cost to history_all.py
+
+                    {
+                        "profile_threshold": 0.0,
+                        "bs": 128,
+                        "pl": 175000,
+                        "lr": 0.001,
+                        "dr": 0.0,
+                        "energy": 140.4363121684759,
+                        "time": 2.182648893000078,
+                        "accuracy": 0.009889240506329115,
+                        "total_cost": 19327575.216299586
+                    },
+                    
+[Training Loop] Profiling with batch size 128 learning rate 0.001 dropout rate 0.0 power limit 150
+ProfileDataLoader constructor: called constructor of DataLoader!
+ProfileDataLoader constructor: called constructor of DataLoader!
+[ProfileDataLoader] Profiling for 3 warmup iters and 10 profile iters
+[GPU_0] Set GPU power limit to 150W.
+Warm-up started with power limit 150W
+Profiling... [128/50048]	Loss: 4.6586
+Profiling... [256/50048]	Loss: 4.6294
+Profiling... [384/50048]	Loss: 4.6680
+Profiling... [512/50048]	Loss: 4.7040
+Profiling... [640/50048]	Loss: 4.7361
+Profiling... [768/50048]	Loss: 4.8246
+Profiling... [896/50048]	Loss: 4.6458
+Profiling... [1024/50048]	Loss: 4.6575
+Profiling... [1152/50048]	Loss: 4.7215
+Profiling... [1280/50048]	Loss: 4.7088
+Profiling... [1408/50048]	Loss: 4.6839
+Profiling... [1536/50048]	Loss: 4.7733
+Profiling... [1664/50048]	Loss: 4.6332
+Profile done
+epoch 1 train time consumed: 3.15s
+Validation Epoch: 0, Average loss: 0.0364, Accuracy: 0.0099
+[ProfileDataLoader] writing cost to history_all.py
+
+                    {
+                        "profile_threshold": 0.0,
+                        "bs": 128,
+                        "pl": 150000,
+                        "lr": 0.001,
+                        "dr": 0.0,
+                        "energy": 133.03802008499247,
+                        "time": 2.1717932390001806,
+                        "accuracy": 0.009889240506329115,
+                        "total_cost": 19230634.933701754
+                    },
+                    
+[Training Loop] Profiling with batch size 128 learning rate 0.001 dropout rate 0.0 power limit 125
+ProfileDataLoader constructor: called constructor of DataLoader!
+ProfileDataLoader constructor: called constructor of DataLoader!
+[ProfileDataLoader] Profiling for 3 warmup iters and 10 profile iters
+[GPU_0] Set GPU power limit to 125W.
+Warm-up started with power limit 125W
+Profiling... [128/50048]	Loss: 4.6393
+Profiling... [256/50048]	Loss: 4.6323
+Profiling... [384/50048]	Loss: 4.8009
+Profiling... [512/50048]	Loss: 4.7323
+Profiling... [640/50048]	Loss: 4.6931
+Profiling... [768/50048]	Loss: 4.7048
+Profiling... [896/50048]	Loss: 4.6753
+Profiling... [1024/50048]	Loss: 4.7080
+Profiling... [1152/50048]	Loss: 4.8235
+Profiling... [1280/50048]	Loss: 4.7896
+Profiling... [1408/50048]	Loss: 4.7232
+Profiling... [1536/50048]	Loss: 4.6514
+Profiling... [1664/50048]	Loss: 4.6974
+Profile done
+epoch 1 train time consumed: 3.34s
+Validation Epoch: 0, Average loss: 0.0364, Accuracy: 0.0099
+[ProfileDataLoader] writing cost to history_all.py
+
+                    {
+                        "profile_threshold": 0.0,
+                        "bs": 128,
+                        "pl": 125000,
+                        "lr": 0.001,
+                        "dr": 0.0,
+                        "energy": 131.36592655537666,
+                        "time": 2.370029362999958,
+                        "accuracy": 0.009889240506329115,
+                        "total_cost": 20985761.210003134
+                    },
+                    
+[Training Loop] Profiling with batch size 128 learning rate 0.001 dropout rate 0.0 power limit 100
+ProfileDataLoader constructor: called constructor of DataLoader!
+ProfileDataLoader constructor: called constructor of DataLoader!
+[ProfileDataLoader] Profiling for 3 warmup iters and 10 profile iters
+[GPU_0] Set GPU power limit to 100W.
+Warm-up started with power limit 100W
+Profiling... [128/50048]	Loss: 4.6353
+Profiling... [256/50048]	Loss: 4.6472
+Profiling... [384/50048]	Loss: 4.6637
+Profiling... [512/50048]	Loss: 4.6950
+Profiling... [640/50048]	Loss: 4.7462
+Profiling... [768/50048]	Loss: 4.6492
+Profiling... [896/50048]	Loss: 4.7257
+Profiling... [1024/50048]	Loss: 4.6908
+Profiling... [1152/50048]	Loss: 4.7589
+Profiling... [1280/50048]	Loss: 4.6755
+Profiling... [1408/50048]	Loss: 4.6388
+Profiling... [1536/50048]	Loss: 4.6023
+Profiling... [1664/50048]	Loss: 4.6978
+Profile done
+epoch 1 train time consumed: 6.72s
+Validation Epoch: 0, Average loss: 0.0364, Accuracy: 0.0099
+[ProfileDataLoader] writing cost to history_all.py
+
+                    {
+                        "profile_threshold": 0.0,
+                        "bs": 128,
+                        "pl": 100000,
+                        "lr": 0.001,
+                        "dr": 0.0,
+                        "energy": 122.17429227300902,
+                        "time": 5.023840363999625,
+                        "accuracy": 0.009889240506329115,
+                        "total_cost": 44481972.46683583
+                    },
+                    
+[Training Loop] Profiling with batch size 128 learning rate 0.001 dropout rate 0.25 power limit 175
+ProfileDataLoader constructor: called constructor of DataLoader!
+ProfileDataLoader constructor: called constructor of DataLoader!
+[ProfileDataLoader] Profiling for 3 warmup iters and 10 profile iters
+[GPU_0] Set GPU power limit to 175W.
+Warm-up started with power limit 175W
+Profiling... [128/50048]	Loss: 4.6127
+Profiling... [256/50048]	Loss: 4.6429
+Profiling... [384/50048]	Loss: 4.7613
+Profiling... [512/50048]	Loss: 4.6712
+Profiling... [640/50048]	Loss: 4.7482
+Profiling... [768/50048]	Loss: 4.7859
+Profiling... [896/50048]	Loss: 4.6306
+Profiling... [1024/50048]	Loss: 4.6250
+Profiling... [1152/50048]	Loss: 4.6991
+Profiling... [1280/50048]	Loss: 4.7907
+Profiling... [1408/50048]	Loss: 4.6031
+Profiling... [1536/50048]	Loss: 4.6074
+Profiling... [1664/50048]	Loss: 4.6608
+Profile done
+epoch 1 train time consumed: 3.17s
+Validation Epoch: 0, Average loss: 0.0365, Accuracy: 0.0099
+[ProfileDataLoader] writing cost to history_all.py
+
+                    {
+                        "profile_threshold": 0.0,
+                        "bs": 128,
+                        "pl": 175000,
+                        "lr": 0.001,
+                        "dr": 0.25,
+                        "energy": 116.41815870812918,
+                        "time": 2.1760995009999533,
+                        "accuracy": 0.009889240506329115,
+                        "total_cost": 19266937.128699552
+                    },
+                    
+[Training Loop] Profiling with batch size 128 learning rate 0.001 dropout rate 0.25 power limit 150
+ProfileDataLoader constructor: called constructor of DataLoader!
+ProfileDataLoader constructor: called constructor of DataLoader!
+[ProfileDataLoader] Profiling for 3 warmup iters and 10 profile iters
+[GPU_0] Set GPU power limit to 150W.
+Warm-up started with power limit 150W
+Profiling... [128/50048]	Loss: 4.6488
+Profiling... [256/50048]	Loss: 4.6831
+Profiling... [384/50048]	Loss: 4.6802
+Profiling... [512/50048]	Loss: 4.7042
+Profiling... [640/50048]	Loss: 4.6948
+Profiling... [768/50048]	Loss: 4.6948
+Profiling... [896/50048]	Loss: 4.6980
+Profiling... [1024/50048]	Loss: 4.7894
+Profiling... [1152/50048]	Loss: 4.7441
+Profiling... [1280/50048]	Loss: 4.6970
+Profiling... [1408/50048]	Loss: 4.7454
+Profiling... [1536/50048]	Loss: 4.7734
+Profiling... [1664/50048]	Loss: 4.6659
+Profile done
+epoch 1 train time consumed: 3.09s
+Validation Epoch: 0, Average loss: 0.0364, Accuracy: 0.0099
+[ProfileDataLoader] writing cost to history_all.py
+
+                    {
+                        "profile_threshold": 0.0,
+                        "bs": 128,
+                        "pl": 150000,
+                        "lr": 0.001,
+                        "dr": 0.25,
+                        "energy": 119.14005805774259,
+                        "time": 2.170119884000087,
+                        "accuracy": 0.009889240506329115,
+                        "total_cost": 19214292.931078393
+                    },
+                    
+[Training Loop] Profiling with batch size 128 learning rate 0.001 dropout rate 0.25 power limit 125
+ProfileDataLoader constructor: called constructor of DataLoader!
+ProfileDataLoader constructor: called constructor of DataLoader!
+[ProfileDataLoader] Profiling for 3 warmup iters and 10 profile iters
+[GPU_0] Set GPU power limit to 125W.
+Warm-up started with power limit 125W
+Profiling... [128/50048]	Loss: 4.6308
+Profiling... [256/50048]	Loss: 4.6835
+Profiling... [384/50048]	Loss: 4.6945
+Profiling... [512/50048]	Loss: 4.6720
+Profiling... [640/50048]	Loss: 4.6660
+Profiling... [768/50048]	Loss: 4.8160
+Profiling... [896/50048]	Loss: 4.7005
+Profiling... [1024/50048]	Loss: 4.7465
+Profiling... [1152/50048]	Loss: 4.6307
+Profiling... [1280/50048]	Loss: 4.7052
+Profiling... [1408/50048]	Loss: 4.6635
+Profiling... [1536/50048]	Loss: 4.6135
+Profiling... [1664/50048]	Loss: 4.5566
+Profile done
+epoch 1 train time consumed: 3.37s
+Validation Epoch: 0, Average loss: 0.0364, Accuracy: 0.0099
+[ProfileDataLoader] writing cost to history_all.py
+
+                    {
+                        "profile_threshold": 0.0,
+                        "bs": 128,
+                        "pl": 125000,
+                        "lr": 0.001,
+                        "dr": 0.25,
+                        "energy": 120.45528572568433,
+                        "time": 2.388593124000181,
+                        "accuracy": 0.009889240506329115,
+                        "total_cost": 21148819.016968943
+                    },
+                    
+[Training Loop] Profiling with batch size 128 learning rate 0.001 dropout rate 0.25 power limit 100
+ProfileDataLoader constructor: called constructor of DataLoader!
+ProfileDataLoader constructor: called constructor of DataLoader!
+[ProfileDataLoader] Profiling for 3 warmup iters and 10 profile iters
+[GPU_0] Set GPU power limit to 100W.
+Warm-up started with power limit 100W
+Profiling... [128/50048]	Loss: 4.6377
+Profiling... [256/50048]	Loss: 4.6376
+Profiling... [384/50048]	Loss: 4.7339
+Profiling... [512/50048]	Loss: 4.7572
+Profiling... [640/50048]	Loss: 4.7220
+Profiling... [768/50048]	Loss: 4.8472
+Profiling... [896/50048]	Loss: 4.7556
+Profiling... [1024/50048]	Loss: 4.6433
+Profiling... [1152/50048]	Loss: 4.7915
+Profiling... [1280/50048]	Loss: 4.7121
+Profiling... [1408/50048]	Loss: 4.8022
+Profiling... [1536/50048]	Loss: 4.7118
+Profiling... [1664/50048]	Loss: 4.6171
+Profile done
+epoch 1 train time consumed: 6.72s
+Validation Epoch: 0, Average loss: 0.0363, Accuracy: 0.0099
+[ProfileDataLoader] writing cost to history_all.py
+
+                    {
+                        "profile_threshold": 0.0,
+                        "bs": 128,
+                        "pl": 100000,
+                        "lr": 0.001,
+                        "dr": 0.25,
+                        "energy": 118.21897643720155,
+                        "time": 5.057209618000343,
+                        "accuracy": 0.009889240506329115,
+                        "total_cost": 44776418.407861464
+                    },
+                    
+[Training Loop] Profiling with batch size 128 learning rate 0.001 dropout rate 0.5 power limit 175
+ProfileDataLoader constructor: called constructor of DataLoader!
+ProfileDataLoader constructor: called constructor of DataLoader!
+[ProfileDataLoader] Profiling for 3 warmup iters and 10 profile iters
+[GPU_0] Set GPU power limit to 175W.
+Warm-up started with power limit 175W
+Profiling... [128/50048]	Loss: 4.6322
+Profiling... [256/50048]	Loss: 4.7029
+Profiling... [384/50048]	Loss: 4.7045
+Profiling... [512/50048]	Loss: 4.7220
+Profiling... [640/50048]	Loss: 4.8060
+Profiling... [768/50048]	Loss: 4.8229
+Profiling... [896/50048]	Loss: 4.6766
+Profiling... [1024/50048]	Loss: 4.7045
+Profiling... [1152/50048]	Loss: 4.6984
+Profiling... [1280/50048]	Loss: 4.7169
+Profiling... [1408/50048]	Loss: 4.6613
+Profiling... [1536/50048]	Loss: 4.6408
+Profiling... [1664/50048]	Loss: 4.6298
+Profile done
+epoch 1 train time consumed: 3.17s
+Validation Epoch: 0, Average loss: 0.0364, Accuracy: 0.0099
+[ProfileDataLoader] writing cost to history_all.py
+
+                    {
+                        "profile_threshold": 0.0,
+                        "bs": 128,
+                        "pl": 175000,
+                        "lr": 0.001,
+                        "dr": 0.5,
+                        "energy": 115.91023102042799,
+                        "time": 2.167537519999314,
+                        "accuracy": 0.009889240506329115,
+                        "total_cost": 19191074.659962185
+                    },
+                    
+[Training Loop] Profiling with batch size 128 learning rate 0.001 dropout rate 0.5 power limit 150
+ProfileDataLoader constructor: called constructor of DataLoader!
+ProfileDataLoader constructor: called constructor of DataLoader!
+[ProfileDataLoader] Profiling for 3 warmup iters and 10 profile iters
+[GPU_0] Set GPU power limit to 150W.
+Warm-up started with power limit 150W
+Profiling... [128/50048]	Loss: 4.6130
+Profiling... [256/50048]	Loss: 4.6283
+Profiling... [384/50048]	Loss: 4.7492
+Profiling... [512/50048]	Loss: 4.8262
+Profiling... [640/50048]	Loss: 4.6930
+Profiling... [768/50048]	Loss: 4.7732
+Profiling... [896/50048]	Loss: 4.6457
+Profiling... [1024/50048]	Loss: 4.7883
+Profiling... [1152/50048]	Loss: 4.6594
+Profiling... [1280/50048]	Loss: 4.6922
+Profiling... [1408/50048]	Loss: 4.6137
+Profiling... [1536/50048]	Loss: 4.5900
+Profiling... [1664/50048]	Loss: 4.6327
+Profile done
+epoch 1 train time consumed: 3.17s
+Validation Epoch: 0, Average loss: 0.0364, Accuracy: 0.0099
+[ProfileDataLoader] writing cost to history_all.py
+
+                    {
+                        "profile_threshold": 0.0,
+                        "bs": 128,
+                        "pl": 150000,
+                        "lr": 0.001,
+                        "dr": 0.5,
+                        "energy": 117.35097320435989,
+                        "time": 2.1878147839997837,
+                        "accuracy": 0.009889240506329115,
+                        "total_cost": 19370766.09416344
+                    },
+                    
+[Training Loop] Profiling with batch size 128 learning rate 0.001 dropout rate 0.5 power limit 125
+ProfileDataLoader constructor: called constructor of DataLoader!
+ProfileDataLoader constructor: called constructor of DataLoader!
+[ProfileDataLoader] Profiling for 3 warmup iters and 10 profile iters
+[GPU_0] Set GPU power limit to 125W.
+Warm-up started with power limit 125W
+Profiling... [128/50048]	Loss: 4.6331
+Profiling... [256/50048]	Loss: 4.6504
+Profiling... [384/50048]	Loss: 4.7704
+Profiling... [512/50048]	Loss: 4.6681
+Profiling... [640/50048]	Loss: 4.5775
+Profiling... [768/50048]	Loss: 4.7749
+Profiling... [896/50048]	Loss: 4.7660
+Profiling... [1024/50048]	Loss: 4.6350
+Profiling... [1152/50048]	Loss: 4.7093
+Profiling... [1280/50048]	Loss: 4.6366
+Profiling... [1408/50048]	Loss: 4.6699
+Profiling... [1536/50048]	Loss: 4.6662
+Profiling... [1664/50048]	Loss: 4.6770
+Profile done
+epoch 1 train time consumed: 3.33s
+Validation Epoch: 0, Average loss: 0.0363, Accuracy: 0.0099
+[ProfileDataLoader] writing cost to history_all.py
+
+                    {
+                        "profile_threshold": 0.0,
+                        "bs": 128,
+                        "pl": 125000,
+                        "lr": 0.001,
+                        "dr": 0.5,
+                        "energy": 118.23644570581904,
+                        "time": 2.3968410429997675,
+                        "accuracy": 0.009889240506329115,
+                        "total_cost": 21221577.947375122
+                    },
+                    
+[Training Loop] Profiling with batch size 128 learning rate 0.001 dropout rate 0.5 power limit 100
+ProfileDataLoader constructor: called constructor of DataLoader!
+ProfileDataLoader constructor: called constructor of DataLoader!
+[ProfileDataLoader] Profiling for 3 warmup iters and 10 profile iters
+[GPU_0] Set GPU power limit to 100W.
+Warm-up started with power limit 100W
+Profiling... [128/50048]	Loss: 4.6360
+Profiling... [256/50048]	Loss: 4.6374
+Profiling... [384/50048]	Loss: 4.6927
+Profiling... [512/50048]	Loss: 4.7191
+Profiling... [640/50048]	Loss: 4.8210
+Profiling... [768/50048]	Loss: 4.7363
+Profiling... [896/50048]	Loss: 4.7495
+Profiling... [1024/50048]	Loss: 4.6746
+Profiling... [1152/50048]	Loss: 4.5691
+Profiling... [1280/50048]	Loss: 4.6700
+Profiling... [1408/50048]	Loss: 4.7538
+Profiling... [1536/50048]	Loss: 4.5323
+Profiling... [1664/50048]	Loss: 4.5757
+Profile done
+epoch 1 train time consumed: 6.48s
+Validation Epoch: 0, Average loss: 0.0364, Accuracy: 0.0099
+[ProfileDataLoader] writing cost to history_all.py
+
+                    {
+                        "profile_threshold": 0.0,
+                        "bs": 128,
+                        "pl": 100000,
+                        "lr": 0.001,
+                        "dr": 0.5,
+                        "energy": 117.07196632434116,
+                        "time": 4.789831062000303,
+                        "accuracy": 0.009889240506329115,
+                        "total_cost": 42408777.00638501
+                    },
+                    
+[Training Loop] Profiling with batch size 128 learning rate 0.005 dropout rate 0.0 power limit 175
+ProfileDataLoader constructor: called constructor of DataLoader!
+ProfileDataLoader constructor: called constructor of DataLoader!
+[ProfileDataLoader] Profiling for 3 warmup iters and 10 profile iters
+[GPU_0] Set GPU power limit to 175W.
+Warm-up started with power limit 175W
+Profiling... [128/50048]	Loss: 4.6396
+Profiling... [256/50048]	Loss: 6.1421
+Profiling... [384/50048]	Loss: 6.1373
+Profiling... [512/50048]	Loss: 5.6425
+Profiling... [640/50048]	Loss: 5.0746
+Profiling... [768/50048]	Loss: 4.8879
+Profiling... [896/50048]	Loss: 4.8848
+Profiling... [1024/50048]	Loss: 4.9241
+Profiling... [1152/50048]	Loss: 4.7452
+Profiling... [1280/50048]	Loss: 4.8598
+Profiling... [1408/50048]	Loss: 4.8436
+Profiling... [1536/50048]	Loss: 4.6821
+Profiling... [1664/50048]	Loss: 4.6239
+Profile done
+epoch 1 train time consumed: 3.28s
+Validation Epoch: 0, Average loss: 0.0365, Accuracy: 0.0099
+[ProfileDataLoader] writing cost to history_all.py
+
+                    {
+                        "profile_threshold": 0.0,
+                        "bs": 128,
+                        "pl": 175000,
+                        "lr": 0.005,
+                        "dr": 0.0,
+                        "energy": 115.81979907157937,
+                        "time": 2.1697064740001224,
+                        "accuracy": 0.009889240506329115,
+                        "total_cost": 19210268.355528235
+                    },
+                    
+[Training Loop] Profiling with batch size 128 learning rate 0.005 dropout rate 0.0 power limit 150
+ProfileDataLoader constructor: called constructor of DataLoader!
+ProfileDataLoader constructor: called constructor of DataLoader!
+[ProfileDataLoader] Profiling for 3 warmup iters and 10 profile iters
+[GPU_0] Set GPU power limit to 150W.
+Warm-up started with power limit 150W
+Profiling... [128/50048]	Loss: 4.6061
+Profiling... [256/50048]	Loss: 5.5893
+Profiling... [384/50048]	Loss: 5.5986
+Profiling... [512/50048]	Loss: 5.9093
+Profiling... [640/50048]	Loss: 5.2409
+Profiling... [768/50048]	Loss: 5.0527
+Profiling... [896/50048]	Loss: 4.9066
+Profiling... [1024/50048]	Loss: 4.8080
+Profiling... [1152/50048]	Loss: 5.0253
+Profiling... [1280/50048]	Loss: 4.6654
+Profiling... [1408/50048]	Loss: 4.7599
+Profiling... [1536/50048]	Loss: 4.7137
+Profiling... [1664/50048]	Loss: 4.7957
+Profile done
+epoch 1 train time consumed: 3.15s
+Validation Epoch: 0, Average loss: 0.0367, Accuracy: 0.0107
+[ProfileDataLoader] writing cost to history_all.py
+
+                    {
+                        "profile_threshold": 0.0,
+                        "bs": 128,
+                        "pl": 150000,
+                        "lr": 0.005,
+                        "dr": 0.0,
+                        "energy": 116.87760468531914,
+                        "time": 2.174462114000562,
+                        "accuracy": 0.010680379746835443,
+                        "total_cost": 17826380.002372433
+                    },
+                    
+[Training Loop] Profiling with batch size 128 learning rate 0.005 dropout rate 0.0 power limit 125
+ProfileDataLoader constructor: called constructor of DataLoader!
+ProfileDataLoader constructor: called constructor of DataLoader!
+[ProfileDataLoader] Profiling for 3 warmup iters and 10 profile iters
+[GPU_0] Set GPU power limit to 125W.
+Warm-up started with power limit 125W
+Profiling... [128/50048]	Loss: 4.6462
+Profiling... [256/50048]	Loss: 5.7860
+Profiling... [384/50048]	Loss: 6.2009
+Profiling... [512/50048]	Loss: 5.1941
+Profiling... [640/50048]	Loss: 5.2865
+Profiling... [768/50048]	Loss: 5.1579
+Profiling... [896/50048]	Loss: 4.9702
+Profiling... [1024/50048]	Loss: 4.7335
+Profiling... [1152/50048]	Loss: 4.7734
+Profiling... [1280/50048]	Loss: 4.7456
+Profiling... [1408/50048]	Loss: 4.6841
+Profiling... [1536/50048]	Loss: 4.6825
+Profiling... [1664/50048]	Loss: 4.7391
+Profile done
+epoch 1 train time consumed: 3.42s
+Validation Epoch: 0, Average loss: 0.0371, Accuracy: 0.0099
+[ProfileDataLoader] writing cost to history_all.py
+
+                    {
+                        "profile_threshold": 0.0,
+                        "bs": 128,
+                        "pl": 125000,
+                        "lr": 0.005,
+                        "dr": 0.0,
+                        "energy": 117.52732945248493,
+                        "time": 2.4085283510003137,
+                        "accuracy": 0.009889240506329115,
+                        "total_cost": 21324970.76292776
+                    },
+                    
+[Training Loop] Profiling with batch size 128 learning rate 0.005 dropout rate 0.0 power limit 100
+ProfileDataLoader constructor: called constructor of DataLoader!
+ProfileDataLoader constructor: called constructor of DataLoader!
+[ProfileDataLoader] Profiling for 3 warmup iters and 10 profile iters
+[GPU_0] Set GPU power limit to 100W.
+Warm-up started with power limit 100W
+Profiling... [128/50048]	Loss: 4.6179
+Profiling... [256/50048]	Loss: 5.7711
+Profiling... [384/50048]	Loss: 5.9491
+Profiling... [512/50048]	Loss: 5.7629
+Profiling... [640/50048]	Loss: 5.3355
+Profiling... [768/50048]	Loss: 5.2211
+Profiling... [896/50048]	Loss: 4.9020
+Profiling... [1024/50048]	Loss: 4.8331
+Profiling... [1152/50048]	Loss: 4.8066
+Profiling... [1280/50048]	Loss: 4.8245
+Profiling... [1408/50048]	Loss: 4.9512
+Profiling... [1536/50048]	Loss: 4.7764
+Profiling... [1664/50048]	Loss: 4.7175
+Profile done
+epoch 1 train time consumed: 6.55s
+Validation Epoch: 0, Average loss: 0.0376, Accuracy: 0.0099
+[ProfileDataLoader] writing cost to history_all.py
+
+                    {
+                        "profile_threshold": 0.0,
+                        "bs": 128,
+                        "pl": 100000,
+                        "lr": 0.005,
+                        "dr": 0.0,
+                        "energy": 116.67464620142393,
+                        "time": 4.84041196599992,
+                        "accuracy": 0.009889240506329115,
+                        "total_cost": 42856519.00472541
+                    },
+                    
+[Training Loop] Profiling with batch size 128 learning rate 0.005 dropout rate 0.25 power limit 175
+ProfileDataLoader constructor: called constructor of DataLoader!
+ProfileDataLoader constructor: called constructor of DataLoader!
+[ProfileDataLoader] Profiling for 3 warmup iters and 10 profile iters
+[GPU_0] Set GPU power limit to 175W.
+Warm-up started with power limit 175W
+Profiling... [128/50048]	Loss: 4.6212
+Profiling... [256/50048]	Loss: 5.9611
+Profiling... [384/50048]	Loss: 6.1123
+Profiling... [512/50048]	Loss: 5.3002
+Profiling... [640/50048]	Loss: 5.1520
+Profiling... [768/50048]	Loss: 5.0781
+Profiling... [896/50048]	Loss: 4.9199
+Profiling... [1024/50048]	Loss: 4.7995
+Profiling... [1152/50048]	Loss: 4.9245
+Profiling... [1280/50048]	Loss: 4.7213
+Profiling... [1408/50048]	Loss: 4.7665
+Profiling... [1536/50048]	Loss: 4.7705
+Profiling... [1664/50048]	Loss: 4.7276
+Profile done
+epoch 1 train time consumed: 3.16s
+Validation Epoch: 0, Average loss: 0.0378, Accuracy: 0.0099
+[ProfileDataLoader] writing cost to history_all.py
+
+                    {
+                        "profile_threshold": 0.0,
+                        "bs": 128,
+                        "pl": 175000,
+                        "lr": 0.005,
+                        "dr": 0.25,
+                        "energy": 115.66261704509687,
+                        "time": 2.1724343739997494,
+                        "accuracy": 0.009889240506329115,
+                        "total_cost": 19234403.52429179
+                    },
+                    
+[Training Loop] Profiling with batch size 128 learning rate 0.005 dropout rate 0.25 power limit 150
+ProfileDataLoader constructor: called constructor of DataLoader!
+ProfileDataLoader constructor: called constructor of DataLoader!
+[ProfileDataLoader] Profiling for 3 warmup iters and 10 profile iters
+[GPU_0] Set GPU power limit to 150W.
+Warm-up started with power limit 150W
+Profiling... [128/50048]	Loss: 4.6301
+Profiling... [256/50048]	Loss: 5.9557
+Profiling... [384/50048]	Loss: 5.5830
+Profiling... [512/50048]	Loss: 5.4382
+Profiling... [640/50048]	Loss: 5.3271
+Profiling... [768/50048]	Loss: 5.0425
+Profiling... [896/50048]	Loss: 5.1243
+Profiling... [1024/50048]	Loss: 4.7647
+Profiling... [1152/50048]	Loss: 4.9700
+Profiling... [1280/50048]	Loss: 4.7599
+Profiling... [1408/50048]	Loss: 4.8653
+Profiling... [1536/50048]	Loss: 4.5721
+Profiling... [1664/50048]	Loss: 4.6556
+Profile done
+epoch 1 train time consumed: 3.14s
+Validation Epoch: 0, Average loss: 0.0371, Accuracy: 0.0099
+[ProfileDataLoader] writing cost to history_all.py
+
+                    {
+                        "profile_threshold": 0.0,
+                        "bs": 128,
+                        "pl": 150000,
+                        "lr": 0.005,
+                        "dr": 0.25,
+                        "energy": 116.49681813113392,
+                        "time": 2.1826841170004627,
+                        "accuracy": 0.009889240506329115,
+                        "total_cost": 19325245.249373473
+                    },
+                    
+[Training Loop] Profiling with batch size 128 learning rate 0.005 dropout rate 0.25 power limit 125
+ProfileDataLoader constructor: called constructor of DataLoader!
+ProfileDataLoader constructor: called constructor of DataLoader!
+[ProfileDataLoader] Profiling for 3 warmup iters and 10 profile iters
+[GPU_0] Set GPU power limit to 125W.
+Warm-up started with power limit 125W
+Profiling... [128/50048]	Loss: 4.6068
+Profiling... [256/50048]	Loss: 6.0867
+Profiling... [384/50048]	Loss: 5.7437
+Profiling... [512/50048]	Loss: 5.2272
+Profiling... [640/50048]	Loss: 5.1271
+Profiling... [768/50048]	Loss: 4.9286
+Profiling... [896/50048]	Loss: 4.9588
+Profiling... [1024/50048]	Loss: 4.6290
+Profiling... [1152/50048]	Loss: 4.8981
+Profiling... [1280/50048]	Loss: 4.6610
+Profiling... [1408/50048]	Loss: 4.7051
+Profiling... [1536/50048]	Loss: 4.6897
+Profiling... [1664/50048]	Loss: 4.9850
+Profile done
+epoch 1 train time consumed: 3.39s
+Validation Epoch: 0, Average loss: 0.0370, Accuracy: 0.0099
+[ProfileDataLoader] writing cost to history_all.py
+
+                    {
+                        "profile_threshold": 0.0,
+                        "bs": 128,
+                        "pl": 125000,
+                        "lr": 0.005,
+                        "dr": 0.25,
+                        "energy": 117.01417008513175,
+                        "time": 2.3996254719995704,
+                        "accuracy": 0.009889240506329115,
+                        "total_cost": 21246082.927910805
+                    },
+                    
+[Training Loop] Profiling with batch size 128 learning rate 0.005 dropout rate 0.25 power limit 100
+ProfileDataLoader constructor: called constructor of DataLoader!
+ProfileDataLoader constructor: called constructor of DataLoader!
+[ProfileDataLoader] Profiling for 3 warmup iters and 10 profile iters
+[GPU_0] Set GPU power limit to 100W.
+Warm-up started with power limit 100W
+Profiling... [128/50048]	Loss: 4.6294
+Profiling... [256/50048]	Loss: 5.5879
+Profiling... [384/50048]	Loss: 5.9327
+Profiling... [512/50048]	Loss: 5.4690
+Profiling... [640/50048]	Loss: 5.2815
+Profiling... [768/50048]	Loss: 4.9364
+Profiling... [896/50048]	Loss: 5.1510
+Profiling... [1024/50048]	Loss: 4.7319
+Profiling... [1152/50048]	Loss: 4.8826
+Profiling... [1280/50048]	Loss: 5.0985
+Profiling... [1408/50048]	Loss: 4.8353
+Profiling... [1536/50048]	Loss: 4.8494
+Profiling... [1664/50048]	Loss: 4.6571
+Profile done
+epoch 1 train time consumed: 6.58s
+Validation Epoch: 0, Average loss: 0.0375, Accuracy: 0.0099
+[ProfileDataLoader] writing cost to history_all.py
+
+                    {
+                        "profile_threshold": 0.0,
+                        "bs": 128,
+                        "pl": 100000,
+                        "lr": 0.005,
+                        "dr": 0.25,
+                        "energy": 116.41258825450846,
+                        "time": 4.848095213999841,
+                        "accuracy": 0.009889240506329115,
+                        "total_cost": 42924481.471483596
+                    },
+                    
+[Training Loop] Profiling with batch size 128 learning rate 0.005 dropout rate 0.5 power limit 175
+ProfileDataLoader constructor: called constructor of DataLoader!
+ProfileDataLoader constructor: called constructor of DataLoader!
+[ProfileDataLoader] Profiling for 3 warmup iters and 10 profile iters
+[GPU_0] Set GPU power limit to 175W.
+Warm-up started with power limit 175W
+Profiling... [128/50048]	Loss: 4.6255
+Profiling... [256/50048]	Loss: 5.8810
+Profiling... [384/50048]	Loss: 5.7816
+Profiling... [512/50048]	Loss: 5.6243
+Profiling... [640/50048]	Loss: 5.3134
+Profiling... [768/50048]	Loss: 5.1447
+Profiling... [896/50048]	Loss: 4.8798
+Profiling... [1024/50048]	Loss: 5.0984
+Profiling... [1152/50048]	Loss: 4.7876
+Profiling... [1280/50048]	Loss: 4.7929
+Profiling... [1408/50048]	Loss: 4.9103
+Profiling... [1536/50048]	Loss: 4.7417
+Profiling... [1664/50048]	Loss: 4.7840
+Profile done
+epoch 1 train time consumed: 3.47s
+Validation Epoch: 0, Average loss: 0.0376, Accuracy: 0.0099
+[ProfileDataLoader] writing cost to history_all.py
+
+                    {
+                        "profile_threshold": 0.0,
+                        "bs": 128,
+                        "pl": 175000,
+                        "lr": 0.005,
+                        "dr": 0.5,
+                        "energy": 115.62689777729773,
+                        "time": 2.165752988999884,
+                        "accuracy": 0.009889240506329115,
+                        "total_cost": 19175243.646452174
+                    },
+                    
+[Training Loop] Profiling with batch size 128 learning rate 0.005 dropout rate 0.5 power limit 150
+ProfileDataLoader constructor: called constructor of DataLoader!
+ProfileDataLoader constructor: called constructor of DataLoader!
+[ProfileDataLoader] Profiling for 3 warmup iters and 10 profile iters
+[GPU_0] Set GPU power limit to 150W.
+Warm-up started with power limit 150W
+Profiling... [128/50048]	Loss: 4.6250
+Profiling... [256/50048]	Loss: 5.5485
+Profiling... [384/50048]	Loss: 6.0874
+Profiling... [512/50048]	Loss: 5.6894
+Profiling... [640/50048]	Loss: 5.4180
+Profiling... [768/50048]	Loss: 4.9926
+Profiling... [896/50048]	Loss: 4.9631
+Profiling... [1024/50048]	Loss: 4.7251
+Profiling... [1152/50048]	Loss: 4.7935
+Profiling... [1280/50048]	Loss: 4.7074
+Profiling... [1408/50048]	Loss: 4.9769
+Profiling... [1536/50048]	Loss: 4.8232
+Profiling... [1664/50048]	Loss: 4.9645
+Profile done
+epoch 1 train time consumed: 3.13s
+Validation Epoch: 0, Average loss: 0.0372, Accuracy: 0.0099
+[ProfileDataLoader] writing cost to history_all.py
+
+                    {
+                        "profile_threshold": 0.0,
+                        "bs": 128,
+                        "pl": 150000,
+                        "lr": 0.005,
+                        "dr": 0.5,
+                        "energy": 116.26722749042034,
+                        "time": 2.1657511470002646,
+                        "accuracy": 0.009889240506329115,
+                        "total_cost": 19175297.454016663
+                    },
+                    
+[Training Loop] Profiling with batch size 128 learning rate 0.005 dropout rate 0.5 power limit 125
+ProfileDataLoader constructor: called constructor of DataLoader!
+ProfileDataLoader constructor: called constructor of DataLoader!
+[ProfileDataLoader] Profiling for 3 warmup iters and 10 profile iters
+[GPU_0] Set GPU power limit to 125W.
+Warm-up started with power limit 125W
+Profiling... [128/50048]	Loss: 4.6265
+Profiling... [256/50048]	Loss: 5.4471
+Profiling... [384/50048]	Loss: 5.6120
+Profiling... [512/50048]	Loss: 5.2727
+Profiling... [640/50048]	Loss: 5.1333
+Profiling... [768/50048]	Loss: 4.9547
+Profiling... [896/50048]	Loss: 4.9336
+Profiling... [1024/50048]	Loss: 4.6854
+Profiling... [1152/50048]	Loss: 4.9169
+Profiling... [1280/50048]	Loss: 4.8768
+Profiling... [1408/50048]	Loss: 4.8580
+Profiling... [1536/50048]	Loss: 4.6670
+Profiling... [1664/50048]	Loss: 4.7433
+Profile done
+epoch 1 train time consumed: 3.33s
+Validation Epoch: 0, Average loss: 0.0368, Accuracy: 0.0099
+[ProfileDataLoader] writing cost to history_all.py
+
+                    {
+                        "profile_threshold": 0.0,
+                        "bs": 128,
+                        "pl": 125000,
+                        "lr": 0.005,
+                        "dr": 0.5,
+                        "energy": 116.72073189426992,
+                        "time": 2.39310506899983,
+                        "accuracy": 0.009889240506329115,
+                        "total_cost": 21188316.32125426
+                    },
+                    
+[Training Loop] Profiling with batch size 128 learning rate 0.005 dropout rate 0.5 power limit 100
+ProfileDataLoader constructor: called constructor of DataLoader!
+ProfileDataLoader constructor: called constructor of DataLoader!
+[ProfileDataLoader] Profiling for 3 warmup iters and 10 profile iters
+[GPU_0] Set GPU power limit to 100W.
+Warm-up started with power limit 100W
+Profiling... [128/50048]	Loss: 4.6274
+Profiling... [256/50048]	Loss: 5.6340
+Profiling... [384/50048]	Loss: 5.9047
+Profiling... [512/50048]	Loss: 5.1351
+Profiling... [640/50048]	Loss: 5.4808
+Profiling... [768/50048]	Loss: 4.9506
+Profiling... [896/50048]	Loss: 5.1501
+Profiling... [1024/50048]	Loss: 4.8911
+Profiling... [1152/50048]	Loss: 4.8456
+Profiling... [1280/50048]	Loss: 4.7352
+Profiling... [1408/50048]	Loss: 4.9643
+Profiling... [1536/50048]	Loss: 4.7828
+Profiling... [1664/50048]	Loss: 4.7268
+Profile done
+epoch 1 train time consumed: 6.26s
+Validation Epoch: 0, Average loss: 0.0368, Accuracy: 0.0099
+[ProfileDataLoader] writing cost to history_all.py
+
+                    {
+                        "profile_threshold": 0.0,
+                        "bs": 128,
+                        "pl": 100000,
+                        "lr": 0.005,
+                        "dr": 0.5,
+                        "energy": 116.26789318976812,
+                        "time": 4.547290604000409,
+                        "accuracy": 0.009889240506329115,
+                        "total_cost": 40261158.53329108
+                    },
+                    
+[Training Loop] Profiling with batch size 128 learning rate 0.01 dropout rate 0.0 power limit 175
+ProfileDataLoader constructor: called constructor of DataLoader!
+ProfileDataLoader constructor: called constructor of DataLoader!
+[ProfileDataLoader] Profiling for 3 warmup iters and 10 profile iters
+[GPU_0] Set GPU power limit to 175W.
+Warm-up started with power limit 175W
+Profiling... [128/50048]	Loss: 4.6409
+Profiling... [256/50048]	Loss: 7.5720
+Profiling... [384/50048]	Loss: 7.9284
+Profiling... [512/50048]	Loss: 5.5449
+Profiling... [640/50048]	Loss: 5.7912
+Profiling... [768/50048]	Loss: 5.0169
+Profiling... [896/50048]	Loss: 5.3013
+Profiling... [1024/50048]	Loss: 4.8364
+Profiling... [1152/50048]	Loss: 5.5104
+Profiling... [1280/50048]	Loss: 5.0787
+Profiling... [1408/50048]	Loss: 4.7143
+Profiling... [1536/50048]	Loss: 5.2611
+Profiling... [1664/50048]	Loss: 4.8234
+Profile done
+epoch 1 train time consumed: 3.17s
+Validation Epoch: 0, Average loss: 0.0361, Accuracy: 0.0099
+[ProfileDataLoader] writing cost to history_all.py
+
+                    {
+                        "profile_threshold": 0.0,
+                        "bs": 128,
+                        "pl": 175000,
+                        "lr": 0.01,
+                        "dr": 0.0,
+                        "energy": 115.60679038835613,
+                        "time": 2.1774962279996544,
+                        "accuracy": 0.009889240506329115,
+                        "total_cost": 19279214.26351703
+                    },
+                    
+[Training Loop] Profiling with batch size 128 learning rate 0.01 dropout rate 0.0 power limit 150
+ProfileDataLoader constructor: called constructor of DataLoader!
+ProfileDataLoader constructor: called constructor of DataLoader!
+[ProfileDataLoader] Profiling for 3 warmup iters and 10 profile iters
+[GPU_0] Set GPU power limit to 150W.
+Warm-up started with power limit 150W
+Profiling... [128/50048]	Loss: 4.6457
+Profiling... [256/50048]	Loss: 7.2421
+Profiling... [384/50048]	Loss: 7.4171
+Profiling... [512/50048]	Loss: 5.8686
+Profiling... [640/50048]	Loss: 5.4583
+Profiling... [768/50048]	Loss: 5.2401
+Profiling... [896/50048]	Loss: 5.3758
+Profiling... [1024/50048]	Loss: 4.9030
+Profiling... [1152/50048]	Loss: 4.8494
+Profiling... [1280/50048]	Loss: 4.9181
+Profiling... [1408/50048]	Loss: 4.7235
+Profiling... [1536/50048]	Loss: 4.7743
+Profiling... [1664/50048]	Loss: 4.7983
+Profile done
+epoch 1 train time consumed: 3.19s
+Validation Epoch: 0, Average loss: 0.0360, Accuracy: 0.0099
+[ProfileDataLoader] writing cost to history_all.py
+
+                    {
+                        "profile_threshold": 0.0,
+                        "bs": 128,
+                        "pl": 150000,
+                        "lr": 0.01,
+                        "dr": 0.0,
+                        "energy": 116.15625725402052,
+                        "time": 2.165191264999521,
+                        "accuracy": 0.009889240506329115,
+                        "total_cost": 19170328.178682435
+                    },
+                    
+[Training Loop] Profiling with batch size 128 learning rate 0.01 dropout rate 0.0 power limit 125
+ProfileDataLoader constructor: called constructor of DataLoader!
+ProfileDataLoader constructor: called constructor of DataLoader!
+[ProfileDataLoader] Profiling for 3 warmup iters and 10 profile iters
+[GPU_0] Set GPU power limit to 125W.
+Warm-up started with power limit 125W
+Profiling... [128/50048]	Loss: 4.6150
+Profiling... [256/50048]	Loss: 7.7673
+Profiling... [384/50048]	Loss: 6.8424
+Profiling... [512/50048]	Loss: 5.6398
+Profiling... [640/50048]	Loss: 4.9228
+Profiling... [768/50048]	Loss: 4.7790
+Profiling... [896/50048]	Loss: 5.0867
+Profiling... [1024/50048]	Loss: 4.8481
+Profiling... [1152/50048]	Loss: 4.8760
+Profiling... [1280/50048]	Loss: 4.8180
+Profiling... [1408/50048]	Loss: 5.0543
+Profiling... [1536/50048]	Loss: 4.9089
+Profiling... [1664/50048]	Loss: 4.9209
+Profile done
+epoch 1 train time consumed: 3.45s
+Validation Epoch: 0, Average loss: 0.0360, Accuracy: 0.0099
+[ProfileDataLoader] writing cost to history_all.py
+
+                    {
+                        "profile_threshold": 0.0,
+                        "bs": 128,
+                        "pl": 125000,
+                        "lr": 0.01,
+                        "dr": 0.0,
+                        "energy": 116.55655929351228,
+                        "time": 2.3993905090001135,
+                        "accuracy": 0.009889240506329115,
+                        "total_cost": 21243947.070972722
+                    },
+                    
+[Training Loop] Profiling with batch size 128 learning rate 0.01 dropout rate 0.0 power limit 100
+ProfileDataLoader constructor: called constructor of DataLoader!
+ProfileDataLoader constructor: called constructor of DataLoader!
+[ProfileDataLoader] Profiling for 3 warmup iters and 10 profile iters
+[GPU_0] Set GPU power limit to 100W.
+Warm-up started with power limit 100W
+Profiling... [128/50048]	Loss: 4.5763
+Profiling... [256/50048]	Loss: 7.7281
+Profiling... [384/50048]	Loss: 7.5635
+Profiling... [512/50048]	Loss: 6.2657
+Profiling... [640/50048]	Loss: 5.5347
+Profiling... [768/50048]	Loss: 4.7275
+Profiling... [896/50048]	Loss: 5.0467
+Profiling... [1024/50048]	Loss: 5.2458
+Profiling... [1152/50048]	Loss: 4.7485
+Profiling... [1280/50048]	Loss: 4.9187
+Profiling... [1408/50048]	Loss: 4.5451
+Profiling... [1536/50048]	Loss: 5.3551
+Profiling... [1664/50048]	Loss: 4.8312
+Profile done
+epoch 1 train time consumed: 6.65s
+Stopped Zeus monitor 0.

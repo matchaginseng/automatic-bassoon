@@ -9,12 +9,18 @@ from zeus2.job import Job
 from zeus2.profiler import Profiler
 from zeus.util import FileAndConsole
 
+import torch
+from torch import nn, optim
+from torch.utils.data import DataLoader
+from torchvision import datasets, transforms
+
+
 
 def parse_args() -> argparse.Namespace:
     """Parse commandline arguments."""
     parser = argparse.ArgumentParser()
 
-    # This random seed is used for
+    # This random seed is a legacy from Zeus. It was originally used for
     # 1. Multi-Armed Bandit inside PruningGTSBatchSizeOptimizer, and
     # 2. Providing random seeds for training.
     # Especially for 2, the random seed given to the nth recurrence job is args.seed + n.
@@ -65,31 +71,28 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--max_epochs", type=int, default=100, help="Max number of epochs to train"
     )
+    parser.add_argument("--warmup_iters", type=int, default=3)
+    parser.add_argument("--profile_iters", type=int, default=10)
+    parser.add_argument('--acc_thresholds', type=float, nargs='+', default=[], help="Accuracy thresholds to profile on.")
+    parser.add_argument('--batch_sizes', type=int, nargs='+', default=[], help="Batch sizes to profile over.")
+    parser.add_argument('--learning_rates', type=float, nargs='+', default=[], help="Learning rates to profile over.")
+    parser.add_argument('--dropout_rates', type=float, nargs='+', default=[], help="Dropout rates to profile over.")
 
     return parser.parse_args()
 
 
 def main(args: argparse.Namespace) -> None:
-    """Run Zeus on CIFAR100."""
+    """Run automatic-bassoon on CIFAR100."""
 
-    # The top-level class for running Zeus.
-    # - The batch size optimizer is desinged as a pluggable policy.
+    # The top-level class for running automatic-bassoon.
     # - Paths (log_base and monitor_path) assume our Docker image's directory structure.
-    # - For CIFAR100, one epoch of training may not take even ten seconds (especially for
-    #   small models like squeezenet). ZeusDataLoader automatically handles profiling power
-    #   limits over multiple training epochs such that the profiling window of each power
-    #   limit fully fits in one epoch. However, the epoch duration may be so short that
-    #   profiling even one power limit may not fully fit in one epoch. In such cases,
-    #   ZeusDataLoader raises a RuntimeError, and the profiling window should be narrowed
-    #   by giving smaller values to profile_warmup_iters and profile_measure_iters in the
-    #   constructor of ZeusMaster.
     master = Profiler(
         log_base="/workspace/zeus_logs",
         seed=args.seed,
         monitor_path="/workspace/zeus/zeus_monitor/zeus_monitor",
         observer_mode=False,
-        profile_warmup_iters=10,
-        profile_measure_iters=40,
+        profile_warmup_iters=args.warmup_iters,
+        profile_measure_iters=args.profile_iters,
     )
 
     # Definition of the CIFAR100 job.
@@ -115,38 +118,12 @@ def main(args: argparse.Namespace) -> None:
             "--epochs", "{epochs}",
             "--seed", "{seed}",
             "--learning_rate", "{learning_rate}",
+            "--dropout_rate", "{dropout_rate}",
             "--power_limit", "{power_limit}",
-            # "--dropout_rate", "{dropout_rate}"
         ],
         # fmt: on
     )
 
-    # Generate a list of batch sizes with only power-of-two values.
-    batch_sizes = [args.b_min]
-    lr_factors = [args.lrf_min + x*(args.lrf_max-args.lrf_min)/(args.num_lrf - 1) for x in range(args.num_lrf)]
-    while (bs := batch_sizes[-1] * 2) <= args.b_max:
-        batch_sizes.append(bs)
-
-    # TODO: Edit this comment
-    # Create a designated log directory inside `args.log_base` just for this run of Zeus.
-    # Six types of outputs are generated.
-    # 1. Power monitor ouptut (`bs{batch_size}+e{epoch_num}.power.log`):
-    #      Raw output of the Zeus power monitor.
-    # 2. Profiling results (`bs{batch_size}.power.json`):
-    #      Train-time average power consumption and throughput for each power limit,
-    #      the optimal power limit determined from the result of profiling, and
-    #      eval-time average power consumption and throughput for the optimal power limit.
-    # 3. Training script output (`rec{recurrence_num}+try{trial_num}.train.log`):
-    #      The raw output of the training script. `trial_num` exists because the job
-    #      may be early stopped and re-run with another batch size.
-    # 4. Training result (`rec{recurrence_num}+try{trial_num}+bs{batch_size}.train.json`):
-    #      The total energy, time, and cost consumed, and the number of epochs trained
-    #      until the job terminated. Also, whether the job reached the target metric at the
-    #      time of termination. Early-stopped jobs will not have reached their target metric.
-    # 5. ZeusMaster output (`master.log`): Output from ZeusMaster, including MAB outputs.
-    # 6. Job history (`history.py`):
-    #      A python file holding a list of `HistoryEntry` objects. Intended use is:
-    #      `history = eval(open("history.py").read())` after importing `HistoryEntry`.
     master_logdir = master.build_logdir(
         job=job,
         eta_knob=args.eta_knob,
@@ -158,17 +135,53 @@ def main(args: argparse.Namespace) -> None:
     # all calls to `print` will write to both the console and the master log file.
     sys.stdout = FileAndConsole(Path(master_logdir) / "master.log")
 
-    # Run Zeus!
-    bs, lrf, pl = master.profile(
-        job=job,
-        learning_rate_factors=lr_factors,
-        batch_sizes=batch_sizes,
-        beta_knob=args.beta_knob,
-        eta_knob=args.eta_knob,
+    # Prepare datasets.
+    train_dataset = datasets.CIFAR100(
+            root="data",
+            train=True,
+            download=True,
+            transform=transforms.Compose(
+                [
+                    transforms.RandomCrop(32, padding=4),
+                    transforms.RandomHorizontalFlip(),
+                    transforms.RandomRotation(15),
+                    transforms.ToTensor(),
+                    transforms.Normalize(
+                        mean=(0.5070751592371323, 0.48654887331495095, 0.4409178433670343),
+                        std=(0.2673342858792401, 0.2564384629170883, 0.27615047132568404),
+                    ),
+                ]
+            ),
+        )
+
+    val_dataset = datasets.CIFAR100(
+            root="data",
+            train=False,
+            download=True,
+            transform=transforms.Compose(
+                [
+                    transforms.ToTensor(),
+                    transforms.Normalize(
+                        mean=(0.5070751592371323, 0.48654887331495095, 0.4409178433670343),
+                        std=(0.2673342858792401, 0.2564384629170883, 0.27615047132568404),
+                    ),
+                ]
+            ),
+        )
+    
+    master.train_with_profiling(
+        job=job, 
+        eta_knob=args.eta_knob, 
+        beta_knob=args.beta_knob, 
+        train_dataset=train_dataset, 
+        val_dataset=val_dataset,
+        target_acc=args.target_metric,
+        n_epochs=args.max_epochs,
+        acc_thresholds=args.acc_thresholds,
+        batch_sizes=args.batch_sizes,
+        learning_rates=args.learning_rates,
+        dropout_rates=args.dropout_rates
     )
-
-    print(f"optimized batch size: {bs}, learning rate factor: {lrf}, power limit: {pl}")
-
 
 if __name__ == "__main__":
     main(parse_args())

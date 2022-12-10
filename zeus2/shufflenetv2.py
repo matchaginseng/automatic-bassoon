@@ -99,7 +99,7 @@ class ShuffleUnit(nn.Module):
 
 class ShuffleNetV2(nn.Module):
 
-    def __init__(self, ratio=1, class_num=100):
+    def __init__(self, ratio=1, class_num=100, dropout_prob=0.2):
         super().__init__()
         if ratio == 0.5:
             out_channels = [48, 96, 192, 1024]
@@ -118,6 +118,7 @@ class ShuffleNetV2(nn.Module):
         )
 
         self.stage2 = self._make_stage(24, out_channels[0], 3)
+        self.dropout = nn.Dropout(p=dropout_prob)
         self.stage3 = self._make_stage(out_channels[0], out_channels[1], 7)
         self.stage4 = self._make_stage(out_channels[1], out_channels[2], 3)
         self.conv5 = nn.Sequential(
@@ -131,6 +132,7 @@ class ShuffleNetV2(nn.Module):
     def forward(self, x):
         x = self.pre(x)
         x = self.stage2(x)
+        x = self.dropout(x)
         x = self.stage3(x)
         x = self.stage4(x)
         x = self.conv5(x)
@@ -150,8 +152,8 @@ class ShuffleNetV2(nn.Module):
 
         return nn.Sequential(*layers)
 
-def shufflenetv2():
-    return ShuffleNetV2()
+def shufflenetv2(dropout_prob):
+    return ShuffleNetV2(dropout_prob=dropout_prob)
 
 
 
