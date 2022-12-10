@@ -291,7 +291,7 @@ class Profiler:
 
                 with open(f"{logdir}/profiler_info.py", "a") as f:
                     if epoch == 0:
-                        f.write("[")
+                        f.write("info = [")
                     json.dump(profiler_info, f)
                     f.write(",")
                 

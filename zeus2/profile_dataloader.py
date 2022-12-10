@@ -358,15 +358,16 @@ class ProfileDataLoader(DataLoader):
 
     def calculate_cost(self, acc: float, threshold: float) -> None:
         print(f"[ProfileDataLoader] writing cost to history_all.py")
-        history_all = f"{self.logdir}/threshold{threshold}.history_all.py"
+        threshold_str = str(threshold).replace('.', '')
+        history_all = f"{self.logdir}/threshold{threshold_str}history_all.py"
         # frac_epochs = (self.warmup_iter + self.profile_iter) / self.num_samples
 
         # TODO: change this cost fn!!
         # total_cost = (frac_epochs / acc) * ((self.eta_knob * self.train_power_result + (1 - self.eta_knob) * self.max_pl / self.train_tput_result))
         total_cost = (self.eta_knob * self.train_power_result + (1 - self.eta_knob) * self.max_pl) * self.time_consumed/acc
         with open(history_all, "a") as f:
-            if self.epoch == 0:
-                f.write("[")
+            if self.epoch == 1:
+                f.write("data = [")
             content = f'''
                     {{
                         "profile_threshold": {threshold},
