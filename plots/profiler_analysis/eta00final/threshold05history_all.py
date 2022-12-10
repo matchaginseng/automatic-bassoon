@@ -10,7 +10,7 @@ data = [
                         "accuracy": 0.5194818037974683,
                         "total_cost": 732469.3173919476
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -22,7 +22,7 @@ data = [
                         "accuracy": 0.5266020569620253,
                         "total_cost": 721428.1495909285
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -34,7 +34,7 @@ data = [
                         "accuracy": 0.5219541139240507,
                         "total_cost": 804253.8121676735
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -46,7 +46,7 @@ data = [
                         "accuracy": 0.5236352848101266,
                         "total_cost": 1703404.3585767364
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -58,7 +58,7 @@ data = [
                         "accuracy": 0.5262064873417721,
                         "total_cost": 727651.310532745
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -70,7 +70,7 @@ data = [
                         "accuracy": 0.5292721518987342,
                         "total_cost": 717792.5699700243
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -82,7 +82,7 @@ data = [
                         "accuracy": 0.5235363924050633,
                         "total_cost": 795824.0085965486
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -94,7 +94,7 @@ data = [
                         "accuracy": 0.5207674050632911,
                         "total_cost": 1618094.8068313755
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -106,7 +106,7 @@ data = [
                         "accuracy": 0.517306170886076,
                         "total_cost": 735068.8889882531
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -118,7 +118,7 @@ data = [
                         "accuracy": 0.5282832278481012,
                         "total_cost": 724255.3054988314
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -130,7 +130,7 @@ data = [
                         "accuracy": 0.5235363924050633,
                         "total_cost": 797325.525227338
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -142,7 +142,7 @@ data = [
                         "accuracy": 0.5229430379746836,
                         "total_cost": 1704453.5403453927
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -154,7 +154,7 @@ data = [
                         "accuracy": 0.43482990506329117,
                         "total_cost": 876617.5897433263
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -166,7 +166,7 @@ data = [
                         "accuracy": 0.4317642405063291,
                         "total_cost": 879632.0068207383
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -178,7 +178,7 @@ data = [
                         "accuracy": 0.44185126582278483,
                         "total_cost": 955792.9423117428
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -190,7 +190,7 @@ data = [
                         "accuracy": 0.42681962025316456,
                         "total_cost": 1983131.7864978844
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -202,7 +202,7 @@ data = [
                         "accuracy": 0.45836629746835444,
                         "total_cost": 831424.1450667537
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -214,7 +214,7 @@ data = [
                         "accuracy": 0.4435324367088608,
                         "total_cost": 858223.7076604189
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -226,7 +226,7 @@ data = [
                         "accuracy": 0.43591772151898733,
                         "total_cost": 953705.9421473227
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -238,7 +238,7 @@ data = [
                         "accuracy": 0.4233583860759494,
                         "total_cost": 2022612.5696049775
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -250,7 +250,7 @@ data = [
                         "accuracy": 0.4444224683544304,
                         "total_cost": 855666.190005959
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -262,7 +262,7 @@ data = [
                         "accuracy": 0.44788370253164556,
                         "total_cost": 847696.5893241654
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -274,7 +274,7 @@ data = [
                         "accuracy": 0.4375988924050633,
                         "total_cost": 958191.1530795515
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -286,7 +286,7 @@ data = [
                         "accuracy": 0.3921083860759494,
                         "total_cost": 2252641.276725528
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -298,7 +298,7 @@ data = [
                         "accuracy": 0.32219145569620256,
                         "total_cost": 1183137.0524747889
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -310,7 +310,7 @@ data = [
                         "accuracy": 0.30181962025316456,
                         "total_cost": 1256638.7231782915
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -322,7 +322,7 @@ data = [
                         "accuracy": 0.3239715189873418,
                         "total_cost": 1296883.229545216
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -334,7 +334,7 @@ data = [
                         "accuracy": 0.34117879746835444,
                         "total_cost": 2463988.8303083135
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -346,7 +346,7 @@ data = [
                         "accuracy": 0.3606606012658228,
                         "total_cost": 1059565.4795919086
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -358,7 +358,7 @@ data = [
                         "accuracy": 0.19234572784810128,
                         "total_cost": 1991811.5979813773
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -370,7 +370,7 @@ data = [
                         "accuracy": 0.24861550632911392,
                         "total_cost": 1680131.8241065193
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -382,7 +382,7 @@ data = [
                         "accuracy": 0.3061708860759494,
                         "total_cost": 2805619.1680548294
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -394,7 +394,7 @@ data = [
                         "accuracy": 0.380439082278481,
                         "total_cost": 999903.7345787573
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -406,7 +406,7 @@ data = [
                         "accuracy": 0.3043908227848101,
                         "total_cost": 1249562.3179278097
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -418,7 +418,7 @@ data = [
                         "accuracy": 0.26948180379746833,
                         "total_cost": 1547729.0137872975
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -430,7 +430,7 @@ data = [
                         "accuracy": 0.294501582278481,
                         "total_cost": 3032738.2415569047
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -442,7 +442,7 @@ data = [
                         "accuracy": 0.51650390625,
                         "total_cost": 816170.9133734513
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -454,7 +454,7 @@ data = [
                         "accuracy": 0.51142578125,
                         "total_cost": 834891.8090449425
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -466,7 +466,7 @@ data = [
                         "accuracy": 0.5130859375,
                         "total_cost": 939770.152197894
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -478,7 +478,7 @@ data = [
                         "accuracy": 0.5173828125,
                         "total_cost": 2413725.1819222895
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -490,7 +490,7 @@ data = [
                         "accuracy": 0.52109375,
                         "total_cost": 804970.0226206866
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -502,7 +502,7 @@ data = [
                         "accuracy": 0.52158203125,
                         "total_cost": 818274.4680681701
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -514,7 +514,7 @@ data = [
                         "accuracy": 0.52021484375,
                         "total_cost": 922026.7533454383
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -526,7 +526,7 @@ data = [
                         "accuracy": 0.5240234375,
                         "total_cost": 2490844.1743600233
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -538,7 +538,7 @@ data = [
                         "accuracy": 0.51796875,
                         "total_cost": 812587.8303953279
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -550,7 +550,7 @@ data = [
                         "accuracy": 0.5201171875,
                         "total_cost": 820835.7214689334
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -562,7 +562,7 @@ data = [
                         "accuracy": 0.51728515625,
                         "total_cost": 929755.3593293623
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -574,7 +574,7 @@ data = [
                         "accuracy": 0.5134765625,
                         "total_cost": 2387479.593628042
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -586,7 +586,7 @@ data = [
                         "accuracy": 0.486328125,
                         "total_cost": 865759.7833767021
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -598,7 +598,7 @@ data = [
                         "accuracy": 0.47978515625,
                         "total_cost": 889864.4217902462
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -610,7 +610,7 @@ data = [
                         "accuracy": 0.4353515625,
                         "total_cost": 1105493.6599084784
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -622,7 +622,7 @@ data = [
                         "accuracy": 0.446875,
                         "total_cost": 2782437.5729232356
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -634,7 +634,7 @@ data = [
                         "accuracy": 0.4294921875,
                         "total_cost": 987606.7437780635
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -646,7 +646,7 @@ data = [
                         "accuracy": 0.44287109375,
                         "total_cost": 961634.4096177579
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -658,7 +658,7 @@ data = [
                         "accuracy": 0.44990234375,
                         "total_cost": 1063498.2929005956
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -670,7 +670,7 @@ data = [
                         "accuracy": 0.441015625,
                         "total_cost": 2827052.868478113
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -682,7 +682,7 @@ data = [
                         "accuracy": 0.4109375,
                         "total_cost": 1024098.7105094322
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -694,7 +694,7 @@ data = [
                         "accuracy": 0.48564453125,
                         "total_cost": 877347.4208147727
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -706,7 +706,7 @@ data = [
                         "accuracy": 0.43095703125,
                         "total_cost": 1115595.975845804
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -718,7 +718,7 @@ data = [
                         "accuracy": 0.4701171875,
                         "total_cost": 2627372.4849722385
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -730,7 +730,7 @@ data = [
                         "accuracy": 0.08056640625,
                         "total_cost": 5216728.22163271
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -742,7 +742,7 @@ data = [
                         "accuracy": 0.30595703125,
                         "total_cost": 1393801.2655164204
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -754,7 +754,7 @@ data = [
                         "accuracy": 0.28505859375,
                         "total_cost": 1694684.4841438467
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -766,7 +766,7 @@ data = [
                         "accuracy": 0.12119140625,
                         "total_cost": 9835275.280296668
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -778,7 +778,7 @@ data = [
                         "accuracy": 0.39892578125,
                         "total_cost": 1052535.3104138297
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -790,7 +790,7 @@ data = [
                         "accuracy": 0.361328125,
                         "total_cost": 1180896.717007272
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -802,7 +802,7 @@ data = [
                         "accuracy": 0.27109375,
                         "total_cost": 1784665.5163573273
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -814,7 +814,7 @@ data = [
                         "accuracy": 0.35556640625,
                         "total_cost": 3515349.8654656005
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -826,7 +826,7 @@ data = [
                         "accuracy": 0.26015625,
                         "total_cost": 1620579.498474694
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -838,7 +838,7 @@ data = [
                         "accuracy": 0.32734375,
                         "total_cost": 1308960.886071517
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -850,7 +850,7 @@ data = [
                         "accuracy": 0.31748046875,
                         "total_cost": 1512336.7124457418
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 256,
@@ -862,7 +862,7 @@ data = [
                         "accuracy": 0.3421875,
                         "total_cost": 3597799.8779910957
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -874,7 +874,7 @@ data = [
                         "accuracy": 0.52021484375,
                         "total_cost": 1531528.487022594
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -886,7 +886,7 @@ data = [
                         "accuracy": 0.5181640625,
                         "total_cost": 1573458.2847490474
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -898,7 +898,7 @@ data = [
                         "accuracy": 0.5173828125,
                         "total_cost": 1789671.4353548605
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -910,7 +910,7 @@ data = [
                         "accuracy": 0.51591796875,
                         "total_cost": 4414391.943535459
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -922,7 +922,7 @@ data = [
                         "accuracy": 0.5150390625,
                         "total_cost": 1545939.1392282166
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -934,7 +934,7 @@ data = [
                         "accuracy": 0.50703125,
                         "total_cost": 1616986.5706994538
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -946,7 +946,7 @@ data = [
                         "accuracy": 0.517578125,
                         "total_cost": 1779950.781343417
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -958,7 +958,7 @@ data = [
                         "accuracy": 0.52392578125,
                         "total_cost": 4358528.016080154
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -970,7 +970,7 @@ data = [
                         "accuracy": 0.52236328125,
                         "total_cost": 1527178.9458784724
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -982,7 +982,7 @@ data = [
                         "accuracy": 0.5234375,
                         "total_cost": 1560379.7312954494
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -994,7 +994,7 @@ data = [
                         "accuracy": 0.5166015625,
                         "total_cost": 1791567.1276642513
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -1006,7 +1006,7 @@ data = [
                         "accuracy": 0.52392578125,
                         "total_cost": 4355178.658188844
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -1018,7 +1018,7 @@ data = [
                         "accuracy": 0.43232421875,
                         "total_cost": 1839407.135341914
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -1030,7 +1030,7 @@ data = [
                         "accuracy": 0.47880859375,
                         "total_cost": 1703554.0655435198
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -1042,7 +1042,7 @@ data = [
                         "accuracy": 0.45986328125,
                         "total_cost": 2013759.5631308574
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -1054,7 +1054,7 @@ data = [
                         "accuracy": 0.4146484375,
                         "total_cost": 5546647.853881855
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -1066,7 +1066,7 @@ data = [
                         "accuracy": 0.41552734375,
                         "total_cost": 1913005.4060370824
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -1078,7 +1078,7 @@ data = [
                         "accuracy": 0.45126953125,
                         "total_cost": 1802531.8950109724
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -1090,7 +1090,7 @@ data = [
                         "accuracy": 0.4693359375,
                         "total_cost": 1967022.311070696
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -1102,7 +1102,7 @@ data = [
                         "accuracy": 0.43486328125,
                         "total_cost": 5262627.396009764
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -1114,7 +1114,7 @@ data = [
                         "accuracy": 0.47890625,
                         "total_cost": 1660857.132842064
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -1126,7 +1126,7 @@ data = [
                         "accuracy": 0.43896484375,
                         "total_cost": 1855145.248177941
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -1138,7 +1138,7 @@ data = [
                         "accuracy": 0.46845703125,
                         "total_cost": 1975810.3837838448
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -1150,7 +1150,7 @@ data = [
                         "accuracy": 0.46767578125,
                         "total_cost": 4880356.710795629
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -1162,7 +1162,7 @@ data = [
                         "accuracy": 0.31572265625,
                         "total_cost": 2538085.1583249415
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -1174,7 +1174,7 @@ data = [
                         "accuracy": 0.30966796875,
                         "total_cost": 2644390.29940846
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -1186,7 +1186,7 @@ data = [
                         "accuracy": 0.325390625,
                         "total_cost": 2854184.390453645
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -1198,7 +1198,7 @@ data = [
                         "accuracy": 0.35126953125,
                         "total_cost": 6479870.870596661
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -1210,7 +1210,7 @@ data = [
                         "accuracy": 0.34287109375,
                         "total_cost": 2319700.4596564285
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -1222,7 +1222,7 @@ data = [
                         "accuracy": 0.31484375,
                         "total_cost": 2587034.7774890023
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -1234,7 +1234,7 @@ data = [
                         "accuracy": 0.3451171875,
                         "total_cost": 2683712.3687156118
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -1246,7 +1246,7 @@ data = [
                         "accuracy": 0.2173828125,
                         "total_cost": 10494717.356277362
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -1258,7 +1258,7 @@ data = [
                         "accuracy": 0.25947265625,
                         "total_cost": 3061052.99785314
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -1270,7 +1270,7 @@ data = [
                         "accuracy": 0.226171875,
                         "total_cost": 3607718.0778988134
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -1282,7 +1282,7 @@ data = [
                         "accuracy": 0.1943359375,
                         "total_cost": 4772623.160475369
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 512,
@@ -1294,7 +1294,7 @@ data = [
                         "accuracy": 0.36884765625,
                         "total_cost": 6221128.623817819
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1306,7 +1306,7 @@ data = [
                         "accuracy": 0.5189453125,
                         "total_cost": 2988593.318009778
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1318,7 +1318,7 @@ data = [
                         "accuracy": 0.5212890625,
                         "total_cost": 3069560.7372352513
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1330,7 +1330,7 @@ data = [
                         "accuracy": 0.52158203125,
                         "total_cost": 3501882.0995861613
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1342,7 +1342,7 @@ data = [
                         "accuracy": 0.519921875,
                         "total_cost": 9438839.459341599
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1354,7 +1354,7 @@ data = [
                         "accuracy": 0.5212890625,
                         "total_cost": 2991894.697531452
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1366,7 +1366,7 @@ data = [
                         "accuracy": 0.5109375,
                         "total_cost": 3130764.6185690137
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1378,7 +1378,7 @@ data = [
                         "accuracy": 0.52294921875,
                         "total_cost": 3477515.5327161103
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1390,7 +1390,7 @@ data = [
                         "accuracy": 0.51796875,
                         "total_cost": 9369474.832941044
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1402,7 +1402,7 @@ data = [
                         "accuracy": 0.5181640625,
                         "total_cost": 2997535.9790607067
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1414,7 +1414,7 @@ data = [
                         "accuracy": 0.521484375,
                         "total_cost": 3073114.931631366
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1426,7 +1426,7 @@ data = [
                         "accuracy": 0.52490234375,
                         "total_cost": 3473365.6736985715
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1438,7 +1438,7 @@ data = [
                         "accuracy": 0.52158203125,
                         "total_cost": 9350518.643418461
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1450,7 +1450,7 @@ data = [
                         "accuracy": 0.46025390625,
                         "total_cost": 3372920.3473764723
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1462,7 +1462,7 @@ data = [
                         "accuracy": 0.48837890625,
                         "total_cost": 3278611.8534373683
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1474,7 +1474,7 @@ data = [
                         "accuracy": 0.46474609375,
                         "total_cost": 3927175.3558983556
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1486,7 +1486,7 @@ data = [
                         "accuracy": 0.4498046875,
                         "total_cost": 10767226.332984721
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1498,7 +1498,7 @@ data = [
                         "accuracy": 0.4669921875,
                         "total_cost": 3332071.6957389116
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1510,7 +1510,7 @@ data = [
                         "accuracy": 0.462109375,
                         "total_cost": 3464243.9373257738
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1522,7 +1522,7 @@ data = [
                         "accuracy": 0.4791015625,
                         "total_cost": 3802443.964268744
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1534,7 +1534,7 @@ data = [
                         "accuracy": 0.48720703125,
                         "total_cost": 10033816.570612196
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1546,7 +1546,7 @@ data = [
                         "accuracy": 0.48759765625,
                         "total_cost": 3188534.603266901
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1558,7 +1558,7 @@ data = [
                         "accuracy": 0.48330078125,
                         "total_cost": 3313890.5386368004
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1570,7 +1570,7 @@ data = [
                         "accuracy": 0.48056640625,
                         "total_cost": 3784228.103283056
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1582,7 +1582,7 @@ data = [
                         "accuracy": 0.484765625,
                         "total_cost": 9982136.497766439
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1594,7 +1594,7 @@ data = [
                         "accuracy": 0.41904296875,
                         "total_cost": 3697933.537096277
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1606,7 +1606,7 @@ data = [
                         "accuracy": 0.33388671875,
                         "total_cost": 4795355.43565271
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1618,7 +1618,7 @@ data = [
                         "accuracy": 0.31689453125,
                         "total_cost": 5766815.800564751
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1630,7 +1630,7 @@ data = [
                         "accuracy": 0.33974609375,
                         "total_cost": 14412978.343919512
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1642,7 +1642,7 @@ data = [
                         "accuracy": 0.33125,
                         "total_cost": 4697853.761735836
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1654,7 +1654,7 @@ data = [
                         "accuracy": 0.3228515625,
                         "total_cost": 4947510.110005889
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1666,7 +1666,7 @@ data = [
                         "accuracy": 0.35947265625,
                         "total_cost": 5080212.600245825
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1678,7 +1678,7 @@ data = [
                         "accuracy": 0.31728515625,
                         "total_cost": 15340086.791013097
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1690,7 +1690,7 @@ data = [
                         "accuracy": 0.3376953125,
                         "total_cost": 4598987.163464927
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1702,7 +1702,7 @@ data = [
                         "accuracy": 0.36689453125,
                         "total_cost": 4365059.78208123
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,
@@ -1714,7 +1714,7 @@ data = [
                         "accuracy": 0.401171875,
                         "total_cost": 4549566.966340833
                     },
-                    data = [
+                    
                     {
                         "profile_threshold": 0.5,
                         "bs": 1024,

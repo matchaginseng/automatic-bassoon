@@ -10,7 +10,7 @@ data = [
                         "accuracy": 0.5039556962025317,
                         "total_cost": 520.546562619067
                     },
-                    data = [
+
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -22,7 +22,7 @@ data = [
                         "accuracy": 0.5048457278481012,
                         "total_cost": 527.8805702289941
                     },
-                    data = [
+
                     {
                         "profile_threshold": 0.5,
                         "bs": 128,
@@ -1725,5 +1725,5 @@ data = [
                         "time": 28.636331670999425,
                         "accuracy": 0.3232421875,
                         "total_cost": 10717.70270730285
-                    },
+                    },]
                     
