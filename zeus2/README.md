@@ -76,6 +76,8 @@ python run_shufflenet_vx.py \
 
 The `eta_knob` trades off time and energy consumption. See the equation in the writeup.
 
+Alos note that `acc_thresholds` must be specified in decreasing order because the code pops off the last threshold in the list to use as the accuracy threshold for profiling. For example, if we want to profile at accuracy thresholds 0.3, 0.4, and 0.5, the argument must be written as `--acc_thresholds 0.5 0.4 0.3`, and not `--acc_thresholds 0.3 0.4 0.5`. 
+
 
 ## Contact
 Charumathi Badrinath (charumathibadrinath@college.harvard.edu), Helen Cho (hcho@college.harvard.edu), Vicki Xu (vickixu@college.harvard.edu)
