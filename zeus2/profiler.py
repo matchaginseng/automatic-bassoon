@@ -144,7 +144,8 @@ class Profiler:
         logdir = (
             job.to_logdir() + f"+eta{eta_knob}+beta{beta_knob}+{now}"
         )
-        logdir = f"{self.log_base}/{logdir}"
+        # logdir = f"{self.log_base}/{logdir}"
+        logdir = f'/workspace/zeus/plots/docker_data/{logdir}'
         os.makedirs(logdir, exist_ok=exist_ok)
         return logdir
 
@@ -276,7 +277,7 @@ class Profiler:
                 profile_end_time = monotonic()
 
                 # find optimal setting to return: get argmin
-                opt_bs, opt_lr, opt_dr, opt_pl = min(opt_pl, key=opt_pl.get)
+                opt_bs, opt_lr, opt_dr, opt_pl = min(costs, key=costs.get)
                 print(f"[Training Loop] The optimal parameters are lr: {opt_lr} dr: {opt_dr} bs: {opt_bs} pl: {opt_pl}")
 
                 profiler_info = dict(
